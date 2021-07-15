@@ -1,3 +1,4 @@
+
 {{header-geral  parentController = this.parentController
                 pessoa=pessoa
                 thisRoute=thisRoute
@@ -40,7 +41,7 @@
   {{/unless}}
 
   <div class="l-dots-between">
-
+    
     <aside class="l-dots-between__side">
       <h1 class="sr-only">Filtros de conteúdos</h1>
       <form autocomplete="off" class="flex flex-col flow-md">
@@ -187,3 +188,20 @@
   </div>
 
 </section>
+
+
+<aside id="termo_modal" class="modal">
+  <div class="modal__overlayer"></div>
+  <div class="modal__content">
+    <div class="modal__header">
+      <button class="modal__close btn-close icon-x" type="submit" {{action 'cancelTermo'}}></button>
+      <h2 class="modal__title color-leaf-40">Política de privacidade</h2>
+    </div>
+    {{politica-privacidade class="privacy"}}
+    <div class="modal__footer">
+      <button class="btn btn-primary" type="submit" {{action 'aceitarTermo'}}>Aceitar</button>
+    </div>
+  </div>
+</aside>
+{{termoAceito}}
+

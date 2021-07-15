@@ -28,5 +28,9 @@ export default DS.Model.extend({
     plataformaTurmas: DS.hasMany('plataforma-turma', {
         async: true
     }),
-    ignoraCalendarioMedio: DS.attr()
+    ignoraCalendarioMedio: DS.attr(),
+    statusTermoAceite: DS.attr(),
+    codigoProfessores: DS.attr(),
+    codigoAlunos: DS.attr(),
+    codigoAlunosInfantil: DS.attr(),
 });

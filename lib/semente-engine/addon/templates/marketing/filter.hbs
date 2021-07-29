@@ -41,6 +41,21 @@
       </hgroup>
 
       <ul class="list list--striped">
+        
+      {{!-- Os vídeos são ordenados de forma decrescente --}}
+      {{#if (equalstr selectedAreaName 'Vídeos')}}
+        
+        {{#each itensDescSorted as |item|}}
+            {{#if (containStr subStr = search mainStr = item.titulo)}}
+                <li class="flow-sm">
+                    {{marketing-card item=item goToEditItem=(action 'goToEditItem')}}
+                </li>
+            {{/if}}
+        {{/each}}
+
+      {{else}}
+
+        {{!-- Ordenação ascendente --}}
         {{#each itens as |item|}}
             {{#if (containStr subStr = search mainStr = item.titulo)}}
                 <li class="flow-sm">
@@ -48,6 +63,8 @@
                 </li>
             {{/if}}
         {{/each}}
+      
+      {{/if}}
       </ul>
     </section>
 

@@ -8,6 +8,16 @@
 
     padding-top: $distance--md;
 
+    &__pdf {
+        width: 55vw;
+        height: 80vh;
+
+        
+        @include media('<lg') {
+            width: 100vw;
+        }
+    }
+    
     &__title { font-weight: normal; }
 
     &__title-class {

@@ -2,7 +2,11 @@
     <div class="video" id="video_conteudo"></div>
 {{/if}}
 {{#if (equalstr conteudo.tipo "Documento")}}
-    <object id="doc" data={{conteudo.arquivoUrl}} type='application/pdf' width="1000px" height="500px"></object>
+    {{!-- <object id="doc" data={{conteudo.arquivoUrl}} type='application/pdf' width="1000px" height="500px"></object> --}}
+    <iframe class="content__pdf" id="doc" src={{conteudo.arquivoUrl}} type='application/pdf'></iframe>
+
+ 
+
 {{/if}}
 {{#if (equalstr conteudo.tipo "Imagem")}}
     <img class="media__thumb" id="file-{{conteudo.id}}" src={{conteudo.arquivoUrl}} alt="{{conteudo.titulo}}" style="width:800px;height:500px">

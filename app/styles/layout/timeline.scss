@@ -20,6 +20,12 @@
   padding-top: $distance--xxl;
   text-align: left;
 
+  @include media('<sm') {
+    margin-left: 2rem;
+    margin-right: 0.5rem;
+  }
+
+
   &__begin,
   &__end {
     ///////////
@@ -235,6 +241,12 @@
         border-top: 1px solid transparentize($color: $white, $amount: .85);
         padding-top: $distance--xs;
       }
+
+      @include media('<sm') {
+        display: none;
+      }
+
+
     }
 
 

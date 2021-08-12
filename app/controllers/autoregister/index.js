@@ -59,7 +59,7 @@ export default Ember.Controller.extend({
                 errorMsg = 'Por favor, insira o código fornecido pela escola.';
                 break;
               case schoolCode.length > 0:
-                debugger;
+                
                 errorMsg = error.errors[0].title
                 break;
                 

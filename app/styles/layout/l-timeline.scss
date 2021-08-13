@@ -48,6 +48,7 @@
         @include media('<sm') {
           background-position: scroll;
           background-size: auto 100vh;
+          background-attachment: initial;
         }
       }
 

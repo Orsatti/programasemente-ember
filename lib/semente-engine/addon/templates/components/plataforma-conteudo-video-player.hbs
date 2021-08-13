@@ -3,8 +3,8 @@
 {{/if}}
 {{#if (equalstr conteudo.tipo "Documento")}}
     {{!-- <object id="doc" data={{conteudo.arquivoUrl}} type='application/pdf' width="1000px" height="500px"></object> --}}
-    <iframe class="content__pdf" id="doc" src={{conteudo.arquivoUrl}} type='application/pdf'></iframe>
-
+    <iframe class="content__pdf hide-on--xs" id="doc" src={{conteudo.arquivoUrl}} type='application/pdf'></iframe>
+    <a class="btn content__btnBaixar" id='btnBaixar' href="{{conteudo.arquivoUrl}}" download="{{conteudo.titulo}}.pdf">Baixar PDF</a>
  
 
 {{/if}}

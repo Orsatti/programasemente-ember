@@ -59,7 +59,7 @@
         {{#each itens as |item|}}
             {{#if (containStr subStr = search mainStr = item.titulo)}}
                 <li class="flow-sm">
-                    {{marketing-card item=item goToEditItem=(action 'goToEditItem') removeItem=(action 'removeItem')}}
+                    {{marketing-card item=item goToEditItem=(action 'goToEditItem') removeItem=(action 'removeItem') openModal=(action 'openModal') cancelRemove=(action 'cancelRemove')}}
                 </li>
             {{/if}}
         {{/each}}
@@ -71,3 +71,17 @@
   </div>
 
 </section>
+
+<aside id="confirm_modal" class="modal">
+  <div class="modal__overlayer"></div>
+  <div class="modal__content">
+    <div class="modal__header">
+      <button class="modal__close btn-close icon-x" type="submit" {{action 'cancelRemove'}}></button>
+      <h2 class="modal__title color-leaf-40">Tem certeza que deseja remover?</h2>
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn-primary" type="submit" {{action 'removeItem'}}>Sim</button>
+      <button class="btn btn-primary" type="submit" {{action 'cancelRemove'}}>Não</button>
+    </div>
+  </div>
+</aside>

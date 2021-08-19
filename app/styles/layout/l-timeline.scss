@@ -4,14 +4,11 @@
 
     @include full-width-container;
 
-    background-color: $green-60;
-    background-image: linear-gradient(-115deg, transparentize($green-10, .6) 0%, transparentize($leaf-70, .2) 50%), url("/assets/img/fundo8.jpg");
-    background-attachment: fixed, fixed;
-    background-position: cover, cover;
-    background-size: cover, cover;
+   
     display: flex;
     justify-content: center;
     //max-width: none;
+    height: 100%;
     padding: 0;
 
     >[class*='__section'] {
@@ -34,6 +31,26 @@
 
         margin-bottom: -$main-bottom-padding--lg;
         margin-top: -$main-top-padding--lg;
+      }
+
+      &::before {
+        position: absolute;
+        left: 0;
+        width: 100vw;
+        height: 100%;
+        content: '';
+        background-color: $green-60;
+        background-image: linear-gradient(-115deg, transparentize($green-10, .6) 0%, transparentize($leaf-70, .2) 50%), url("/assets/img/fundo8.jpg");
+        background-position: cover;
+        background-size: cover;
+        background-attachment: fixed;
+
+        @include media('<sm') {
+          background-image: linear-gradient(-115deg, transparentize($green-10, .9) 0%, transparentize($leaf-60, .2) 80%);
+          background-position: scroll;
+          background-size: 100vh;
+          background-attachment: initial;
+        }
       }
 
   }

@@ -12,4 +12,5 @@ export default DS.Model.extend({
         let dataformatada = moment(this.get('dataAtualizacao'), 'DD/MM/YYYY hh:mm:ss').format('DD/MM/YYYY');
         return dataformatada;
     }),
+    deleted: DS.attr(),
 });

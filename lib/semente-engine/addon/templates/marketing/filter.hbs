@@ -48,7 +48,7 @@
         {{#each itensDescSorted as |item|}}
             {{#if (containStr subStr = search mainStr = item.titulo)}}
                 <li class="flow-sm">
-                    {{marketing-card item=item goToEditItem=(action 'goToEditItem')}}
+                    {{marketing-card item=item goToEditItem=(action 'goToEditItem') removeItem=(action 'removeItem') openModal=(action 'openModal') cancelRemove=(action 'cancelRemove')}}
                 </li>
             {{/if}}
         {{/each}}

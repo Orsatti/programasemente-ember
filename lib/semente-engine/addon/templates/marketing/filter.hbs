@@ -43,7 +43,7 @@
       <ul class="list list--striped">
         
       {{!-- Os vídeos são ordenados de forma decrescente --}}
-      {{#if (equalstr selectedAreaName 'Vídeos')}}
+      {{!-- {{#if (equalstr selectedAreaName 'Vídeos')}}
         
         {{#each itensDescSorted as |item|}}
             {{#if (containStr subStr = search mainStr = item.titulo)}}
@@ -53,7 +53,7 @@
             {{/if}}
         {{/each}}
 
-      {{else}}
+      {{else}} --}}
 
         {{!-- Ordenação ascendente --}}
         {{#each itens as |item|}}
@@ -64,7 +64,7 @@
             {{/if}}
         {{/each}}
       
-      {{/if}}
+      {{!-- {{/if}} --}}
       </ul>
     </section>
 

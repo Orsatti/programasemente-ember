@@ -87,6 +87,12 @@
       <h3 class="title-3">Informações pessoais</h3>
 
       <form class="flex flex-col flow-md" autocomplete="off">
+
+        <div class="form-group">
+          <label class="form-group__label" for="nome">Nome</label>
+          {{input class="form-group__input" type="nome" id="nome" value=pessoa.name}}
+        </div>
+
         <div class="form-group">
           <label class="form-group__label" for="email">E-mail</label>
           {{input class="form-group__input" type="email" id="email" value=pessoa.emailCadastrado}}
@@ -99,23 +105,23 @@
         </div>
 
         <div class="form-group">
-          <span class="form-group__label">Gênero</span>
+          <span class="form-group__label">Gênero biológico</span>
           <div class="flex flex-row items-center flow-h-md">
             <div class="radio radio--sm">
               <input class="radio__input" checked={{if (equalstr pessoa.genero "feminino" ) "checked" }}
                 id="gen_feminino" value="feminino" name="genero" type="radio" onchange={{ action 'refreshGenero' }}>
-              <label class="radio__label" for="gen_feminino">feminino</label>
+              <label class="radio__label" for="gen_feminino">Feminino</label>
             </div>
             <div class="radio radio--sm">
               <input class="radio__input" checked={{if (equalstr pessoa.genero "masculino" ) "checked" }}
                 id="gen_masculino" value="masculino" name="genero" type="radio" onchange={{ action 'refreshGenero' }}>
               <label class="radio__label" for="gen_masculino">Masculino</label>
             </div>
-            <div class="radio radio--sm">
+            {{!-- <div class="radio radio--sm">
               <input class="radio__input" checked={{if (equalstr pessoa.genero "outro" ) "checked" }} id="gen_outro"
                 value="" name="genero" type="radio" onchange={{ action 'refreshGenero' }}>
               <label class="radio__label" for="gen_outro">Prefiro não informar</label>
-            </div>
+            </div> --}}
           </div>
         </div>
       </form>

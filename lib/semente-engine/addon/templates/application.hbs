@@ -157,11 +157,13 @@
          </li> 
          {{/if}}
             {{#if acessoFp}}
-              <li class="global-nav__item global-nav--mob-only">
-                <a href="https://fp.programasemente.com.br" class="global-nav__link header-indicadores" target="_blank">
-                  <span>Programa Semente FP</span>
-                </a>
-              </li>
+              {{#unless (equalstr InstituicaoId '105')}}
+                  <li class="global-nav__item global-nav--mob-only">
+                  <a href="https://fp.programasemente.com.br" class="global-nav__link header-indicadores" target="_blank">
+                    <span>Programa Semente FP</span>
+                  </a>
+                </li>
+              {{/unless}}
             {{/if}}
             {{#if acessoS}}
               <li class="global-nav__item global-nav--mob-only">
@@ -191,11 +193,13 @@
         <div class="global-nav__submenu submenu submenu--header submenu--user" id="appsSubmenu">
            <ul class="submenu__body">
             {{#if acessoFp}}
-              <li class="submenu__item">
-                <a href="https://fp.programasemente.com.br" class="submenu__link" target="_blank">
-                  <span>Programa Semente FP</span>
-                </a>
-              </li>
+              {{#unless (equalstr InstituicaoId '105')}}
+                <li class="submenu__item">
+                  <a href="https://fp.programasemente.com.br" class="submenu__link" target="_blank">
+                    <span>Programa Semente FP</span>
+                  </a>
+                </li>
+              {{/unless}}
             {{/if}}
             {{#if acessoS}}
               <li class="submenu__item">

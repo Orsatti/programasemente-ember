@@ -41,6 +41,28 @@
         </div>
         --}}
 
+        {{#if instituicaoMae}}
+          <div class="form-group">
+            <label class="form-group__label">Instituições</label>
+            <div class="form-group__wrapper form-group__wrapper--select">
+              <select class="form-group__input"
+                      name="year"
+                      id="instituicao_filha_selector"
+                      onchange={{action 'refreshSelectedInstFilha' value='target.value'}} 
+                      data-type="select"
+                      data-required="true">
+                <option selected="selected" value="0">Todas</option>
+                {{#each instituicaoFilhas as |instf|}}
+                    <option style="display: block" value="{{instf.id}}"
+                      selected={{if (equalstr instf selectedInstFilha) "selected"}}>
+                    {{instf.name}}</option>
+                {{/each}}
+                {{!-- <option id="id_do_segmento" value="id_do_segmento">Nome do segmento</option> --}}
+              </select>
+            </div>
+          </div>
+        {{/if}}  
+
         <!-- não funcional -->
         <div class="form-group">
           <label class="form-group__label">Segmentos</label>

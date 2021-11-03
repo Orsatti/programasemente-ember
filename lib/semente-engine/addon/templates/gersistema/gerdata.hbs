@@ -41,6 +41,28 @@
         </div>
         --}}
 
+        {{#if instituicaoMae}}
+          <div class="form-group">
+            <label class="form-group__label">Instituições</label>
+            <div class="form-group__wrapper form-group__wrapper--select">
+              <select class="form-group__input"
+                      name="year"
+                      id="instituicao_filha_selector"
+                      onchange={{action 'refreshSelectedInstFilha' value='target.value'}} 
+                      data-type="select"
+                      data-required="true">
+                <option selected="selected" value="0">Todas</option>
+                {{#each instituicaoFilhas as |instf|}}
+                    <option style="display: block" value="{{instf.id}}"
+                      selected={{if (equalstr instf selectedInstFilha) "selected"}}>
+                    {{instf.name}}</option>
+                {{/each}}
+                {{!-- <option id="id_do_segmento" value="id_do_segmento">Nome do segmento</option> --}}
+              </select>
+            </div>
+          </div>
+        {{/if}}  
+
         <!-- não funcional -->
         <div class="form-group">
           <label class="form-group__label">Segmentos</label>
@@ -402,8 +424,23 @@
           </div>
             {{#if emailError}}<span class="color-error-30 fs--xs">E-mail inválido</span>{{/if}}
         </div>
+        
+        {{#if new_user_id}}
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="form-group w100">
+              <label class="form-group__label" for="new_user_login">Senha</label>
+              <input class="form-group__input j-validate-basic"
+                    id="new_user_senha"
+                    type="textbox"
+                    value={{new_user_senha}}
+                    data-type="text"
+                    data-required="true"
+                    data-context="senha">
+            </div>
+          </div>
+        {{/if}}
 
-        <div class="col-xs-12 col-sm-12 col-md-4">
+        <div class="col-xs-12">
           <div class="checkbox w100">
             <input class="checkbox__input"
                   checked={{new_user_enabled}}

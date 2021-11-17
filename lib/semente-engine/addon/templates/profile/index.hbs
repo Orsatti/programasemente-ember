@@ -96,9 +96,9 @@
         <div class="form-group">
           <label class="form-group__label" for="login">Login</label>
           {{input class="form-group__input" type="login" id="login" value=pessoa.userName}}
-          <div id="timeoutAlertUser" class="alert alert--x alert--blue-navy-50 alert--has-icon alert--no-interaction">
-            <div style="max-width: 80%;"><strong>{{timeoutTxt}}</strong></div>
-          </div>
+          <span id="timeoutAlertUser" class="alert alert--blue-navy-50 alert--error alert--no-interaction alert--x flex justify-center ta">
+            {{timeoutTxt}}
+          </span>
         </div>
 
         <div class="form-group">

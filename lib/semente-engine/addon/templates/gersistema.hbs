@@ -162,6 +162,16 @@
             <span>Usuários</span>
           </button>
 
+          <button class="report__tab tabs__tab {{if selectedInstTabs.codes 'tabs__tab--is-active'}}"
+                  {{action 'tabNavigation' 'codes' on="click" }}>
+            <span>Códigos</span>
+          </button>
+
+          
+          
+          
+          
+          
           {{#if selectedInstTabs.areas}}
             <button class="j-areaFocus tabs__not-tab btn btn--ghost btn--xxs m-left--auto m-right--md"
                     {{action 'newArea'}}>
@@ -533,7 +543,7 @@
 
         <!--
         ######################################
-        Anos
+        Turmas
         ######################################
         Mínimo deve colocar conteúdo novo para essa área!!!!!!!!!!!!!!!!!!
         -->
@@ -656,6 +666,16 @@
   {{/if}}
 
 
+    <!--
+        ######################################
+        Códigos
+        ######################################
+        -->
+       {{#if selectedInstTabs.codes}}
+         <section class="animated d1250 fadeInLeftShort sections__subsection flow-md">
+           TESTE
+         </section>
+       {{/if}}
 
 
 

@@ -1,5 +1,7 @@
+@import url("https://use.typekit.net/fdr3uju.css");
 .institutions {
   $this: &;
+  font-family: filson-pro, sans-serif;
 
   &__header {
     align-items: flex-end;
@@ -112,6 +114,50 @@
       display: block;
     }
 
+  }
+
+  &__codes{
+
+    width: 43%;
+    display: inline-block;
+    margin: auto 0rem auto 2rem;
+
+    &--tits{
+      font-size: 1rem;
+      font-style: normal;
+    }
+
+
+    & table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+      border: 1px solid #fff;
+
+      & th, td {
+        text-align: left;
+        padding: 14px;
+        text-transform: capitalize;
+        font-weight: 400;
+      }
+
+      & td{
+        font-size: 0.7rem;
+
+        &.utilizado{
+          background-image: url(../assets/img/check.png);
+          background-repeat: no-repeat;
+          background-position: 30% center;
+          background-size: 15%;
+        }
+      }
+
+      & tr:nth-child(even) {
+        background-color: #EFF8F8;
+      }
+
+    }
+    
   }
 
 }

@@ -9,19 +9,17 @@
     flex-direction: column;
     justify-content: space-between;
 
-    @include media('>md') {
+    @include media(">md") {
       flex-direction: row;
     }
 
-    >*:last-child {
+    > *:last-child {
       margin-top: $distance--lg;
 
-      @include media('>md') {
+      @include media(">md") {
         margin-top: 0;
       }
-
     }
-
   }
 
   &__courses {
@@ -39,8 +37,7 @@
   }
 
   &__areas {
-
-    >* {
+    > * {
       align-items: flex-start;
       display: flex;
       flex-direction: row;
@@ -48,7 +45,6 @@
       justify-content: space-between;
       padding: 0 0 $distance--xxl 0;
     }
-
   }
 
   &__area {
@@ -64,16 +60,15 @@
     flex-direction: row;
     margin-top: $distance--sm;
 
-    >* {
+    > * {
       flex: 0 0 auto;
       margin-left: $distance--md;
     }
 
-    >*:first-child {
+    > *:first-child {
       flex: 1;
       margin-left: 0;
     }
-
   }
 
   &__table {
@@ -99,12 +94,11 @@
     display: flex;
     flex-direction: column;
     margin-right: $distance--xl;
-    opacity: .5;
+    opacity: 0.5;
 
     &--is-active {
       opacity: 1;
     }
-
   }
 
   &__step-content {
@@ -113,20 +107,17 @@
     &--is-show {
       display: block;
     }
-
   }
 
-  &__codes{
-
+  &__codes {
     width: 43%;
     display: inline-block;
     margin: auto 0rem auto 2rem;
 
-    &--tits{
+    &--tits {
       font-size: 1rem;
       font-style: normal;
     }
-
 
     & table {
       border-collapse: collapse;
@@ -134,17 +125,18 @@
       width: 100%;
       border: 1px solid #fff;
 
-      & th, td {
+      & th,
+      td {
         text-align: left;
         padding: 14px;
         text-transform: capitalize;
         font-weight: 400;
       }
 
-      & td{
+      & td {
         font-size: 0.7rem;
 
-        &.utilizado{
+        &.utilizado {
           background-image: url(../assets/img/check.png);
           background-repeat: no-repeat;
           background-position: 30% center;
@@ -153,11 +145,8 @@
       }
 
       & tr:nth-child(even) {
-        background-color: #EFF8F8;
+        background-color: #eff8f8;
       }
-
     }
-    
   }
-
 }

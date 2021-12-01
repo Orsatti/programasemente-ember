@@ -8,6 +8,7 @@ export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
   mostraAviso: false,
   loginStep: 0,
+  answers: [],
 
   detectIE() {
    
@@ -224,7 +225,8 @@ export default Ember.Controller.extend({
 
     },
 
-    loginRecoveryAnswer(moveTo) {
+    moveToNextQuestion(moveTo, answer) {
+      
       
       if (this.get('loginStep') !== 'email') {
         let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input');
@@ -243,11 +245,34 @@ export default Ember.Controller.extend({
         }
       }
       
+      
 
+      if (this.get('loginStep') !== 'email' && (this.get('loginStep') !== 0)) {
+        
+        if (!answer) {
+          let answerInput = document.querySelector('.step--' + this.get('loginStep') + ' input');
+          answer = answerInput.value;
+        }
+      
+        this.send('registerAnswer', answer);
+      }
+      
       this.set('loginStep', moveTo); 
     },
 
-    submitLoginRecovery() {
+    registerAnswer(answer) {
+      let answers = this.get('answers');
+      
+      let step = this.get('loginStep');
+      answers.push({
+        pergunta: step,
+        resposta: answer
+      })
+      
+    },
+    
+
+    submitLoginRecovery(answer) {
       let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input');
       if (inputToCheck) {
         if (inputToCheck.value.length < 1) {
@@ -261,6 +286,14 @@ export default Ember.Controller.extend({
           document.querySelector('.step--' + this.get('loginStep') + ' span').style.visibility = 'hidden';
         }
       }
+
+      if (!answer) {
+        let answerInput = document.querySelector('.step--' + this.get('loginStep') + ' input');
+        answer = answerInput.value;
+      }
+    
+      this.send('registerAnswer', answer);
+      
     },
 
 
@@ -296,6 +329,7 @@ export default Ember.Controller.extend({
         document.getElementById('informe-email').value = '';
         document.getElementById('success-forgot').style.display = 'none'
         this.set('errorMessageInput', '');
+        this.set('answers', []);
 
       }
       

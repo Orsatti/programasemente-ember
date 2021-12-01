@@ -175,4 +175,120 @@
 
     }
 
+    
+    &__login-recovery-container {
+        display: flex;
+
+        
+    }
+    
+    &__is-login-recovery {
+        background-color: $gray-20;
+        display: flex;
+        width: 100%;
+        height: 80%;
+        //outline: solid red 2px;
+        flex-direction: column;
+        align-items: center;
+        padding: $distance--sm;
+        // position: absolute;
+        // left: 0;
+        
+
+        > p {
+            font-size: $font-size--lg;
+            font-weight: 600;
+            text-align: center;
+            padding: $distance--md;
+        }
+
+        > button {
+            width: 50%;
+        }
+
+
+        &__carousel {
+
+            &--0 {
+                [class*='step--0'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden; };
+                [class*='step--3'] { opacity: 0; visibility: hidden; };
+                [class*='step--4'] { opacity: 0; visibility: hidden; };
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--email {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden; };
+                [class*='step--3'] { opacity: 0; visibility: hidden; };
+                [class*='step--4'] { opacity: 0; visibility: hidden; };
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+            }
+
+
+
+            &--1 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--2'] { opacity: 0; visibility: hidden; };
+                [class*='step--3'] { opacity: 0; visibility: hidden; };
+                [class*='step--4'] { opacity: 0; visibility: hidden; };
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--2 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--3'] { opacity: 0; visibility: hidden; };
+                [class*='step--4'] { opacity: 0; visibility: hidden; };
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--3 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden;};
+                [class*='step--3'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--4'] { opacity: 0; visibility: hidden; };
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--4 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden;};
+                [class*='step--3'] { opacity: 1; visibility: hidden;};
+                [class*='step--4'] { opacity: 0; visibility: visible; position: absolute; left: 0;};
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--5 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden;};
+                [class*='step--3'] { opacity: 1; visibility: hidden;};
+                [class*='step--4'] { opacity: 0; visibility: hidden;};
+                [class*='step--5'] { opacity: 0; visibility: visible; position: absolute; left: 0; };
+            }
+
+
+        }
+
+
+    }
+
+    &--large-height {
+        height: 30rem;
+    }
+
 }

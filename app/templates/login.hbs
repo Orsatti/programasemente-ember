@@ -70,7 +70,8 @@
         <p style="max-width: fit-content;">{{{errorMessage}}}</p>
       </div>
       {{/if}}
-      <button class="login__forgot-pass" type="button" {{action 'forgotPass' }}>Esqueceu sua senha?</button>
+      <button class="login__forgot-pass" type="button" {{action 'forgotPass' 'password' }}>Esqueceu sua senha?</button>
+      <button class="login__forgot-pass" type="button" {{action 'forgotPass' 'username' }}>Esqueceu seu login?</button>
 
 
     </div>
@@ -113,17 +114,19 @@
 
 <aside id="forgot_modal" class="modal animated fast fadeIn">
 
-  <div class="modal__content modal__content--md">
+ 
+  <div id="modal-content" class="modal__content modal__content--md">
 
     <header class="modal__header">
       <button class="modal__close btn-close icon-x" type="submit" {{action 'cancelForgot' }}></button>
 
-      <h3 class="modal__title">Solicitar nova senha</h3>
+      <h3 class="modal__title">{{modalTitle}}</h3>
     </header>
+    {{#if (equalstr modalType 'password')}}
     <div class="flow-lg">
       <div class="flow-md">
         <div class="form-group form-group--full-width flow-xs">
-          <p>Por favor, preencha seu nome de usuário (login)</p>
+          <p>{{modalInfo}}</p>
           <input class="form-group__input login__input" type="textbox" id="user_name" value={{user_email}}>
           <!-- placeholder="Insira seu endereço de e-mail" -->
         </div>
@@ -157,7 +160,104 @@
         senha</button>
     </div>
 
+    <div class="alert alert--has-icon alert--success alert--xxs animated fadeIn" id="success-forgot">
+      <p>{{{success_forgot}}}</p>
+    </div>
+
+        
+    {{/if}}
+
+    {{#if (equalstr modalType 'username')}}
+      <div class="flow-lg">
+        <div class="flow-md">
+        
+                
+            <div class="form-group form-group--full-width flow-xs">
+              <p>{{modalInfo}}</p>
+              
+              <div id="modal-login-recovery-container" class="modal__login-recovery-container modal__is-login-recovery__carousel--{{loginStep}}">
+                
+                  {{!-- Pergunta 0 --}}
+                <div id='q0' class="modal__is-login-recovery step--0 flow-xs animated d250 {{if (equalstr loginStep '0') 'fadeInRightShort'}}">
+                  <p>Você se lembra qual e-mail está cadastrado em sua conta?</p>
+                  <button id="question1-alt1" class="btn btn--xs" type="submit" {{action 'loginRecoveryAnswer' 'email'}}>Sim</button>
+                  <button id="question1-alt2" class="btn btn--xs" type="submit" {{action 'loginRecoveryAnswer' 1}}>Não</button>
+                </div>
+
+                  {{!-- Informe de e-mail --}}
+                <div id='qemail' class="modal__is-login-recovery  step--email flow-xs animated d250 {{if (equalstr loginStep 'email') 'fadeInRightShort'}}">
+                  <p>Informe o e-mail cadastrado</p>
+                  <input id="informe-email" class="w100" type="email">
+                  <span class="alert alert--error alert--has-icon alert--xxs animated fadeIn m-bottom--md w100" id="error-forgot">{{{error_forgot}}}</span>
+                  <span class="alert alert--has-icon alert--success alert--xxs animated fadeIn" id="success-forgot" style="display: none;">{{{success_forgot}}}</span>
+                  
+                  <button id="checaEmail" class="btn btn--xs m-top--xxl" type="submit" {{action 'resgataLoginPorEmail'}}>Resgatar</button>
+                  <button id="goToPerguntas" class="btn btn--xs m-top--xxl" type="submit" {{action 'loginRecoveryAnswer' 1}}>Resgatar de outra forma</button>
+                                 
+                </div>
+
+               
+                
+                  {{!-- Pergunta 1 --}}
+                <div id='q1' class="modal__is-login-recovery  step--1 flow-xs animated d250 {{if (equalstr loginStep '1') 'fadeInRightShort'}}">
+                  <p>Você é um aluno?</p>
+                  <button id="question1-alt1" class="btn btn--xs" type="submit" {{action 'loginRecoveryAnswer' 2}}>Sim</button>
+                  <button id="question1-alt2" class="btn btn--xs" type="submit" {{action 'loginRecoveryAnswer' 2}}>Não</button>
+                </div>
+              
+              
+                {{!-- Pergunta 2 --}}
+                <div id='q2' class="modal__is-login-recovery step--2 animated d250 {{if (equalstr loginStep '2') 'fadeInRightShort'}}">
+                  <p>Qual é o seu primeiro nome?</p>
+                  <input id="question2" class="w100" type="text">
+                  <button id="question2-fwd" class="btn btn--xs m-top--xxl" type="submit" {{action 'loginRecoveryAnswer' 3}}>Avançar</button>
+                </div>
+
+                 {{!-- Pergunta 3 --}}
+                <div id='q3' class="modal__is-login-recovery step--3 animated d250 {{if (equalstr loginStep '3') 'fadeInRightShort'}}">
+                  <p>Qual é o seu último sobrenome?</p>
+                  <input id="question3" class="w100" type="text">
+                  <button id="question3-fwd" class="btn btn--xs m-top--xxl" type="submit" {{action 'loginRecoveryAnswer' 4}}>Avançar</button>
+                </div>
+              
+                 {{!-- Pergunta 4 --}}
+                <div id='q4' class="modal__is-login-recovery step--4 animated d250 {{if (equalstr loginStep '4') 'fadeInRightShort'}}">
+                  <p>Em qual das cidades abaixo fica sua escola?</p>
+                  <button id="question4-alt1" class="btn btn--xs m-top--sm" type="submit" {{action 'loginRecoveryAnswer' 5}}>Cidade 1</button>
+                  <button id="question4-alt2" class="btn btn--xs m-top--sm" type="submit" {{action 'loginRecoveryAnswer' 5}}>Cidade 2</button>
+                  <button id="question4-alt2" class="btn btn--xs m-top--sm" type="submit" {{action 'loginRecoveryAnswer' 5}}>Cidade 3</button>
+                </div>
+
+                   {{!-- Pergunta 5 --}}
+                <div id='q5' class="modal__is-login-recovery step--5 animated d250 {{if (equalstr loginStep '5') 'fadeInRightShort'}}">
+                  <p>Qual o nome de sua escola?</p>
+                  <input id="question5" class="w100" type="text">
+                  <button id="question5-end" class="btn btn--xs m-top--xxl" type="submit" {{action 'submitLoginRecovery'}}>Resgatar login</button>
+                </div>
+
+              
+              </div>
+
+              
+              
+            
+            
+            </div>
+        
+        
+        </div>  
+
+  
+    
+    </div>  
+      
+      
+    {{/if}}
+
+
+
   </div>
+
 
   <div class="modal__overlayer"></div>
 </aside>

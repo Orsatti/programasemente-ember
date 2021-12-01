@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
   envnmt: ENV.APP,
   session: Ember.inject.service('session'),
   mostraAviso: false,
+  loginStep: 0,
 
   detectIE() {
    
@@ -176,43 +177,90 @@ export default Ember.Controller.extend({
         document.getElementById('login_button').disabled = false;
       });
     },
-    forgotPass() {
+    forgotPass(type) {
+     
+      this.set('modalType', '');
       document.getElementById('forgot_modal').classList.remove('fadeOutDown');
-      let email = document.getElementById('identification').value;
-      this.set('user_email', '');
-      if (email) {
-        if (email.length > 4 && email.search('@') > 3) {
-          this.set('user_email', email);
-
+      
+    
+      if (type == 'password') {
+        this.set('modalType', type);
+        this.set('modalTitle', 'Solicitar nova senha');
+        this.set('modalInfo', 'Por favor, preencha seu nome de usuário (login)');
+        let email = document.getElementById('identification').value;
+        this.set('user_email', '');
+        if (email) {
+          if (email.length > 4 && email.search('@') > 3) {
+            this.set('user_email', email);
+  
+          }
         }
+        this.set('error_forgot', '');
+        this.set('success_mail', '');
+        this.set('errorMessage', '');
+        document.getElementById('forgot_modal').classList.add('modal--is-show');
+        let usernameInput = document.getElementById('user_name');
+        usernameInput.value = email;
+        usernameInput.focus();
       }
-      this.set('error_forgot', '');
-      this.set('success_mail', '');
-      this.set('errorMessage', '');
-      document.getElementById('forgot_modal').classList.add('modal--is-show');
-      let usernameInput = document.getElementById('user_name');
-      usernameInput.value = email;
-      usernameInput.focus();
+
+
+      if (type == 'username') {
+        this.set('error_forgot', '');
+        this.set('loginStep', 0);
+        this.set('modalType', type);
+        this.set('modalTitle', 'Resgate de login');
+        this.set('modalInfo', 'Por favor, responda às perguntas a seguir');
+        document.getElementById('modal-content').classList.add('modal--large-height');
+        document.getElementById('forgot_modal').classList.add('modal--is-show');
+        document.getElementById('error-forgot').style.display = 'none';
+      }
+
     },
+
+    loginRecoveryAnswer(moveTo) {
+      
+      this.set('loginStep', moveTo); 
+    },
+
+    submitLoginRecovery() {
+
+    },
+
+
+
     autoRegister() {
       this.transitionToRoute('autoregister');
     },
     cancelForgot() {
 
-      document.getElementById('checkboxes_container').classList.remove('fadeInLeftShort');
-      document.getElementById('success-forgot').style.display = 'none';
-      document.getElementById('error-forgot').style.display = 'none';
-      document.getElementById('forgot_modal').classList.add('fadeOutDown');
-      document.getElementById('forgot_modal').classList.remove('modal--is-show');
-      document.getElementById('user_name').value = '';
-      document.getElementById('user_name').disabled = false;
-      document.getElementById('group-email').style.display = 'none';
-      document.getElementById('group-sms').style.display = 'none';
-      document.getElementById('btn-verify-user-name').style.display = 'block';
-      document.getElementById('btn-send-password').style.display = 'none';
-      this.set('user_name', '');
-      this.set('success_mail', '');
-      this.set('error_forgot', '');
+      if (this.get('modalType') == 'password') {
+        document.getElementById('checkboxes_container').classList.remove('fadeInLeftShort');
+        document.getElementById('success-forgot').style.display = 'none';
+        document.getElementById('error-forgot').style.display = 'none';
+        document.getElementById('forgot_modal').classList.add('fadeOutDown');
+        document.getElementById('forgot_modal').classList.remove('modal--is-show');
+        document.getElementById('user_name').value = '';
+        document.getElementById('user_name').disabled = false;
+        document.getElementById('group-email').style.display = 'none';
+        document.getElementById('group-sms').style.display = 'none';
+        document.getElementById('btn-verify-user-name').style.display = 'block';
+        document.getElementById('btn-send-password').style.display = 'none';
+        this.set('user_name', '');
+        this.set('success_mail', '');
+        this.set('error_forgot', '');
+      }
+
+      if (this.get('modalType') == 'username') {
+  
+        document.getElementById('forgot_modal').classList.remove('modal--is-show');
+        document.getElementById('question2').value = '';
+        document.getElementById('informe-email').value = '';
+        document.getElementById('success-forgot').style.display = 'none'
+
+      }
+      
+
     },
     sendMail() {
       let mail = document.getElementById('user_email').value;
@@ -382,7 +430,45 @@ export default Ember.Controller.extend({
       }).catch((error) => {
         that.set('error_forgot', 'Erro do servidor: ' + error);
       });
-    }
+    },
+
+    resgataLoginPorEmail() {
+      let email = document.getElementById('informe-email').value;
+      
+      let errorContainer = document.getElementById('error-forgot');
+      
+
+      let final_url = this.get('envnmt.host') + '/' + this.get('envnmt.namespace') + '/' + 'accounts/verifyEmail';
+      let string = JSON.stringify({
+        'data': {
+          'id': '1',
+          'type': 'verify-email',
+          'attributes': {
+            'email': email
+          }
+        }
+      });
+   
+      let that = this;
+      this.makeCustomCall('POST', final_url, string).then((data) => {
+        var result = data.data.attributes;
+        
+        if (!result.exists) {
+          errorContainer.style.display = 'block';
+          that.set('error_forgot', 'Não encontramos cadastros com este e-mail');
+          return;
+        }
+        
+        this.set('success_mail', 'Seu login foi enviado para este e-mail');
+        document.getElementById('success-forgot').style.display = 'block';
+
+      }).catch((error) => {
+        that.set('error_forgot', 'Erro do servidor: ' + error);
+      });
+    },
+    
+
+
   },
 
 });

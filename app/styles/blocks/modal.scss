@@ -23,8 +23,18 @@
         visibility: visible;
     }
 
-    &--is-content {
+    &--is-registered-email {
+        text-align: center;
+        font-weight: 600;
+        color: $blue-navy-40;
+    }
 
+    &--adjust-btn-on-mobile  {
+       
+        @include media('<sm') {
+               width: 100% !important;
+           
+        }
     }
 
     &__content {

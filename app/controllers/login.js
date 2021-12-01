@@ -184,6 +184,7 @@ export default Ember.Controller.extend({
       
     
       if (type == 'password') {
+                        
         this.set('modalType', type);
         this.set('modalTitle', 'Solicitar nova senha');
         this.set('modalInfo', 'Por favor, preencha seu nome de usuário (login)');
@@ -199,13 +200,18 @@ export default Ember.Controller.extend({
         this.set('success_mail', '');
         this.set('errorMessage', '');
         document.getElementById('forgot_modal').classList.add('modal--is-show');
-        let usernameInput = document.getElementById('user_name');
-        usernameInput.value = email;
-        usernameInput.focus();
+        
+        setTimeout(() => {
+          let usernameInput = document.getElementById('user_name');
+          usernameInput.value = email;
+          usernameInput.focus();
+        }, 100);
       }
 
 
       if (type == 'username') {
+                       
+            
         this.set('error_forgot', '');
         this.set('loginStep', 0);
         this.set('modalType', type);
@@ -220,11 +226,41 @@ export default Ember.Controller.extend({
 
     loginRecoveryAnswer(moveTo) {
       
+      if (this.get('loginStep') !== 'email') {
+        let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input');
+  
+        if (inputToCheck) {
+          if (inputToCheck.value.length < 1) {
+            this.set('errorMessageInput', 'Por favor, responda à pergunta');
+            document.querySelector('.step--' + this.get('loginStep') + ' span').style.opacity = 1;
+            document.querySelector('.step--' + this.get('loginStep') + ' span').style.visibility = 'visible'
+            return;
+          } else {
+            this.set('errorMessageInput', '');
+            document.querySelector('.step--' + this.get('loginStep') + ' span').style.opacity = 0;
+            document.querySelector('.step--' + this.get('loginStep') + ' span').style.visibility = 'hidden';
+          }
+        }
+      }
+      
+
       this.set('loginStep', moveTo); 
     },
 
     submitLoginRecovery() {
-
+      let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input');
+      if (inputToCheck) {
+        if (inputToCheck.value.length < 1) {
+          this.set('errorMessageInput', 'Por favor, responda à pergunta');
+          document.querySelector('.step--' + this.get('loginStep') + ' span').style.opacity = 1;
+          document.querySelector('.step--' + this.get('loginStep') + ' span').style.visibility = 'visible';
+          return;
+        } else {
+          this.set('errorMessageInput', '');
+          document.querySelector('.step--' + this.get('loginStep') + ' span').style.opacity = 0;
+          document.querySelector('.step--' + this.get('loginStep') + ' span').style.visibility = 'hidden';
+        }
+      }
     },
 
 
@@ -255,8 +291,11 @@ export default Ember.Controller.extend({
   
         document.getElementById('forgot_modal').classList.remove('modal--is-show');
         document.getElementById('question2').value = '';
+        document.getElementById('question3').value = '';
+        document.getElementById('question5').value = '';
         document.getElementById('informe-email').value = '';
         document.getElementById('success-forgot').style.display = 'none'
+        this.set('errorMessageInput', '');
 
       }
       
@@ -433,38 +472,44 @@ export default Ember.Controller.extend({
     },
 
     resgataLoginPorEmail() {
+                  
       let email = document.getElementById('informe-email').value;
-      
       let errorContainer = document.getElementById('error-forgot');
-      
+      let successContainer = document.getElementById('success-forgot');
+      this.set('success_forgot', 'Seu login foi enviado para ' + email + ' com sucesso');
+      successContainer.style.display = 'block';
 
-      let final_url = this.get('envnmt.host') + '/' + this.get('envnmt.namespace') + '/' + 'accounts/verifyEmail';
-      let string = JSON.stringify({
-        'data': {
-          'id': '1',
-          'type': 'verify-email',
-          'attributes': {
-            'email': email
-          }
-        }
-      });
+      setTimeout(() => {
+        successContainer.style.display = 'none';
+      }, 5000);
+
+      // let final_url = this.get('envnmt.host') + '/' + this.get('envnmt.namespace') + '/' + 'accounts/verifyEmail';
+      // let string = JSON.stringify({
+      //   'data': {
+      //     'id': '1',
+      //     'type': 'verify-email',
+      //     'attributes': {
+      //       'email': email
+      //     }
+      //   }
+      // });
    
-      let that = this;
-      this.makeCustomCall('POST', final_url, string).then((data) => {
-        var result = data.data.attributes;
+      // let that = this;
+      // this.makeCustomCall('POST', final_url, string).then((data) => {
+      //   var result = data.data.attributes;
         
-        if (!result.exists) {
-          errorContainer.style.display = 'block';
-          that.set('error_forgot', 'Não encontramos cadastros com este e-mail');
-          return;
-        }
+      //   if (!result.exists) {
+      //     errorContainer.style.display = 'block';
+      //     that.set('error_forgot', 'Não encontramos cadastros com este e-mail');
+      //     return;
+      //   }
         
-        this.set('success_mail', 'Seu login foi enviado para este e-mail');
-        document.getElementById('success-forgot').style.display = 'block';
+      //   this.set('success_mail', 'Seu login foi enviado para este e-mail');
+      //   document.getElementById('success-forgot').style.display = 'block';
 
-      }).catch((error) => {
-        that.set('error_forgot', 'Erro do servidor: ' + error);
-      });
+      // }).catch((error) => {
+      //   that.set('error_forgot', 'Erro do servidor: ' + error);
+      // });
     },
     
 

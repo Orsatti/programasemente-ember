@@ -61,6 +61,18 @@
   }
 }
 
+&__field {
+  
+  &--is-disabled {
+    opacity: 0.4;
+    transition: ease-in-out 200ms;
+    cursor: not-allowed;
+  }
+
+
+}
+
+
 &__field--has-checkbox {
 
   display: flex;
@@ -107,5 +119,21 @@
   }
 
 }
+
+  &__error {
+    padding: 0.5rem 0 0 0.2rem;
+    margin: 0 0 $distance--md 0;
+    display: block;
+    font-size: $font-size--xs;
+    opacity: 0;
+    visibility: hidden;
+    transition: ease-in-out 200ms;
+
+    &--is-show {
+    opacity: 1;
+    visibility: visible;
+    }
+
+  }
 
 }

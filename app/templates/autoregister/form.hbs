@@ -26,8 +26,9 @@
                                 id="emailUser"
                                 onblur={{action 'verifyEmail'}}
                                 onkeydown={{action 'liveCheckEmail'}}
-                                oninput={{action 'preventPaste'}}
+                                
                                 type="text"
+                                pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"
                                 >
                     </div>
                     {{!-- <span id='login-error'></span> --}}

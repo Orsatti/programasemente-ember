@@ -50,7 +50,11 @@
                         <input  class="form-group__input w100 j-validate-ident-text"
                                 autocomplete="new-user"
                                 id="login"
-                                type="text">
+                                type="text"
+                                value={{cpf}}
+                                onkeyup={{action 'replaceCPF'}}
+                                onblur={{action 'verifyCPF'}}
+                                maxlength="15">
                     </div>
                     {{!-- <span id='login-error'></span> --}}
                     <p class="alert alert--sm alert--error alert--has-icon m-top--sm animated d250" id="login-error"

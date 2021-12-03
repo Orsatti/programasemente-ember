@@ -254,6 +254,24 @@ export default Ember.Controller.extend({
 
     },
 
+    replaceCPF(){
+      
+      let target = event.target;
+      let cpf = target.value;
+      cpf=cpf.replace(/\D/g,"")
+      cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+      cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
+      cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+      this.set('cpf', cpf);
+    },
+
+    verifyCPF() {
+      let target = event.target;
+      if (target.value.length < 15) {
+        target.focus();
+      }
+    },
+
     verifyPassword: function () {
       let p1 = document.getElementById('senha').value;
       let p2 = document.getElementById('senha2').value;

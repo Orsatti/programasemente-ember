@@ -16,29 +16,35 @@
             <fieldset class="fieldset m-top--sm">
                 <legend>Identificação (login)</legend>
                 <div id="form-login" class="form-group w100" autocomplete="off">
-                <label class="form-group__label" for="login" maxlength="100">E-mail</label>
-                <div class="form-group__input-container form-group__input-container--has-validation">
-                        <input  class="form-group__input w100"
-                                autocomplete="new-user"
-                                autofocus
-                                id="emailUser"
-                                onblur={{action 'verifyEmail'}}
-                                onkeydown={{action 'liveCheckEmail'}}
-                                oninput={{action 'preventPaste'}}
-                                type="text">
+                <div class="fieldset__field--has-checkbox">
+                    <input id="email-choice" name="emailCadastro" type="checkbox" checked>
+                        <label class="form-group__label" for="login" maxlength="100">E-mail</label>
                     </div>
-                    {{!-- <span id='login-error'></span> --}}
-                    <p class="alert alert--has-icon alert--minimalist m-top--xs color-error-30 animated d250 fadeIn" id="login-error"
-                        data-animation="fadeIn">
-                        <span class="alert__icon icon-x"></span>
-                        <span class="alert__msg"></span>
-                    </p>
+                    <div class="form-group__input-container form-group__input-container--has-validation">
+                            <input  class="form-group__input w100"
+                                    autocomplete="new-user"
+                                    autofocus
+                                    id="emailUser"
+                                    onblur={{action 'verifyEmail'}}
+                                    onkeydown={{action 'liveCheckEmail'}}
+                                    oninput={{action 'preventPaste'}}
+                                    type="text">
+                        </div>
+                        {{!-- <span id='login-error'></span> --}}
+                        <p class="alert alert--has-icon alert--minimalist m-top--xs color-error-30 animated d250 fadeIn" id="login-error"
+                            data-animation="fadeIn">
+                            <span class="alert__icon icon-x"></span>
+                            <span class="alert__msg"></span>
+                        </p>
                 </div>
 
                 <span class="fieldset__or"></span>
 
                 <div id="form-cpf" class="form-group w100" autocomplete="off">
-                    <label class="form-group__label" for="login" maxlength="100">CPF</label>
+                    <div class="fieldset__field--has-checkbox">
+                        <input id="cpf-choice" name="emailCadastro" type="checkbox" checked>
+                        <label class="form-group__label" for="login" maxlength="100">CPF</label>
+                    </div>
                     <div class="form-group__input-container form-group__input-container--has-validation">
                         <input  class="form-group__input w100"
                                 autocomplete="new-user"

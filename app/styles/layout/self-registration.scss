@@ -1,6 +1,8 @@
 .self-registration {
   flex: 1;
   position: relative;
+  padding-top: 0;
+  
 
   &__title {
     $v-padding: .75em;
@@ -43,11 +45,12 @@
   &__img {
     display: none;
 
+    
     @include media('>md') {
       bottom: 0;
       display: block;
       filter: grayscale(0) brightness(1);
-      max-width: 50vw;
+      max-width: 70vw;
       position: absolute;
       right: -5%;
       transform: scale(.9);
@@ -56,6 +59,13 @@
       will-change: filter, transform;
       -webkit-backface-visibility: hidden;
       -webkit-perspective: 1000px;
+    }
+
+  
+    @include media('>lg') {
+      
+      max-width: 80vw;
+            
     }
 
     &--is-fade {
@@ -85,6 +95,10 @@
       text-transform: uppercase;
       width: 100%;
     }
+  }
+
+  &__cta {
+    margin-top: $distance--sm;
   }
 
 }

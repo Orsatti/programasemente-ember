@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
 
 // preventLoginPaste: Ember.run.later('afterRender', function() {
 //   setTimeout(() => {
-//     document.getElementById('login').onpaste = function(){
+//     document.getElementById('emailUser').onpaste = function(){
     
 //       // Pega alerta
 //     const errorCompartiment = document.getElementById('login-error');
@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
 
 
   emailFocus: Ember.computed(function () {
-    let input = document.getElementById("login");
+    let input = document.getElementById('emailUser');
     if (input) {
       input.focus();
     }
@@ -69,14 +69,14 @@ export default Ember.Controller.extend({
 
     liveCheckEmail: function () {
 
-      $('#login').on('keypress', function (event) {
+      $('#emailUser').on('keypress', function (event) {
           var regex = new RegExp("^[a-zA-Z0-9@.-_]+$");
           var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
           let errorMsg = 'Espaço e caracteres especiais não são permitidos';
 
           if (!regex.test(key)) {
             // Pega form container e tira classe de validado
-            let inputContainer = document.getElementById('login').closest('.form-group__input-container');
+            let inputContainer = document.getElementById('emailUser').closest('.form-group__input-container');
             inputContainer.classList.remove('form-group__input-container--is-validated');
 
             // Pega alerta
@@ -115,11 +115,11 @@ export default Ember.Controller.extend({
   verifyEmail: function () {
     $('form').removeData('validator');
     $('form').removeData('unobtrusiveValidation');
-    let email = document.getElementById('login').value;
+    let email = document.getElementById('emailUser').value;
     let pessoa = this.get('pessoa');
     pessoa.set('email', email);
-    let inputContainer = document.getElementById('login').closest('.form-group__input-container');
-    let input = document.getElementById('login');
+    let inputContainer = document.getElementById('emailUser').closest('.form-group__input-container');
+    let input = document.getElementById('emailUser');
     // Pega alerta
     const errorCompartiment = document.getElementById('login-error');
     // Pega animação do alerta
@@ -153,7 +153,7 @@ export default Ember.Controller.extend({
         if (errorStatus === "400") {
           switch (true) {
             case email.length == 0:
-              errorMsg = 'Por favor, insira um nome de usuário';
+              errorMsg = 'Preencha o campo corretamente';
               break;
             case email.length > 0:
               errorMsg = 'O nome de usuário informado já existe, por favor, escolha outro.'
@@ -221,7 +221,7 @@ export default Ember.Controller.extend({
       let button = document.getElementById('submit');
       button.innerHTML = "Aguarde..."
       let password = document.getElementById('senha').value;
-      let login = document.getElementById('login').value;
+      let login = document.getElementById('emailUser').value;
       let sistemas = this.get('store').peekAll('sistema');
       let sistema;
       sistemas.forEach(function (s) {
@@ -279,11 +279,11 @@ export default Ember.Controller.extend({
   preventPaste() {
     
       var regex = new RegExp("^[a-zA-Z0-9@.-_]+$");
-      var input = document.getElementById('login')
+      var input = document.getElementById('emailUser')
       let errorMsg = 'Espaço e caracteres especiais não são permitidos';
       if (!regex.test(input.value) && input.value.length > 0) {
         input.value = '';
-        let inputContainer = document.getElementById('login').closest('.form-group__input-container');
+        let inputContainer = document.getElementById('emailUser').closest('.form-group__input-container');
         inputContainer.classList.remove('form-group__input-container--is-validated');
         // Pega alerta
         const errorCompartiment = document.getElementById('login-error');

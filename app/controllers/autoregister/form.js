@@ -65,6 +65,32 @@ export default Ember.Controller.extend({
 
   },
 
+  verifyIdentificationFill() {
+    let identInputs = document.querySelectorAll('.j-validate-ident-text');
+    let fieldsetError = document.getElementById('error-fieldset-ident');
+    let notFilled = 0;
+    this.set('fieldset1Error', '');
+
+    identInputs.forEach(i => {
+
+      if (!i.disabled && i.value.length < 1) {
+        i.classList.add('fieldset__field--presents-error');
+        notFilled++
+      } else {
+        i.classList.remove('fieldset__field--presents-error');
+      }
+    })
+
+    if (notFilled > 0) {
+      fieldsetError.classList.add('fieldset__error--is-show');
+      this.set('fieldset1Error', 'Há campos não preenchidos');
+      return false;
+    }
+    fieldsetError.classList.remove('fieldset__error--is-show');
+    return true;
+
+  },
+
   actions: {
 
     liveCheckEmail: function () {
@@ -126,11 +152,15 @@ export default Ember.Controller.extend({
       
       $('form').removeData('validator');
       $('form').removeData('unobtrusiveValidation');
-      let email = document.getElementById('emailUser').value;
+      let email = document.getElementById('emailUser');
       
+      if (email.value.length > 0) {
+        email.classList.remove('fieldset__field--presents-error');
+      }
+
       if (!email.disabled) {
         let pessoa = this.get('pessoa');
-        pessoa.set('email', email);
+        pessoa.set('email', email.value);
         let inputContainer = document.getElementById('emailUser').closest('.form-group__input-container');
         let input = document.getElementById('emailUser');
         // Pega alerta
@@ -165,10 +195,10 @@ export default Ember.Controller.extend({
             let errorMsg;
             if (errorStatus === "400") {
               switch (true) {
-                case email.length == 0:
+                case email.value.length == 0:
                   errorMsg = 'Preencha o campo corretamente';
                   break;
-                case email.length > 0:
+                case email.value.length > 0:
                   errorMsg = 'O nome de usuário informado já existe, por favor, escolha outro.'
                   break;
   
@@ -232,8 +262,9 @@ export default Ember.Controller.extend({
 
 
     createUser: function () {
+      this.verifyIdentificationFill();
       this.verifyPasswordLength();
-      if (this.verifyPasswordLength()) {
+      if (this.verifyIdentificationFill() &&this.verifyPasswordLength()) {
         let button = document.getElementById('submit');
         button.innerHTML = "Aguarde..."
         let password = document.getElementById('senha').value;
@@ -342,6 +373,7 @@ export default Ember.Controller.extend({
       })
 
       if (uncheckeds == 2) {
+        this.set('fieldset1Error', 'Pelo menos uma das formas de identificação precisa ser preenchida');
         fieldsetError.classList.add('fieldset__error--is-show');
         target.checked = true;
         return;

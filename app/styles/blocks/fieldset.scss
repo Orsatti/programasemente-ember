@@ -69,6 +69,10 @@
     cursor: not-allowed;
   }
 
+  &--presents-error {
+    border-bottom: solid 2px red;
+  }
+
 
 }
 

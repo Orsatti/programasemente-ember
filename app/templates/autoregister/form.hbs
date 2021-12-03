@@ -21,7 +21,7 @@
                     <label class="form-group__label" for="login" maxlength="100">E-mail</label>
                 </div>
                 <div class="form-group__input-container form-group__input-container--has-validation">
-                        <input  class="form-group__input w100"
+                        <input  class="form-group__input w100 j-validate-ident-text"
                                 autocomplete="new-user"
                                 id="emailUser"
                                 onblur={{action 'verifyEmail'}}
@@ -46,7 +46,7 @@
                         <label class="form-group__label" for="login" maxlength="100">CPF</label>
                     </div>
                     <div class="form-group__input-container form-group__input-container--has-validation">
-                        <input  class="form-group__input w100"
+                        <input  class="form-group__input w100 j-validate-ident-text"
                                 autocomplete="new-user"
                                 id="login"
                                 type="text">
@@ -59,7 +59,7 @@
                     </p>
                 </div>
             </fieldset>
-            <span id="error-fieldset-ident" class="color-error-30 fieldset__error">Pelo menos uma das identificações tem que ser informada</span>
+            <span id="error-fieldset-ident" class="color-error-30 fieldset__error">{{fieldset1Error}}</span>
             
             
 
@@ -78,13 +78,13 @@
                     <div class="j-password form-group__input-container form-group__input-container--has-validation">
                         <input class="form-group__input w100" type="password" id="senha2" onkeyup={{action 'verifyPassword'}} onblur={{action 'verifyPassword'}}>
                     </div>
-                    <p class="alert alert--has-icon alert--minimalist m-top--xs color-error-30 animated d250 fadeIn" id="pass-error"
+                </div>
+            </fieldset>
+                                <p class="alert alert--has-icon alert--minimalist m-top--xs color-error-30 animated d250 fadeIn" id="pass-error"
                         data-animation="fadeIn">
                         <span class="alert__icon icon-x"></span>
                         <span class="alert__msg"></span>
                     </p>
-                </div>
-            </fieldset>
         <p class="alert alert--sm alert--error alert--has-icon m-top--sm animated d250" id="codigo-error" data-animation="fadeIn">
             <span class="alert__icon icon-x"></span>
             <span class="alert__msg"></span>

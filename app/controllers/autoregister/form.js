@@ -46,6 +46,34 @@ export default Ember.Controller.extend({
     }
   }),
 
+
+  ValidaCPFValido(strCPF) {
+    var Soma;
+    var Resto;
+    Soma = 0;
+
+    strCPF = strCPF.replace(".", "");
+    strCPF = strCPF.replace(".", "");
+    strCPF = strCPF.replace("-", "");
+    strCPF = strCPF.trim();
+
+    if (strCPF == "00000000000") return false;
+
+    for (let i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto !== parseInt(strCPF.substring(9, 10))) return false;
+
+    Soma = 0;
+    for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11)) Resto = 0;
+    if (Resto !== parseInt(strCPF.substring(10, 11))) return false;
+    return true;
+  },
+
   verifyPasswordLength() {
 
     let p1 = document.getElementById('senha').value;
@@ -103,7 +131,7 @@ export default Ember.Controller.extend({
           var regex = new RegExp("^[a-zA-Z0-9@.-_]+$");
           var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
           let errorMsg = 'Espaço e caracteres especiais não são permitidos';
-          
+
           if (!regex.test(key)) {
             // Pega form container e tira classe de validado
             let inputContainer = document.getElementById('emailUser').closest('.form-group__input-container');
@@ -145,131 +173,184 @@ export default Ember.Controller.extend({
     },
 
     verifyEmail: function () {
-      
+
       let optFor = document.getElementById('email-choice');
-      
+
 
       if (optFor.checked) {
-        
+
         $('form').removeData('validator');
         $('form').removeData('unobtrusiveValidation');
         let email = document.getElementById('emailUser');
-        
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)) {
-    
-        
-        if (email.value.length > 0) {
-          email.classList.remove('fieldset__field--presents-error');
-        }
-  
-        if (!email.disabled) {
-          let pessoa = this.get('pessoa');
-          pessoa.set('email', email.value);
-          let inputContainer = document.getElementById('emailUser').closest('.form-group__input-container');
+
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)) {
+
+
+          if (email.value.length > 0) {
+            email.classList.remove('fieldset__field--presents-error');
+          }
+
+          if (!email.disabled) {
+            let pessoa = this.get('pessoa');
+            pessoa.set('email', email.value);
+            let inputContainer = document.getElementById('emailUser').closest('.form-group__input-container');
+            let input = document.getElementById('emailUser');
+            // Pega alerta
+            const errorCompartiment = document.getElementById('login-error');
+            // Pega animação do alerta
+            const alertAnimation = errorCompartiment.dataset.animation;
+            // Pega container da mensagem a ser escrita
+            const msg = errorCompartiment.querySelector('[class*="__msg"]');
+
+
+            pessoa.verifyEmail({
+              login: pessoa.get('email'),
+              instituicaoId: this.get('escola').get('id')
+            }).then(function (response) {
+              errorCompartiment.classList.remove('alert--is-show', alertAnimation);
+              inputContainer.classList.add('form-group__input-container--is-validated');
+            }).catch(function (error) {
+              if (error.errors) {
+
+                inputContainer.classList.remove('form-group__input-container--is-validated');
+                if (input) {
+                  input.focus();
+                }
+
+                // Antiga mensagem de erro
+                // document.getElementById('login-error').innerHTML = error.errors[0].title;
+
+                // Pega a identificação do erro
+                const errorStatus = error.errors[0].status;
+
+                // Define mensagem de erro, caso seja o erro XYZ
+                let errorMsg;
+                if (errorStatus === "400") {
+                  switch (true) {
+                    case email.value.length == 0:
+                      errorMsg = 'O campo não pode ficar vazio';
+                      break;
+                    case email.value.length > 0:
+                      errorMsg = 'O e-mail informado já existe em nossa base'
+                      break;
+
+                  }
+                } else if (errorStatus === "500") {
+                  errorMsg = 'Ocorreu um erro no sistema, mas não se preocupe! Nossos desenvolvedores já foram alertados.'
+                } else {
+                  errorMsg = 'Ops! Parece que não conseguimos conexão com nossos servidores. Por favor, tente novamente em instantes.'
+                }
+
+                // Injeta mensagem de erro.
+                msg.innerHTML = '<strong>' + errorMsg + '</strong>';
+
+                // Confere se o elemento já está aparecendo
+                if (!errorCompartiment.classList.contains('alert--is-show')) {
+                  // Adiciona duas classes: uma para o alerta aparecer e outra com a animação definida no html, por meio de data-SBRUBLES
+                  errorCompartiment.classList.add('alert--is-show', alertAnimation);
+                }
+
+              } else {
+                // Situação não tratada ainda
+                document.getElementById('login-error').innerHTML = '';
+              }
+
+            })
+
+          }
+        } else {
           let input = document.getElementById('emailUser');
+          input.focus();
+          let errorMsg = this.set('errorMsg', 'E-mail inválido');
           // Pega alerta
           const errorCompartiment = document.getElementById('login-error');
           // Pega animação do alerta
           const alertAnimation = errorCompartiment.dataset.animation;
           // Pega container da mensagem a ser escrita
           const msg = errorCompartiment.querySelector('[class*="__msg"]');
-    
-    
-          pessoa.verifyEmail({
-            login: pessoa.get('email'),
-            instituicaoId: this.get('escola').get('id')
-          }).then(function (response) {
-            errorCompartiment.classList.remove('alert--is-show', alertAnimation);
-            inputContainer.classList.add('form-group__input-container--is-validated');
-          }).catch(function (error) {
-            if (error.errors) {
-    
-              inputContainer.classList.remove('form-group__input-container--is-validated');
-              if (input) {
-                input.focus();
-              }
-    
-              // Antiga mensagem de erro
-              // document.getElementById('login-error').innerHTML = error.errors[0].title;
-    
-              // Pega a identificação do erro
-              const errorStatus = error.errors[0].status;
-    
-              // Define mensagem de erro, caso seja o erro XYZ
-              let errorMsg;
-              if (errorStatus === "400") {
-                switch (true) {
-                  case email.value.length == 0:
-                    errorMsg = 'O campo não pode ficar vazio';
-                    break;
-                  case email.value.length > 0:
-                    errorMsg = 'O e-mail informado já existe em nossa base'
-                    break;
-    
-                }
-              } else if (errorStatus === "500") {
-                errorMsg = 'Ocorreu um erro no sistema, mas não se preocupe! Nossos desenvolvedores já foram alertados.'
-              } else {
-                errorMsg = 'Ops! Parece que não conseguimos conexão com nossos servidores. Por favor, tente novamente em instantes.'
-              }
-    
-              // Injeta mensagem de erro.
-              msg.innerHTML = '<strong>' + errorMsg + '</strong>';
-    
-              // Confere se o elemento já está aparecendo
-              if (!errorCompartiment.classList.contains('alert--is-show')) {
-                // Adiciona duas classes: uma para o alerta aparecer e outra com a animação definida no html, por meio de data-SBRUBLES
-                errorCompartiment.classList.add('alert--is-show', alertAnimation);
-              }
-    
-            } else {
-              // Situação não tratada ainda
-              document.getElementById('login-error').innerHTML = '';
-            }
-    
-          })
-  
+          msg.innerHTML = '<strong>' + errorMsg + '</strong>';
+
+          // Confere se o elemento já está aparecendo
+          if (!errorCompartiment.classList.contains('alert--is-show')) {
+            // Adiciona duas classes: uma para o alerta aparecer e outra com a animação definida no html, por meio de data-SBRUBLES
+            errorCompartiment.classList.add('alert--is-show', alertAnimation);
+          }
+
         }
-      } else {
-        let errorMsg = this.set('errorMsg', 'E-mail inválido');
+
+
+
+      }
+
+    },
+
+    replaceCPF() {
+      let target = event.target;
+      let cpf = target.value;
+
+      var regex = /^[0-9.\t]$/;
+      var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+      var code = event.which ? event.which : event.keyCode;
+
+      if (!regex.test(key) && code !== 37 && code !== 39 && code !== 8 && code !== 9 && code !== 116) {
+
+        let errorMsg = this.set('errorMsgCPF', 'Apenas números são permitidos');
         // Pega alerta
-        const errorCompartiment = document.getElementById('login-error');
+        const errorCompartiment = document.getElementById('cpf-error');
         // Pega animação do alerta
         const alertAnimation = errorCompartiment.dataset.animation;
         // Pega container da mensagem a ser escrita
         const msg = errorCompartiment.querySelector('[class*="__msg"]');
         msg.innerHTML = '<strong>' + errorMsg + '</strong>';
-    
-              // Confere se o elemento já está aparecendo
-              if (!errorCompartiment.classList.contains('alert--is-show')) {
-                // Adiciona duas classes: uma para o alerta aparecer e outra com a animação definida no html, por meio de data-SBRUBLES
-                errorCompartiment.classList.add('alert--is-show', alertAnimation);
-              }
 
+        // Alerta
+        errorCompartiment.classList.add('alert--is-show', alertAnimation);
+
+
+
+        event.preventDefault();
+        return false;
       }
 
 
 
-    }  
 
-    },
 
-    replaceCPF(){
-      
-      let target = event.target;
-      let cpf = target.value;
-      cpf=cpf.replace(/\D/g,"")
-      cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
-      cpf=cpf.replace(/(\d{3})(\d)/,"$1.$2")
-      cpf=cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2")
+      cpf = cpf.replace(/\D/g, "")
+      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+      cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
       this.set('cpf', cpf);
+
+
     },
 
     verifyCPF() {
       let target = event.target;
-      if (target.value.length < 15) {
+      let errorMsg = this.set('errorMsgCPF', 'CPF inválido');
+      // Pega alerta
+      const errorCompartiment = document.getElementById('cpf-error');
+      // Pega animação do alerta
+      const alertAnimation = errorCompartiment.dataset.animation;
+      // Pega container da mensagem a ser escrita
+      const msg = errorCompartiment.querySelector('[class*="__msg"]');
+
+      if (!this.ValidaCPFValido(target.value) && target.disabled == false) {
+
+        msg.innerHTML = '<strong>' + errorMsg + '</strong>';
+
+        // alerta
+        errorCompartiment.classList.add('alert--is-show', alertAnimation);
+
         target.focus();
+
+
+      } else {
+        errorCompartiment.classList.remove('alert--is-show', alertAnimation)
       }
+
+
+
     },
 
     verifyPassword: function () {
@@ -306,7 +387,7 @@ export default Ember.Controller.extend({
     createUser: function () {
       this.verifyIdentificationFill();
       this.verifyPasswordLength();
-      if (this.verifyIdentificationFill() &&this.verifyPasswordLength()) {
+      if (this.verifyIdentificationFill() && this.verifyPasswordLength()) {
         let button = document.getElementById('submit');
         button.innerHTML = "Aguarde..."
         let password = document.getElementById('senha').value;
@@ -400,13 +481,19 @@ export default Ember.Controller.extend({
 
 
     toggleCheckbox() {
-      
+
       let target = event.target;
       let closestInput = target.parentNode.nextElementSibling.firstChild.nextElementSibling
       let identCheckboxes = document.querySelectorAll('.j-validate-ident');
       let uncheckeds = 0;
       let fieldsetError = document.getElementById('error-fieldset-ident');
+      let inputError = closestInput.parentElement.nextElementSibling;
+
+      closestInput.value = '';
+      inputError.classList.remove('alert--is-show');
       fieldsetError.classList.remove('fieldset__error--is-show');
+
+
 
       identCheckboxes.forEach(c => {
         if (!c.checked) {
@@ -420,7 +507,7 @@ export default Ember.Controller.extend({
         target.checked = true;
         return;
       }
-      
+
 
       if (target.checked) {
         closestInput.removeAttribute('disabled');

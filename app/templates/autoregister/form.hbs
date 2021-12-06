@@ -26,13 +26,12 @@
                                 id="emailUser"
                                 onblur={{action 'verifyEmail'}}
                                 onkeydown={{action 'liveCheckEmail'}}
-                                
                                 type="text"
                                 pattern="/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/"
                                 >
                     </div>
                     {{!-- <span id='login-error'></span> --}}
-                    <p class="alert alert--has-icon alert--minimalist m-top--xs color-error-30 animated d250 fadeIn" id="login-error"
+                    <p class="alert alert--has-icon alert--minimalist m-top--xs color-error-30 animated d250 fadeIn j-input-error" id="login-error"
                         data-animation="fadeIn">
                         <span class="alert__icon icon-x"></span>
                         <span class="alert__msg"></span>
@@ -48,16 +47,16 @@
                     </div>
                     <div class="form-group__input-container form-group__input-container--has-validation">
                         <input  class="form-group__input w100 j-validate-ident-text"
-                                autocomplete="new-user"
+                                autocomplete="off"
                                 id="login"
-                                type="text"
+                                type="search"
                                 value={{cpf}}
-                                onkeyup={{action 'replaceCPF'}}
+                                onkeydown={{action 'replaceCPF'}}
                                 onblur={{action 'verifyCPF'}}
                                 maxlength="15">
                     </div>
-                    {{!-- <span id='login-error'></span> --}}
-                    <p class="alert alert--sm alert--error alert--has-icon m-top--sm animated d250" id="login-error"
+                    
+                    <p class="alert alert--has-icon alert--minimalist m-top--xs color-error-30 animated d250 fadeIn j-input-error" id="cpf-error"
                         data-animation="fadeIn">
                         <span class="alert__icon icon-x"></span>
                         <span class="alert__msg"></span>

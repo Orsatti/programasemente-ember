@@ -327,7 +327,7 @@ export default Ember.Controller.extend({
 
     verifyCPF() {
       let target = event.target;
-      let errorMsg = this.set('errorMsgCPF', 'CPF inválido');
+      let formGroup = target.parentElement;
       // Pega alerta
       const errorCompartiment = document.getElementById('cpf-error');
       // Pega animação do alerta
@@ -335,18 +335,28 @@ export default Ember.Controller.extend({
       // Pega container da mensagem a ser escrita
       const msg = errorCompartiment.querySelector('[class*="__msg"]');
 
-      if (!this.ValidaCPFValido(target.value) && target.disabled == false) {
+      if (target.value.length < 1 && target.disabled == false) {
+        let errorMsg = this.set('errorMsgCPF', 'O CPF não pode ficar vazio');
+        msg.innerHTML = '<strong>' + errorMsg + '</strong>';
+        // alerta
+        formGroup.classList.remove('form-group__input-container--is-validated');
+        errorCompartiment.classList.add('alert--is-show', alertAnimation);
 
+        target.focus();
+
+      } else if (!this.ValidaCPFValido(target.value) && target.disabled == false) {
+        let errorMsg = this.set('errorMsgCPF', 'CPF Inválido');
         msg.innerHTML = '<strong>' + errorMsg + '</strong>';
 
         // alerta
         errorCompartiment.classList.add('alert--is-show', alertAnimation);
-
+        formGroup.classList.remove('form-group__input-container--is-validated');
         target.focus();
 
 
       } else {
         errorCompartiment.classList.remove('alert--is-show', alertAnimation)
+        formGroup.classList.add('form-group__input-container--is-validated');
       }
 
 

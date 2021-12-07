@@ -402,6 +402,11 @@ export default Ember.Controller.extend({
         button.innerHTML = "Aguarde..."
         let password = document.getElementById('senha').value;
         let login = document.getElementById('emailUser').value;
+        debugger;
+        if (login == '') {
+          login = document.getElementById('cpf').value;
+        }
+
         let sistemas = this.get('store').peekAll('sistema');
         let sistema;
         sistemas.forEach(function (s) {

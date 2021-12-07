@@ -7,16 +7,14 @@
   <div class="col-xs-12 col-md-8 flex flow-h-xxs items-center">
     <div class="self-registration__title color-blue-navy-50 flex flex-col flow-md">
       <p class="fs--md">Você está se cadastrando na escola
-        <span class="color-green-40 fw--5">{{escola.name}}, </span>como
+        <span class="color-green-40 fw--5">{{uppertext escola.name}} </span>, com o perfil
           {{#if (equalstr model.role 'instrutor')}}
-            <span class="color-green-40 fw--5">professor,</span>
-          {{else if (equalstr model.role 'responsavel')}}
-            <span class="color-green-40 fw--5">responsável por dependente(s)</span> dos segmentos <span class="strong">Intantil</span> ou <span class="strong">Fundamental 1,</span>
-          {{else if (equalstr model.role 'aluno')}}
-            <span class="color-green-40 fw--5">aluno</span> do <span class="strong">Fundamental II</span> ou <span class="strong">Ensino Médio,</span>
+            <span class="color-green-40 fw--5">{{uppertext 'professor'}}</span>
+           {{else if (equalstr model.role 'aluno')}}
+            <span class="color-green-40 fw--5">{{uppertext 'aluno'}}</span>
           {{else}}
-            {{model.role}},
-          {{/if}} com o nome de usuário (login) <span class="color-green-40 fw--5">{{loginAtual}}</span>
+            {{uppertext model.role}},
+          {{/if}}
       </p>
       <p>Se alguma dessas informações não estiver correta, <a class="btn btn--link color-leaf-40" {{action 'logout'}}><span class="btn__label">saia do cadastro</span></a>.</p>
     </div>
@@ -288,7 +286,7 @@
 
   <section
     class="flow-xl carousel__step carousel__step--2 j-step2 animated {{if fromRight 'fadeInLeftShort' 'fadeInRightShort'}}">
-    <h3 class="title-3">Você é responsável por algum aluno na Educação Infantil ou Fundamental 1?</h3>
+    <h3 class="title-3">Você é responsável (Pai, mãe, etc.) por algum aluno da escola?</h3>
     <p>Em caso de resposta positiva, no próximo passo você poderá cadastrar os alunos pelos quais você é responsável.
     </p>
 

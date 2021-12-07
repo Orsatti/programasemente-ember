@@ -1,7 +1,7 @@
 .fieldset {
   $this: &;
 
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   padding: $distance--sm;

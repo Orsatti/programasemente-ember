@@ -61,6 +61,7 @@
                             data-context="personal"
                             maxlength="14"
                             key-down=(action 'replaceCPF')
+                            focus-out=(action 'verifyCPF')
                             }}
                     </div>
                     <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>

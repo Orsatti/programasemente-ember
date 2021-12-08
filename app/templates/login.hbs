@@ -192,7 +192,7 @@
                   </div>
                 </form>
 
-               
+              
                 
                   {{!-- Pergunta 1 --}}
                 <div id='q1' class="modal__is-login-recovery  step--1 flow-xs animated d250 {{if (equalstr loginStep '1') 'fadeInRightShort'}}">
@@ -231,7 +231,23 @@
                   <p>Qual o nome de sua escola?</p>
                   <input id="question5" class="w100" required type="text">
                   <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;">{{errorMessageInput}}</span>
-                  <button id="question5-end" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="submit" {{action 'submitLoginRecovery' ''}}>Resgatar login</button>
+                  <button id="question5-end" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 'resgate'}}>Resgatar login</button>
+                </div>
+
+                       {{!-- Fim do resgate por perguntas --}}
+                <div id='qf' class="modal__is-login-recovery step--resgate animated d250 {{if (equalstr loginStep 'resgate') 'fadeInRightShort'}}">
+                  
+                  {{#unless successResgate}}
+                  <p>Não encontramos um login que se adequa às respostas dadas.</p>
+                  <p>Por favor, entre em contato com <a class="color-leaf-40" href="mailto:suporte@programasemente.com.br">suporte@programasemente.com.br</a> e nos informe sue escola e seu nome no corpo do e-mail.</p>
+                  {{else}}
+                  <p>Seu login é:</p>
+                  <div class="flex">
+                    <p id="recovered-login" class="modal__is-login-recovery--login--was-found">
+                      <strong>login.da.pessoa</strong>
+                    </p>
+                  </div>
+                  {{/unless}}
                 </div>
 
               

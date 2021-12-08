@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
   mostraAviso: false,
   loginStep: 0,
   answers: [],
+  successResgate: 0,
 
   detectIE() {
    
@@ -272,32 +273,6 @@ export default Ember.Controller.extend({
     },
     
 
-    submitLoginRecovery(answer) {
-      let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input');
-      if (inputToCheck) {
-        if (inputToCheck.value.length < 1) {
-          this.set('errorMessageInput', 'Por favor, responda à pergunta');
-          document.querySelector('.step--' + this.get('loginStep') + ' span').style.opacity = 1;
-          document.querySelector('.step--' + this.get('loginStep') + ' span').style.visibility = 'visible';
-          return;
-        } else {
-          this.set('errorMessageInput', '');
-          document.querySelector('.step--' + this.get('loginStep') + ' span').style.opacity = 0;
-          document.querySelector('.step--' + this.get('loginStep') + ' span').style.visibility = 'hidden';
-        }
-      }
-
-      if (!answer) {
-        let answerInput = document.querySelector('.step--' + this.get('loginStep') + ' input');
-        answer = answerInput.value;
-      }
-    
-      this.send('registerAnswer', answer);
-      
-    },
-
-
-
     autoRegister() {
       this.transitionToRoute('autoregister');
     },
@@ -545,6 +520,7 @@ export default Ember.Controller.extend({
       //   that.set('error_forgot', 'Erro do servidor: ' + error);
       // });
     },
+
     
 
 

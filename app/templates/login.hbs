@@ -221,9 +221,9 @@
                  {{!-- Pergunta 4 --}}
                 <div id='q4' class="modal__is-login-recovery step--4 animated d250 {{if (equalstr loginStep '4') 'fadeInRightShort'}}">
                   <p>Em qual das cidades abaixo fica sua escola?</p>
-                  <button id="question4-alt1" class="btn btn--xs m-top--sm modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 5 'Cidade 1'}}>Cidade 1</button>
-                  <button id="question4-alt2" class="btn btn--xs m-top--sm modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 5 'Cidade 2'}}>Cidade 2</button>
-                  <button id="question4-alt2" class="btn btn--xs m-top--sm modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 5 'Cidade 3'}}>Cidade 3</button>
+                  {{#each citiesList as |city|}}
+                    <button id="question4-alt1" class="btn btn--xs m-top--sm modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 5 city}}>{{city}}</button>
+                  {{/each}}
                 </div>
 
                    {{!-- Pergunta 5 --}}

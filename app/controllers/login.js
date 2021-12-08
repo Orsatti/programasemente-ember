@@ -9,6 +9,9 @@ export default Ember.Controller.extend({
   mostraAviso: false,
   loginStep: 0,
   answers: [],
+  citiesList: Ember.computed(function() {
+    return [];
+  }),
 
   detectIE() {
    
@@ -49,6 +52,28 @@ export default Ember.Controller.extend({
 
     // other browser
     return false;
+  },
+
+  async refreshCitiesList(){
+    let isAluno = this.get('answers').toArray().filter(x => x.pergunta == 1).get('firstObject').resposta == 'Sim';
+    let firstName = this.get('answers').toArray().filter(x => x.pergunta == 2).get('firstObject').resposta;
+    let lastName = this.get('answers').toArray().filter(x => x.pergunta == 3).get('firstObject').resposta;
+    let data = {
+      isAluno,
+      firstName,
+      lastName
+    }
+    
+    let response = await fetch(`${ENV.APP.host}/${ENV.APP.namespace}/pessoas/CheckPossibleCities`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    
+    let responseJson = await response.json();
+    this.set('citiesList', responseJson);
   },
 
 
@@ -225,7 +250,7 @@ export default Ember.Controller.extend({
 
     },
 
-    moveToNextQuestion(moveTo, answer) {
+    async moveToNextQuestion(moveTo, answer) {
       
       
       if (this.get('loginStep') !== 'email') {
@@ -246,7 +271,6 @@ export default Ember.Controller.extend({
       }
       
       
-
       if (this.get('loginStep') !== 'email' && (this.get('loginStep') !== 0)) {
         
         if (!answer) {
@@ -255,7 +279,10 @@ export default Ember.Controller.extend({
         }
       
         this.send('registerAnswer', answer);
+        if (this.get('loginStep') == 3) await this.refreshCitiesList();
       }
+
+      debugger;
       
       this.set('loginStep', moveTo); 
     },
@@ -270,7 +297,6 @@ export default Ember.Controller.extend({
       })
       
     },
-    
 
     submitLoginRecovery(answer) {
       let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input');

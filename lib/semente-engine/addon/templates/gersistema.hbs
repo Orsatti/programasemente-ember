@@ -664,6 +664,16 @@ thisRoute=thisRoute}}
           <th class="institutions__codes--tits">Códigos para <b>alunos</b></th>
           <th>Utilizado</th>
         </tr>
+
+        {{#each codigosCadastros as |codigo|}}
+          <tr>
+            <td>{{codigo.codigo}}</td>
+            {{!-- {{#if}}
+              <td class="utilizado"></td>
+            {{/if}} --}}
+          </tr>
+        {{/each}}
+
         <tr>
           <td>UGT-AL-0023</td>
           <td class="utilizado"></td>

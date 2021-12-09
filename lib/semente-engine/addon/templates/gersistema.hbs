@@ -656,7 +656,7 @@ thisRoute=thisRoute}}
   {{#if selectedInstTabs.codes}}
   <section class="sections__subsection flow-md">
     <header class="flex flex-row items-baseline">
-      <p><a href=""><b><u>Clique aqui</u></b></a> para baixar a relação de códigos disponíveis</p>
+      <p><a onclick={{action 'downloadCodigos'}}><b><u>Clique aqui</u></b></a> para baixar a relação de códigos disponíveis</p>
     </header>
     <div class="institutions__codes list list--striped">
       <table>
@@ -664,64 +664,16 @@ thisRoute=thisRoute}}
           <th class="institutions__codes--tits">Códigos para <b>alunos</b></th>
           <th>Utilizado</th>
         </tr>
-
-        {{#each codigosCadastros as |codigo|}}
+        {{#each codigosCadastrosAlunos as |codigo|}}
           <tr>
             <td>{{codigo.codigo}}</td>
-            {{!-- {{#if}}
+            {{#if codigo.utilizado}}
               <td class="utilizado"></td>
-            {{/if}} --}}
+            {{else}}
+              <td></td>
+            {{/if}}
           </tr>
         {{/each}}
-
-        <tr>
-          <td>UGT-AL-0023</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0024</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0025</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0026</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0027</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0028</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0029</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0030</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0031</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0032</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0033</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-AL-0034</td>
-          <td class="utilizado"></td>
-        </tr>
       </table>
     </div>
     <div class="institutions__codes list list--striped">
@@ -730,54 +682,16 @@ thisRoute=thisRoute}}
           <th class="institutions__codes--tits">Códigos para <b> professores</b></th>
           <th>Utilizado</th>
         </tr>
-        <tr>
-          <td>UGT-PR-0023</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0024</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0025</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0026</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0027</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0028</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0029</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0030</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0031</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0032</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0033</td>
-          <td class="utilizado"></td>
-        </tr>
-        <tr>
-          <td>UGT-PR-0034</td>
-          <td class="utilizado"></td>
-        </tr>
+        {{#each codigosCadastrosProfessores as |codigo|}}
+          <tr>
+            <td>{{codigo.codigo}}</td>
+            {{#if codigo.utilizado}}
+              <td class="utilizado"></td>
+            {{else}}
+              <td></td>
+            {{/if}}
+          </tr>
+        {{/each}}
       </table>
     </div>
   </section>

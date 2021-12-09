@@ -13,7 +13,8 @@ export default Ember.Controller.extend({
     return [];
   }),
   successResgate: 0,
-
+  busy: false,
+  retrievedUsername: '',
   detectIE() {
    
     var ua = window.navigator.userAgent;
@@ -72,9 +73,46 @@ export default Ember.Controller.extend({
       },
       body: JSON.stringify(data),
     });
-    
+    if (response.status != 200) return "resgate";
     let responseJson = await response.json();
+    if (responseJson.length == 0) return "resgate";
+    if (responseJson.length == 1){
+      let answers = this.get('answers').push({pergunta: 4, resposta: responseJson[0]});
+      return 5;
+    }
     this.set('citiesList', responseJson);
+  },
+  
+  async resgatarLogin() {
+    let isAluno = this.get('answers').toArray().filter(x => x.pergunta == 1).get('firstObject').resposta == 'Sim';
+    let firstName = this.get('answers').toArray().filter(x => x.pergunta == 2).get('firstObject').resposta;
+    let lastName = this.get('answers').toArray().filter(x => x.pergunta == 3).get('firstObject').resposta;
+    let city = this.get('answers').toArray().filter(x => x.pergunta == 4).get('firstObject')?.resposta;
+    let schoolName = this.get('answers').toArray().filter(x => x.pergunta == 5).get('firstObject')?.resposta;
+    if (city == null || city == undefined || !schoolName) return;
+    let data = {
+      isAluno,
+      firstName,
+      lastName,
+      city,
+      schoolName
+    }
+    
+    let response = await fetch(`${ENV.APP.host}/${ENV.APP.namespace}/pessoas/RetrieveLogin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    
+    let successResgate = response.status == 200 ? 1 : 0;
+    this.set('successResgate', successResgate);
+
+    let responseText = await response.text();  
+    if (successResgate == 1){
+      this.set('retrievedUsername', responseText);
+    }
   },
 
 
@@ -241,6 +279,9 @@ export default Ember.Controller.extend({
             
         this.set('error_forgot', '');
         this.set('loginStep', 0);
+        this.set('citiesList', []);
+        this.set('successResgate', 0);
+        this.set('retrievedUsername', '');
         this.set('modalType', type);
         this.set('modalTitle', 'Resgate de login');
         this.set('modalInfo', 'Por favor, responda às perguntas a seguir');
@@ -253,7 +294,7 @@ export default Ember.Controller.extend({
 
     async moveToNextQuestion(moveTo, answer) {
       
-      
+      this.set('busy', true);
       if (this.get('loginStep') !== 'email') {
         let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input');
   
@@ -280,12 +321,18 @@ export default Ember.Controller.extend({
         }
       
         this.send('registerAnswer', answer);
-        if (this.get('loginStep') == 3) await this.refreshCitiesList();
-      }
+        if (this.get('loginStep') == 3) {
+          let newMoveTo = await this.refreshCitiesList();
+          if (newMoveTo) moveTo = newMoveTo;
+        };
 
-      debugger;
+        if (moveTo == "resgate"){
+          await this.resgatarLogin();
+        }
+      }
       
       this.set('loginStep', moveTo); 
+      this.set('busy', false);
     },
 
     registerAnswer(answer) {
@@ -506,45 +553,34 @@ export default Ember.Controller.extend({
       });
     },
 
-    resgataLoginPorEmail() {
+    async resgataLoginPorEmail() {
                   
+      this.set('busy', true);
       let email = document.getElementById('informe-email').value;
+      let data = {
+        email
+      }
+      
+      let response = await fetch(`${ENV.APP.host}/${ENV.APP.namespace}/pessoas/RetrieveLogin`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      if (response.status === 200) {
+        let successContainer = document.getElementById('success-forgot');
+        this.set('success_forgot', 'Seu login foi enviado para ' + email + ' com sucesso');
+        successContainer.style.display = 'block';
+        
+        setTimeout(() => {
+          successContainer.style.display = 'none';
+        }, 5000);
+      }
+      
       let errorContainer = document.getElementById('error-forgot');
-      let successContainer = document.getElementById('success-forgot');
-      this.set('success_forgot', 'Seu login foi enviado para ' + email + ' com sucesso');
-      successContainer.style.display = 'block';
-
-      setTimeout(() => {
-        successContainer.style.display = 'none';
-      }, 5000);
-
-      // let final_url = this.get('envnmt.host') + '/' + this.get('envnmt.namespace') + '/' + 'accounts/verifyEmail';
-      // let string = JSON.stringify({
-      //   'data': {
-      //     'id': '1',
-      //     'type': 'verify-email',
-      //     'attributes': {
-      //       'email': email
-      //     }
-      //   }
-      // });
-   
-      // let that = this;
-      // this.makeCustomCall('POST', final_url, string).then((data) => {
-      //   var result = data.data.attributes;
-        
-      //   if (!result.exists) {
-      //     errorContainer.style.display = 'block';
-      //     that.set('error_forgot', 'Não encontramos cadastros com este e-mail');
-      //     return;
-      //   }
-        
-      //   this.set('success_mail', 'Seu login foi enviado para este e-mail');
-      //   document.getElementById('success-forgot').style.display = 'block';
-
-      // }).catch((error) => {
-      //   that.set('error_forgot', 'Erro do servidor: ' + error);
-      // });
+      this.set('busy', false);
     },
 
     

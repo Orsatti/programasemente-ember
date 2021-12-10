@@ -251,48 +251,31 @@ thisRoute=thisRoute}}
       </div>
     </section>
 
-    <section class="sections__subsection flow-md animated fadeInLeftShort faster d1000">
-      <h3 class="main__subsubtitle">Número de usuários</h3>
-      <div class="flex flex-row flex-wrap gap-sm flow-h-sm">
-        <div class="form-group">
-          <label class="form-group__label">Gestores</label>
-          {{#if (equalstr role 'admin')}}
-          <input class="form-group__input" type="textbox" id="nr_gestores" value={{inst_selected.nrgestores}}
-            onkeyup={{action 'dataChange' 'btn_save_inst' }}>
-          {{else}}
-          <input class="form-group__input" type="textbox" id="nr_gestores" value={{inst_selected.nrgestores}}
-            disabled="true">
-          {{/if}}
-        </div>
-        <div class="form-group">
-          <label class="form-group__label">Coordenadores</label>
-          {{#if (equalstr role 'admin')}}
-          <input class="form-group__input" type="textbox" id="nr_coordenadores" value={{inst_selected.nrcoordenadores}}
-            onkeyup={{action 'dataChange' 'btn_save_inst' }}>
-          {{else}}
-          {{inst_selected.nrcoordenadores}}
-          {{/if}}
-        </div>
-        <div class="form-group">
-          <label class="form-group__label">Professores</label>
-          {{#if (equalstr role 'admin')}}
-          <input class="form-group__input" type="textbox" id="nr_instrutores" value={{inst_selected.nrinstrutores}}
-            onkeyup={{action 'dataChange' 'btn_save_inst' }}>
-          {{else}}
-          {{inst_selected.nrinstrutores}}
-          {{/if}}
-        </div>
-        <div class="form-group">
-          <label class="form-group__label">Alunos</label>
-          {{#if (equalstr role 'admin')}}
-          <input class="form-group__input" type="textbox" id="nr_alunos" value={{inst_selected.nralunos}}
-            onkeyup={{action 'dataChange' 'btn_save_inst' }}>
-          {{else}}
-          <input class="form-group__input" type="textbox" id="nr_alunos" value={{inst_selected.nralunos}}
-            disabled="true">
-          {{/if}}
-        </div>
-        <!-- /selected institution tab information -->
+              <div class="form-group">
+                <label class="form-group__label">Status</label>
+                <span class="switch switch--institutions">
+                  <input class="switch__checkbox" id="inst_hab" type="checkbox" checked={{inst_selected.enabled}}
+                    disabled={{if (equalstr role 'admin' ) false true}} onchange={{action 'dataChange' 'btn_save_inst' }}>
+                  <label class="switch__label" for="inst_hab">
+                    <span class="switch__inner"></span>
+                    <span class="switch__head"></span>
+                  </label>
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-group__label">É escola?</label>
+                <span class="switch switch--institutions">
+                  <input class="switch__checkbox" id="inst_isSchool" type="checkbox" checked={{inst_selected.isEscola}}
+                    disabled={{if (equalstr role 'admin' ) false true}} onchange={{action 'dataChange' 'btn_save_inst' }}>
+                  <label class="switch__label" for="inst_isSchool">
+                    <span class="switch__inner"></span>
+                    <span class="switch__head"></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+          </section>
 
         <!-- selected institutiton tab courses -->
         {{#if selectedInstTabs.courses}}
@@ -721,7 +704,7 @@ thisRoute=thisRoute}}
       </header>
       <div class="modal__body">
         <!-- new institution step 1 -->
-        <div class="institutions__step-content {{if goToStepTwo '' 'institutions__step-content--is-show'}}">
+        <div class=" flow-lg institutions__step-content {{if goToStepTwo '' 'institutions__step-content--is-show'}}">
           <section class="sections__subsection">
             <h4 class="main__subsubtitle">Básicas</h4>
             <div class="form-group form-group--horizontal form-group--full-width items-start">
@@ -742,6 +725,16 @@ thisRoute=thisRoute}}
                 <span class="switch switch--institutions">
                   <input class="switch__checkbox" id="new_inst_enabled" type="checkbox" checked={{new_inst_enabled}}>
                   <label class="switch__label" for="new_inst_enabled">
+                    <span class="switch__inner"></span>
+                    <span class="switch__head"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="form-group">
+                <label class="form-group__label">É escola?</label>
+                <span class="switch switch--institutions">
+                  <input class="switch__checkbox" id="new_inst_isSchool" type="checkbox" checked={{new_inst_isSchool}}>
+                  <label class="switch__label" for="new_inst_isSchool">
                     <span class="switch__inner"></span>
                     <span class="switch__head"></span>
                   </label>
@@ -788,7 +781,7 @@ thisRoute=thisRoute}}
               </div>
             </div>
           </section>
-          <section class="sections__subsection">
+          {{!-- <section class="sections__subsection">
             <h4 class="main__subsubtitle">Código de cadastro</h4>
             <div class="flex flex-row flex-wrap gap-sm flow-h-sm">
               <div class="form-group" flex="20">
@@ -804,7 +797,9 @@ thisRoute=thisRoute}}
                 <input class="form-group__input" type="textbox" id="new_inst_cdresp" value={{new_inst_cdresp}}>
               </div>
             </div>
-          </section>
+          </section> --}}
+
+        
           {{!-- <section class="sections__subsection">
             <h4 class="main__subsubtitle">Recursos extras</h4>
             <div class="checkbox m-bottom--md">

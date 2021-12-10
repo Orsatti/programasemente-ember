@@ -245,6 +245,18 @@
                   </label>
                 </span>
               </div>
+
+              <div class="form-group">
+                <label class="form-group__label">É escola?</label>
+                <span class="switch switch--institutions">
+                  <input class="switch__checkbox" id="inst_isSchool" type="checkbox" checked={{inst_selected.isEscola}}
+                    disabled={{if (equalstr role 'admin' ) false true}} onchange={{action 'dataChange' 'btn_save_inst' }}>
+                  <label class="switch__label" for="inst_isSchool">
+                    <span class="switch__inner"></span>
+                    <span class="switch__head"></span>
+                  </label>
+                </span>
+              </div>
             </div>
           </section>
 
@@ -412,7 +424,7 @@
             </div>
           </section>
 
-          <section class="sections__subsection flow-md animated fadeInLeftShort faster d1250">
+          {{!-- <section class="sections__subsection flow-md animated fadeInLeftShort faster d1250">
             <h3 class="main__subsubtitle">Códigos</h3>
             <div class="flex flex-row flex-wrap gap-sm flow-h-sm">
               <div class="form-group">
@@ -443,7 +455,7 @@
                 {{/if}}
               </div>
             </div>
-          </section>
+          </section> --}}
 
           <section class="sections__subsection flow-md animated fadeInLeftShort faster d1250">
             <h3 class="main__subsubtitle">Sistemas</h3>
@@ -685,7 +697,7 @@
       </header>
       <div class="modal__body">
         <!-- new institution step 1 -->
-        <div class="institutions__step-content {{if goToStepTwo '' 'institutions__step-content--is-show'}}">
+        <div class=" flow-lg institutions__step-content {{if goToStepTwo '' 'institutions__step-content--is-show'}}">
           <section class="sections__subsection">
             <h4 class="main__subsubtitle">Básicas</h4>
             <div class="form-group form-group--horizontal form-group--full-width items-start">
@@ -706,6 +718,16 @@
                 <span class="switch switch--institutions">
                   <input class="switch__checkbox" id="new_inst_enabled" type="checkbox" checked={{new_inst_enabled}}>
                   <label class="switch__label" for="new_inst_enabled">
+                    <span class="switch__inner"></span>
+                    <span class="switch__head"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="form-group">
+                <label class="form-group__label">É escola?</label>
+                <span class="switch switch--institutions">
+                  <input class="switch__checkbox" id="new_inst_isSchool" type="checkbox" checked={{new_inst_isSchool}}>
+                  <label class="switch__label" for="new_inst_isSchool">
                     <span class="switch__inner"></span>
                     <span class="switch__head"></span>
                   </label>
@@ -752,7 +774,7 @@
               </div>
             </div>
           </section>
-          <section class="sections__subsection">
+          {{!-- <section class="sections__subsection">
             <h4 class="main__subsubtitle">Código de cadastro</h4>
             <div class="flex flex-row flex-wrap gap-sm flow-h-sm">
               <div class="form-group" flex="20">
@@ -768,7 +790,9 @@
                 <input class="form-group__input" type="textbox" id="new_inst_cdresp" value={{new_inst_cdresp}}>
               </div>
             </div>
-          </section>
+          </section> --}}
+
+        
           {{!-- <section class="sections__subsection">
             <h4 class="main__subsubtitle">Recursos extras</h4>
             <div class="checkbox m-bottom--md">

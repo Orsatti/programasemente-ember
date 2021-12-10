@@ -58,8 +58,8 @@ export default Ember.Controller.extend({
 
   async refreshCitiesList(){
     let isAluno = this.get('answers').toArray().filter(x => x.pergunta == 1).get('firstObject').resposta == 'Sim';
-    let firstName = this.get('answers').toArray().filter(x => x.pergunta == 2).get('firstObject').resposta;
-    let lastName = this.get('answers').toArray().filter(x => x.pergunta == 3).get('firstObject').resposta;
+    let firstName = this.get('answers').toArray().filter(x => x.pergunta == 3).get('firstObject').resposta;
+    let lastName = this.get('answers').toArray().filter(x => x.pergunta == 4).get('firstObject').resposta;
     let data = {
       isAluno,
       firstName,
@@ -77,18 +77,18 @@ export default Ember.Controller.extend({
     let responseJson = await response.json();
     if (responseJson.length == 0) return "resgate";
     if (responseJson.length == 1){
-      let answers = this.get('answers').push({pergunta: 4, resposta: responseJson[0]});
-      return 5;
+      let answers = this.get('answers').push({pergunta: 5, resposta: responseJson[0]});
+      return 6;
     }
     this.set('citiesList', responseJson);
   },
   
   async resgatarLogin() {
     let isAluno = this.get('answers').toArray().filter(x => x.pergunta == 1).get('firstObject').resposta == 'Sim';
-    let firstName = this.get('answers').toArray().filter(x => x.pergunta == 2).get('firstObject').resposta;
-    let lastName = this.get('answers').toArray().filter(x => x.pergunta == 3).get('firstObject').resposta;
-    let city = this.get('answers').toArray().filter(x => x.pergunta == 4).get('firstObject')?.resposta;
-    let schoolName = this.get('answers').toArray().filter(x => x.pergunta == 5).get('firstObject')?.resposta;
+    let firstName = this.get('answers').toArray().filter(x => x.pergunta == 3).get('firstObject').resposta;
+    let lastName = this.get('answers').toArray().filter(x => x.pergunta == 4).get('firstObject').resposta;
+    let city = this.get('answers').toArray().filter(x => x.pergunta == 5).get('firstObject')?.resposta;
+    let schoolName = this.get('answers').toArray().filter(x => x.pergunta == 6).get('firstObject')?.resposta;
     if (city == null || city == undefined || !schoolName) return;
     let data = {
       isAluno,
@@ -111,7 +111,7 @@ export default Ember.Controller.extend({
 
     let responseText = await response.text();  
     if (successResgate == 1){
-      this.set('retrievedUsername', responseText);
+      this.set('retrievedUsername', responseText.replace(/["']/g, ""));
     }
   },
 
@@ -321,7 +321,7 @@ export default Ember.Controller.extend({
         }
       
         this.send('registerAnswer', answer);
-        if (this.get('loginStep') == 3) {
+        if (this.get('loginStep') == 4) {
           let newMoveTo = await this.refreshCitiesList();
           if (newMoveTo) moveTo = newMoveTo;
         };
@@ -373,10 +373,12 @@ export default Ember.Controller.extend({
         document.getElementById('forgot_modal').classList.remove('modal--is-show');
         document.getElementById('question2').value = '';
         document.getElementById('question3').value = '';
-        document.getElementById('question5').value = '';
+        document.getElementById('question4').value = '';
+        document.getElementById('question6').value = '';
         document.getElementById('informe-email').value = '';
         document.getElementById('success-forgot').style.display = 'none'
         this.set('errorMessageInput', '');
+        this.set('citeisList', []);
         this.set('answers', []);
 
       }
@@ -574,9 +576,19 @@ export default Ember.Controller.extend({
         this.set('success_forgot', 'Seu login foi enviado para ' + email + ' com sucesso');
         successContainer.style.display = 'block';
         
+        this.set('error_forgot', '');
+        errorContainer.style.opacity = 0;
+        errorContainer.style.visibility = 'hidden';
+
+
         setTimeout(() => {
           successContainer.style.display = 'none';
         }, 5000);
+      } else {
+        let errorContainer = document.getElementById('error-forgot');
+        this.set('error_forgot', 'E-mail não encontrado em nossos cadastros');
+        errorContainer.style.opacity = 1;
+        errorContainer.style.visibility = 'visible';
       }
       
       let errorContainer = document.getElementById('error-forgot');

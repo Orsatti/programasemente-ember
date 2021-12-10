@@ -1,128 +1,112 @@
 <div class="flex flex-row  items-center justify-start">
   <div class="institutions__btn-group">
-    <button class="btn btn--xxs btn--ghost" {{action 'userModal'}}>
-        {{!-- <span class="btn__icon icon-plus"></span> --}}
-        <span class="btn__label">Novo Usuário</span>
+    <button class="btn btn--xxs btn--ghost" {{action 'userModal' }}>
+      {{!-- <span class="btn__icon icon-plus"></span> --}}
+      <span class="btn__label">Novo Usuário</span>
     </button>
-    <button class="btn btn--xxs btn--ghost" {{action 'cadastroLote'}}>
+    <button class="btn btn--xxs btn--ghost" {{action 'cadastroLote' }}>
       {{!-- <span class="btn__icon icon-users"></span> --}}
       <span class="btn__label">Cadastro e matrícula em lote</span>
     </button>
-    <button class="btn btn--xxs btn--ghost" type="submit" {{action 'baixarTemplateAtivos'}}>Usuários Ativos</button>
+    <button class="btn btn--xxs btn--ghost" type="submit" {{action 'baixarTemplateAtivos' }}>Usuários Ativos</button>
   </div>
 </div>
 <div class="l-dots-between">
   <header class="l-dots-between__side">
     <form class="flex flex-col flow-md" autocomplete="off" aria-autocomplete="none">
       <div class="form-group">
-          <label class="form-group__label" for="search">Busca</label>
-          {{input class="form-group__input"
-                  aria-autocomplete="none"
-                  aria-describedby="basic-addon1"
-                  autocomplete="off"
-                  id="search_input_pessoas_ger"
-                  type="text"
-                  value=searchVal}}
-          <a class="form__aux-link" onclick={{action 'exitsearch'}}>Limpar busca</a>
-        </div>
+        <label class="form-group__label" for="search">Busca</label>
+        {{input class="form-group__input"
+        aria-autocomplete="none"
+        aria-describedby="basic-addon1"
+        autocomplete="off"
+        id="search_input_pessoas_ger"
+        type="text"
+        value=searchVal}}
+        <a class="form__aux-link" onclick={{action 'exitsearch' }}>Limpar busca</a>
+      </div>
 
-        {{!--
-        OLD
-        <div class="form-group">
-          <span class="form-group__label">Ano</span>
-          <div class="flex flex-col flow-xs">
+      {{!--
+      OLD
+      <div class="form-group">
+        <span class="form-group__label">Ano</span>
+        <div class="flex flex-col flow-xs">
           {{#each inst_selected.modulos as |mod|}}
-            <span class="checkbox m-right--lg">
-              <input class="checkbox__input" id="ano_{{mod.idx}}" name="year" type="checkbox" value="year{{mod.idx}}"
-                {{action 'filterano' mod.idx on='change'}}>
-              <label class="checkbox__label" for="ano_{{mod.idx}}">{{mod.name}}</label>
-            </span>
+          <span class="checkbox m-right--lg">
+            <input class="checkbox__input" id="ano_{{mod.idx}}" name="year" type="checkbox" value="year{{mod.idx}}"
+              {{action 'filterano' mod.idx on='change' }}>
+            <label class="checkbox__label" for="ano_{{mod.idx}}">{{mod.name}}</label>
+          </span>
           {{/each}}
-          </div>
         </div>
-        --}}
+      </div>
+      --}}
 
-        {{#if instituicaoMae}}
-          <div class="form-group">
-            <label class="form-group__label">Instituições</label>
-            <div class="form-group__wrapper form-group__wrapper--select">
-              <select class="form-group__input"
-                      name="year"
-                      id="instituicao_filha_selector"
-                      onchange={{action 'refreshSelectedInstFilha' value='target.value'}} 
-                      data-type="select"
-                      data-required="true">
-                <option selected="selected" value="0">Todas</option>
-                {{#each instituicaoFilhas as |instf|}}
-                    <option style="display: block" value="{{instf.id}}"
-                      selected={{if (equalstr instf selectedInstFilha) "selected"}}>
-                    {{instf.name}}</option>
-                {{/each}}
-                {{!-- <option id="id_do_segmento" value="id_do_segmento">Nome do segmento</option> --}}
-              </select>
-            </div>
-          </div>
-        {{/if}}  
-
-        <!-- não funcional -->
-        <div class="form-group">
-          <label class="form-group__label">Segmentos</label>
-          <div class="form-group__wrapper form-group__wrapper--select">
-            <select class="form-group__input"
-                    name="year"
-                    id="segmento_selector"
-                    onchange={{action 'refreshSelectedSegmento' value='target.value'}} 
-                    data-type="select"
-                    data-required="true">
-              <option selected="selected" value="0">Todos</option>
-              {{#each segmentos as |seg|}}
-                  <option style="display: block" value="{{seg.id}}"
-                    selected={{if (equalstr seg selectedSegmento) "selected"}}>
-                  {{seg.titulo}}</option>
-              {{/each}}
-              {{!-- <option id="id_do_segmento" value="id_do_segmento">Nome do segmento</option> --}}
-            </select>
-          </div>
+      {{#if instituicaoMae}}
+      <div class="form-group">
+        <label class="form-group__label">Instituições</label>
+        <div class="form-group__wrapper form-group__wrapper--select">
+          <select class="form-group__input" name="year" id="instituicao_filha_selector"
+            onchange={{action 'refreshSelectedInstFilha' value='target.value' }} data-type="select"
+            data-required="true">
+            <option selected="selected" value="0">Todas</option>
+            {{#each instituicaoFilhas as |instf|}}
+            <option style="display: block" value="{{instf.id}}" selected={{if (equalstr instf
+              selectedInstFilha) "selected" }}>
+              {{instf.name}}</option>
+            {{/each}}
+            {{!-- <option id="id_do_segmento" value="id_do_segmento">Nome do segmento</option> --}}
+          </select>
         </div>
+      </div>
+      {{/if}}
 
-        <!-- não funcional -->
-        <div class="form-group">
-          <label class="form-group__label">Ano</label>
-          <div class="form-group__wrapper form-group__wrapper--select">
-            <select class="form-group__input"
-                    name="year"
-                    id="ano_selector"
-                    onchange={{action 'refreshFilterAno' value='target.value'}} 
-                    data-type="select"
-                    data-required="true">
-              <option selected="selected" value="0">Todas</option>
-              {{#each anos as |ano|}}
-                  <option style="display: block" value="{{ano.id}}"
-                        selected={{if (equalstr ano selectedAno) "selected"}}>
-                      {{ano.name}}</option>
-              {{/each}}
-            </select>
-          </div>
+      <!-- não funcional -->
+      <div class="form-group">
+        <label class="form-group__label">Segmentos</label>
+        <div class="form-group__wrapper form-group__wrapper--select">
+          <select class="form-group__input" name="year" id="segmento_selector"
+            onchange={{action 'refreshSelectedSegmento' value='target.value' }} data-type="select" data-required="true">
+            <option selected="selected" value="0">Todos</option>
+            {{#each segmentos as |seg|}}
+            <option style="display: block" value="{{seg.id}}" selected={{if (equalstr seg selectedSegmento) "selected"
+              }}>
+              {{seg.titulo}}</option>
+            {{/each}}
+            {{!-- <option id="id_do_segmento" value="id_do_segmento">Nome do segmento</option> --}}
+          </select>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label class="form-group__label">Turma</label>
-          <div class="form-group__wrapper form-group__wrapper--select">
-            <select class="form-group__input"
-                    name="year"
-                    id="turma_selector"
-                    onchange={{action 'refreshFilterTurma' value='target.value'}} 
-                    data-type="select"
-                    data-required="true">
-              <option selected="selected" value="0">Todas</option>
-              {{#each turmas as |turma|}}
-                  <option style="display: block" value="{{turma.id}}"
-                        selected={{if (equalstr turma selectedTurma) "selected"}}>
-                      {{turma.name}}</option>
-              {{/each}}
-            </select>
-          </div>
+      <!-- não funcional -->
+      <div class="form-group">
+        <label class="form-group__label">Ano</label>
+        <div class="form-group__wrapper form-group__wrapper--select">
+          <select class="form-group__input" name="year" id="ano_selector" onchange={{action 'refreshFilterAno'
+            value='target.value' }} data-type="select" data-required="true">
+            <option selected="selected" value="0">Todas</option>
+            {{#each anos as |ano|}}
+            <option style="display: block" value="{{ano.id}}" selected={{if (equalstr ano selectedAno) "selected" }}>
+              {{ano.name}}</option>
+            {{/each}}
+          </select>
         </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-group__label">Turma</label>
+        <div class="form-group__wrapper form-group__wrapper--select">
+          <select class="form-group__input" name="year" id="turma_selector" onchange={{action 'refreshFilterTurma'
+            value='target.value' }} data-type="select" data-required="true">
+            <option selected="selected" value="0">Todas</option>
+            {{#each turmas as |turma|}}
+            <option style="display: block" value="{{turma.id}}" selected={{if (equalstr turma selectedTurma) "selected"
+              }}>
+              {{turma.name}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
 
 
 
@@ -135,23 +119,22 @@
       </h1>
       <h2 class="title-4">
         <span>{{selectedModuloName}} - {{selectedTurmaName}}</span>
-        <span class="fs--xs fw--3 fs-i color-blue-navy-20 m-left--xxs">(<span class="inline-flex m-right--xxs">{{totalPessoas}}</span>pessoas)</span>
+        <span class="fs--xs fw--3 fs-i color-blue-navy-20 m-left--xxs">(<span
+            class="inline-flex m-right--xxs">{{totalPessoas}}</span>pessoas)</span>
       </h2>
     </hgroup>
     --}}
     <div class="flex flex-row items-end justify-between">
       {{#unless (equalstr totalPessoas '0')}}
-        {{page-numbers content=pagedContent class="pagination--sm pagination--right"}}
+      {{page-numbers content=pagedContent class="pagination--sm pagination--right"}}
       {{/unless}}
 
       <div class="form-group flex flex-row items-center">
         <label class="form-group__label" for="amount">Exibir</label>
         <div class="self-start">
           <div class="form-group__wrapper form-group__wrapper--select">
-            <select class="form-group__input form-group__input--amount"
-                    id="amount"
-                    name="order"
-                    {{action 'setExibir' on='change'}}>
+            <select class="form-group__input form-group__input--amount" id="amount" name="order" {{action 'setExibir'
+              on='change' }}>
               <option value="5" selected={{paginationSelected.p5}}>5 resultados</option>
               <option value="10" selected={{paginationSelected.p10}}>10 resultados</option>
               <option value="25" selected={{paginationSelected.p25}}>25 resultados</option>
@@ -177,40 +160,40 @@
         <thead>
           <tr>
             <th class="table__name" scope="col">
-              <div {{action 'setSort' 'name'}}>
+              <div {{action 'setSort' 'name' }}>
                 Nome
                 {{#if (equalstr sortCol 'name')}}
-                  <i class="{{if sortAsc 'fa fa-caret-down' 'fa fa-caret-up'}}" aria-hidden="true"></i>
+                <i class="{{if sortAsc 'fa fa-caret-down' 'fa fa-caret-up'}}" aria-hidden="true"></i>
                 {{/if}}
               </div>
             </th>
-            <th class="table__role"    scope="col">Perfil</th>
+            <th class="table__role" scope="col">Perfil</th>
             <th class="table__enabled" scope="col">Hab<span class="hide-on--xs">ilitado</span></th>
             <th class="table__actions" scope="col">Ações</th>
           </tr>
         </thead>
         <tbody>
           {{#each pessoas_sorted as |pessoa|}}
-            <tr>
-              <td class="table__name">
-                <p><strong class="title-4">{{pessoa.name}}</strong></p>
-                <p class='color-green-40 truncate'>{{pessoa.userName}}</p>
+          <tr>
+            <td class="table__name">
+              <p><strong class="title-4">{{pessoa.name}}</strong></p>
+              <p class='color-green-40 truncate'>{{pessoa.userName}}</p>
 
-              </td>
-              <td class="table__role">
-                <p class="">{{if (equalstr pessoa.role 'instrutor') 'professor' pessoa.role}}</p>
-              </td>
-              <td class="ta-c">
-                <span class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
-              </td>
-              <td class="table__actions">
-                {{#if (equalstr pessoa.role 'admin')}}
-                {{else}}
-                <button class="btn btn--text btn--xxs" {{action 'deletePessoa' pessoa.id}}>Remover</button>
-                {{/if}}
-                <button class="btn btn--ghost btn--xxs" {{action 'userModal' pessoa.id}}>Editar</button>
-              </td>
-            </tr>
+            </td>
+            <td class="table__role">
+              <p class="">{{if (equalstr pessoa.role 'instrutor') 'professor' pessoa.role}}</p>
+            </td>
+            <td class="ta-c">
+              <span class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+            </td>
+            <td class="table__actions">
+              {{#if (equalstr pessoa.role 'admin')}}
+              {{else}}
+              <button class="btn btn--text btn--xxs" {{action 'deletePessoa' pessoa.id}}>Remover</button>
+              {{/if}}
+              <button class="btn btn--ghost btn--xxs" {{action 'userModal' pessoa.id}}>Editar</button>
+            </td>
+          </tr>
           {{/each}}
         </tbody>
       </table>
@@ -220,13 +203,14 @@
 
 {{!--
 <section class="sections__section">
-  <section class="sections__subsection report__section report-people" id="report-people-gersistema" style="display: block;">
+  <section class="sections__subsection report__section report-people" id="report-people-gersistema"
+    style="display: block;">
     <div class="total-results">
       <span class="total-results__results">Total de <strong>{{totalPessoas}}</strong> pessoas</span>
     </div>
 
     <div class="flex flex-row items-center justify-between m-bottom--lg">
-      <div {{action staticAlert 'close'}}></div>
+      <div {{action staticAlert 'close' }}></div>
     </div>
   </section>
 </section>
@@ -246,68 +230,65 @@
     <p class="alert__msg">
       <!-- mail action -->
       {{#if selectedToMail}}
-        {{#if mail_single_pessoa}}
-          <strong>{{mail_single_pessoa.email}}</strong>
-        {{/if}}
+      {{#if mail_single_pessoa}}
+      <strong>{{mail_single_pessoa.email}}</strong>
+      {{/if}}
       {{/if}}
 
       <!-- delete user -->
       {{#if selectedToDelete}}
-        <p>Você tem certeza que deseja apagar <span class="strong">{{confirm_entity.name}}</span>?</p>
-      {{/if}}
+    <p>Você tem certeza que deseja apagar <span class="strong">{{confirm_entity.name}}</span>?</p>
+    {{/if}}
 
-      <!-- reset user progress -->
-      {{#if selectedToReset}}
-        <strong>{{new_user_name}}</strong>
-      {{/if}}
+    <!-- reset user progress -->
+    {{#if selectedToReset}}
+    <strong>{{new_user_name}}</strong>
+    {{/if}}
     </p>
 
     <ul style="overflow:auto; max-height:60vh;">
       {{#each staticList as |item|}}
-        <li class="p-v--xxs">{{item.email}}</li>
+      <li class="p-v--xxs">{{item.email}}</li>
       {{/each}}
     </ul>
 
     <div class="alert__footer">
       <!-- check users list -->
       {{#if (equalstr staticType 'checklist')}}
-        <button class="btn btn--xs btn--text" {{action staticAlert 'close'}}>Desmarcar todos</button>
-        <button class="btn btn--xs" {{action 'emailAction'}}><span class="btn__icon icon-at-sign"></span>Enviar
-          emails</button>
+      <button class="btn btn--xs btn--text" {{action staticAlert 'close' }}>Desmarcar todos</button>
+      <button class="btn btn--xs" {{action 'emailAction' }}><span class="btn__icon icon-at-sign"></span>Enviar
+        emails</button>
       {{/if}}
       <!-- -->
       <!-- send email(s) -->
       {{#if (equalstr staticType 'mail')}}
-        <button class="btn btn--xs btn--text" {{action 'cancelarMail'}}>Cancelar</button>
-        <button class="btn" type="submit" {{action 'sendMail'}}>Enviar email{{#if
+      <button class="btn btn--xs btn--text" {{action 'cancelarMail' }}>Cancelar</button>
+      <button class="btn" type="submit" {{action 'sendMail' }}>Enviar email{{#if
         mail_single_pessoa}}
-          {{else}}s{{/if}}</button>
+        {{else}}s{{/if}}</button>
       {{/if}}
       <!-- -->
       <!-- retry failed email -->
       {{#if (equalstr staticType 'failed')}}
-        <button class="btn btn--xs btn--text" {{action 'cancelarMail'}}>Cancelar</button>
-        <button class="btn" {{action 'sendMail'}}>Tentar Novamente</button>
+      <button class="btn btn--xs btn--text" {{action 'cancelarMail' }}>Cancelar</button>
+      <button class="btn" {{action 'sendMail' }}>Tentar Novamente</button>
       {{/if}}
       <!-- -->
       <!-- delete user -->
       {{#if (equalstr staticType 'delete')}}
-        <button class="btn btn--xs btn--text" type="submit" {{action 'cancelDel'}}>Cancelar</button>
-        <button class="btn" type="submit" {{action 'confirmDel' confirm_entity}}>Apagar</button>
+      <button class="btn btn--xs btn--text" type="submit" {{action 'cancelDel' }}>Cancelar</button>
+      <button class="btn" type="submit" {{action 'confirmDel' confirm_entity}}>Apagar</button>
       {{/if}}
       <!-- -->
       <!-- reset user progress -->
       {{!-- {{#if (equalstr staticType 'progress')}}
-        <button class="btn btn--xxs"
-                id="botao_reset_{{new_user_id}}"
-                type="submit"
-                {{action 'resetarProgressos' new_user_id}}>
-          <span class="btn__label">Zerar Progressos</span>
-        </button>
-        <button class="btn"
-                type="submit" {{action staticAlert 'close'}}>
-                <span class="btn__label">Fechar</span>
-        </button>
+      <button class="btn btn--xxs" id="botao_reset_{{new_user_id}}" type="submit" {{action 'resetarProgressos'
+        new_user_id}}>
+        <span class="btn__label">Zerar Progressos</span>
+      </button>
+      <button class="btn" type="submit" {{action staticAlert 'close' }}>
+        <span class="btn__label">Fechar</span>
+      </button>
       {{/if}} --}}
       <!-- -->
     </div>
@@ -338,13 +319,13 @@
   <div class="modal__overlayer"></div>
   <div class="modal__content">
     <header class="modal__header">
-      <button class="modal__close btn-close icon-x" {{action 'closeUserModal'}} type="submit"></button>
+      <button class="modal__close btn-close icon-x" {{action 'closeUserModal' }} type="submit"></button>
 
       <h3 class="modal__title">
         {{#if new_user_name}}
-          Edição do usuário <span class="m-left--xxs color-green-40">{{new_user_name}}</span>
+        Edição do usuário <span class="m-left--xxs color-green-40">{{new_user_name}}</span>
         {{else}}
-          Cadastro de novo usuário
+        Cadastro de novo usuário
         {{/if}}
       </h3>
     </header>
@@ -364,10 +345,8 @@
               <div class="form-group w100">
                 <label class="form-group__label" for="new_user_role">Perfil</label>
                 <div class="form-group__wrapper form-group__wrapper--select">
-                  <select class="form-group__input j-validate-basic"
-                          id="new_user_role"
-                          onchange={{action seAluno value="target.value"}}
-                          data-type="select">
+                  <select class="form-group__input j-validate-basic" id="new_user_role" onchange={{action seAluno
+                    value="target.value" }} data-type="select">
                     <option value="">Selecione...</option>
                     <option value="aluno" selected={{thisUserRole.aluno}}>Aluno</option>
                     <option value="instrutor" selected={{thisUserRole.instrutor}}>Professor</option>
@@ -376,7 +355,7 @@
                     <option value="secretaria" selected={{thisUserRole.secretaria}}>Secretaria</option>
                     <option value="marketing" selected={{thisUserRole.marketing}}>Marketing</option>
                     {{#if (equalstr new_user_role 'admin')}}
-                      <option value="admin" selected={{thisUserRole.admin}}>Admin</option>
+                    <option value="admin" selected={{thisUserRole.admin}}>Admin</option>
                     {{/if}}
                   </select>
                 </div>
@@ -389,111 +368,81 @@
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="form-group w100">
             <label class="form-group__label" for="new_user_name">Nome</label>
-            <input class="form-group__input j-validate-basic"
-                  id="new_user_name"
-                  type="textbox"
-                  value={{new_user_name}}
-                  data-type="text"
-                  data-required="true"
-                  data-context="nome">
+            <input class="form-group__input j-validate-basic" id="new_user_name" type="textbox" value={{new_user_name}}
+              data-type="text" data-required="true" data-context="nome">
           </div>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="form-group w100">
             <label class="form-group__label" for="new_user_login">Login</label>
-            <input class="form-group__input j-validate-basic"
-                  id="new_user_login"
-                  type="textbox"
-                  value={{new_user_login}}
-                  data-type="text"
-                  data-required="true"
-                  data-context="login">
+            <input class="form-group__input j-validate-basic" id="new_user_login" type="textbox"
+              value={{new_user_login}} data-type="text" data-required="true" data-context="login">
           </div>
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="form-group w100">
             <label class="form-group__label" for="new_user_email">E-mail</label>
-            <input class="form-group__input j-validate-basic"
-                  id="new_user_email"
-                  type="textbox"
-                  value={{if new_user_email new_user_email}}
-                  data-type="text"
-                  data-required="true"
-                  data-context="email">
+            <input class="form-group__input j-validate-basic" id="new_user_email" type="textbox" value={{if
+              new_user_email new_user_email}} data-type="text" data-required="true" data-context="email">
           </div>
-            {{#if emailError}}<span class="color-error-30 fs--xs">E-mail inválido</span>{{/if}}
+          {{#if emailError}}<span class="color-error-30 fs--xs">E-mail inválido</span>{{/if}}
         </div>
-        
+
         {{#if new_user_id}}
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="form-group w100">
-              <label class="form-group__label" for="new_user_login">Senha</label>
-              <input class="form-group__input j-validate-basic"
-                    id="new_user_senha"
-                    type="textbox"
-                    value={{new_user_senha}}
-                    data-type="text"
-                    data-required="true"
-                    data-context="senha">
-            </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-group w100">
+            <label class="form-group__label" for="new_user_login">Senha</label>
+            <input class="form-group__input j-validate-basic" id="new_user_senha" type="textbox"
+              value={{new_user_senha}} data-type="text" data-required="true" data-context="senha">
           </div>
+        </div>
         {{/if}}
 
         <div class="col-xs-12">
           <div class="checkbox w100">
-            <input class="checkbox__input"
-                  checked={{new_user_enabled}}
-                  id="new_user_enabled"
-                  type="checkbox">
+            <input class="checkbox__input" checked={{new_user_enabled}} id="new_user_enabled" type="checkbox">
             <label class="checkbox__label" for="new_user_enabled">Habilitado</label>
           </div>
         </div>
 
 
         {{!-- {{#if (equalstr activeProfile "aluno")}} --}}
-          <div class="col-xs-12" id="gender-birth">
-            <div class="row">
-              <div class="col-xs-12 col-sm-6 col-md-4 {{unless editUser (if (equalstr activeProfile "aluno") 'animated fadeInLeftShort faster d250')}}">
-                <div class="form-group w100">
-                  <label class="form-group__label" for="new_user_gender">Sexo</label>
-                  <div class="form-group__wrapper form-group__wrapper--select">
-                    <select class="form-group__input j-validate-aluno" 
-                       id="new_user_gender"
-                       data-type="select" 
-                       data-context="sexo">
-                      <option value="notSelected">Selecione...</option>
-                      <option value="feminino">Feminino</option>
-                      <option value="masculino">Masculino</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-xs-12 col-sm-6 col-md-2 {{unless editUser (if (equalstr activeProfile "aluno") 'animated fadeInLeftShort faster d500')}}">
-                <div class="form-group w100">
-                  <label class="form-group__label" for="new_user_birth">Nascimento</label>
-                  <input class="form-group__input j-validate-aluno"
-                          id="new_user_birth"
-                          maxlength="10"
-                          name="date"
-                          onkeyup="var v = this.value;
-                                if (v.match(/^\d{2}$/) !== null) {
-                                    this.value = v + '/';
-                                } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-                                    this.value = v + '/';
-                                }"
-                          type="date"
-                          value={{new_user_birth}}
-                          data-type="text"
-                          data-context="nascimento">
-                  <div class="text-aux m-top--xxs">dd/mm/aaaa</div>
+        <div class="col-xs-12" id="gender-birth">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 {{unless editUser (if (equalstr activeProfile "
+              aluno") 'animated fadeInLeftShort faster d250' )}}">
+              <div class="form-group w100">
+                <label class="form-group__label" for="new_user_gender">Sexo</label>
+                <div class="form-group__wrapper form-group__wrapper--select">
+                  <select class="form-group__input j-validate-aluno" id="new_user_gender" data-type="select"
+                    data-context="sexo">
+                    <option value="notSelected">Selecione...</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="masculino">Masculino</option>
+                  </select>
                 </div>
               </div>
             </div>
 
+            <div class="col-xs-12 col-sm-6 col-md-2 {{unless editUser (if (equalstr activeProfile "
+              aluno") 'animated fadeInLeftShort faster d500' )}}">
+              <div class="form-group w100">
+                <label class="form-group__label" for="new_user_birth">Nascimento</label>
+                <input class="form-group__input j-validate-aluno" id="new_user_birth" maxlength="10" name="date"
+                  onkeyup="var v = this.value;
+                                if (v.match(/^\d{2}$/) !== null) {
+                                    this.value = v + '/';
+                                } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+                                    this.value = v + '/';
+                                }" type="date" value={{new_user_birth}} data-type="text" data-context="nascimento">
+                <div class="text-aux m-top--xxs">dd/mm/aaaa</div>
+              </div>
+            </div>
           </div>
+
+        </div>
         {{!-- {{/if}} --}}
 
       </section>
@@ -502,212 +451,199 @@
 
       <!-- ANOS SÓ É EXIBIDO PARA ALUNOS E INSTRUTORES -->
       {{#if (equalstr activeProfile "instrutor")}}
-        <section class="flow-md {{unless editUser (if (equalstr activeProfile "instrutor") 'animated fadeInLeftShort faster d250')}}">
-          <h4 class="modal__subtitle">Você é professor aplicador?</h4>
-          <div class="row">
-            {{!-- <div class="form-group__container"> --}}
-              {{!-- <div class="form-group w100"> --}}
+      <section class="flow-md {{unless editUser (if (equalstr activeProfile "
+        instrutor") 'animated fadeInLeftShort faster d250' )}}">
+        <h4 class="modal__subtitle">Você é professor aplicador?</h4>
+        <div class="row">
+          {{!-- <div class="form-group__container"> --}}
+            {{!-- <div class="form-group w100"> --}}
 
-                {{!-- {{#each segmentos as |seg| }} --}}
+              {{!-- {{#each segmentos as |seg| }} --}}
 
-                <div class="col-xs-12 col-lg-3 flow-sm">
-                  {{!-- <h5 class="title-aux">{{seg.titulo}}</h5> --}}
-                  {{!-- <h5 class="title-aux">Título do segmento</h5> --}}
-                  {{!-- {{#each seg.plataformaAnos as |platAno|}}
-                      {{#if (isinarray platAno pessoa.instituicao.plataformaAnos)}} --}}
-                          <ul>
-                              <li>
-                                  <div class="checkbox">
-                                      {{!-- <input class="j-validate-aplicador-child checkbox__input"
-                                          checked={{if (isinarray platAno pessoa.plataformaAnos) "checked" ''}}
-                                          id="plat_ano{{platAno.id}}"
-                                          onchange={{action (action "selectAno" platAno) value='target.checked'}}
-                                          type="checkbox">
-                                      <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label> --}}
-                                      {{input
-                                          class="checkbox__input"
-                                          id="plat_ano00000000"
-                                          name="plat_ano00000000"
-                                          type="checkbox"
-                                          checked=pessoa_selected.isAplicador
-                                          data-type="aplicador"
-                                          data-required="false"
-                                          change=(action 'checkaplicador')
-                                      }}
-                                      <label class="checkbox__label" for="plat_ano00000000">Sim, eu sou professor aplicador 
-                                        do 
-                                        Programa Semente.</label>
-                                  </div>
-                              </li>
-                          </ul>
-                      {{!-- {{/if}}
-                  {{/each}} --}}
+              <div class="col-xs-12 col-lg-3 flow-sm">
+                {{!-- <h5 class="title-aux">{{seg.titulo}}</h5> --}}
+                {{!-- <h5 class="title-aux">Título do segmento</h5> --}}
+                {{!-- {{#each seg.plataformaAnos as |platAno|}}
+                {{#if (isinarray platAno pessoa.instituicao.plataformaAnos)}} --}}
+                <ul>
+                  <li>
+                    <div class="checkbox">
+                      {{!-- <input class="j-validate-aplicador-child checkbox__input" checked={{if (isinarray platAno
+                        pessoa.plataformaAnos) "checked" '' }} id="plat_ano{{platAno.id}}" onchange={{action
+                        (action "selectAno" platAno) value='target.checked' }} type="checkbox">
+                      <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label> --}}
+                      {{input
+                      class="checkbox__input"
+                      id="plat_ano00000000"
+                      name="plat_ano00000000"
+                      type="checkbox"
+                      checked=pessoa_selected.isAplicador
+                      data-type="aplicador"
+                      data-required="false"
+                      change=(action 'checkaplicador')
+                      }}
+                      <label class="checkbox__label" for="plat_ano00000000">Sim, eu sou professor aplicador
+                        do
+                        Programa Semente.</label>
+                    </div>
+                  </li>
+                </ul>
+                {{!-- {{/if}}
+                {{/each}} --}}
 
-                </div>
+              </div>
               {{!-- {{/each}} --}}
-            {{!-- </div> --}}
+              {{!--
+            </div> --}}
           </div>
 
           {{#if pessoa_selected.isAplicador}}
           <section class="blink animated fadeIn fast flow-md">
-              <h4 class="title-4">Você aplica em quais séries?</h4>
-              <span id="error_aplicador" class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
-              <div class="row">
+            <h4 class="title-4">Você aplica em quais séries?</h4>
+            <span id="error_aplicador" class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
+            <div class="row">
 
-                  {{#each segmentos as |seg| }}
+              {{#each segmentos as |seg| }}
 
-                  <div class="col-xs-12 col-lg-3 flow-sm">
-                      <h5 class="title-aux">{{seg.titulo}}</h5>
-                      {{!-- <div class="row">
-                              <div class="checkbox">
-                                  <input  class="checkbox__input"
-                                          type="checkbox"
-                                          id="segmento{{seg.id}}"
-                                          onchange={{action (action "selectSegmento" seg) value='target.checked'}}>
-                                  <label  class="checkbox__label"
-                                          for="segmento{{seg.id}}">{{seg.titulo}}</label>
-                              </div>
-                          </div> --}}
-
-                      {{#each seg.plataformaAnos as |platAno|}}
-                          {{#if (isinarray platAno inst_selected.plataformaAnos)}}
-                              <ul>
-                                  <li>
-                                      <div class="checkbox">
-                                          <input class="j-validate-aplicador-child checkbox__input"
-                                              checked={{if (isinarray platAno pessoa_selected.plataformaAnos) "checked" ''}}
-                                              id="plat_ano{{platAno.id}}"
-                                              onchange={{action (action "selectAno" platAno) value='target.checked'}}
-                                              type="checkbox">
-                                          <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
-                                      </div>
-                                  </li>
-                              </ul>
-                          {{/if}}
-                      {{/each}}
-
+              <div class="col-xs-12 col-lg-3 flow-sm">
+                <h5 class="title-aux">{{seg.titulo}}</h5>
+                {{!-- <div class="row">
+                  <div class="checkbox">
+                    <input class="checkbox__input" type="checkbox" id="segmento{{seg.id}}" onchange={{action
+                      (action "selectSegmento" seg) value='target.checked' }}>
+                    <label class="checkbox__label" for="segmento{{seg.id}}">{{seg.titulo}}</label>
                   </div>
+                </div> --}}
 
-                  {{/each}}
+                {{#each seg.plataformaAnos as |platAno|}}
+                {{#if (isinarray platAno inst_selected.plataformaAnos)}}
+                <ul>
+                  <li>
+                    <div class="checkbox">
+                      <input class="j-validate-aplicador-child checkbox__input" checked={{if (isinarray platAno
+                        pessoa_selected.plataformaAnos) "checked" '' }} id="plat_ano{{platAno.id}}" onchange={{action
+                        (action "selectAno" platAno) value='target.checked' }} type="checkbox">
+                      <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
+                    </div>
+                  </li>
+                </ul>
+                {{/if}}
+                {{/each}}
 
               </div>
+
+              {{/each}}
+
+            </div>
           </section>
           {{else}}
-            {{#if isAplicador}}
-            <section class="blink animated fadeIn fast flow-md">
-                <h4 class="title-4">Você aplica em quais séries?</h4>
-                <span id="error_aplicador" class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
-                <div class="row">
+          {{#if isAplicador}}
+          <section class="blink animated fadeIn fast flow-md">
+            <h4 class="title-4">Você aplica em quais séries?</h4>
+            <span id="error_aplicador" class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
+            <div class="row">
 
-                    {{#each segmentos as |seg| }}
+              {{#each segmentos as |seg| }}
 
-                    <div class="col-xs-12 col-lg-3 flow-sm">
-                        <h5 class="title-aux">{{seg.titulo}}</h5>
+              <div class="col-xs-12 col-lg-3 flow-sm">
+                <h5 class="title-aux">{{seg.titulo}}</h5>
 
-                        {{#each seg.plataformaAnos as |platAno|}}
-                            {{#if (isinarray platAno inst_selected.plataformaAnos)}}
-                                <ul>
-                                    <li>
-                                        <div class="checkbox">
-                                            <input class="j-validate-aplicador-child checkbox__input"
-                                                checked={{if (isinarray platAno pessoa_selected.plataformaAnos) "checked" ''}}
-                                                id="plat_ano{{platAno.id}}"
-                                                onchange={{action (action "selectAno" platAno) value='target.checked'}}
-                                                type="checkbox">
-                                            <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            {{/if}}
-                        {{/each}}
-
+                {{#each seg.plataformaAnos as |platAno|}}
+                {{#if (isinarray platAno inst_selected.plataformaAnos)}}
+                <ul>
+                  <li>
+                    <div class="checkbox">
+                      <input class="j-validate-aplicador-child checkbox__input" checked={{if (isinarray platAno
+                        pessoa_selected.plataformaAnos) "checked" '' }} id="plat_ano{{platAno.id}}" onchange={{action
+                        (action "selectAno" platAno) value='target.checked' }} type="checkbox">
+                      <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
                     </div>
+                  </li>
+                </ul>
+                {{/if}}
+                {{/each}}
 
-                    {{/each}}
+              </div>
 
-                </div>
-            </section>
-            {{/if}}
+              {{/each}}
+
+            </div>
+          </section>
+          {{/if}}
           {{/if}}
 
 
           {{!-- <ul class="list list--striped">
             {{#if new_user_email}}
-              <!-- edit user -->
-              {{#each modulos_list as |mod|}}
-                <li class=""
-                  style="display:{{if (isinarray mod inst_selected.modulos) 'inherit' 'none'}}">
-                  <img class="list__img list__img--auto-height border-1--gray-5"
-                    src="{{if mod.coverImage mod.coverImage '/assets/img/online-course.png'}}">
-                  <h3 class="list__name title-3">{{mod.name}}</h3>
-                  <div class="m-top--xl w100">
-                    <h4 class="title-4 m-bottom--xs">Turmas</h4>
-                    <ul class="list list--3-col">
-                      {{#each mod.turmas as |turma|}}
-                        {{#if (isinarray turma inst_selected.turmas)}}
-                        <li class="m-bottom--lg">
-                          {{#if (isinarray turma pessoa_selected.turmas)}}
-                            <span class="checkbox m-right--lg">
-                              <input class="checkbox__input" id="ckb_new_p_{{turma.id}}"
-                                name="{{turma.id}}" type="checkbox" value="{{turma.id}}" checked>
-                              <label class="checkbox__label"
-                                for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
-                            </span>
-                          {{else}}
-                            <span class="checkbox m-right--lg">
-                              <input class="checkbox__input" id="ckb_new_p_{{turma.id}}"
-                                name="{{turma.id}}" type="checkbox" value="{{turma.id}}">
-                              <label class="checkbox__label"
-                                for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
-                            </span>
-                          {{/if}}
-                        </li>
-                        {{/if}}
-                      {{/each}}
-                    </ul>
-                  </div>
-                </li>
-              {{/each}}
+            <!-- edit user -->
+            {{#each modulos_list as |mod|}}
+            <li class="" style="display:{{if (isinarray mod inst_selected.modulos) 'inherit' 'none'}}">
+              <img class="list__img list__img--auto-height border-1--gray-5"
+                src="{{if mod.coverImage mod.coverImage '/assets/img/online-course.png'}}">
+              <h3 class="list__name title-3">{{mod.name}}</h3>
+              <div class="m-top--xl w100">
+                <h4 class="title-4 m-bottom--xs">Turmas</h4>
+                <ul class="list list--3-col">
+                  {{#each mod.turmas as |turma|}}
+                  {{#if (isinarray turma inst_selected.turmas)}}
+                  <li class="m-bottom--lg">
+                    {{#if (isinarray turma pessoa_selected.turmas)}}
+                    <span class="checkbox m-right--lg">
+                      <input class="checkbox__input" id="ckb_new_p_{{turma.id}}" name="{{turma.id}}" type="checkbox"
+                        value="{{turma.id}}" checked>
+                      <label class="checkbox__label" for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
+                    </span>
+                    {{else}}
+                    <span class="checkbox m-right--lg">
+                      <input class="checkbox__input" id="ckb_new_p_{{turma.id}}" name="{{turma.id}}" type="checkbox"
+                        value="{{turma.id}}">
+                      <label class="checkbox__label" for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
+                    </span>
+                    {{/if}}
+                  </li>
+                  {{/if}}
+                  {{/each}}
+                </ul>
+              </div>
+            </li>
+            {{/each}}
             {{else}}
-              <!-- new user -->
-              {{#each modulos_list as |mod|}}
-                <li class=""
-                  style="display:{{if (isinarray mod inst_selected.modulos) 'inherit' 'none'}}">
-                  <img class="list__img list__img--auto-height border-1--gray-5"
-                    src="{{if mod.coverImage mod.coverImage '/assets/img/online-course.png'}}">
-                  <h3 class="list__name title-3">{{mod.name}}</h3>
-                  <div class="m-top--xl w100">
-                    <h4 class="title-4 m-bottom--xs">Turmas</h4>
-                    <ul class="list list--3-col">
-                      {{#each mod.turmas as |turma|}}
-                        {{#if (isinarray turma inst_selected.turmas)}}
-                        <li class="m-bottom--lg">
-                          {{#if (isinarray turma pessoa_selected.turmas)}}
-                            <span class="checkbox m-right--lg">
-                              <input class="checkbox__input" id="ckb_new_p_{{turma.id}}"
-                                name="{{turma.id}}" type="checkbox" value="{{turma.id}}" checked>
-                              <label class="checkbox__label"
-                                for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
-                            </span>
-                          {{else}}
-                            <span class="checkbox m-right--lg">
-                              <input class="checkbox__input" id="ckb_new_p_{{turma.id}}"
-                                name="{{turma.id}}" type="checkbox" value="{{turma.id}}">
-                              <label class="checkbox__label"
-                                for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
-                            </span>
-                          {{/if}}
-                        </li>
-                        {{/if}}
-                      {{/each}}
-                    </ul>
-                  </div>
-                </li>
-              {{/each}}
+            <!-- new user -->
+            {{#each modulos_list as |mod|}}
+            <li class="" style="display:{{if (isinarray mod inst_selected.modulos) 'inherit' 'none'}}">
+              <img class="list__img list__img--auto-height border-1--gray-5"
+                src="{{if mod.coverImage mod.coverImage '/assets/img/online-course.png'}}">
+              <h3 class="list__name title-3">{{mod.name}}</h3>
+              <div class="m-top--xl w100">
+                <h4 class="title-4 m-bottom--xs">Turmas</h4>
+                <ul class="list list--3-col">
+                  {{#each mod.turmas as |turma|}}
+                  {{#if (isinarray turma inst_selected.turmas)}}
+                  <li class="m-bottom--lg">
+                    {{#if (isinarray turma pessoa_selected.turmas)}}
+                    <span class="checkbox m-right--lg">
+                      <input class="checkbox__input" id="ckb_new_p_{{turma.id}}" name="{{turma.id}}" type="checkbox"
+                        value="{{turma.id}}" checked>
+                      <label class="checkbox__label" for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
+                    </span>
+                    {{else}}
+                    <span class="checkbox m-right--lg">
+                      <input class="checkbox__input" id="ckb_new_p_{{turma.id}}" name="{{turma.id}}" type="checkbox"
+                        value="{{turma.id}}">
+                      <label class="checkbox__label" for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
+                    </span>
+                    {{/if}}
+                  </li>
+                  {{/if}}
+                  {{/each}}
+                </ul>
+              </div>
+            </li>
+            {{/each}}
             {{/if}}
           </ul> --}}
 
-        </section>
+      </section>
       {{/if}}
 
 
@@ -715,187 +651,178 @@
 
 
       {{!-- {{#if (equalstr activeProfile "aluno")}} --}}
-        <section id='ano-aluno' class="flow-md {{unless editUser (if (equalstr activeProfile "aluno") 'animated fadeInLeftShort faster d1000')}}">
-          <h4 class="modal__subtitle">Em qual ano e turma deve ser inscrito?</h4>
-          <div class="row">
+      <section id='ano-aluno' class="flow-md {{unless editUser (if (equalstr activeProfile "
+        aluno") 'animated fadeInLeftShort faster d1000' )}}">
+        <h4 class="modal__subtitle">Em qual ano e turma deve ser inscrito?</h4>
+        <div class="row">
 
-            {{!-- <h5 class="title-aux">Título do segmento</h5> --}}
-            <div class="col-xs-12 col-sm-6 col-md-4 {{unless editUser (if (equalstr activeProfile "aluno") 'animated fadeInLeftShort faster d250')}}">
-                <div class="form-group w100">
-                  <label class="form-group__label" for="new_user_ano">Ano</label>
-                  <div class="form-group__wrapper form-group__wrapper--select">
-                      <select class="j-validate-aluno form-group__input form-group__input--select"
-                          id="new_user_ano" name="ano"
-                          onchange={{action 'refreshSelectedAno' value='target.value'}} data-type="select"
-                          data-required="true"
-                          data-type="select"
-                          data-context="ano">
-                          <option selected="selected" value="0">---</option>
-                          {{#each inst_selected.plataformaAnos as |pa|}}
-                                <option value="{{pa.id}}"
-                                selected={{if (equalstr pa.id pessoa_selected.plataformaAnos.firstObject.id) "selected"}}>
-                                {{pa.name}}</option>
-                          {{/each}}
-                      </select>
-                  </div>
-                  <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
+          {{!-- <h5 class="title-aux">Título do segmento</h5> --}}
+          <div class="col-xs-12 col-sm-6 col-md-4 {{unless editUser (if (equalstr activeProfile "
+            aluno") 'animated fadeInLeftShort faster d250' )}}">
+            <div class="form-group w100">
+              <label class="form-group__label" for="new_user_ano">Ano</label>
+              <div class="form-group__wrapper form-group__wrapper--select">
+                <select class="j-validate-aluno form-group__input form-group__input--select" id="new_user_ano"
+                  name="ano" onchange={{action 'refreshSelectedAno' value='target.value' }} data-type="select"
+                  data-required="true" data-type="select" data-context="ano">
+                  <option selected="selected" value="0">---</option>
+                  {{#each inst_selected.plataformaAnos as |pa|}}
+                  <option value="{{pa.id}}" selected={{if (equalstr pa.id
+                    pessoa_selected.plataformaAnos.firstObject.id) "selected" }}>
+                    {{pa.name}}</option>
+                  {{/each}}
+                </select>
               </div>
+              <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
             </div>
-
-            <div class="col-xs-12 col-sm-6 col-md-4">
-              <div class="form-group__container">
-                  <div class="form-group w100">
-                      <label class="form-group__label" for="new_user_turma">Turma</label>
-                      <div class="form-group__wrapper form-group__wrapper--select">
-                          <select class="j-validate-aluno form-group__input form-group__input--select"
-                              id="new_user_turma" name="turma"
-                              onchange={{action 'refreshSelectedPlataformaTurma' value='target.value'}}
-                              data-type="select" data-required="true" data-context="turma">
-                              <option selected="selected" value="0">---</option>
-                              {{#each inst_selected.plataformaTurmas as |pt|}}
-                                  {{#if (equalstr pt.plataformaAno.id pessoa_selected.plataformaAnos.firstObject.id)}}
-                                      <option value="{{pt.id}}"
-                                      selected={{if (equalstr pt.id pessoa_selected.plataformaTurmas.firstObject.id)"selected"}}>
-                                      {{pt.name}}</option>
-                                  {{else}}
-                                    {{#if (equalstr pt.plataformaAno.id selectedPA.id)}}
-                                      <option value="{{pt.id}}">
-                                      {{!-- selected="selected"> --}}
-                                      {{pt.name}}</option>
-                                    {{/if}}
-                                  {{/if}}
-                              {{/each}}
-                          </select>
-                      </div>
-                  </div>
-                  <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
-              </div>
-            </div>
-
-              {{!-- </div> --}}
-
-              {{!-- {{/each}} --}}
-
           </div>
-          {{!-- <h4 class="modal__subtitle">Anos</h4>
-          <ul class="list list--striped">
-            {{#if new_user_email}}
-              <!-- edit user -->
-              {{#each modulos_list as |mod|}}
-                <li class=""
-                    style="display:{{if (isinarray mod inst_selected.modulos) 'inherit' 'none'}}">
 
-                  <div class="flex flex-col flow-md">
-                    <h5 class="title-4">Turmas do {{mod.name}}</h5>
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="form-group__container">
+              <div class="form-group w100">
+                <label class="form-group__label" for="new_user_turma">Turma</label>
+                <div class="form-group__wrapper form-group__wrapper--select">
+                  <select class="j-validate-aluno form-group__input form-group__input--select" id="new_user_turma"
+                    name="turma" onchange={{action 'refreshSelectedPlataformaTurma' value='target.value' }}
+                    data-type="select" data-required="true" data-context="turma">
+                    <option selected="selected" value="0">---</option>
+                    {{#each inst_selected.plataformaTurmas as |pt|}}
+                    {{#if (equalstr pt.plataformaAno.id pessoa_selected.plataformaAnos.firstObject.id)}}
+                    <option value="{{pt.id}}" selected={{if (equalstr pt.id
+                      pessoa_selected.plataformaTurmas.firstObject.id)"selected"}}>
+                      {{pt.name}}</option>
+                    {{else}}
+                    {{#if (equalstr pt.plataformaAno.id selectedPA.id)}}
+                    <option value="{{pt.id}}">
+                      {{!-- selected="selected"> --}}
+                      {{pt.name}}</option>
+                    {{/if}}
+                    {{/if}}
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+              <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
+            </div>
+          </div>
 
-                    <ul class="flow-xs">
-                      {{#each mod.turmas as |turma|}}
-                        {{#if (isinarray turma inst_selected.turmas)}}
+          {{!--
+        </div> --}}
 
-                          <li class="flow-xs">
-                            {{#if (isinarray turma pessoa_selected.turmas)}}
-                              <span class="radio">
-                                <input class="radio__input" id="ckb_new_p_{{turma.id}}"
-                                  name="{{mod.name}}_radio" type="radio" value="{{turma.id}}" {{action 'uncheckOthers' turma.id on="change"}} checked>
-
-                                <label class="radio__label"
-                                  for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
-                              </span>
-                            {{else}}
-                              <span class="radio">
-                                <input class="radio__input" id="ckb_new_p_{{turma.id}}"
-                                  name="{{mod.name}}_radio" type="radio" value="{{turma.id}}" {{action 'uncheckOthers' turma.id on="change"}}>
-                                <label class="radio__label"
-                                  for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
-                              </span>
-                            {{/if}}
-                          </li>
-
-                        {{/if}}
-                      {{/each}}
-                    </ul>
-                  </div>
-
-                </li>
-              {{/each}}
-            {{else}}
-              <!-- new user -->
-              {{#each modulos_list as |mod|}}
-                <li class=""
-                    style="display:{{if (isinarray mod inst_selected.modulos) 'inherit' 'none'}}">
-
-                  <div class="flex flex-col flow-md">
-                    <h5 class="title-4">Turmas do {{mod.name}}</h5>
-
-                    <ul class="flow-xs">
-                      {{#each mod.turmas as |turma|}}
-                        {{#if (isinarray turma inst_selected.turmas)}}
-
-                          <li class="flow-xs">
-                            {{#if (isinarray turma pessoa_selected.turmas)}}
-                              <span class="radio">
-                                <input class="radio__input" id="ckb_new_p_{{turma.id}}"
-                                  name="{{mod.name}}_radio" type="radio" value="{{turma.id}}" {{action 'uncheckOthers' turma.id on="change"}} checked>
-                                <label class="radio__label"
-                                  for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
-                              </span>
-                            {{else}}
-                              <span class="radio">
-                                <input class="radio__input" id="ckb_new_p_{{turma.id}}"
-                                  name="{{mod.name}}_radio" type="radio" value="{{turma.id}}" {{action 'uncheckOthers' turma.id on="change"}}>
-                                <label class="radio__label"
-                                  for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
-                              </span>
-                            {{/if}}
-                          </li>
-
-                        {{/if}}
-                      {{/each}}
-                    </ul>
-                  </div>
-
-                </li>
-              {{/each}}
-            {{/if}}
-          </ul> --}}
-        </section>
-      {{!-- {{/if}} --}}
-
-
-      <!-- se retirar esse select para de funcionar -->
-      <section class="hidden">
-        <select class="form-group__input" id="new_user_area">
-          <option value="">Selecione...</option>
-          {{#each inst_selected.areas as |area|}}
-            {{#if (equalstr area.id new_user_area)}}
-              <option value={{area.id}} selected>{{area.name}}</option>
-            {{else}}
-              <option value={{area.id}}>{{area.name}}</option>
-            {{/if}}
-          {{/each}}
-        </select>
-      </section>
-
-      {{!-- {{#if new_user_email}}
-        <section>
-          <h4 class="modal__subtitle">Progresso</h4>
-          <button class="btn btn--xxs"
-                  type="submit"
-                  {{action 'editProgressos' new_user_id}}>
-            <span class="btn__label">Zerar progressos</span>
-          </button>
-        </section>
-      {{/if}} --}}
+        {{!-- {{/each}} --}}
 
     </div>
-    <footer class="modal__footer">
-      <button class="btn btn--text" type="submit" {{action 'closeUserModal'}}>Cancelar</button>
-      {{#if new_user_id}}
-        <button class="btn" type="submit" {{action 'userSave' new_user_id}}>Editar</button>
+    {{!-- <h4 class="modal__subtitle">Anos</h4>
+    <ul class="list list--striped">
+      {{#if new_user_email}}
+      <!-- edit user -->
+      {{#each modulos_list as |mod|}}
+      <li class="" style="display:{{if (isinarray mod inst_selected.modulos) 'inherit' 'none'}}">
+
+        <div class="flex flex-col flow-md">
+          <h5 class="title-4">Turmas do {{mod.name}}</h5>
+
+          <ul class="flow-xs">
+            {{#each mod.turmas as |turma|}}
+            {{#if (isinarray turma inst_selected.turmas)}}
+
+            <li class="flow-xs">
+              {{#if (isinarray turma pessoa_selected.turmas)}}
+              <span class="radio">
+                <input class="radio__input" id="ckb_new_p_{{turma.id}}" name="{{mod.name}}_radio" type="radio"
+                  value="{{turma.id}}" {{action 'uncheckOthers' turma.id on="change" }} checked>
+
+                <label class="radio__label" for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
+              </span>
+              {{else}}
+              <span class="radio">
+                <input class="radio__input" id="ckb_new_p_{{turma.id}}" name="{{mod.name}}_radio" type="radio"
+                  value="{{turma.id}}" {{action 'uncheckOthers' turma.id on="change" }}>
+                <label class="radio__label" for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
+              </span>
+              {{/if}}
+            </li>
+
+            {{/if}}
+            {{/each}}
+          </ul>
+        </div>
+
+      </li>
+      {{/each}}
       {{else}}
-        <button class="btn" type="submit" {{action 'userSave'}}>OK</button>
+      <!-- new user -->
+      {{#each modulos_list as |mod|}}
+      <li class="" style="display:{{if (isinarray mod inst_selected.modulos) 'inherit' 'none'}}">
+
+        <div class="flex flex-col flow-md">
+          <h5 class="title-4">Turmas do {{mod.name}}</h5>
+
+          <ul class="flow-xs">
+            {{#each mod.turmas as |turma|}}
+            {{#if (isinarray turma inst_selected.turmas)}}
+
+            <li class="flow-xs">
+              {{#if (isinarray turma pessoa_selected.turmas)}}
+              <span class="radio">
+                <input class="radio__input" id="ckb_new_p_{{turma.id}}" name="{{mod.name}}_radio" type="radio"
+                  value="{{turma.id}}" {{action 'uncheckOthers' turma.id on="change" }} checked>
+                <label class="radio__label" for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
+              </span>
+              {{else}}
+              <span class="radio">
+                <input class="radio__input" id="ckb_new_p_{{turma.id}}" name="{{mod.name}}_radio" type="radio"
+                  value="{{turma.id}}" {{action 'uncheckOthers' turma.id on="change" }}>
+                <label class="radio__label" for="ckb_new_p_{{turma.id}}">{{turma.name}}</label>
+              </span>
+              {{/if}}
+            </li>
+
+            {{/if}}
+            {{/each}}
+          </ul>
+        </div>
+
+      </li>
+      {{/each}}
       {{/if}}
-    </footer>
+    </ul> --}}
+    </section>
+    {{!-- {{/if}} --}}
+
+
+    <!-- se retirar esse select para de funcionar -->
+    <section class="hidden">
+      <select class="form-group__input" id="new_user_area">
+        <option value="">Selecione...</option>
+        {{#each inst_selected.areas as |area|}}
+        {{#if (equalstr area.id new_user_area)}}
+        <option value={{area.id}} selected>{{area.name}}</option>
+        {{else}}
+        <option value={{area.id}}>{{area.name}}</option>
+        {{/if}}
+        {{/each}}
+      </select>
+    </section>
+
+    {{!-- {{#if new_user_email}}
+    <section>
+      <h4 class="modal__subtitle">Progresso</h4>
+      <button class="btn btn--xxs" type="submit" {{action 'editProgressos' new_user_id}}>
+        <span class="btn__label">Zerar progressos</span>
+      </button>
+    </section>
+    {{/if}} --}}
+
+  </div>
+  <footer class="modal__footer">
+    <button class="btn btn--text" type="submit" {{action 'closeUserModal' }}>Cancelar</button>
+    {{#if new_user_id}}
+    <button class="btn" type="submit" {{action 'userSave' new_user_id}}>Editar</button>
+    {{else}}
+    <button class="btn" type="submit" {{action 'userSave' }}>OK</button>
+    {{/if}}
+  </footer>
   </div>
 </aside>
 
@@ -919,7 +846,7 @@
   <div class="modal__overlayer"></div>
   <div class="modal__content">
     <div class="modal__header">
-      <button class="modal__close btn-close icon-x" type="submit" {{action 'cancelLote'}}></button>
+      <button class="modal__close btn-close icon-x" type="submit" {{action 'cancelLote' }}></button>
       <h3 class="modal__title">Cadastro e Matrícula em Lote</h3>
     </div>
     <div class="modal__body modal__body--inside-scroll inside-scroll">
@@ -928,22 +855,30 @@
           a serem
           criados ou atualizados no sistema</p>
         <div class="institutions__mass-enroll institutions__btn-group flow-h-sm">
-          <button class="btn btn-primary btn__claro" type="submit" {{action 'baixarTemplate'}}>Baixar template</button>
-<span><img src="assets/img/seta-lado.png" alt=""></span>
+          <button class="btn btn-primary btn__claro" type="submit" {{action 'baixarTemplate' }}>Baixar template</button>
+          <span><img src="/assets/img/seta-lado.png" alt=""></span>
           <label class="btn label_get_lote" for="get_lote">Buscar arquivo</label>
-          <input id="get_lote" multiple="false" onchange={{action "buscarArquivo"}} accept="text/csv" type="file"
+          <input id="get_lote" multiple="false" onchange={{action "buscarArquivo" }} accept="text/csv" type="file"
             style="display: none;" />
-
+          <span><img src="/assets/img/seta-lado.png" alt=""></span>
           {{#if selected_file}}
-            <button class="btn btn-primary" type="submit" {{action 'importarLote'}}>Importar</button>
+          <button class="btn btn-primary" type="submit" {{action 'importarLote' }}>Importar</button>
           {{else}}
-            <button class="btn btn-primary btn--disabled" type="submit" disabled>Importar</button>
+          <button class="btn btn-primary btn--disabled" type="submit" disabled>Importar</button>
           {{/if}}
 
           <div>
             <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="display: none" id="spinner-importar-lote"></i>
           </div>
         </div>
+        <div class="t-center instrucoes">
+          <p>Em caso de dúvidas, acesse o nosso passo a passo <span class="destaque"> clicando abaixo</span></p>
+          <div class="passoapasso" id="passoapasso"></div>
+          <span onclick="abrirPasso()">
+            <img class="seta" onclick="giro()" src="/assets/img/seta-baixo.png" alt="" id="seta">
+          </span>
+        </div>
+
       </div>
 
       <div class="inside-scroll__scroll">
@@ -955,63 +890,80 @@
             </button>
             {{/if}} -->
         {{#if selected_file}}
-          <div class="institutions__attached-file alert alert--sm alert--has-icon">
-            <span class="alert__icon icon-paperclip"></span>
-            <span class="institutions__attached-label">Arquivo selecionado: </span>
-            <strong>{{selected_file}}</strong>
-          </div>
+        <div class="institutions__attached-file alert alert--sm alert--has-icon">
+          <span class="alert__icon icon-paperclip"></span>
+          <span class="institutions__attached-label">Arquivo selecionado: </span>
+          <strong>{{selected_file}}</strong>
+        </div>
         {{/if}}
         {{#if error_lote}}
-          <p>1- {{error_lote}}</p>
+        <p>1- {{error_lote}}</p>
         {{/if}}
         {{#if wait_lote}}
-          <p>Um momento...</p>
+        <p>Um momento...</p>
         {{else if erro_lista}}
-          <p>2- {{erro_lista}}</p>
+        <p>2- {{erro_lista}}</p>
         {{else}}
-          <table class="table table--striped table--mass-enroll">
-            <thead class="thead-dark">
-              <tr>
-                <th class="table__enroller" scope="col">Cadastrador</th>
-                <th class="table__file" scope="col">Arquivo</th>
-                <th class="table__import" scope="col">Importação</th>
-                <th class="table__status" scope="col">Status</th>
-                <th class="table__users" scope="col">Usuários</th>
-                <th class="table__processed" scope="col">Processados</th>
-                <th class="table__not-processed" scope="col">Não Processados</th>
-                <th class="table__log" scope="col">Log</th>
-              </tr>
-            </thead>
-            <tbody class="gersistema-user-list-box">
-              {{#each lista_lote as |lista|}}
-                <tr>
-                  <td class="table__enroller">
-                    {{lista.pessoaNome}}
-                  </td>
-                  <td class="table__file">{{lista.nomeArquivo}}</td>
-                  <td class="table__import">{{lista.data}}</td>
-                  <td class="table__status">{{lista.status}}</td>
-                  <td class="table__users">{{lista.quantidadeDeUsuarios}}</td>
-                  <td class="table__processed">{{lista.usuariosProcessados}}</td>
-                  <td class="table__not-processed">{{lista.usuariosNaoProcessados}}</td>
-                  <td class="table__log">
-                    {{#if lista.link}}
-                      <a href={{lista.link}}>
-                        <i class="icon-file-text"></i>
-                      </a>
-                    {{else}}
-                      <i class="fa fa-times-o"></i>
-                    {{/if}}
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
+        <table class="table table--striped table--mass-enroll">
+          <thead class="thead-dark">
+            <tr>
+              <th class="table__enroller" scope="col">Cadastrador</th>
+              <th class="table__file" scope="col">Arquivo</th>
+              <th class="table__import" scope="col">Importação</th>
+              <th class="table__status" scope="col">Status</th>
+              <th class="table__users" scope="col">Usuários</th>
+              <th class="table__processed" scope="col">Processados</th>
+              <th class="table__not-processed" scope="col">Não Processados</th>
+              <th class="table__log" scope="col">Log</th>
+            </tr>
+          </thead>
+          <tbody class="gersistema-user-list-box">
+            {{#each lista_lote as |lista|}}
+            <tr>
+              <td class="table__enroller">
+                {{lista.pessoaNome}}
+              </td>
+              <td class="table__file">{{lista.nomeArquivo}}</td>
+              <td class="table__import">{{lista.data}}</td>
+              <td class="table__status">{{lista.status}}</td>
+              <td class="table__users">{{lista.quantidadeDeUsuarios}}</td>
+              <td class="table__processed">{{lista.usuariosProcessados}}</td>
+              <td class="table__not-processed">{{lista.usuariosNaoProcessados}}</td>
+              <td class="table__log">
+                {{#if lista.link}}
+                <a href={{lista.link}}>
+                  <i class="icon-file-text"></i>
+                </a>
+                {{else}}
+                <i class="fa fa-times-o"></i>
+                {{/if}}
+              </td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
         {{/if}}
       </div>
     </div>
   </div>
   <div class="modal__footer">
-    <button class="btn btn-primary" type="submit" {{action 'cancelLote'}}>Fechar</button>
+    <button class="btn btn-primary" type="submit" {{action 'cancelLote' }}>Fechar</button>
   </div>
 </aside>
+
+
+<script>
+  function abrirPasso() {
+    var x = document.getElementById("passoapasso");
+    if (x.style.display === "block") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "block";
+    }
+  }
+
+  function giro() {
+    document.getElementById("seta").classList.toggle('giro');
+  }
+
+</script>

@@ -27,6 +27,30 @@
 
     }
 
+    & .t-center{
+        text-align: center;
+    }
+
+    & .passoapasso{
+        width: 100%;
+        height: 5rem;
+        background-color: #009e47;
+        display: none;
+    }
+
+    & .giro {
+        transform: rotate(-180deg);
+        cursor: pointer;
+    }
+
+    & .seta{
+        cursor: pointer;
+      }
+
+      & .destaque{
+        color: #009e47;
+      }
+      
     &__content {
         background-clip: padding-box;
         background-color: $white;

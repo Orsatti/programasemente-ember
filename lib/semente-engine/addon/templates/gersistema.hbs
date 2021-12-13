@@ -658,41 +658,43 @@ thisRoute=thisRoute}}
     <header class="flex flex-row items-baseline">
       <p><a onclick={{action 'downloadCodigos'}}><b><u>Clique aqui</u></b></a> para baixar a relação de códigos disponíveis</p>
     </header>
-    <div class="institutions__codes list list--striped">
-      <table>
-        <tr>
-          <th class="institutions__codes--tits">Códigos para <b>alunos</b></th>
-          <th>Utilizado</th>
-        </tr>
-        {{#each codigosCadastrosAlunos as |codigo|}}
+    <div class="flex">
+      <div class="institutions__codes list list--striped">
+        <table>
           <tr>
-            <td>{{codigo.codigo}}</td>
-            {{#if codigo.utilizado}}
-              <td class="utilizado"></td>
-            {{else}}
-              <td></td>
-            {{/if}}
+            <th class="institutions__codes--tits">Códigos para <b>alunos</b></th>
+            <th>Utilizado</th>
           </tr>
-        {{/each}}
-      </table>
-    </div>
-    <div class="institutions__codes list list--striped">
-      <table>
-        <tr>
-          <th class="institutions__codes--tits">Códigos para <b> professores</b></th>
-          <th>Utilizado</th>
-        </tr>
-        {{#each codigosCadastrosProfessores as |codigo|}}
+          {{#each codigosCadastrosAlunos as |codigo|}}
+            <tr>
+              <td>{{codigo.codigo}}</td>
+              {{#if codigo.utilizado}}
+                <td class="utilizado"></td>
+              {{else}}
+                <td></td>
+              {{/if}}
+            </tr>
+          {{/each}}
+        </table>
+      </div>
+      <div class="institutions__codes list list--striped">
+        <table>
           <tr>
-            <td>{{codigo.codigo}}</td>
-            {{#if codigo.utilizado}}
-              <td class="utilizado"></td>
-            {{else}}
-              <td></td>
-            {{/if}}
+            <th class="institutions__codes--tits">Códigos para <b> professores</b></th>
+            <th>Utilizado</th>
           </tr>
-        {{/each}}
-      </table>
+          {{#each codigosCadastrosProfessores as |codigo|}}
+            <tr>
+              <td>{{codigo.codigo}}</td>
+              {{#if codigo.utilizado}}
+                <td class="utilizado"></td>
+              {{else}}
+                <td></td>
+              {{/if}}
+            </tr>
+          {{/each}}
+        </table>
+      </div>
     </div>
   </section>
   {{/if}}

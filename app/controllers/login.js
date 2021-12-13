@@ -16,6 +16,9 @@ export default Ember.Controller.extend({
   schoolsList: Ember.computed(function() {
     return [];
   }),
+  rawSchoolsList: Ember.computed(function() {
+    return [];
+  }),
   successResgate: 0,
   busy: false,
   retrievedUsername: '',
@@ -82,17 +85,21 @@ export default Ember.Controller.extend({
     if (response.status != 200) return "resgate";
     let responseJson = await response.json();
     if (responseJson.cities.length == 0) return "resgate";
-    this.set('schoolsList', responseJson.schools);
-    this.setupTypeahead();
+    this.set('rawSchoolsList', responseJson.schools);
     if (responseJson.cities.length == 1){
       this.get('answers').push({pergunta: 5, resposta: responseJson.cities[0]});
+      this.setupTypeahead();
       return 6;
     }
     this.set('citiesList', responseJson.cities);
   },
 
   async setupTypeahead() {
-    let schoolsList = this.get('schoolsList');
+    let schoolsList = this.get('rawSchoolsList')
+      .toArray()
+      .filter(x => x.schoolCity == this.get('answers').toArray().filter(x => x.pergunta == 5).get('firstObject').resposta)
+      .map(x => x.schoolName);
+      
     var states = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.whitespace,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -143,9 +150,9 @@ export default Ember.Controller.extend({
     let successResgate = response.status == 200 ? 1 : 0;
     this.set('successResgate', successResgate);
 
-    let responseText = await response.text();  
+    let responseJson = await response.json();  
     if (successResgate == 1){
-      this.set('retrievedUsername', responseText.replace(/["']/g, ""));
+      this.set('retrievedUsername', responseJson.username.replace(/["']/g, ""));
     }
   },
 
@@ -358,6 +365,10 @@ export default Ember.Controller.extend({
           let newMoveTo = await this.refreshCitiesList();
           if (newMoveTo) moveTo = newMoveTo;
         };
+
+        if (this.get('loginStep') == 5) {
+          this.setupTypeahead();
+        }
 
         if (moveTo == "resgate"){
           await this.resgatarLogin();

@@ -245,8 +245,9 @@
                 <div id='q6' class="modal__is-login-recovery step--6 animated d250 {{if (equalstr loginStep '6') 'fadeInRightShort'}}">
                   <p>Qual o nome de sua escola?</p>
                   <input id="question6" class="w100" required type="text">
-                  <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;">{{errorMessageInput}}</span>
-                  <button id="question6-end" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 'resgate'}}>Resgatar login</button>
+                  
+                  <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="display:block;">{{errorMessageInput}}</span>
+                  <button id="question6-end" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="button" {{action 'moveToNextQuestion' 'resgate'}}>Resgatar login</button>
                 </div>
 
                        {{!-- Fim do resgate por perguntas --}}

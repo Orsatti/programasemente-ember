@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import Ember from 'ember';
 import ENV from '../config/environment';
+import $ from 'jquery';
 
 export default Ember.Controller.extend({
   rootURL: ENV.rootURL,
@@ -82,11 +83,36 @@ export default Ember.Controller.extend({
     let responseJson = await response.json();
     if (responseJson.cities.length == 0) return "resgate";
     this.set('schoolsList', responseJson.schools);
+    this.setupTypeahead();
     if (responseJson.cities.length == 1){
       this.get('answers').push({pergunta: 5, resposta: responseJson.cities[0]});
       return 6;
     }
     this.set('citiesList', responseJson.cities);
+  },
+
+  async setupTypeahead() {
+    let schoolsList = this.get('schoolsList');
+    var states = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.whitespace,
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      // `states` is an array of state names defined in "The Basics"
+      local: schoolsList
+    });
+    if ($('#question6').hasClass('tt-input')){
+      $('#question6').typeahead('destroy');
+    }
+    $("#question6").typeahead(
+      {
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+      {
+          name: 'Escolas',
+          source: states
+      }
+  );
   },
   
   async resgatarLogin() {
@@ -304,18 +330,17 @@ export default Ember.Controller.extend({
       
       this.set('busy', true);
       if (this.get('loginStep') !== 'email') {
-        let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input');
-  
+        let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input#question' + this.get('loginStep'));
         if (inputToCheck) {
           if (inputToCheck.value.length < 1) {
             this.set('errorMessageInput', 'Por favor, responda à pergunta');
-            document.querySelector('.step--' + this.get('loginStep') + ' span').style.opacity = 1;
-            document.querySelector('.step--' + this.get('loginStep') + ' span').style.visibility = 'visible'
+            document.querySelector('.step--' + this.get('loginStep') + ' span.color-error-20').style.opacity = 1;
+            document.querySelector('.step--' + this.get('loginStep') + ' span.color-error-20').style.visibility = 'visible'
             return;
           } else {
             this.set('errorMessageInput', '');
-            document.querySelector('.step--' + this.get('loginStep') + ' span').style.opacity = 0;
-            document.querySelector('.step--' + this.get('loginStep') + ' span').style.visibility = 'hidden';
+            document.querySelector('.step--' + this.get('loginStep') + ' span.color-error-20').style.opacity = 0;
+            document.querySelector('.step--' + this.get('loginStep') + ' span.color-error-20').style.visibility = 'hidden';
           }
         }
       }
@@ -324,7 +349,7 @@ export default Ember.Controller.extend({
       if (this.get('loginStep') !== 'email' && (this.get('loginStep') !== 0)) {
         
         if (!answer) {
-          let answerInput = document.querySelector('.step--' + this.get('loginStep') + ' input');
+          let answerInput = document.querySelector('.step--' + this.get('loginStep') + ' input#question' + this.get('loginStep'));
           answer = answerInput.value;
         }
       

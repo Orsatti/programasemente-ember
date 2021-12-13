@@ -12,6 +12,9 @@ export default Ember.Controller.extend({
   citiesList: Ember.computed(function() {
     return [];
   }),
+  schoolsList: Ember.computed(function() {
+    return [];
+  }),
   successResgate: 0,
   busy: false,
   retrievedUsername: '',
@@ -58,10 +61,12 @@ export default Ember.Controller.extend({
 
   async refreshCitiesList(){
     let isAluno = this.get('answers').toArray().filter(x => x.pergunta == 1).get('firstObject').resposta == 'Sim';
+    let dateOfBirth = this.get('answers').toArray().filter(x => x.pergunta == 2).get('firstObject')?.resposta;
     let firstName = this.get('answers').toArray().filter(x => x.pergunta == 3).get('firstObject').resposta;
     let lastName = this.get('answers').toArray().filter(x => x.pergunta == 4).get('firstObject').resposta;
     let data = {
       isAluno,
+      dateOfBirth,
       firstName,
       lastName
     }
@@ -75,16 +80,18 @@ export default Ember.Controller.extend({
     });
     if (response.status != 200) return "resgate";
     let responseJson = await response.json();
-    if (responseJson.length == 0) return "resgate";
-    if (responseJson.length == 1){
-      let answers = this.get('answers').push({pergunta: 5, resposta: responseJson[0]});
+    if (responseJson.cities.length == 0) return "resgate";
+    this.set('schoolsList', responseJson.schools);
+    if (responseJson.cities.length == 1){
+      this.get('answers').push({pergunta: 5, resposta: responseJson.cities[0]});
       return 6;
     }
-    this.set('citiesList', responseJson);
+    this.set('citiesList', responseJson.cities);
   },
   
   async resgatarLogin() {
     let isAluno = this.get('answers').toArray().filter(x => x.pergunta == 1).get('firstObject').resposta == 'Sim';
+    let dateOfBirth = this.get('answers').toArray().filter(x => x.pergunta == 2).get('firstObject')?.resposta;
     let firstName = this.get('answers').toArray().filter(x => x.pergunta == 3).get('firstObject').resposta;
     let lastName = this.get('answers').toArray().filter(x => x.pergunta == 4).get('firstObject').resposta;
     let city = this.get('answers').toArray().filter(x => x.pergunta == 5).get('firstObject')?.resposta;
@@ -92,6 +99,7 @@ export default Ember.Controller.extend({
     if (city == null || city == undefined || !schoolName) return;
     let data = {
       isAluno,
+      dateOfBirth,
       firstName,
       lastName,
       city,

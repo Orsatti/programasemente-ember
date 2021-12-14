@@ -644,11 +644,12 @@ thisRoute=thisRoute}}
         Códigos
         ######################################
         -->
-    {{#if selectedInstTabs.codes}}
-    <section class="sections__subsection flow-md">
-      <header class="flex flex-row items-baseline">
-        <p><a onclick={{action 'downloadCodigos'}}><b><u>Clique aqui</u></b></a> para baixar a relação de códigos disponíveis</p>
-      </header>
+  {{#if selectedInstTabs.codes}}
+  <section class="sections__subsection flow-md">
+    <header class="flex flex-row items-baseline">
+      <p><a onclick={{action 'downloadCodigos'}}><b><u>Clique aqui</u></b></a> para baixar a relação de códigos disponíveis</p>
+    </header>
+    <div class="flex">
       <div class="institutions__codes list list--striped">
         <table>
           <tr>
@@ -685,9 +686,7 @@ thisRoute=thisRoute}}
           {{/each}}
         </table>
       </div>
-    </section>
-    {{/if}}
-
+    </div>
   </section>
   {{/if}}
 

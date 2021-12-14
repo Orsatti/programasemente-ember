@@ -111,6 +111,10 @@
 
   &__claro{
     background-color: #8BC63F;
+
+    &:hover{
+      background-color: #60961a;
+    }
   }
 
   // MODIFIERS

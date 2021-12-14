@@ -29,6 +29,11 @@
 
     & .t-center{
         text-align: center;
+
+        & p{
+            margin: 1rem auto; 
+        }
+       
     }
 
     & .passoapasso{
@@ -38,6 +43,7 @@
         display: none;
         z-index: 9999999999;
         position: relative;
+        margin: 1rem auto; 
     }
 
     & .giro {

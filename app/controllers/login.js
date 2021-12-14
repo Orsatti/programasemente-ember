@@ -10,6 +10,7 @@ export default Ember.Controller.extend({
   mostraAviso: false,
   loginStep: 0,
   answers: [],
+  loginIsEmail: false,
   citiesList: Ember.computed(function() {
     return [];
   }),
@@ -151,6 +152,7 @@ export default Ember.Controller.extend({
     this.set('successResgate', successResgate);
 
     let responseJson = await response.json();  
+    this.set('loginIsEmail', responseJson.isEmail);
     if (successResgate == 1){
       this.set('retrievedUsername', responseJson.username.replace(/["']/g, ""));
     }

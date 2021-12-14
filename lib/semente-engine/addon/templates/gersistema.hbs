@@ -24,8 +24,8 @@
         {{/if}}
 
 
-        
-        
+
+
 
 
         {{!-- {{#if (equalstr role 'admin')}}
@@ -36,7 +36,7 @@
           <div id="error_lote">
             {{error_lote}}
           </div>
-                      
+
         {{/if}} --}}
       </header>
 
@@ -169,16 +169,7 @@
             </button>
           {{/if}}
 
-          {{#if selectedInstTabs.users}}
-            <button class="tabs__not-tab btn btn--xxs btn--ghost m-left--auto" {{action 'userModal'}}>
-              {{!-- <span class="btn__icon icon-plus"></span> --}}
-              <span class="btn__label">Novo Usuário</span>
-            </button>
-            <button class="tabs__not-tab btn btn--xxs btn--ghost m-left--md m-right--md" {{action 'cadastroLote' }}>
-              {{!-- <span class="btn__icon icon-users"></span> --}}
-              <span class="btn__label">Cadastro e matrícula em lote</span>
-            </button>
-          {{/if}}
+
         </div>
 
 
@@ -519,9 +510,9 @@
                          {{if savingNewArea 'loader-local loader-local--is-show'}} " id="newArea">
                 <div class="form-group m-right--md">
                   <div class="form-group__wrapper form-group__wrapper--select">
-                    <select class="form-group__input form-group__input--select j-areaFocus" 
+                    <select class="form-group__input form-group__input--select j-areaFocus"
                       id="define_year"
-                      onchange={{action 'refreshAno' value='target.value'}} 
+                      onchange={{action 'refreshAno' value='target.value'}}
                       data-type="select"
                       data-required="true">
                       <option value="0" selected>Selecionar ano</option>

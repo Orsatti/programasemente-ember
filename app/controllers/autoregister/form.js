@@ -47,32 +47,32 @@ export default Ember.Controller.extend({
   }),
 
 
-  ValidaCPFValido(strCPF) {
-    var Soma;
-    var Resto;
-    Soma = 0;
+  // ValidaCPFValido(strCPF) {
+  //   var Soma;
+  //   var Resto;
+  //   Soma = 0;
 
-    strCPF = strCPF.replace(".", "");
-    strCPF = strCPF.replace(".", "");
-    strCPF = strCPF.replace("-", "");
-    strCPF = strCPF.trim();
+  //   strCPF = strCPF.replace(".", "");
+  //   strCPF = strCPF.replace(".", "");
+  //   strCPF = strCPF.replace("-", "");
+  //   strCPF = strCPF.trim();
 
-    if (strCPF == "00000000000") return false;
+  //   if (strCPF == "00000000000") return false;
 
-    for (let i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
-    Resto = (Soma * 10) % 11;
+  //   for (let i = 1; i <= 9; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (11 - i);
+  //   Resto = (Soma * 10) % 11;
 
-    if ((Resto == 10) || (Resto == 11)) Resto = 0;
-    if (Resto !== parseInt(strCPF.substring(9, 10))) return false;
+  //   if ((Resto == 10) || (Resto == 11)) Resto = 0;
+  //   if (Resto !== parseInt(strCPF.substring(9, 10))) return false;
 
-    Soma = 0;
-    for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
-    Resto = (Soma * 10) % 11;
+  //   Soma = 0;
+  //   for (let i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i - 1, i)) * (12 - i);
+  //   Resto = (Soma * 10) % 11;
 
-    if ((Resto == 10) || (Resto == 11)) Resto = 0;
-    if (Resto !== parseInt(strCPF.substring(10, 11))) return false;
-    return true;
-  },
+  //   if ((Resto == 10) || (Resto == 11)) Resto = 0;
+  //   if (Resto !== parseInt(strCPF.substring(10, 11))) return false;
+  //   return true;
+  // },
 
   verifyPasswordLength() {
 
@@ -93,181 +93,57 @@ export default Ember.Controller.extend({
 
   },
 
-  verifyIdentificationFill() {
-    let identInputs = document.querySelectorAll('.j-validate-ident-text');
-    let fieldsetError = document.getElementById('error-fieldset-ident');
-    let notFilled = 0;
-    this.set('fieldset1Error', '');
+  // verifyIdentificationFill() {
+  //   let identInputs = document.querySelectorAll('.j-validate-ident-text');
+  //   let fieldsetError = document.getElementById('error-fieldset-ident');
+  //   let notFilled = 0;
+  //   this.set('fieldset1Error', '');
 
-    identInputs.forEach(i => {
+  //   identInputs.forEach(i => {
 
-      if (!i.disabled && i.value.length < 1) {
-        i.classList.add('fieldset__field--presents-error');
-        notFilled++
-      } else {
-        i.classList.remove('fieldset__field--presents-error');
-      }
-    })
+  //     if (!i.disabled && i.value.length < 1) {
+  //       i.classList.add('fieldset__field--presents-error');
+  //       notFilled++
+  //     } else {
+  //       i.classList.remove('fieldset__field--presents-error');
+  //     }
+  //   })
 
-    if (notFilled > 0) {
-      fieldsetError.classList.add('fieldset__error--is-show');
-      this.set('fieldset1Error', 'Há campos não preenchidos');
-      return false;
-    }
-    fieldsetError.classList.remove('fieldset__error--is-show');
-    return true;
+  //   if (notFilled > 0) {
+  //     fieldsetError.classList.add('fieldset__error--is-show');
+  //     this.set('fieldset1Error', 'Há campos não preenchidos');
+  //     return false;
+  //   }
+  //   fieldsetError.classList.remove('fieldset__error--is-show');
+  //   return true;
 
-  },
+  // },
 
   actions: {
 
     liveCheckEmail: function () {
 
-      let optFor = document.getElementById('email-choice');
+      $('#login').on('keypress', function (event) {
+        var regex = new RegExp("^[a-zA-Z0-9@.-_]+$");
+        var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+        let errorMsg = 'Espaço e caracteres especiais não são permitidos';
 
-      if (optFor.checked) {
+        if (!regex.test(key)) {
+          // Pega form container e tira classe de validado
+          let inputContainer = document.getElementById('login').closest('.form-group__input-container');
+          inputContainer.classList.remove('form-group__input-container--is-validated');
 
-        $('#emailUser').on('keypress', function (event) {
-          var regex = new RegExp("^[a-zA-Z0-9@.-_]+$");
-          var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-          let errorMsg = 'Espaço e caracteres especiais não são permitidos';
-
-          if (!regex.test(key)) {
-            // Pega form container e tira classe de validado
-            let inputContainer = document.getElementById('emailUser').closest('.form-group__input-container');
-            inputContainer.classList.remove('form-group__input-container--is-validated');
-
-            // Pega alerta
-            let errorCompartiment = document.getElementById('login-error');
-
-            // Pega animação do alerta
-            let alertAnimation = errorCompartiment.dataset.animation;
-
-            // Pega container da mensagem a ser escrita
-            let msg = errorCompartiment.querySelector('[class*="__msg"]');
-            errorCompartiment.classList.remove('alert--is-show', alertAnimation);
-
-            // Injeta mensagem de erro.
-            msg.innerHTML = '<strong>' + errorMsg + '</strong>';
-
-            // Confere se o elemento já está aparecendo
-            if (!errorCompartiment.classList.contains('alert--is-show')) {
-              // Adiciona duas classes: uma para o alerta aparecer e outra com a animação definida no html, por meio de data-SBRUBLES
-              errorCompartiment.classList.add('alert--is-show', alertAnimation);
-            }
-
-            event.preventDefault();
-            return false;
-
-          } else {
-            let errorCompartiment = document.getElementById('login-error');
-            let alertAnimation = errorCompartiment.dataset.animation;
-            errorCompartiment.classList.remove('alert--is-show', alertAnimation);
-            return true;
-          }
-
-        });
-      }
-
-
-    },
-
-    verifyEmail: function () {
-
-      let optFor = document.getElementById('email-choice');
-
-
-      if (optFor.checked) {
-
-        $('form').removeData('validator');
-        $('form').removeData('unobtrusiveValidation');
-        let email = document.getElementById('emailUser');
-
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)) {
-
-
-          if (email.value.length > 0) {
-            email.classList.remove('fieldset__field--presents-error');
-          }
-
-          if (!email.disabled) {
-            let pessoa = this.get('pessoa');
-            pessoa.set('email', email.value);
-            let inputContainer = document.getElementById('emailUser').closest('.form-group__input-container');
-            let input = document.getElementById('emailUser');
-            // Pega alerta
-            const errorCompartiment = document.getElementById('login-error');
-            // Pega animação do alerta
-            const alertAnimation = errorCompartiment.dataset.animation;
-            // Pega container da mensagem a ser escrita
-            const msg = errorCompartiment.querySelector('[class*="__msg"]');
-
-
-            pessoa.verifyEmail({
-              login: pessoa.get('email'),
-              instituicaoId: this.get('escola').get('id')
-            }).then(function (response) {
-              errorCompartiment.classList.remove('alert--is-show', alertAnimation);
-              inputContainer.classList.add('form-group__input-container--is-validated');
-            }).catch(function (error) {
-              if (error.errors) {
-
-                inputContainer.classList.remove('form-group__input-container--is-validated');
-                if (input) {
-                  input.focus();
-                }
-
-                // Antiga mensagem de erro
-                // document.getElementById('login-error').innerHTML = error.errors[0].title;
-
-                // Pega a identificação do erro
-                const errorStatus = error.errors[0].status;
-
-                // Define mensagem de erro, caso seja o erro XYZ
-                let errorMsg;
-                if (errorStatus === "400") {
-                  switch (true) {
-                    case email.value.length == 0:
-                      errorMsg = 'O campo não pode ficar vazio';
-                      break;
-                    case email.value.length > 0:
-                      errorMsg = 'O e-mail informado já existe em nossa base'
-                      break;
-
-                  }
-                } else if (errorStatus === "500") {
-                  errorMsg = 'Ocorreu um erro no sistema, mas não se preocupe! Nossos desenvolvedores já foram alertados.'
-                } else {
-                  errorMsg = 'Ops! Parece que não conseguimos conexão com nossos servidores. Por favor, tente novamente em instantes.'
-                }
-
-                // Injeta mensagem de erro.
-                msg.innerHTML = '<strong>' + errorMsg + '</strong>';
-
-                // Confere se o elemento já está aparecendo
-                if (!errorCompartiment.classList.contains('alert--is-show')) {
-                  // Adiciona duas classes: uma para o alerta aparecer e outra com a animação definida no html, por meio de data-SBRUBLES
-                  errorCompartiment.classList.add('alert--is-show', alertAnimation);
-                }
-
-              } else {
-                // Situação não tratada ainda
-                document.getElementById('login-error').innerHTML = '';
-              }
-
-            })
-
-          }
-        } else {
-          let input = document.getElementById('emailUser');
-          input.focus();
-          let errorMsg = this.set('errorMsg', 'E-mail inválido');
           // Pega alerta
-          const errorCompartiment = document.getElementById('login-error');
+          let errorCompartiment = document.getElementById('login-error');
+
           // Pega animação do alerta
-          const alertAnimation = errorCompartiment.dataset.animation;
+          let alertAnimation = errorCompartiment.dataset.animation;
+
           // Pega container da mensagem a ser escrita
-          const msg = errorCompartiment.querySelector('[class*="__msg"]');
+          let msg = errorCompartiment.querySelector('[class*="__msg"]');
+          errorCompartiment.classList.remove('alert--is-show', alertAnimation);
+
+          // Injeta mensagem de erro.
           msg.innerHTML = '<strong>' + errorMsg + '</strong>';
 
           // Confere se o elemento já está aparecendo
@@ -276,92 +152,170 @@ export default Ember.Controller.extend({
             errorCompartiment.classList.add('alert--is-show', alertAnimation);
           }
 
+          event.preventDefault();
+          return false;
+
+        } else {
+          let errorCompartiment = document.getElementById('login-error');
+          let alertAnimation = errorCompartiment.dataset.animation;
+          errorCompartiment.classList.remove('alert--is-show', alertAnimation);
+          return true;
         }
 
-
-
-      }
+      });
 
     },
 
-    replaceCPF() {
-      let target = event.target;
-      let cpf = target.value;
-
-      var regex = /^[0-9.\t]$/;
-      var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
-      var code = event.which ? event.which : event.keyCode;
-
-      if (!regex.test(key) && code !== 37 && code !== 39 && code !== 8 && code !== 9 && code !== 116) {
-
-        let errorMsg = this.set('errorMsgCPF', 'Apenas números são permitidos');
-        // Pega alerta
-        const errorCompartiment = document.getElementById('cpf-error');
-        // Pega animação do alerta
-        const alertAnimation = errorCompartiment.dataset.animation;
-        // Pega container da mensagem a ser escrita
-        const msg = errorCompartiment.querySelector('[class*="__msg"]');
-        msg.innerHTML = '<strong>' + errorMsg + '</strong>';
-
-        // Alerta
-        errorCompartiment.classList.add('alert--is-show', alertAnimation);
-
-
-
-        event.preventDefault();
-        return false;
-      }
-
-
-
-
-
-      cpf = cpf.replace(/\D/g, "")
-      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-      cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-      cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
-      this.set('cpf', cpf);
-
-
-    },
-
-    verifyCPF() {
-      let target = event.target;
-      let formGroup = target.parentElement;
+    verifyEmail: function () {
+      $('form').removeData('validator');
+      $('form').removeData('unobtrusiveValidation');
+      let email = document.getElementById('login').value;
+      let pessoa = this.get('pessoa');
+      pessoa.set('email', email);
+      let inputContainer = document.getElementById('login').closest('.form-group__input-container');
+      let input = document.getElementById('login');
       // Pega alerta
-      const errorCompartiment = document.getElementById('cpf-error');
+      const errorCompartiment = document.getElementById('login-error');
       // Pega animação do alerta
       const alertAnimation = errorCompartiment.dataset.animation;
       // Pega container da mensagem a ser escrita
       const msg = errorCompartiment.querySelector('[class*="__msg"]');
 
-      if (target.value.length < 1 && target.disabled == false) {
-        let errorMsg = this.set('errorMsgCPF', 'O CPF não pode ficar vazio');
-        msg.innerHTML = '<strong>' + errorMsg + '</strong>';
-        // alerta
-        formGroup.classList.remove('form-group__input-container--is-validated');
-        errorCompartiment.classList.add('alert--is-show', alertAnimation);
 
-        target.focus();
+      pessoa.verifyEmail({
+        login: pessoa.get('email'),
+        instituicaoId: this.get('escola').get('id')
+      }).then(function (response) {
+        errorCompartiment.classList.remove('alert--is-show', alertAnimation);
+        inputContainer.classList.add('form-group__input-container--is-validated');
+      }).catch(function (error) {
+        if (error.errors) {
 
-      } else if (!this.ValidaCPFValido(target.value) && target.disabled == false) {
-        let errorMsg = this.set('errorMsgCPF', 'CPF Inválido');
-        msg.innerHTML = '<strong>' + errorMsg + '</strong>';
+          inputContainer.classList.remove('form-group__input-container--is-validated');
+          if (input) {
+            input.focus();
+          }
 
-        // alerta
-        errorCompartiment.classList.add('alert--is-show', alertAnimation);
-        formGroup.classList.remove('form-group__input-container--is-validated');
-        target.focus();
+          // Antiga mensagem de erro
+          // document.getElementById('login-error').innerHTML = error.errors[0].title;
 
+          // Pega a identificação do erro
+          const errorStatus = error.errors[0].status;
 
-      } else {
-        errorCompartiment.classList.remove('alert--is-show', alertAnimation)
-        formGroup.classList.add('form-group__input-container--is-validated');
-      }
+          // Define mensagem de erro, caso seja o erro XYZ
+          let errorMsg;
+          if (errorStatus === "400") {
+            switch (true) {
+              case email.length == 0:
+                errorMsg = 'Por favor, insira um nome de usuário';
+                break;
+              case email.length > 0:
+                errorMsg = 'O nome de usuário informado já existe, por favor, escolha outro.'
+                break;
 
+            }
+          } else if (errorStatus === "500") {
+            errorMsg = 'Ocorreu um erro no sistema, mas não se preocupe! Nossos desenvolvedores já foram alertados.'
+          } else {
+            errorMsg = 'Ops! Parece que não conseguimos conexão com nossos servidores. Por favor, tente novamente em instantes.'
+          }
 
+          // Injeta mensagem de erro.
+          msg.innerHTML = '<strong>' + errorMsg + '</strong>';
+
+          // Confere se o elemento já está aparecendo
+          if (!errorCompartiment.classList.contains('alert--is-show')) {
+            // Adiciona duas classes: uma para o alerta aparecer e outra com a animação definida no html, por meio de data-SBRUBLES
+            errorCompartiment.classList.add('alert--is-show', alertAnimation);
+          }
+
+        } else {
+          // Situação não tratada ainda
+          document.getElementById('login-error').innerHTML = '';
+        }
+
+      })
 
     },
+
+    // replaceCPF() {
+    //   let target = event.target;
+    //   let cpf = target.value;
+
+    //   var regex = /^[0-9.\t]$/;
+    //   var key = String.fromCharCode(!event.charCode ? event.which : event.charCode);
+    //   var code = event.which ? event.which : event.keyCode;
+
+    //   if (!regex.test(key) && code !== 37 && code !== 39 && code !== 8 && code !== 9 && code !== 116) {
+
+    //     let errorMsg = this.set('errorMsgCPF', 'Apenas números são permitidos');
+    //     // Pega alerta
+    //     const errorCompartiment = document.getElementById('cpf-error');
+    //     // Pega animação do alerta
+    //     const alertAnimation = errorCompartiment.dataset.animation;
+    //     // Pega container da mensagem a ser escrita
+    //     const msg = errorCompartiment.querySelector('[class*="__msg"]');
+    //     msg.innerHTML = '<strong>' + errorMsg + '</strong>';
+
+    //     // Alerta
+    //     errorCompartiment.classList.add('alert--is-show', alertAnimation);
+
+
+
+    //     event.preventDefault();
+    //     return false;
+    //   }
+
+
+
+
+
+    //   cpf = cpf.replace(/\D/g, "")
+    //   cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+    //   cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+    //   cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2")
+    //   this.set('cpf', cpf);
+
+
+    // },
+
+    // verifyCPF() {
+    //   let target = event.target;
+    //   let formGroup = target.parentElement;
+    //   // Pega alerta
+    //   const errorCompartiment = document.getElementById('cpf-error');
+    //   // Pega animação do alerta
+    //   const alertAnimation = errorCompartiment.dataset.animation;
+    //   // Pega container da mensagem a ser escrita
+    //   const msg = errorCompartiment.querySelector('[class*="__msg"]');
+
+    //   if (target.value.length < 1 && target.disabled == false) {
+    //     let errorMsg = this.set('errorMsgCPF', 'O CPF não pode ficar vazio');
+    //     msg.innerHTML = '<strong>' + errorMsg + '</strong>';
+    //     // alerta
+    //     formGroup.classList.remove('form-group__input-container--is-validated');
+    //     errorCompartiment.classList.add('alert--is-show', alertAnimation);
+
+    //     target.focus();
+
+    //   } else if (!this.ValidaCPFValido(target.value) && target.disabled == false) {
+    //     let errorMsg = this.set('errorMsgCPF', 'CPF Inválido');
+    //     msg.innerHTML = '<strong>' + errorMsg + '</strong>';
+
+    //     // alerta
+    //     errorCompartiment.classList.add('alert--is-show', alertAnimation);
+    //     formGroup.classList.remove('form-group__input-container--is-validated');
+    //     target.focus();
+
+
+    //   } else {
+    //     errorCompartiment.classList.remove('alert--is-show', alertAnimation)
+    //     formGroup.classList.add('form-group__input-container--is-validated');
+    //   }
+
+
+
+    // },
 
     verifyPassword: function () {
       let p1 = document.getElementById('senha').value;
@@ -392,21 +346,13 @@ export default Ember.Controller.extend({
       }
     },
 
-
-
     createUser: function () {
-      this.verifyIdentificationFill();
       this.verifyPasswordLength();
-      if (this.verifyIdentificationFill() && this.verifyPasswordLength()) {
+      if (this.verifyPasswordLength()) {
         let button = document.getElementById('submit');
         button.innerHTML = "Aguarde..."
         let password = document.getElementById('senha').value;
-        let login = document.getElementById('emailUser').value;
-        debugger;
-        if (login == '') {
-          login = document.getElementById('cpf').value;
-        }
-
+        let login = document.getElementById('login').value;
         let sistemas = this.get('store').peekAll('sistema');
         let sistema;
         sistemas.forEach(function (s) {
@@ -452,8 +398,9 @@ export default Ember.Controller.extend({
             }
 
 
-          } else {
-            that.get('session').authenticate('authenticator:authold', login, password, 1).then(() => {}).catch((reason) => {});
+          }
+          else {
+            that.get('session').authenticate('authenticator:authold', login, password, 1).then(() => { }).catch((reason) => { });
           }
         })
 
@@ -462,80 +409,75 @@ export default Ember.Controller.extend({
 
     preventPaste() {
 
-      let optFor = document.getElementById('email-choice');
-
-      if (optFor.checked) {
-
-        var regex = new RegExp("^[a-zA-Z0-9@.-_]+$");
-        var input = document.getElementById('emailUser')
-        let errorMsg = 'Espaço e caracteres especiais não são permitidos';
-        if (!regex.test(input.value) && input.value.length > 0) {
-          input.value = '';
-          let inputContainer = document.getElementById('emailUser').closest('.form-group__input-container');
-          inputContainer.classList.remove('form-group__input-container--is-validated');
-          // Pega alerta
-          const errorCompartiment = document.getElementById('login-error');
-          // Pega animação do alerta
-          const alertAnimation = errorCompartiment.dataset.animation;
-          // Pega container da mensagem a ser escrita
-          const msg = errorCompartiment.querySelector('[class*="__msg"]');
-          // Injeta mensagem de erro.
-          msg.innerHTML = '<strong>' + errorMsg + '</strong>';
-          // Confere se o elemento já está aparecendo
-          if (!errorCompartiment.classList.contains('alert--is-show')) {
-            // Adiciona duas classes: uma para o alerta aparecer e outra com a animação definida no html, por meio de data-SBRUBLES
-            errorCompartiment.classList.add('alert--is-show', alertAnimation);
-          }
-
-        } else {
-          this.send('verifyEmail');
+      var regex = new RegExp("^[a-zA-Z0-9@.-_]+$");
+      var input = document.getElementById('login')
+      let errorMsg = 'Espaço e caracteres especiais não são permitidos';
+      if (!regex.test(input.value) && input.value.length > 0) {
+        input.value = '';
+        let inputContainer = document.getElementById('login').closest('.form-group__input-container');
+        inputContainer.classList.remove('form-group__input-container--is-validated');
+        // Pega alerta
+        const errorCompartiment = document.getElementById('login-error');
+        // Pega animação do alerta
+        const alertAnimation = errorCompartiment.dataset.animation;
+        // Pega container da mensagem a ser escrita
+        const msg = errorCompartiment.querySelector('[class*="__msg"]');
+        // Injeta mensagem de erro.
+        msg.innerHTML = '<strong>' + errorMsg + '</strong>';
+        // Confere se o elemento já está aparecendo
+        if (!errorCompartiment.classList.contains('alert--is-show')) {
+          // Adiciona duas classes: uma para o alerta aparecer e outra com a animação definida no html, por meio de data-SBRUBLES
+          errorCompartiment.classList.add('alert--is-show', alertAnimation);
         }
+
+      } else {
+        this.send('verifyEmail');
       }
+
 
     },
 
+    // toggleCheckbox() {
 
-    toggleCheckbox() {
+    //   let target = event.target;
+    //   let closestInput = target.parentNode.nextElementSibling.firstChild.nextElementSibling
+    //   let identCheckboxes = document.querySelectorAll('.j-validate-ident');
+    //   let uncheckeds = 0;
+    //   let fieldsetError = document.getElementById('error-fieldset-ident');
+    //   let inputError = closestInput.parentElement.nextElementSibling;
 
-      let target = event.target;
-      let closestInput = target.parentNode.nextElementSibling.firstChild.nextElementSibling
-      let identCheckboxes = document.querySelectorAll('.j-validate-ident');
-      let uncheckeds = 0;
-      let fieldsetError = document.getElementById('error-fieldset-ident');
-      let inputError = closestInput.parentElement.nextElementSibling;
-
-      closestInput.value = '';
-      inputError.classList.remove('alert--is-show');
-      fieldsetError.classList.remove('fieldset__error--is-show');
-
+    //   closestInput.value = '';
+    //   inputError.classList.remove('alert--is-show');
+    //   fieldsetError.classList.remove('fieldset__error--is-show');
 
 
-      identCheckboxes.forEach(c => {
-        if (!c.checked) {
-          uncheckeds++
-        }
-      })
 
-      if (uncheckeds == 2) {
-        this.set('fieldset1Error', 'Pelo menos uma das formas de identificação precisa ser preenchida');
-        fieldsetError.classList.add('fieldset__error--is-show');
-        target.checked = true;
-        return;
-      }
+    //   identCheckboxes.forEach(c => {
+    //     if (!c.checked) {
+    //       uncheckeds++
+    //     }
+    //   })
 
-
-      if (target.checked) {
-        closestInput.removeAttribute('disabled');
-        closestInput.style.opacity = 1;
-        closestInput.classList.remove('fieldset__field--is-disabled');
-      } else {
-        closestInput.disabled = true;
-        closestInput.style.opacity = 0.3;
-        closestInput.classList.add('fieldset__field--is-disabled');
-      }
+    //   if (uncheckeds == 2) {
+    //     this.set('fieldset1Error', 'Pelo menos uma das formas de identificação precisa ser preenchida');
+    //     fieldsetError.classList.add('fieldset__error--is-show');
+    //     target.checked = true;
+    //     return;
+    //   }
 
 
-    }
+    //   if (target.checked) {
+    //     closestInput.removeAttribute('disabled');
+    //     closestInput.style.opacity = 1;
+    //     closestInput.classList.remove('fieldset__field--is-disabled');
+    //   } else {
+    //     closestInput.disabled = true;
+    //     closestInput.style.opacity = 0.3;
+    //     closestInput.classList.add('fieldset__field--is-disabled');
+    //   }
+
+
+    // }
 
   },
 

@@ -430,12 +430,15 @@
           <div class="form-group w100">
               <label class="form-group__label" for="new_user_cpf">CPF</label>
               <input class="form-group__input"
+                    maxlength="14"
                     id="new_user_cpf"
                     type="textbox"
-                    value={{if new_user_cpf new_user_cpf}}
+                    value={{cpf}}
+                    onkeydown={{action 'replaceCPF'}}
                     data-type="text"
                     data-context="cpf">
             </div>
+            {{#if cpfError}}<span class="color-error-30 fs--xs">CPF Inválido</span>{{/if}}
         </div>
         
         {{#if new_user_id}}

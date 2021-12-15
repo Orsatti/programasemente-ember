@@ -425,6 +425,18 @@
           </div>
             {{#if emailError}}<span class="color-error-30 fs--xs">E-mail inválido</span>{{/if}}
         </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="form-group w100">
+              <label class="form-group__label" for="new_user_cpf">CPF</label>
+              <input class="form-group__input"
+                    id="new_user_cpf"
+                    type="textbox"
+                    value={{if new_user_cpf new_user_cpf}}
+                    data-type="text"
+                    data-context="cpf">
+            </div>
+        </div>
         
         {{#if new_user_id}}
           <div class="col-xs-12 col-sm-6 col-md-4">

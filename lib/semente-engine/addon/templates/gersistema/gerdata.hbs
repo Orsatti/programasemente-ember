@@ -874,10 +874,10 @@
         <div class="t-center instrucoes">
           <p>Em caso de dúvidas, acesse o nosso passo a passo <span class="destaque"> clicando abaixo</span></p>
           <div class="passoapasso" id="passoapasso">
-            <img  src="/assets/img/infografico-cadastro-usuarios.jpg" alt="">
+            <img id="img-passoapasso" src="/assets/img/infografico-cadastro-usuarios.jpg" alt="">
           </div>
-          <span onclick="abrirPasso()">
-            <img class="seta" onclick="giro()" src="/assets/img/seta-baixo.png" alt="" id="seta">
+          <span {{action 'abrirPasso'}}>
+            <img class="seta" {{action 'giro'}} src="/assets/img/seta-baixo.png" alt="" id="seta">
           </span>
         </div>
 
@@ -952,21 +952,3 @@
     <button class="btn btn-primary" type="submit" {{action 'cancelLote' }}>Fechar</button>
   </div>
 </aside>
-
-
-<!--Seta e passo a passo-->
-<script>
-  function abrirPasso() {
-    var x = document.getElementById("passoapasso");
-    if (x.style.display === "block") {
-      x.style.display = "none";
-    } else {
-      x.style.display = "block";
-    }
-  }
-
-  function giro() {
-    document.getElementById("seta").classList.toggle('giro');
-  }
-
-</script>

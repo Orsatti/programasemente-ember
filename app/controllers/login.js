@@ -654,7 +654,7 @@ export default Ember.Controller.extend({
         }, 5000);
       } else {
         let errorContainer = document.getElementById('error-forgot');
-        this.set('error_forgot', 'E-mail não encontrado em nossos cadastros');
+        this.set('error_forgot', 'E-mail ou telefone não encontrado em nossos cadastros');
         errorContainer.style.opacity = 1;
         errorContainer.style.visibility = 'visible';
       }

@@ -175,7 +175,7 @@
                 
                   {{!-- Pergunta 0 --}}
                 <div id='q0' class="modal__is-login-recovery step--0 flow-xs animated d250 {{if (equalstr loginStep '0') 'fadeInRightShort'}}">
-                  <p>Você se lembra qual e-mail está cadastrado em sua conta?</p>
+                  <p>Você se lembra qual e-mail ou telefone está cadastrado em sua conta?</p>
                   <button id="question1-alt1" class="btn btn--xs modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 'email' ''}}>Sim</button>
                   <button id="question1-alt2" class="btn btn--xs modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 1 ''}}>Não</button>
                 </div>
@@ -183,8 +183,8 @@
                   {{!-- Informe de e-mail --}}
                 <form id="email-cadastrado" {{action "resgataLoginPorEmail" on="submit"}}>
                   <div id='qemail' class="modal__is-login-recovery  step--email animated d250 {{if (equalstr loginStep 'email') 'fadeInRightShort'}}">
-                    <p>Informe o e-mail cadastrado</p>
-                    <input id="informe-email" class="w100 modal--is-registered-email" type="email" required>
+                    <p>Informe o e-mail ou telefone cadastrado</p>
+                    <input id="informe-email" class="w100 modal--is-registered-email" type="text" required onkeyup={{action 'maskPhoneOrEmail'}}>
                     <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;" id="error-forgot">{{{error_forgot}}}</span>
                     <button id="checaEmail" class="btn btn--xs m-top--xl modal--adjust-btn-on-mobile" type="submit" disabled="{{if busy "disabled" ""}}">{{if busy "Consultando" "Resgatar"}}</button>
                     <button id="goToPerguntas" class="btn btn--xs m-top--sm modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 1}}>Resgatar de outra forma</button>

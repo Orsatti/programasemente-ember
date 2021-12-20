@@ -95,6 +95,18 @@ export default Ember.Controller.extend({
     this.set('citiesList', responseJson.cities);
   },
 
+  hasAnyNonNumericalCharacters(str) {
+    return /[A-Za-z]/.test(str);
+  },
+
+  validEmail(email) {
+    return /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$/.test(email);
+  },
+
+  validPhone(phone) {
+    return /^\((\d{2}|\d{0})\)[-. ]?(\d{5})[-. ]?(\d{4})$/.test(phone);
+  },
+
   async setupTypeahead() {
     let schoolsList = this.get('rawSchoolsList')
       .toArray()
@@ -604,9 +616,18 @@ export default Ember.Controller.extend({
     async resgataLoginPorEmail() {
                   
       this.set('busy', true);
-      let email = document.getElementById('informe-email').value;
+      let emailOrPhone = document.getElementById('informe-email').value;
+      debugger;
+      if ((this.hasAnyNonNumericalCharacters(emailOrPhone) && !this.validEmail(emailOrPhone)) || (!this.hasAnyNonNumericalCharacters(emailOrPhone) && !this.validPhone(emailOrPhone))) {
+        let errorContainer = document.getElementById('error-forgot');
+        this.set('error_forgot', 'Por favor, informe um email ou telefone válido');
+        errorContainer.style.opacity = 1;
+        errorContainer.style.visibility = 'visible';
+        this.set('busy', false);
+        return;
+      }
       let data = {
-        email
+        emailOrPhone
       }
       
       let response = await fetch(`${ENV.APP.host}/${ENV.APP.namespace}/pessoas/RetrieveLogin`, {
@@ -619,9 +640,10 @@ export default Ember.Controller.extend({
       
       if (response.status === 200) {
         let successContainer = document.getElementById('success-forgot');
-        this.set('success_forgot', 'Seu login foi enviado para ' + email + ' com sucesso');
+        this.set('success_forgot', 'Seu login foi enviado para ' + emailOrPhone + ' com sucesso');
         successContainer.style.display = 'block';
         
+        let errorContainer = document.getElementById('error-forgot');
         this.set('error_forgot', '');
         errorContainer.style.opacity = 0;
         errorContainer.style.visibility = 'hidden';
@@ -641,9 +663,26 @@ export default Ember.Controller.extend({
       this.set('busy', false);
     },
 
-    
-
-
+    maskPhoneOrEmail(v) {
+      let target = event.target;
+      if (v) {
+        var r = target.value;
+        if (this.hasAnyNonNumericalCharacters(r)) return;
+        var r = r.replace(/\D/g, "");
+        r = r.replace(/^0/, "");
+        if (r.length > 10) {
+          r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+        } else if (r.length > 7) {
+          r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+        } else if (r.length > 2) {
+          r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+        } else if (r.length == 0) {
+          r = "";
+        } else {
+          r = r.replace(/^(\d*)/, "($1");
+        }
+        target.value = r;
+      }
+    },
   },
-
 });

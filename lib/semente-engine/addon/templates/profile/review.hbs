@@ -330,10 +330,12 @@
     </section>
     {{/each}}
 
+    {{#if canAddDependents }}
     <button class="btn btn--add-list-item" type="button" onclick={{action 'addDependent' }}>
       <span class="btn__icon icon-plus"></span>
       <span class="btn__label">Adicionar aluno</span>
     </button>
+    {{/if}}
 
     <div class="row">
 

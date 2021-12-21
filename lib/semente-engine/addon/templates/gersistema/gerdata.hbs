@@ -932,10 +932,10 @@
           <input id="get_lote" multiple="false" onchange={{action "buscarArquivo"}} accept="text/csv" type="file"
             style="display: none;" />
 
-          {{#if selected_file}}
-            <button class="btn btn-primary" type="submit" {{action 'importarLote'}}>Importar</button>
-          {{else}}
+          {{#if (equalstr selected_file '')}}
             <button class="btn btn-primary btn--disabled" type="submit" disabled>Importar</button>
+          {{else}}
+            <button class="btn btn-primary" type="submit" {{action 'importarLote'}}>Importar</button>
           {{/if}}
 
           <div>

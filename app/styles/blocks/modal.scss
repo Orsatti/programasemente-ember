@@ -38,12 +38,31 @@
 
     & .passoapasso{
         width: 100%;
-        height: auto;
-        background-color: #009e47;
-        display: none;
+         height: 0px;
+       // display: none;
         z-index: 9999999999;
         position: relative;
-        margin: 1rem auto; 
+        margin: 1rem auto;   
+        transform-origin: top;
+        transition: height 4s ease-in;
+
+   &__imagem{
+       background-image: url("/assets/img/infografico-cadastro-usuarios.jpg");
+       background-size: 100%;
+       width: 100%;
+       height: inherit;
+       background-repeat: no-repeat;
+   }
+        
+    }
+
+    & .img-passoapasso{
+       height: 370vh;
+       transition: height 4s ease-in;
+    }
+
+    & .img-passoapasso-g{
+        height: 100%;  
     }
 
     & .giro {

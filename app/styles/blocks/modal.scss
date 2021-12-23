@@ -44,7 +44,7 @@
         position: relative;
         margin: 1rem auto;   
         transform-origin: top;
-        transition: height 4s ease-in;
+        transition: height 1s ease-in;
 
    &__imagem{
        background-image: url("/assets/img/infografico-cadastro-usuarios.jpg");
@@ -57,8 +57,10 @@
     }
 
     & .img-passoapasso{
-       height: 370vh;
-       transition: height 4s ease-in;
+       height: 2600px;
+       padding: $distance--sm;
+       transition: height 1s ease-in;
+       position: relative;
     }
 
     & .giro {

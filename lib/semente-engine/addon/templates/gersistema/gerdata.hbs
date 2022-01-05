@@ -397,12 +397,14 @@
                     maxlength="14"
                     id="new_user_cpf"
                     type="textbox"
-                    value={{cpf}}
+                    value={{new_user_cpf}}
+                    onloadstart={{action 'replaceCPF'}}
                     onkeydown={{action 'replaceCPF'}}
                     data-type="text"
-                    data-context="cpf">
+                    data-context="cpf"
+                    data-animation="fadeIn">
             </div>
-            {{#if cpfError}}<span class="color-error-30 fs--xs">CPF Inválido</span>{{/if}}
+            {{#if cpfError}}<span id="cpf-error" class="color-error-30 fs--xs">{{errorMsgCPF}}</span>{{/if}}
         </div>
         
         {{#if new_user_id}}

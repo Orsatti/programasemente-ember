@@ -4,7 +4,7 @@
     <img class="self-registration__img" src="/assets/img/img-autocadastro-login.png"
         alt="Três pessoas sorrindo: uma professora negra, uma aluna pre-adolescente e um aluno do infantil.">
 
-    <div class="row m-bottom--xl m-top--xxl middle-xs">
+    <div class="row m-bottom--md m-top--xxl middle-xs">
         <div class="col-xs-5 col-md-3">
             {{programa-semente-logo class="logo"}}
         </div>
@@ -49,19 +49,18 @@
                     <span class="alert__msg"></span>
                 </p>
             </div>
-        <p class="alert alert--sm alert--error alert--has-icon m-top--sm animated d250" id="codigo-error" data-animation="fadeIn">
-            <span class="alert__icon icon-x"></span>
-            <span class="alert__msg"></span>
-          </p>
+            <p class="alert alert--sm alert--error alert--has-icon m-top--sm animated d250" id="codigo-error" data-animation="fadeIn">
+                <span class="alert__icon icon-x"></span>
+                <span class="alert__msg"></span>
+            </p>
         </form>
          
     </div>
 
     <div class="row">
         <div class="col-xs-12">
-            <button class="btn btn--md m-top--lg" dataDisabled="true" id='submit' type="button"
+            <button class="btn btn--md m-top--lg self-registration__cta" dataDisabled="true" id='submit' type="button"
                 onclick={{action 'createUser'}}>Avançar</button>
         </div>
     </div>
 </main>
-{{emailFocus}}

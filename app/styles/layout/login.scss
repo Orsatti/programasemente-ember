@@ -285,7 +285,7 @@ html {
         font-size: 0.7em;
         font-family: filson-pro;
         color: #707070;
-        text-transform: capitalize;
+        text-transform: none;
         margin-bottom: 2px;
 
         @include media(">sm") {

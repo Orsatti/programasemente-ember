@@ -7,6 +7,7 @@ export default DS.Model.extend({
   name: DS.attr(),
   role: DS.attr(),
   email: DS.attr(),
+  cpf: DS.attr(),
   userName: DS.attr(),
   emailCadastrado: DS.attr(),
   matricula : DS.attr(),
@@ -104,6 +105,7 @@ export default DS.Model.extend({
   maxDependentes: DS.attr(),
 
   verifyEmail: memberAction({ path: 'verifyEmail', type: 'get' }),
+  verifyCpf: memberAction({ path: 'verifyCpf', type: 'get' }),
   autoRegister: memberAction({ path: 'autoRegisterPlataforma', type: 'post' }),
   termoAceite: DS.attr(),
   senha: DS.attr(),

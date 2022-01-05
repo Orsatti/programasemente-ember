@@ -31,141 +31,170 @@
 <div class="blink animated fadeInRightShort fast">
     <div class="flow-md">
 
-
-        <div class="row">
-            <div class="col-xs-12 col-lg-3">
-                <div class="form-group__container">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="login">Nome de usuário (Login)</label>
-                        {{input class="j-check-duplicate j-validate form-group__input"
-                        name="login"
-                        value=pessoa.email
-                        autocomplete="off"
-                        data-type="login"
-                        data-required="true"
-                        data-duplicate="false"
-                        focus-out=(action 'checkDuplicateLogins' pessoa)
-                        focus=(action 'trimall')
-                        key-down=(action 'checkmail')}}
+        <fieldset class="fieldset m-top--sm">
+             <legend>Identificação</legend>
+            <div class="row">
+                <div class="col-xs-12 col-lg-3">
+                    <div class="form-group__container">
+                        <div class="form-group w100">
+                            <label class="form-group__label" for="name">Nome Completo do aluno</label>
+                            {{input class="j-validate form-group__input"
+                            name="name1"
+                            value=pessoa.name
+                            data-type="nome"
+                            data-required="true"
+                            focus-out=(action 'trimall')
+                            key-down=(action 'checkName')}}
+                        </div>
+                        <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
                     </div>
-                    <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-lg-3">
-                <div class="form-group__container">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="name">Nome Completo</label>
-                        {{input class="j-validate form-group__input"
-                        name="name1"
-                        value=pessoa.name
-                        data-type="nome"
-                        data-required="true"
-                        focus-out=(action 'trimall')
-                        key-down=(action 'checkName')}}
-                    </div>
-                    <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
-                </div>
-            </div>
-
-        </div>
-
-
-
-        <div class="row">
-
-
-            <div class="col-xs-12 col-lg-3">
-                <div class="form-group__container">
-                    <div class="form-group">
-                        <label class="form-group__label" for="data_nascimento">Data de Nascimento</label>
-                        {{input class="form-group__input j-validate"
-                                    name="data_nascimento"
-                                    focus-out=(action 'trimall')
-                                    type="date"
-                                    max='2020-01-01'
-                                    value=pessoa.nascimentoPlataforma
-                                    data-type="datetime-local"
-                                    data-required="true"}}
+                            <div class="form-group__container">
+                        <div class="form-group w100">
+                        <div class="fieldset__field--has-checkbox">
+                            <input id="cpf-choice" name="cpfCadastro" type="checkbox" class="j-validate-ident-{{visible-index index}}" checked  onchange={{action 'toggleCheckbox' (visible-index index)}}>
+                            <label class="form-group__label" for="cpf">CPF do aluno</label>
+                        </div>
+                            {{input class="j-check-duplicate j-validate form-group__input"
+                            name="cpf"
+                            value=pessoa.cpf
+                            maxlength="14"
+                            autocomplete="off"
+                            data-type="cpf"
+                            data-duplicate="false"
+                            focus=(action 'trimall')
+                            focus-out=(action 'verifyCPF')
+                            key-down=(action 'replaceCPF')
+                            }}
+                        </div>
                         <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
                     </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-lg-3">
-                <div class="form-group__container">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="genero_student{{pessoa.id}}">Gênero biológico</label>
-                        <div class="form-group__wrapper form-group__wrapper--select">
-                            <select class="j-validate form-group__input" id="genero_student{{pessoa.id}}" name="genero"
-                                onchange={{action 'refreshSelectedGenero' value='target.value'}} data-type="nome"
-                                data-required="true">
-                                <option value="" disabled selected>---</option>
-                                <option value="masculino"
-                                    selected={{if (equalstr pessoa.genero "masculino") "selected"}}>Masculino</option>
-                                <option value="feminino" selected={{if (equalstr pessoa.genero "feminino") "selected"}}>
-                                    Feminino</option>
-                                {{!-- <option value="outro">Prefiro não dizer</option> --}}
-                            </select>
+                <div class="col-xs-12 col-lg-3">
+                    <div class="form-group__container">
+                        <div class="form-group w100">
+                        <div class="fieldset__field--has-checkbox">
+                            <input id="email-choice" name="emailCadastro" type="checkbox" class="j-validate-ident-{{visible-index index}}" checked onchange={{action 'toggleCheckbox' (visible-index index)}} >
+                            <label class="form-group__label" for="login">E-mail do aluno</label>
                         </div>
+                            {{input class="j-check-duplicate j-validate form-group__input"
+                            name="email"
+                            value=pessoa.email
+                            autocomplete="off"
+                            data-type="e-mail"
+                            data-required="true"
+                            data-duplicate="false"
+                            focus-out=(action 'checkDuplicateLogins' pessoa)
+                            focus=(action 'trimall')
+                            key-down=(action 'checkmail')}}
+                        </div>
+                        <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
                     </div>
-                    <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
+            
                 </div>
 
+
+
             </div>
-        </div>
+        </fieldset>
+        <span id="error-fieldset-ident-{{visible-index index}}" class="color-error-30 fieldset__error" style="margin-top: 0;">{{fieldset1Error}}</span>
+
+
+        <fieldset class="fieldset m-top--sm">
+             <legend>Dados complementares</legend>
+            <div class="row">
+
+
+                <div class="col-xs-12 col-lg-3">
+                    <div class="form-group__container">
+                        <div class="form-group">
+                            <label class="form-group__label" for="data_nascimento">Data de Nascimento</label>
+                            {{input class="form-group__input j-validate"
+                                        name="data_nascimento"
+                                        focus-out=(action 'trimall')
+                                        type="date"
+                                        max='2020-01-01'
+                                        value=pessoa.nascimentoPlataforma
+                                        data-type="datetime-local"
+                                        data-required="true"}}
+                            <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-lg-3">
+                    <div class="form-group__container">
+                        <div class="form-group w100">
+                            <label class="form-group__label" for="genero_student{{pessoa.id}}">Gênero biológico</label>
+                            <div class="form-group__wrapper form-group__wrapper--select">
+                                <select class="j-validate form-group__input" id="genero_student{{pessoa.id}}" name="genero"
+                                    onchange={{action 'refreshSelectedGenero' value='target.value'}} data-type="nome"
+                                    data-required="true">
+                                    <option value="" disabled selected>---</option>
+                                    <option value="masculino"
+                                        selected={{if (equalstr pessoa.genero "masculino") "selected"}}>Masculino</option>
+                                    <option value="feminino" selected={{if (equalstr pessoa.genero "feminino") "selected"}}>
+                                        Feminino</option>
+                                    {{!-- <option value="outro">Prefiro não dizer</option> --}}
+                                </select>
+                            </div>
+                        </div>
+                        <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
+                    </div>
+
+                </div>
+            </div>
 
 
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-xs-12 col-lg-3">
-                <div class="form-group__container">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="serie_student{{pessoa.id}}">Ano/Série</label>
-                        <div class="form-group__wrapper form-group__wrapper--select">
-                            <select class="j-validate form-group__input" name="serie" id="serie_student{{pessoa.id}}"
-                                onchange={{action 'refreshSelectedAno' value='target.value'}} data-type="nome"
-                                data-required="true">
-                                <option value="" disabled selected>---</option>
-                                {{#each pessoa.instituicao.plataformaAnos as | pa |}}
-                                    {{#if (isnotinarray pa plataformaAnosToHide)}}
-                                        <option value="{{pa.id}}"
-                                            selected={{if (equalstr pa.id pessoa.plataformaAnos.firstObject.id) "selected"}}>
-                                            {{pa.name}}</option>
+                <div class="col-xs-12 col-lg-3">
+                    <div class="form-group__container">
+                        <div class="form-group w100">
+                            <label class="form-group__label" for="serie_student{{pessoa.id}}">Ano/Série</label>
+                            <div class="form-group__wrapper form-group__wrapper--select">
+                                <select class="j-validate form-group__input" name="serie" id="serie_student{{pessoa.id}}"
+                                    onchange={{action 'refreshSelectedAno' value='target.value'}} data-type="nome"
+                                    data-required="true">
+                                    <option value="" disabled selected>---</option>
+                                    {{#each pessoa.instituicao.plataformaAnos as | pa |}}
+                                        {{#if (isnotinarray pa plataformaAnosToHide)}}
+                                            <option value="{{pa.id}}"
+                                                selected={{if (equalstr pa.id pessoa.plataformaAnos.firstObject.id) "selected"}}>
+                                                {{pa.name}}</option>
+                                        {{/if}}
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-lg-3">
+                    <div class="form-group__container">
+                        <div class="form-group w100">
+                            <label class="form-group__label" for="turma_student{{pessoa.id}}">Turma</label>
+                            <div class="form-group__wrapper form-group__wrapper--select">
+                                <select class="j-validate form-group__input" name="turma" id="turma_student{{pessoa.id}}"
+                                    onchange={{action 'refreshSelectedPlataformaTurma' value='target.value'}}
+                                    data-type="nome" data-required="true">
+                                    <option value="" disabled selected>---</option>
+                                    {{#each pessoa.instituicao.plataformaTurmas as | pt |}}
+                                    {{#if (equalstr pt.plataformaAno.id pessoa.plataformaAnos.firstObject.id)}}
+                                    <option value="{{pt.id}}"
+                                        selected={{if (equalstr pt.id pessoa.plataformaTurmas.firstObject.id) "selected"}}>
+                                        {{pt.name}}</option>
                                     {{/if}}
-                                {{/each}}
-                            </select>
+                                    {{/each}}
+                                </select>
+                            </div>
                         </div>
+                        <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
                     </div>
-                    <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
                 </div>
+
             </div>
-
-            <div class="col-xs-12 col-lg-3">
-                <div class="form-group__container">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="turma_student{{pessoa.id}}">Turma</label>
-                        <div class="form-group__wrapper form-group__wrapper--select">
-                            <select class="j-validate form-group__input" name="turma" id="turma_student{{pessoa.id}}"
-                                onchange={{action 'refreshSelectedPlataformaTurma' value='target.value'}}
-                                data-type="nome" data-required="true">
-                                <option value="" disabled selected>---</option>
-                                {{#each pessoa.instituicao.plataformaTurmas as | pt |}}
-                                {{#if (equalstr pt.plataformaAno.id pessoa.plataformaAnos.firstObject.id)}}
-                                <option value="{{pt.id}}"
-                                    selected={{if (equalstr pt.id pessoa.plataformaTurmas.firstObject.id) "selected"}}>
-                                    {{pt.name}}</option>
-                                {{/if}}
-                                {{/each}}
-                            </select>
-                        </div>
-                    </div>
-                    <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
-                </div>
-            </div>
-
-        </div>
-
+        </fieldset>
         {{!-- <button {{action "saveProfile" pessoa}} type="button">Salvar</button> --}}
 
     </div>

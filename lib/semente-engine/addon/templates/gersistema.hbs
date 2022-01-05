@@ -292,7 +292,33 @@ thisRoute=thisRoute}}
             disabled="true">
           {{/if}}
         </div>
-        <!-- /selected institution tab information -->
+       
+              <div class="form-group">
+                <label class="form-group__label">Status</label>
+                <span class="switch switch--institutions">
+                  <input class="switch__checkbox" id="inst_hab" type="checkbox" checked={{inst_selected.enabled}}
+                    disabled={{if (equalstr role 'admin' ) false true}} onchange={{action 'dataChange' 'btn_save_inst' }}>
+                  <label class="switch__label" for="inst_hab">
+                    <span class="switch__inner"></span>
+                    <span class="switch__head"></span>
+                  </label>
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-group__label">É escola?</label>
+                <span class="switch switch--institutions">
+                  <input class="switch__checkbox" id="inst_isSchool" type="checkbox" checked={{inst_selected.isEscola}}
+                    disabled={{if (equalstr role 'admin' ) false true}} onchange={{action 'dataChange' 'btn_save_inst' }}>
+                  <label class="switch__label" for="inst_isSchool">
+                    <span class="switch__inner"></span>
+                    <span class="switch__head"></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+          </section>
+           <!-- /selected institution tab information -->
 
         <!-- selected institutiton tab courses -->
         {{#if selectedInstTabs.courses}}
@@ -377,6 +403,80 @@ thisRoute=thisRoute}}
                   <input class="edit-text__input title-3" id="areaItemName{{turma.id}}" value="{{turma.name}}" disabled>
                   <span class="edit-text__indicator"></span>
                 </div>
+                <section class="sections__subsection">
+                  <ul class="institutions__areas list list--striped">
+                    <!--  style="display:none" -->
+                    <li id="newArea">
+                      <label class="form-group__label sr-only" for="newAreaName">Nome da nova área</label>
+                      <div class="edit-text">
+                        <input class="edit-text__input form-group__input content-editable" type="textbox" id="newAreaName">
+                        <span class="edit-text__indicator"></span>
+                      </div>
+                      <div class="flow-h-sm m-left--lg">
+                        <button class="btn btn--xs btn--text" type="submit" {{action 'cancelAreaAction' 'new' }}>
+                          {{!-- <span class="btn__icon icon-x"></span> --}}
+                          <span class="btn__label">Cancelar</span>
+                        </button>
+                        <button class="btn btn--xs" type="submit" {{action 'addArea' }} style="width: 90px;">
+                          {{!-- <span class="btn__icon icon-check"></span> --}}
+                          <span class="btn__label">Salvar</span>
+                        </button>
+                      </div>
+                    </li>
+                    {{#each inst_selected.turmas as |turma idx|}}
+                      <li class="accordion">
+                        <div class="institutions__area">
+                          <div class="edit-text">
+                            <input class="edit-text__input title-3"
+                                   id="areaItemName{{turma.id}}"
+                                   value="{{turma.name}}" disabled>
+                            <span class="edit-text__indicator"></span>
+                          </div>
+                        </div>
+                        <div class="flow-h-sm" id="areaItemOptions{{turma.id}}">
+                         
+                          {{#if (equalstr pessoaLogged.role "admin")}}
+                          <button class="btn btn--text btn--xxs color-error" {{action 'deleteArea' turma.id}}>
+                            {{!-- <span class="btn__icon icon-trash-2"></span> --}}
+                            <span class="btn__label">Remover</span>
+                          </button>
+                          {{/if}}
+                          <button class="btn btn--ghost btn--xxs" style="width: 90px;" {{action 'editArea' turma.id}}>
+                            {{!-- <span class="btn__icon icon-edit"></span> --}}
+                            <span class="btn__label">Editar</span>
+                          </button>
+                        </div>
+                        <div class="flow-h-sm" id="areaItemActions{{turma.id}}" style="display:none">
+                          <button class="btn btn--text btn--xxs" type="submit" {{action 'cancelAreaAction' turma.id}}>
+                            {{!-- <span class="btn__icon icon-x"></span> --}}
+                            <span class="btn__label">Cancelar</span>
+                          </button>
+                          <button class="btn btn--xxs" style="width: 90px;" type="submit" {{action 'saveArea' turma.id}}>
+                            {{!-- <span class="btn__icon icon-check"></span> --}}
+                            <span class="btn__label">Salvar</span>
+                          </button>
+                        </div>
+                      </li>
+                    {{/each}}
+                  </ul>
+                </section>
+              {{/if}}
+
+
+            </div>
+          </section>
+
+          {{!-- <section class="sections__subsection flow-md animated fadeInLeftShort faster d1250">
+            <h3 class="main__subsubtitle">Códigos</h3>
+            <div class="flex flex-row flex-wrap gap-sm flow-h-sm">
+              <div class="form-group">
+                <label class="form-group__label">Professores</label>
+                {{#if (equalstr role 'admin')}}
+                <input class="form-group__input" type="textbox" id="cd_professores" value={{inst_selected.codigoProfessores}}
+                  onkeyup={{action 'dataChange' 'btn_save_inst' }}>
+                {{else}}
+                  {{inst_selected.codigoProfessores}}
+                {{/if}}
               </div>
               <div class="flow-h-sm" id="areaItemOptions{{turma.id}}">
 
@@ -401,10 +501,29 @@ thisRoute=thisRoute}}
                   <span class="btn__label">Salvar</span>
                 </button>
               </div>
-            </li>
-            {{/each}}
-          </ul>
-        </section>
+            </div>
+          </section> --}}
+
+          <section class="sections__subsection flow-md animated fadeInLeftShort faster d1250">
+            <h3 class="main__subsubtitle">Sistemas</h3>
+            <ul class="flex flex-col flow-sm">
+              <li class="checkbox">
+                <input class="checkbox__input" id="sis_1" type="checkbox" onchange={{action 'dataChange' 'btn_save_inst' }}
+                  checked={{temMedio}} disabled={{if (equalstr role 'admin' ) false true}}>
+                <label class="checkbox__label" for="sis_1">Programa Semente</label>
+              </li>
+              <li class="checkbox">
+                <input class="checkbox__input" id="sis_2" type="checkbox" onchange={{action 'dataChange' 'btn_save_inst' }}
+                  checked={{temS}} disabled={{if (equalstr role 'admin' ) false true}}>
+                <label class="checkbox__label" for="sis_2">Plataforma S</label>
+              </li>
+              <li class="checkbox">
+                <input class="checkbox__input" id="sis_3" type="checkbox" onchange={{action 'dataChange' 'btn_save_inst' }}
+                  checked={{temCoreSkills}} disabled={{if (equalstr role 'admin' ) false true}}>
+                <label class="checkbox__label" for="sis_3">CoreSkills</label>
+              </li>
+            </ul>
+          </section>
         {{/if}}
 
 
@@ -721,7 +840,7 @@ thisRoute=thisRoute}}
       </header>
       <div class="modal__body">
         <!-- new institution step 1 -->
-        <div class="institutions__step-content {{if goToStepTwo '' 'institutions__step-content--is-show'}}">
+        <div class=" flow-lg institutions__step-content {{if goToStepTwo '' 'institutions__step-content--is-show'}}">
           <section class="sections__subsection">
             <h4 class="main__subsubtitle">Básicas</h4>
             <div class="form-group form-group--horizontal form-group--full-width items-start">
@@ -742,6 +861,16 @@ thisRoute=thisRoute}}
                 <span class="switch switch--institutions">
                   <input class="switch__checkbox" id="new_inst_enabled" type="checkbox" checked={{new_inst_enabled}}>
                   <label class="switch__label" for="new_inst_enabled">
+                    <span class="switch__inner"></span>
+                    <span class="switch__head"></span>
+                  </label>
+                </span>
+              </div>
+              <div class="form-group">
+                <label class="form-group__label">É escola?</label>
+                <span class="switch switch--institutions">
+                  <input class="switch__checkbox" id="new_inst_isSchool" type="checkbox" checked={{new_inst_isSchool}}>
+                  <label class="switch__label" for="new_inst_isSchool">
                     <span class="switch__inner"></span>
                     <span class="switch__head"></span>
                   </label>
@@ -788,7 +917,7 @@ thisRoute=thisRoute}}
               </div>
             </div>
           </section>
-          <section class="sections__subsection">
+          {{!-- <section class="sections__subsection">
             <h4 class="main__subsubtitle">Código de cadastro</h4>
             <div class="flex flex-row flex-wrap gap-sm flow-h-sm">
               <div class="form-group" flex="20">
@@ -804,7 +933,9 @@ thisRoute=thisRoute}}
                 <input class="form-group__input" type="textbox" id="new_inst_cdresp" value={{new_inst_cdresp}}>
               </div>
             </div>
-          </section>
+          </section> --}}
+
+        
           {{!-- <section class="sections__subsection">
             <h4 class="main__subsubtitle">Recursos extras</h4>
             <div class="checkbox m-bottom--md">

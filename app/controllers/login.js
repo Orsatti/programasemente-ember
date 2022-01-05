@@ -1,13 +1,28 @@
 import Controller from '@ember/controller';
 import Ember from 'ember';
 import ENV from '../config/environment';
+import $ from 'jquery';
 
 export default Ember.Controller.extend({
   rootURL: ENV.rootURL,
   envnmt: ENV.APP,
   session: Ember.inject.service('session'),
   mostraAviso: false,
-
+  loginStep: 0,
+  answers: [],
+  loginIsEmail: false,
+  citiesList: Ember.computed(function() {
+    return [];
+  }),
+  schoolsList: Ember.computed(function() {
+    return [];
+  }),
+  rawSchoolsList: Ember.computed(function() {
+    return [];
+  }),
+  successResgate: 0,
+  busy: false,
+  retrievedUsername: '',
   detectIE() {
    
     var ua = window.navigator.userAgent;
@@ -47,6 +62,112 @@ export default Ember.Controller.extend({
 
     // other browser
     return false;
+  },
+
+  async refreshCitiesList(){
+    let isAluno = this.get('answers').toArray().filter(x => x.pergunta == 1).get('firstObject').resposta == 'Sim';
+    let dateOfBirth = this.get('answers').toArray().filter(x => x.pergunta == 2).get('firstObject')?.resposta;
+    let firstName = this.get('answers').toArray().filter(x => x.pergunta == 3).get('firstObject').resposta;
+    let lastName = this.get('answers').toArray().filter(x => x.pergunta == 4).get('firstObject').resposta;
+    let data = {
+      isAluno,
+      dateOfBirth,
+      firstName,
+      lastName
+    }
+    
+    let response = await fetch(`${ENV.APP.host}/${ENV.APP.namespace}/pessoas/CheckPossibleCities`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    if (response.status != 200) return "resgate";
+    let responseJson = await response.json();
+    if (responseJson.cities.length == 0) return "resgate";
+    this.set('rawSchoolsList', responseJson.schools);
+    if (responseJson.cities.length == 1){
+      this.get('answers').push({pergunta: 5, resposta: responseJson.cities[0]});
+      this.setupTypeahead();
+      return 6;
+    }
+    this.set('citiesList', responseJson.cities);
+  },
+
+  hasAnyNonNumericalCharacters(str) {
+    return /[A-Za-z]/.test(str);
+  },
+
+  validEmail(email) {
+    return /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{1,}$/.test(email);
+  },
+
+  validPhone(phone) {
+    return /^\((\d{2}|\d{0})\)[-. ]?(\d{5})[-. ]?(\d{4})$/.test(phone);
+  },
+
+  async setupTypeahead() {
+    let schoolsList = this.get('rawSchoolsList')
+      .toArray()
+      .filter(x => x.schoolCity == this.get('answers').toArray().filter(x => x.pergunta == 5).get('firstObject').resposta)
+      .map(x => x.schoolName);
+      
+    var states = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.whitespace,
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      // `states` is an array of state names defined in "The Basics"
+      local: schoolsList
+    });
+    if ($('#question6').hasClass('tt-input')){
+      $('#question6').typeahead('destroy');
+    }
+    $("#question6").typeahead(
+      {
+          hint: true,
+          highlight: true,
+          minLength: 1
+      },
+      {
+          name: 'Escolas',
+          source: states
+      }
+  );
+  },
+  
+  async resgatarLogin() {
+    let isAluno = this.get('answers').toArray().filter(x => x.pergunta == 1).get('firstObject').resposta == 'Sim';
+    let dateOfBirth = this.get('answers').toArray().filter(x => x.pergunta == 2).get('firstObject')?.resposta;
+    let firstName = this.get('answers').toArray().filter(x => x.pergunta == 3).get('firstObject').resposta;
+    let lastName = this.get('answers').toArray().filter(x => x.pergunta == 4).get('firstObject').resposta;
+    let city = this.get('answers').toArray().filter(x => x.pergunta == 5).get('firstObject')?.resposta;
+    let schoolName = this.get('answers').toArray().filter(x => x.pergunta == 6).get('firstObject')?.resposta;
+    if (city == null || city == undefined || !schoolName) return;
+    let data = {
+      isAluno,
+      dateOfBirth,
+      firstName,
+      lastName,
+      city,
+      schoolName
+    }
+    
+    let response = await fetch(`${ENV.APP.host}/${ENV.APP.namespace}/pessoas/RetrieveLogin`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    
+    let successResgate = response.status == 200 ? 1 : 0;
+    this.set('successResgate', successResgate);
+
+    let responseJson = await response.json();  
+    this.set('loginIsEmail', responseJson.isEmail);
+    if (successResgate == 1){
+      this.set('retrievedUsername', responseJson.username.replace(/["']/g, ""));
+    }
   },
 
 
@@ -176,43 +297,151 @@ export default Ember.Controller.extend({
         document.getElementById('login_button').disabled = false;
       });
     },
-    forgotPass() {
+    forgotPass(type) {
+     
+      this.set('modalType', '');
       document.getElementById('forgot_modal').classList.remove('fadeOutDown');
-      let email = document.getElementById('identification').value;
-      this.set('user_email', '');
-      if (email) {
-        if (email.length > 4 && email.search('@') > 3) {
-          this.set('user_email', email);
+      
+    
+      if (type == 'password') {
+                        
+        this.set('modalType', type);
+        this.set('modalTitle', 'Solicitar nova senha');
+        this.set('modalInfo', 'Por favor, preencha seu nome de usuário (login)');
+        let email = document.getElementById('identification').value;
+        this.set('user_email', '');
+        if (email) {
+          if (email.length > 4 && email.search('@') > 3) {
+            this.set('user_email', email);
+  
+          }
+        }
+        this.set('error_forgot', '');
+        this.set('success_mail', '');
+        this.set('errorMessage', '');
+        document.getElementById('forgot_modal').classList.add('modal--is-show');
+        
+        setTimeout(() => {
+          let usernameInput = document.getElementById('user_name');
+          usernameInput.value = email;
+          usernameInput.focus();
+        }, 100);
+      }
 
+
+      if (type == 'username') {
+                       
+            
+        this.set('error_forgot', '');
+        this.set('loginStep', 0);
+        this.set('citiesList', []);
+        this.set('successResgate', 0);
+        this.set('retrievedUsername', '');
+        this.set('modalType', type);
+        this.set('modalTitle', 'Resgate de login');
+        this.set('modalInfo', 'Por favor, responda às perguntas a seguir');
+        document.getElementById('modal-content').classList.add('modal--large-height');
+        document.getElementById('forgot_modal').classList.add('modal--is-show');
+        document.getElementById('error-forgot').style.display = 'none';
+      }
+
+    },
+
+    async moveToNextQuestion(moveTo, answer) {
+      
+      this.set('busy', true);
+      if (this.get('loginStep') !== 'email') {
+        let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input#question' + this.get('loginStep'));
+        if (inputToCheck) {
+          if (inputToCheck.value.length < 1) {
+            this.set('errorMessageInput', 'Por favor, responda à pergunta');
+            document.querySelector('.step--' + this.get('loginStep') + ' span.color-error-20').style.opacity = 1;
+            document.querySelector('.step--' + this.get('loginStep') + ' span.color-error-20').style.visibility = 'visible'
+            return;
+          } else {
+            this.set('errorMessageInput', '');
+            document.querySelector('.step--' + this.get('loginStep') + ' span.color-error-20').style.opacity = 0;
+            document.querySelector('.step--' + this.get('loginStep') + ' span.color-error-20').style.visibility = 'hidden';
+          }
         }
       }
-      this.set('error_forgot', '');
-      this.set('success_mail', '');
-      this.set('errorMessage', '');
-      document.getElementById('forgot_modal').classList.add('modal--is-show');
-      let usernameInput = document.getElementById('user_name');
-      usernameInput.value = email;
-      usernameInput.focus();
+      
+      
+      if (this.get('loginStep') !== 'email' && (this.get('loginStep') !== 0)) {
+        
+        if (!answer) {
+          let answerInput = document.querySelector('.step--' + this.get('loginStep') + ' input#question' + this.get('loginStep'));
+          answer = answerInput.value;
+        }
+      
+        this.send('registerAnswer', answer);
+        if (this.get('loginStep') == 4) {
+          let newMoveTo = await this.refreshCitiesList();
+          if (newMoveTo) moveTo = newMoveTo;
+        };
+
+        if (this.get('loginStep') == 5) {
+          this.setupTypeahead();
+        }
+
+        if (moveTo == "resgate"){
+          await this.resgatarLogin();
+        }
+      }
+      
+      this.set('loginStep', moveTo); 
+      this.set('busy', false);
     },
+
+    registerAnswer(answer) {
+      let answers = this.get('answers');
+      
+      let step = this.get('loginStep');
+      answers.push({
+        pergunta: step,
+        resposta: answer
+      })
+      
+    },
+
     autoRegister() {
       this.transitionToRoute('autoregister');
     },
     cancelForgot() {
 
-      document.getElementById('checkboxes_container').classList.remove('fadeInLeftShort');
-      document.getElementById('success-forgot').style.display = 'none';
-      document.getElementById('error-forgot').style.display = 'none';
-      document.getElementById('forgot_modal').classList.add('fadeOutDown');
-      document.getElementById('forgot_modal').classList.remove('modal--is-show');
-      document.getElementById('user_name').value = '';
-      document.getElementById('user_name').disabled = false;
-      document.getElementById('group-email').style.display = 'none';
-      document.getElementById('group-sms').style.display = 'none';
-      document.getElementById('btn-verify-user-name').style.display = 'block';
-      document.getElementById('btn-send-password').style.display = 'none';
-      this.set('user_name', '');
-      this.set('success_mail', '');
-      this.set('error_forgot', '');
+      if (this.get('modalType') == 'password') {
+        document.getElementById('checkboxes_container').classList.remove('fadeInLeftShort');
+        document.getElementById('success-forgot').style.display = 'none';
+        document.getElementById('error-forgot').style.display = 'none';
+        document.getElementById('forgot_modal').classList.add('fadeOutDown');
+        document.getElementById('forgot_modal').classList.remove('modal--is-show');
+        document.getElementById('user_name').value = '';
+        document.getElementById('user_name').disabled = false;
+        document.getElementById('group-email').style.display = 'none';
+        document.getElementById('group-sms').style.display = 'none';
+        document.getElementById('btn-verify-user-name').style.display = 'block';
+        document.getElementById('btn-send-password').style.display = 'none';
+        this.set('user_name', '');
+        this.set('success_mail', '');
+        this.set('error_forgot', '');
+      }
+
+      if (this.get('modalType') == 'username') {
+  
+        document.getElementById('forgot_modal').classList.remove('modal--is-show');
+        document.getElementById('question2').value = '';
+        document.getElementById('question3').value = '';
+        document.getElementById('question4').value = '';
+        document.getElementById('question6').value = '';
+        document.getElementById('informe-email').value = '';
+        document.getElementById('success-forgot').style.display = 'none'
+        this.set('errorMessageInput', '');
+        this.set('citeisList', []);
+        this.set('answers', []);
+
+      }
+      
+
     },
     sendMail() {
       let mail = document.getElementById('user_email').value;
@@ -382,7 +611,78 @@ export default Ember.Controller.extend({
       }).catch((error) => {
         that.set('error_forgot', 'Erro do servidor: ' + error);
       });
-    }
-  },
+    },
 
+    async resgataLoginPorEmail() {
+                  
+      this.set('busy', true);
+      let emailOrPhone = document.getElementById('informe-email').value;
+      debugger;
+      if ((this.hasAnyNonNumericalCharacters(emailOrPhone) && !this.validEmail(emailOrPhone)) || (!this.hasAnyNonNumericalCharacters(emailOrPhone) && !this.validPhone(emailOrPhone))) {
+        let errorContainer = document.getElementById('error-forgot');
+        this.set('error_forgot', 'Por favor, informe um email ou telefone válido');
+        errorContainer.style.opacity = 1;
+        errorContainer.style.visibility = 'visible';
+        this.set('busy', false);
+        return;
+      }
+      let data = {
+        emailOrPhone
+      }
+      
+      let response = await fetch(`${ENV.APP.host}/${ENV.APP.namespace}/pessoas/RetrieveLogin`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      if (response.status === 200) {
+        let successContainer = document.getElementById('success-forgot');
+        this.set('success_forgot', 'Seu login foi enviado para ' + emailOrPhone + ' com sucesso');
+        successContainer.style.display = 'block';
+        
+        let errorContainer = document.getElementById('error-forgot');
+        this.set('error_forgot', '');
+        errorContainer.style.opacity = 0;
+        errorContainer.style.visibility = 'hidden';
+
+
+        setTimeout(() => {
+          successContainer.style.display = 'none';
+        }, 5000);
+      } else {
+        let errorContainer = document.getElementById('error-forgot');
+        this.set('error_forgot', 'E-mail ou telefone não encontrado em nossos cadastros');
+        errorContainer.style.opacity = 1;
+        errorContainer.style.visibility = 'visible';
+      }
+      
+      let errorContainer = document.getElementById('error-forgot');
+      this.set('busy', false);
+    },
+
+    maskPhoneOrEmail(v) {
+      let target = event.target;
+      if (v) {
+        var r = target.value;
+        if (this.hasAnyNonNumericalCharacters(r)) return;
+        var r = r.replace(/\D/g, "");
+        r = r.replace(/^0/, "");
+        if (r.length > 10) {
+          r = r.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+        } else if (r.length > 7) {
+          r = r.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+        } else if (r.length > 2) {
+          r = r.replace(/^(\d\d)(\d{0,5})/, "($1) $2");
+        } else if (r.length == 0) {
+          r = "";
+        } else {
+          r = r.replace(/^(\d*)/, "($1");
+        }
+        target.value = r;
+      }
+    },
+  },
 });

@@ -23,8 +23,18 @@
         visibility: visible;
     }
 
-    &--is-content {
+    &--is-registered-email {
+        text-align: center;
+        font-weight: 600;
+        color: $blue-navy-40;
+    }
 
+    &--adjust-btn-on-mobile  {
+       
+        @include media('<sm') {
+               width: 100% !important;
+           
+        }
     }
 
     &__content {
@@ -173,6 +183,222 @@
             opacity: $overlayer-opacity;
         }
 
+    }
+
+    
+    &__login-recovery-container {
+        display: flex;
+
+        
+    }
+    
+    &__is-login-recovery {
+        background-color: $gray-20;
+        display: flex;
+        width: 100%;
+        height: 80%;
+        //outline: solid red 2px;
+        flex-direction: column;
+        align-items: center;
+        padding: $distance--sm;
+        // position: absolute;
+        // left: 0;
+        
+
+        &--cities-list {
+            display: flex;
+            height: 100%;
+            position: relative;
+            width: 100%;
+            bottom: 0;
+            overflow: auto;
+            margin-top: $distance--md;
+
+            > ul {
+                display: flex;
+                align-self: baseline;
+                padding: 0 1.5rem 0 1.5rem;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                position: relative;
+                flex-grow: 1;
+                flex-wrap: wrap;
+                
+            }
+
+            > ul > li {
+                margin: $distance--xxs;
+                flex-grow: 1;
+                flex-basis: 100%;
+            }
+
+            > ul > li > button {
+                width: 100%;
+            }
+
+        }
+
+        > p {
+            font-size: $font-size--lg;
+            font-weight: 600;
+            text-align: center;
+            padding: $distance--md;
+        }
+
+        > button {
+            width: 50%;
+        }
+
+        &--login--was-found {
+            //outline: solid red 2px;
+            background-color: $leaf-40;
+            color: $white;
+            box-shadow: $shadow-3;
+            padding: $distance--md;
+            font-size: $font-size--lg;
+            width: 100%;
+
+            &__copy-button {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-items: center;
+                justify-content: center;
+                padding: $btn-pad--md;
+                
+                &::after {
+                    content: 'copiar';
+                    margin-top: 5px;
+                }
+
+                
+            }
+        }
+
+
+
+        &__carousel {
+
+            &--0 {
+                [class*='step--0'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden; };
+                [class*='step--3'] { opacity: 0; visibility: hidden; };
+                [class*='step--4'] { opacity: 0; visibility: hidden; };
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+                [class*='step--6'] { opacity: 0; visibility: hidden; };
+                [class*='step--resgate'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--email {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden; };
+                [class*='step--3'] { opacity: 0; visibility: hidden; };
+                [class*='step--4'] { opacity: 0; visibility: hidden; };
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+                [class*='step--6'] { opacity: 0; visibility: hidden; };
+                [class*='step--resgate'] { opacity: 0; visibility: hidden; };
+            }
+
+
+
+            &--1 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--2'] { opacity: 0; visibility: hidden; };
+                [class*='step--3'] { opacity: 0; visibility: hidden; };
+                [class*='step--4'] { opacity: 0; visibility: hidden; };
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+                [class*='step--6'] { opacity: 0; visibility: hidden; };
+                [class*='step--resgate'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--2 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--3'] { opacity: 0; visibility: hidden; };
+                [class*='step--4'] { opacity: 0; visibility: hidden; };
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+                [class*='step--6'] { opacity: 0; visibility: hidden; };
+                [class*='step--resgate'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--3 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden;};
+                [class*='step--3'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--4'] { opacity: 0; visibility: hidden; };
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+                [class*='step--6'] { opacity: 0; visibility: hidden; };
+                [class*='step--resgate'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--4 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden;};
+                [class*='step--3'] { opacity: 0; visibility: hidden;};
+                [class*='step--4'] { opacity: 1; visibility: visible; position: absolute; left: 0;};
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+                [class*='step--6'] { opacity: 0; visibility: hidden; };
+                [class*='step--resgate'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--5 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden;};
+                [class*='step--3'] { opacity: 0; visibility: hidden;};
+                [class*='step--4'] { opacity: 0; visibility: hidden;};
+                [class*='step--5'] { opacity: 1; visibility: visible; position: absolute; left: 0; };
+                [class*='step--6'] { opacity: 0; visibility: hidden; };
+                [class*='step--resgate'] { opacity: 0; visibility: hidden; };
+            }
+
+            &--6 {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden;};
+                [class*='step--3'] { opacity: 0; visibility: hidden;};
+                [class*='step--4'] { opacity: 0; visibility: hidden;};
+                [class*='step--5'] { opacity: 0; visibility: hidden;};
+                [class*='step--6'] { opacity: 1; visibility: visible; position: absolute; left: 0; };
+                [class*='step--resgate'] { opacity: 0; visibility: hidden; };
+            }
+
+
+            &--resgate {
+                [class*='step--0'] { opacity: 0; visibility: hidden;};
+                [class*='step--email'] { opacity: 0; visibility: hidden; };
+                [class*='step--1'] { opacity: 0; visibility: hidden; };
+                [class*='step--2'] { opacity: 0; visibility: hidden;};
+                [class*='step--3'] { opacity: 0; visibility: hidden;};
+                [class*='step--4'] { opacity: 0; visibility: hidden;};
+                [class*='step--5'] { opacity: 0; visibility: hidden; };
+                [class*='step--6'] { opacity: 0; visibility: hidden; };
+                [class*='step--resgate'] {  opacity: 1; visibility: visible; position: absolute; left: 0; };
+
+            }
+
+
+        }
+
+
+    }
+
+    &--large-height {
+        height: 30rem;
     }
 
 }

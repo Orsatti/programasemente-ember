@@ -113,6 +113,14 @@
       margin-bottom: $distance--super;
     }
 
+    &--fundo-video{
+      background-color: #f08080;
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      display: flex;
+    }
+
   }
 
   &__date-block {

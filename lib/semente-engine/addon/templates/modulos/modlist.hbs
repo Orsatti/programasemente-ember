@@ -32,27 +32,28 @@
 
       <ol class="timeline__line">
         <li class="timeline__mark">
-          <div class="timeline__date-block class__date-block">
-            <span class="icon-calendar icon--xl"></span>
+             <div class="borda-inicio">
+          <div class="timeline__date-block class__date-block borda-inicio">
+            <span class="icone-rocket"></span>
             <span class="class__date">
               <span class="class__day-aux">INÍCIO DA SUA</span>
               <span class="class__day">JORNADA</span>
             </span>
+            </div>
           </div>
+          <div class="borda-video">
           <div id="card_1" class="timeline__class class class--is-disabled">
-
-            <span class="timeline__status timeline__status--is-locked">
-              <span class="icon-lock">
-                <img src="/dist/assets/img/play.png" alt="">
+            <span class="timeline__status timeline__status--is-play">
+              <span class="icone-play">
               </span>
             </span>
-
             <div class="class__info flow-md">
-
-             <video preload="" tabindex="-1" disablepictureinpicture="" style="" src="blob:https://player.vimeo.com/45593b23-e741-4b93-9011-94c348c419ca"></video>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/f5RVy0sV1bw"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
             </div>
-
-
+          </div>
           </div>
         </li>
         {{#each sortedAtividades as |atividade idx|}}

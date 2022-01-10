@@ -23,4 +23,5 @@ export default DS.Model.extend({
     else return 2; 
   }),
   moduloId: DS.attr(),
+  statusVideoInicio: DS.attr(),
 });

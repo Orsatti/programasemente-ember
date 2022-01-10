@@ -30,13 +30,6 @@
         ano
       </div>
 
-      <div class="trail__presentation-container">
-        <div id="container_video" class="trail__presentation-container-video">
-          {{!-- <iframe src="https://player.vimeo.com/video/{{videoId}}" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe> --}}
-        </div>
-      </div>
-      <div style="display: none;">{{renderVideo}}</div>
-      
       <ol class="timeline__line">
         <li class="timeline__mark">
              <div class="borda-inicio">
@@ -55,56 +48,50 @@
               </span>
             </span>
             <div class="class__info flow-md">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/f5RVy0sV1bw"
+              <div class="trail__presentation-container">
+                <div id="container_video" class="trail__presentation-container-video">
+                </div>
+              </div>
+              {{!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/f5RVy0sV1bw"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+                allowfullscreen></iframe> --}}
             </div>
           </div>
           </div>
         </li>
-        {{#each sortedAtividades as |atividade idx|}}
-        <li class="timeline__mark{{if (equalstr (get listaStartUnit idx) 1) ' timeline__mark--start-unit'}}">
-          {{#if (equalstr (get listaStartUnit idx) 1)}}
-          <!-- o lição que terá o elemento visual  "fim de unidade" acima receberá a classe extra de timeline__mark--start-unit. -->
-          {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
-          {{else}}
-          {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
-          {{/if}}
-        </li>
-        {{/each}}
+
+        <div style="display: none;">{{renderVideo}}</div>
+
+        {{#if loadBlocos}}
+          {{#each sortedAtividades as |atividade idx|}}
+          <li class="timeline__mark{{if (equalstr (get listaStartUnit idx) 1) ' timeline__mark--start-unit'}}">
+            {{#if (equalstr (get listaStartUnit idx) 1)}}
+            <!-- o lição que terá o elemento visual  "fim de unidade" acima receberá a classe extra de timeline__mark--start-unit. -->
+            {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
+            {{else}}
+            {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
+            {{/if}}
+          </li>
+          {{/each}}
+        {{/if}}
       </ol>
 
-      {{#if loadBlocos}}
-        <ol class="timeline__line">
-          {{#each sortedAtividades as |atividade idx|}}
-            <li class="timeline__mark{{if (equalstr (get listaStartUnit idx) 1) ' timeline__mark--start-unit'}}">
-              {{#if (equalstr (get listaStartUnit idx) 1)}}
-                <!-- o lição que terá o elemento visual  "fim de unidade" acima receberá a classe extra de timeline__mark--start-unit. -->
-                {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
-              {{else}}
-                {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
-              {{/if}}
-            </li>
-          {{/each}}
-        </ol>
+      <div class="timeline__end">
+        Fim do
+        {{#if (equalstr model.idx 1)}}
+        primeiro
+        {{/if}}
 
-        <div class="timeline__end">
-          Fim do
-          {{#if (equalstr model.idx 1)}}
-          primeiro
-          {{/if}}
+        {{#if (equalstr model.idx 2)}}
+        segundo
+        {{/if}}
 
-          {{#if (equalstr model.idx 2)}}
-          segundo
-          {{/if}}
-
-          {{#if (equalstr model.idx 3)}}
-          terceiro
-          {{/if}}
-          ano
-        </div>
-      {{/if}}
+        {{#if (equalstr model.idx 3)}}
+        terceiro
+        {{/if}}
+        ano
+      </div>
 
     </div>
 

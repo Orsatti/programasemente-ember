@@ -1,6 +1,6 @@
 {{#if notTravada}}
 {{#if (equalstr value 0)}}
-{{#if data_ok}}
+{{#if (and data_ok aula_liberada)}}
 <div class="timeline__end-class">Fim do bloco</div>
 
 {{#if instIgnoraCalendario}}
@@ -94,7 +94,7 @@
 {{/if}}
 
 {{else if (equalstr value 100)}}
-{{#if data_ok}}
+{{#if (and data_ok aula_liberada)}}
 <div class="timeline__end-class">Fim do bloco</div>
 {{#if instIgnoraCalendario}}
 <div class="timeline__date-block class__date-block">
@@ -186,7 +186,7 @@
 {{/if}}
 
 {{else}}
-{{#if data_ok}}
+{{#if (and data_ok aula_liberada)}}
 <div class="timeline__end-class">Fim do bloco</div>
 {{#if instIgnoraCalendario}}
 <div class="timeline__date-block class__date-block">

@@ -50,24 +50,33 @@
               </span>
             </span>
             <div class="class__info flow-md">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/f5RVy0sV1bw"
+              <div class="trail__presentation-container">
+                <div id="container_video" class="trail__presentation-container-video">
+                </div>
+              </div>
+              {{!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/f5RVy0sV1bw"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
+                allowfullscreen></iframe> --}}
             </div>
           </div>
           </div>
         </li>
-        {{#each sortedAtividades as |atividade idx|}}
-        <li class="timeline__mark{{if (equalstr (get listaStartUnit idx) 1) ' timeline__mark--start-unit'}}">
-          {{#if (equalstr (get listaStartUnit idx) 1)}}
-          <!-- o lição que terá o elemento visual  "fim de unidade" acima receberá a classe extra de timeline__mark--start-unit. -->
-          {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
-          {{else}}
-          {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
-          {{/if}}
-        </li>
-        {{/each}}
+
+        <div style="display: none;">{{renderVideo}}</div>
+
+        {{#if loadBlocos}}
+          {{#each sortedAtividades as |atividade idx|}}
+          <li class="timeline__mark{{if (equalstr (get listaStartUnit idx) 1) ' timeline__mark--start-unit'}}">
+            {{#if (equalstr (get listaStartUnit idx) 1)}}
+            <!-- o lição que terá o elemento visual  "fim de unidade" acima receberá a classe extra de timeline__mark--start-unit. -->
+            {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
+            {{else}}
+            {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
+            {{/if}}
+          </li>
+          {{/each}}
+        {{/if}}
       </ol>
 
       <div class="timeline__end">

@@ -3,6 +3,7 @@
   $start-unit-margin-top: 36vh;
   $start-unit-bottom-correction: $start-unit-margin-top / 2;
   $base-margin-top: 10vh;
+  padding-left: 2px;
 
   @mixin timeline-marks {
     background-color: $timeline-marks-bg-color;
@@ -118,7 +119,7 @@
       background-color: #1a4c32;
       width: 100%;
       display: flex;
-      padding: 2rem 0;
+      padding: 2rem 8rem 2rem 0rem;
     }
 
     &:last-child {
@@ -139,6 +140,9 @@
     background-color: $gray-10;
     margin-left: $timeline-translation;
     padding: $distance--xs $distance--md;
+    width: 70%;
+
+  
 
     @include media('>lg') {
       background-color: $timeline-date-bg-color;
@@ -151,7 +155,14 @@
       top: 50%;
       transform: translateY(-50%);
       width: auto;
+
+     
     }
+
+
+ 
+
+    
 
   }
 
@@ -194,6 +205,11 @@
     margin-left: 5rem;
     padding: $distance--md;
 
+    &:first-child{
+      margin-top: 1rem;
+      width: 100%;
+    }
+
     &::before {
       border-color: transparent $timeline-mark-info-bg-color transparent transparent;
       border-style: solid;
@@ -216,7 +232,12 @@
     & iframe {
       border: 0;
       text-align: center;
-      margin: auto;
+      margin: 1rem auto;
+      width: 100%;
+
+      @include media('>lg') {
+        width: 32rem;
+      }
   }
 
   }
@@ -308,9 +329,21 @@
   background-color: #1a4c32;
 }
 
-/*.borda-inicio{
-  border-top: 10.5rem solid #1a4c32;
-  border-bottom: 10.5rem solid #1c4d33;
+.borda-inicio{
+  border-bottom: 11.8rem solid #1a4c32;
+  border-top: 11.8rem solid #1a4c32;
   border-left: 5rem solid #1a4c32;
   border-right: 5rem solid #1a4c32;
-}*/
+  margin-right: -30px;
+
+  @include media('<lg') {
+    
+    &:first-child{
+      border: 0;
+      position: absolute;
+      z-index: 9;
+    }
+  }
+
+ 
+}

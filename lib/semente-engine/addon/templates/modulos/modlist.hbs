@@ -29,53 +29,48 @@
         {{#if (equalstr model.idx 3)}}terceiro{{/if}}
         ano
       </div>
-
       <ol class="timeline__line">
         <li class="timeline__mark">
-        
-             <div class="">
-               
-          <div class="timeline__date-block class__date-block borda-inicio">
-            <span class="icone-rocket"></span>
-            <span class="class__date">
-              <span class="class__day-aux">INÍCIO DA SUA</span>
-              <span class="class__day">JORNADA</span>
-            </span>
-            </div>
-          </div>
-          <div class="borda-video">
-          <div id="card_1" class="timeline__class class class--is-disabled">
-            <span class="timeline__status timeline__status--is-play">
-              <span class="icone-play">
+          <div>
+            <div class="timeline__date-block class__date-block borda-inicio">
+              <span class="icone-rocket"></span>
+              <span class="class__date">
+                <span class="class__day-aux">INÍCIO DA SUA</span>
+                <span class="class__day">JORNADA</span>
               </span>
-            </span>
-            <div class="class__info flow-md">
-              <div class="trail__presentation-container">
-                <div id="container_video" class="trail__presentation-container-video">
-                </div>
-              </div>
-              {{!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/f5RVy0sV1bw"
-                title="YouTube video player" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe> --}}
             </div>
           </div>
+          <div>
+            <div id="card_1" class="timeline__class class class--is-disabled">
+              <span class="timeline__status timeline__status--is-play">
+                <span class="icone-play">
+                </span>
+              </span>
+              <div class="class__info flow-md">
+                <div class="trail__presentation-container">
+                  <div id="container_video" class="trail__presentation-container-video">
+                  </div>
+                </div>
+                {{!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/f5RVy0sV1bw"
+                  title="YouTube video player" frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe> --}}
+              </div>
+            </div>
           </div>
         </li>
-
         <div style="display: none;">{{renderVideo}}</div>
-
         {{#if loadBlocos}}
-          {{#each sortedAtividades as |atividade idx|}}
-          <li class="timeline__mark{{if (equalstr (get listaStartUnit idx) 1) ' timeline__mark--start-unit'}}">
-            {{#if (equalstr (get listaStartUnit idx) 1)}}
-            <!-- o lição que terá o elemento visual  "fim de unidade" acima receberá a classe extra de timeline__mark--start-unit. -->
-            {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
-            {{else}}
-            {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
-            {{/if}}
-          </li>
-          {{/each}}
+        {{#each sortedAtividades as |atividade idx|}}
+        <li class="timeline__mark{{if (equalstr (get listaStartUnit idx) 1) ' timeline__mark--start-unit'}}">
+          {{#if (equalstr (get listaStartUnit idx) 1)}}
+          <!-- o lição que terá o elemento visual  "fim de unidade" acima receberá a classe extra de timeline__mark--start-unit. -->
+          {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
+          {{else}}
+          {{ativ-card-comp atividade=atividade transit=(action 'goAtividadeC') data=atividade.id }}
+          {{/if}}
+        </li>
+        {{/each}}
         {{/if}}
       </ol>
 
@@ -99,8 +94,6 @@
 
   </section>
 </section>
-
-
 <aside id="termo_modal" class="modal">
   <div class="modal__overlayer"></div>
   <div class="modal__content">

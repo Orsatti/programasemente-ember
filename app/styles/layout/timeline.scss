@@ -29,11 +29,10 @@
   padding-top: $distance--xxl;
   text-align: left;
 
-  @include media('<sm') {
+  @include media("<sm") {
     margin-left: 2rem;
     margin-right: 0.5rem;
   }
-
 
   &__begin,
   &__end {
@@ -45,7 +44,7 @@
 
     background-color: $timeline-begin-end-bg-color;
     border-radius: $radius;
-    box-shadow: 0 0 40px transparentize($black, .5);
+    box-shadow: 0 0 40px transparentize($black, 0.5);
     margin-left: $timeline-translation;
     padding: $distance--sm $distance--md;
     position: relative;
@@ -53,15 +52,15 @@
     text-transform: uppercase;
     z-index: 2;
 
-    @include media('>lg') {
+    @include media(">lg") {
       // transform: translateX(-50%);
     }
 
     &::before {
       border-color: transparent $timeline-begin-end-bg-color transparent transparent;
       border-style: solid;
-      border-width: $timeline-tip-size * .75;
-      content: '';
+      border-width: $timeline-tip-size * 0.75;
+      content: "";
       display: block;
       height: 0;
       right: 100%;
@@ -76,7 +75,7 @@
 
       @include timeline-marks;
 
-      content: '';
+      content: "";
       height: $size;
       position: absolute;
       right: calc(100% + #{$timeline-translation});
@@ -84,7 +83,6 @@
       transform: translate(50%, -50%);
       width: $size;
     }
-
   }
 
   &__line {
@@ -92,15 +90,14 @@
   }
 
   &__mark {
-
     margin-top: $base-margin-top;
     position: relative;
 
-    @include media('>sm') {
+    @include media(">sm") {
       max-width: 80%;
     }
 
-    @include media('>md') {
+    @include media(">md") {
       margin-top: 33vh;
       max-width: 50vw;
     }
@@ -108,32 +105,26 @@
     &--start-unit {
       margin-top: $base-margin-top;
 
-      @include media('>md') {
+      @include media(">md") {
         margin-top: $start-unit-margin-top;
       }
-
     }
 
     &:first-child {
-      margin-top: 6rem;
-      background-color: #1a4c32;
-      width: 100%;
-      display: flex;
-      padding: 2rem 8rem 2rem 0rem;
+      margin-top: 15vh;
     }
 
     &:last-child {
       margin-bottom: $distance--super;
     }
 
-    &--fundo-video{
+    &--fundo-video {
       background-color: #f08080;
       width: 100%;
       height: 100vh;
       position: relative;
       display: flex;
     }
-
   }
 
   &__date-block {
@@ -142,9 +133,7 @@
     padding: $distance--xs $distance--md;
     width: 70%;
 
-  
-
-    @include media('>lg') {
+    @include media(">lg") {
       background-color: $timeline-date-bg-color;
       border: none;
       color: $timeline-date-color;
@@ -155,15 +144,7 @@
       top: 50%;
       transform: translateY(-50%);
       width: auto;
-
-     
     }
-
-
- 
-
-    
-
   }
 
   &__end-class {
@@ -171,7 +152,7 @@
 
     background-color: $timeline-begin-end-bg-color;
     border-radius: $radius;
-    box-shadow: 0 0 40px transparentize($black, .5);
+    box-shadow: 0 0 40px transparentize($black, 0.5);
     bottom: 100%;
     display: none;
     font-size: $font-size--xxs;
@@ -185,19 +166,18 @@
     transform: translateY(calc(-#{$base-margin-top/2} + 50%));
     white-space: nowrap;
 
-    @include media('>md') {
+    @include media(">md") {
       bottom: calc(100% + #{$start-unit-bottom-correction});
       right: 100%;
       position: absolute;
       transform: translate(50%, 50%);
     }
 
-    [class*='--start-unit'] & {
+    [class*="--start-unit"] & {
       align-items: center;
       display: flex;
       flex-direction: row;
     }
-
   }
 
   &__class {
@@ -205,16 +185,18 @@
     margin-left: 5rem;
     padding: $distance--md;
 
-    &:first-child{
-      margin-top: 1rem;
-      width: 100%;
+    &:first-child {
+      margin-top: 0rem;
+      padding: 0;
+      padding-left: 1.5rem;
+      padding-right: 2rem;
     }
 
     &::before {
       border-color: transparent $timeline-mark-info-bg-color transparent transparent;
       border-style: solid;
       border-width: $timeline-tip-size;
-      content: '';
+      content: "";
       // display: none;
       height: 0;
       right: calc(100% - #{5rem});
@@ -223,23 +205,32 @@
       transform: translate(0, -50%);
       z-index: 9999;
 
-      @include media('>md') {
+      @include media(">md") {
         display: block;
       }
-
     }
 
     & iframe {
-      border: 0;
-      text-align: center;
       margin: 1rem auto;
-      width: 100%;
+      max-width: 100%;
+      height: auto;
+ 
 
-      @include media('>lg') {
-        width: 32rem;
+      @include media(">lg") {
+        border: 0;
+        text-align: center;
+        max-height: 100%;
+        height: 60vh;
       }
-  }
 
+      @include media(">md") {
+        height: 35vh;
+      }
+
+      @include media(">sm") {
+        height: 60vh;
+      }
+    }
   }
 
   &__status {
@@ -259,7 +250,7 @@
     width: $timeline-status-size;
     z-index: 3;
 
-    @include media('>lg') {
+    @include media(">lg") {
       left: auto;
       right: 100%;
       top: 50%;
@@ -274,38 +265,33 @@
 
     &--is-play {
       @include text-contrast($timeline-marks-bg-color--locked);
-     
+
       background-color: $timeline-marks-bg-color--locked;
     }
-
   }
 
-    &__inner-nav {
-      background-color: transparentize($color: $blue-navy-70, $amount: .4);
-      border-radius: $radius;
-      box-shadow: 0 0 24px transparentize($color: $blue-navy-70, $amount: .4);
-      padding: 1rem;
-      position: fixed;
-      right: 0;
-      top: calc(#{$header-height} + (2 * #{$header-v-padding}));
-      z-index: 2;
+  &__inner-nav {
+    background-color: transparentize($color: $blue-navy-70, $amount: 0.4);
+    border-radius: $radius;
+    box-shadow: 0 0 24px transparentize($color: $blue-navy-70, $amount: 0.4);
+    padding: 1rem;
+    position: fixed;
+    right: 0;
+    top: calc(#{$header-height} + (2 * #{$header-v-padding}));
+    z-index: 2;
 
-      li + li {
-        border-top: 1px solid transparentize($color: $white, $amount: .85);
-        padding-top: $distance--xs;
-      }
-
-      @include media('<sm') {
-        display: none;
-      }
-
-
+    li + li {
+      border-top: 1px solid transparentize($color: $white, $amount: 0.85);
+      padding-top: $distance--xs;
     }
 
-
+    @include media("<sm") {
+      display: none;
+    }
+  }
 }
 
-.icone-play{
+.icone-play {
   background-image: url(/assets/img/play.png);
   width: 25px;
   background-repeat: no-repeat;
@@ -315,7 +301,7 @@
   position: relative;
 }
 
-.icone-rocket{
+.icone-rocket {
   background-image: url(/assets/img/rocket.png);
   width: 35px;
   background-repeat: no-repeat;
@@ -323,27 +309,4 @@
   background-size: 100%;
   height: 35px;
   position: relative;
-}
-
-.borda-video{
-  background-color: #1a4c32;
-}
-
-.borda-inicio{
-  border-bottom: 11.8rem solid #1a4c32;
-  border-top: 11.8rem solid #1a4c32;
-  border-left: 5rem solid #1a4c32;
-  border-right: 5rem solid #1a4c32;
-  margin-right: -30px;
-
-  @include media('<lg') {
-    
-    &:first-child{
-      border: 0;
-      position: absolute;
-      z-index: 9;
-    }
-  }
-
- 
 }

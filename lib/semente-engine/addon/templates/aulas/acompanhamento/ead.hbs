@@ -370,13 +370,16 @@
                 {{curso_selected.name}}
                 <span class="fs--xs fw--3 fs-i color-blue-navy-20 m-left--xxs">(
 
-                  <span class="inline-flex m-right--xxs">{{#each inst_selected.acompanhamentosCursoInstituicao as |acomp|}}
-                    {{#if (equalstr acomp.modulo.id curso_selected.id)}}
-                      {{if acomp.matriculas acomp.matriculas '0'}}
-                    {{/if}}
-                  {{/each}}</span>
+                  <span class="inline-flex m-right--xxs">
+                    {{#each inst_selected.acompanhamentosCursoInstituicao as |acomp|}}
+                      {{#if (equalstr acomp.modulo.id curso_selected.id)}}
+                        {{if acomp.matriculas acomp.matriculas '0'}}
+                        {{acomp.modulo.id}}
+                      {{/if}}
+                    {{/each}}
+                  </span>
 
-                  pessoas
+                  pessoassdas 
                 )</span>
               </h2>
             </hgroup>

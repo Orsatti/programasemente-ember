@@ -195,6 +195,27 @@
         </div>
     </div>
 
+    <div class="flex-row gap-sm inline-flex justify-start">
+        <h2 class="title-3">Calendários</h2>
+        <span class="form__msg form__msg--for-title form__msg--right form__msg--error fs--sm animated slow m-left--sm" id="error_publico" aria-live="polite"></span>
+    </div>
+    <div class="flex flex-col flow-xs">
+        <h3 class="title-4">Este conteudo é ativo em quais calendários?</h3>
+        <div class="flex flex-col flow-xs">
+        {{#each calendarios as |cal|}}
+            <div class="checkbox">
+            <input  class="checkbox__input j-publico"
+                    id="cal-{{cal.id}}"
+                    checked={{if (containInListID cal.id conteudo.calendarios) "checked"}}
+                    onchange={{action 'calendariosChanged' value='target.value'}}
+                    type="checkbox"
+                    value={{cal.id}} />
+            <label class="checkbox__label" for="cal-{{cal.id}}">{{cal.nome}}</label>
+            </div>
+        {{/each}}
+        </div>
+    </div>
+
 
     {{#if (equalstr agrupamentoAula "true")}}
         <div class="flex flex-col flow-xs">

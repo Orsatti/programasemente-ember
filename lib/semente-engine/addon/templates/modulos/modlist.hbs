@@ -48,18 +48,12 @@
               </span>
               <div class="class__info flow-md">
                 <div class="trail__presentation-container">
-                  <div id="container_video" class="trail__presentation-container-video">
-                  </div>
+                 {{mod-intro-video-container modulo=model matricula=matricula}}
                 </div>
-                {{!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/f5RVy0sV1bw"
-                  title="YouTube video player" frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe> --}}
               </div>
             </div>
           </div>
         </li>
-        <div style="display: none;">{{renderVideo}}</div>
         {{#if loadBlocos}}
         {{#each sortedAtividades as |atividade idx|}}
         <li class="timeline__mark{{if (equalstr (get listaStartUnit idx) 1) ' timeline__mark--start-unit'}}">

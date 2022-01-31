@@ -48,6 +48,15 @@
       margin-top: $distance--xxs;
     }
 
+    & img{
+      width: 60%;
+      text-align: center;
+      margin: auto;
+      position: relative;
+      display: grid;
+      margin-bottom: 2rem;
+    }
+
   }
 
   &__order {
@@ -203,14 +212,6 @@
     //   font-size: $font-size--sm;
     // }
 
-    &img{
-      width: 60%;
-      text-align: center;
-      margin: auto;
-      position: relative;
-      display: grid;
-      margin-bottom: 2rem;
-    }
 
   }
 
@@ -399,6 +400,8 @@
     [class*='__pos-statement'] {
       font-weight: inherit;
     }
+
+    
 
   }
 

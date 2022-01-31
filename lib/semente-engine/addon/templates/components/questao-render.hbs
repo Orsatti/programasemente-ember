@@ -26,7 +26,7 @@
                     (4) Os elementos 'quiz__nav-arrows' devem receber a classe 'quiz__nav-arrows--clickable', quando o usuário puder ir ou voltar de uma questão para outra.
                 -->
         <ul class="quiz__answers">
-          <img src="/dist/assets/img/grafico-tristeza.jpg.PNG" alt="">
+          <img class="quiz__answers--imagem-questao" src="https://res.cloudinary.com/douglaslinhares/image/upload/v1562782555/Covers%20Ensino%20M%C3%A9dio/ano1__aula2.jpg" alt="">
           {{#each sortedAlternativas as |alternativa idx|}}
           <li class="quiz__answer tooltip tooltip--lemon" id="option_{{questao.id}}_{{alternativa.id}}">
             <span class="tooltip__bubble tooltip__bubble--above">Sua resposta</span>

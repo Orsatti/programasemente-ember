@@ -203,6 +203,15 @@
     //   font-size: $font-size--sm;
     // }
 
+    &img{
+      width: 60%;
+      text-align: center;
+      margin: auto;
+      position: relative;
+      display: grid;
+      margin-bottom: 2rem;
+    }
+
   }
 
   &__answer-text {

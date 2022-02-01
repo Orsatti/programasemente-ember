@@ -54,7 +54,11 @@
       margin: auto;
       position: relative;
       display: grid;
-      margin-bottom: 2rem;
+      margin: 2rem auto;
+    }
+
+    & .texto2{
+      font-size: 0.8rem;
     }
 
   }
@@ -111,6 +115,19 @@
         margin-top: $distance--xs;
       }
 
+    }
+
+    & table, td, th{
+      font-style: normal;
+    border: 1px solid #8895a0;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 00.8rem;
+    }
+
+    & table{
+      width: 100%;
+      border-collapse: collapse;
     }
 
     &--poetry {

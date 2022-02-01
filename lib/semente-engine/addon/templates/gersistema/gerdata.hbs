@@ -397,7 +397,8 @@
                     maxlength="15" 
                     id="new_user_phone" 
                     type="textbox" 
-                    {{!-- onkeyup={{action 'replacePhone'}} --}}
+                    onloadstart={{action 'replacePhone'}}
+                    onkeydown={{action 'replacePhone'}}
                     value={{new_user_phone}} 
                     data-type="text" 
                     data-context="phone"

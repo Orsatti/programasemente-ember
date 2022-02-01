@@ -50,6 +50,15 @@
 
   }
 
+  & img{
+    width: 60%;
+    text-align: center;
+    margin: auto;
+    position: relative;
+    display: grid;
+    margin-bottom: 2rem;
+  }
+
   &__order {
     @include title-aux;
   }
@@ -103,6 +112,20 @@
       }
 
     }
+
+    & table, td, th{
+      font-style: normal;
+    border: 1px solid #8895a0;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    font-size: 00.8rem;
+    }
+
+    & table{
+      width: 100%;
+      border-collapse: collapse;
+    }
+
 
     &--poetry {
       display: flex;

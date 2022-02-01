@@ -8,5 +8,5 @@ export default DS.Model.extend({
         return dominioFormat[this.get('idx') - 1];
     }),
     name: DS.attr(),
-    competencias: DS.hasMany('comp', { async: true }),
+    comps: DS.hasMany('comp', { async: true }),
 });

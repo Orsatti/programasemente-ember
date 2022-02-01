@@ -35,7 +35,7 @@ export default DS.Model.extend({
     plataformaAno: DS.belongsTo('plataforma-ano', { async: true }),
     aplicacoes: DS.hasMany('aplicacao-plataforma-aula', { async: true }),
     unidade: DS.belongsTo('unidade', { async: true }),
-    competencias: DS.hasMany('comp', { async: true }),
+    comps: DS.hasMany('comp', { async: true }),
     atividade: DS.belongsTo('atividade', { async: true }),
     tarefas: DS.hasMany('tarefa', { async: true }),
     avaliacoes: DS.hasMany('avaliacao', { async: true }),

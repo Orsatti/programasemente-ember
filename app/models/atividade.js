@@ -14,10 +14,11 @@ export default DS.Model.extend({
     quiz: DS.attr(),
     quizdata: DS.attr(),
     teoria: DS.attr(),
-    coverImage: DS.attr(), 
+    coverImage: DS.attr(),
     instrutor: DS.hasMany('pessoa', {async: true}),
     secoes: DS.hasMany('secao', {async: true}),
     modulo: DS.belongsTo('modulo', {async: true}),
+    comps: DS.hasMany('comp', {async: true}),
     acompanhamentosAtividadeInstituicao: DS.hasMany('acompanhamento-atividade-instituicao',{async: true}),
     backgroundImage: Ember.computed('coverImage', function() {
         return new Ember.String.htmlSafe("background-image: url('" + this.get('coverImage') + "');");

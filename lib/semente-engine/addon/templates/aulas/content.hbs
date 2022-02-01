@@ -200,7 +200,7 @@
         <section>
             <h2 class="sr-only">Informações da aula</h2>
             <ul class="flow-sm">
-            {{#if aula.competencias}}
+            {{#if aula.comps}}
                 <li>
                 <div class="flex flex-row items-center">
                     <span class="flex flex-row items-center">
@@ -208,7 +208,7 @@
                       <span class="m-left--xs">Competências:</span>
                     </span>
                     <span class="flex flex-row gap-xs flow-h-xs m-left--xs m-top--xs">
-                    {{#each aula.competencias as |comp|}}
+                    {{#each aula.comps as |comp|}}
                         <span class="capsule capsule--xxs capsule--{{comp.dominio.dominioFormatIdx}}">{{comp.name}}</span>
                     {{/each}}
                     </span>
@@ -307,7 +307,7 @@
               <div class="form-group">
                 <label class="form-group__label">Sugestão (mínimo de 80 caracteres)</label>
                 <textarea class="form-group__input" id="suggestion" onkeyup={{action 'checkFill'}}></textarea>
-                
+
               </div>
 
               <div class="form-group">
@@ -325,7 +325,7 @@
               </div>
             </div>
 
-           
+
             <div class="suggestions__sent" id="suggestionSent">
               <button class="btn-close">
                 <span class="btn__label icon icon-x"></span>
@@ -336,7 +336,7 @@
 
           </aside>
           {{/if}}
-          
+
 
 
       </section>

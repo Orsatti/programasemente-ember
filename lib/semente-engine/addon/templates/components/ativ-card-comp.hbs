@@ -34,8 +34,8 @@
     <div class="class__skills skills flow-xs">
       <h2 class="title-aux">Competências alvo</h2>
       <ul class="skills__list flow-xxs">
-        {{#each atividade.aula.competencias as |c|}}
-        <li>{{c.name}}</li>
+        {{#each atividade.comps as |c|}}
+        <li>{{c.id}}</li>
         {{/each}}
       </ul>
     </div>
@@ -79,7 +79,7 @@
     <div class="class__skills skills flow-xs">
       <h2 class="title-aux">Competências alvo</h2>
       <ul class="skills__list flow-xxs">
-        {{#each atividade.aula.competencias as |c|}}
+        {{#each atividade.comps as |c|}}
         <li>{{c.name}}</li>
         {{/each}}
       </ul>
@@ -126,7 +126,7 @@
     <div class="class__skills skills flow-xs">
       <h2 class="title-aux">Competências alvo</h2>
       <ul class="skills__list flow-xxs">
-        {{#each atividade.aula.competencias as |c|}}
+        {{#each atividade.comps as |c|}}
         <li>{{c.name}}</li>
         {{/each}}
       </ul>
@@ -172,7 +172,7 @@
     <div class="class__skills skills flow-xs">
       <h2 class="title-aux">Competências alvo</h2>
       <ul class="skills__list flow-xxs">
-        {{#each atividade.aula.competencias as |c|}}
+        {{#each atividade.comps as |c|}}
         <li>{{c.name}}</li>
         {{/each}}
       </ul>
@@ -219,7 +219,7 @@
     <div class="class__skills skills flow-xs">
       <h2 class="title-aux">Competências alvo</h2>
       <ul class="skills__list flow-xxs">
-        {{#each atividade.aula.competencias as |c|}}
+        {{#each atividade.comps as |c|}}
         <li>{{c.name}}</li>
         {{/each}}
       </ul>
@@ -266,7 +266,7 @@
     <div class="class__skills skills flow-xs">
       <h2 class="title-aux">Competências alvo</h2>
       <ul class="skills__list flow-xxs">
-        {{#each atividade.aula.competencias as |c|}}
+        {{#each atividade.comps as |c|}}
         <li>{{c.name}}</li>
         {{/each}}
       </ul>
@@ -297,7 +297,7 @@
     <span class="class__day">{{dia}} {{mensagem_mes}}</span>
   </span>
 </div>
-{{/if}} 
+{{/if}}
 <div id="card_{{atividade.idx}}" class="timeline__class class class--is-disabled">
 
   <span class="timeline__status timeline__status--is-locked">
@@ -313,7 +313,7 @@
     <div class="class__skills skills flow-xs">
       <h2 class="title-aux">Competências alvo</h2>
       <ul class="skills__list flow-xxs">
-        {{#each atividade.aula.competencias as |c|}}
+        {{#each atividade.comps as |c|}}
         <li>{{c.name}}</li>
         {{/each}}
       </ul>

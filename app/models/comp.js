@@ -6,5 +6,6 @@ export default DS.Model.extend({
     dominio: DS.belongsTo('dominio', { async: true }),
     quizesComp: DS.hasMany('quiz-comp', { async: true }),
     aulas: DS.hasMany('aula', { async: true }),
+    atividades: DS.hasMany('atividade', { async: true }),
     //normativas: DS.hasMany('normativa', { async: true }),
 });

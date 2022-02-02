@@ -162,11 +162,6 @@ thisRoute=thisRoute}}
         <span>Códigos</span>
       </button>
 
-
-
-
-
-
       {{#if selectedInstTabs.areas}}
       <button class="j-areaFocus tabs__not-tab btn btn--ghost btn--xxs m-left--auto m-right--md" {{action 'newArea' }}>
         <span class="btn__label">Nova Turma</span>
@@ -284,6 +279,7 @@ thisRoute=thisRoute}}
       </div>
     </section>
 
+
     <section class="sections__subsection flow-md animated fadeInLeftShort faster d1000">
       <h3 class="main__subsubtitle">Número de usuários</h3>
       <div class="flex flex-row flex-wrap gap-sm flow-h-sm">
@@ -325,7 +321,7 @@ thisRoute=thisRoute}}
             disabled="true">
           {{/if}}
         </div>
-                    
+
             </div>
           </section>
           <!-- /selected institution tab information -->
@@ -489,7 +485,7 @@ thisRoute=thisRoute}}
 
         {{#each segmentos as |seg| }}
 
-        <div class="col-xs-12 col-lg-3 flow-sm">
+        <div class="col-xs-12 col-lg-2 flow-sm">
           <h5 class="title-aux">{{seg.titulo}}</h5>
 
           {{#each seg.plataformaAnos as |platAno|}}
@@ -764,7 +760,7 @@ thisRoute=thisRoute}}
                 <label class="form-group__label">Radical (para códigos)</label>
                 <input class="form-group__input" type="textbox" id="new_inst_rad" value={{new_inst_rad}}>
               </div>
-         
+
             </div>
             <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
             <!-- comentar depois de estilizar -->
@@ -806,10 +802,10 @@ thisRoute=thisRoute}}
               </div>
             </div>
           </section>
-   
 
-      
-    
+
+
+
           <section class="sections__subsection">
             <h4 class="main__subsubtitle">Sistemas</h4>
             <div class="checkbox m-bottom--md">

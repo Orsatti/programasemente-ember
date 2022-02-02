@@ -484,31 +484,16 @@
 
       </section>
 
-
-
       <!-- ANOS SÓ É EXIBIDO PARA ALUNOS E INSTRUTORES -->
       {{#if (equalstr activeProfile "instrutor")}}
       <section class="flow-md {{unless editUser (if (equalstr activeProfile "
         instrutor") 'animated fadeInLeftShort faster d250' )}}">
         <h4 class="modal__subtitle">Você é professor aplicador?</h4>
         <div class="row">
-          {{!-- <div class="form-group__container"> --}}
-            {{!-- <div class="form-group w100"> --}}
-
-              {{!-- {{#each segmentos as |seg| }} --}}
-
               <div class="col-xs-12 col-lg-3 flow-sm">
-                {{!-- <h5 class="title-aux">{{seg.titulo}}</h5> --}}
-                {{!-- <h5 class="title-aux">Título do segmento</h5> --}}
-                {{!-- {{#each seg.plataformaAnos as |platAno|}}
-                {{#if (isinarray platAno pessoa.instituicao.plataformaAnos)}} --}}
                 <ul>
                   <li>
                     <div class="checkbox">
-                      {{!-- <input class="j-validate-aplicador-child checkbox__input" checked={{if (isinarray platAno
-                        pessoa.plataformaAnos) "checked" '' }} id="plat_ano{{platAno.id}}" onchange={{action
-                        (action "selectAno" platAno) value='target.checked' }} type="checkbox">
-                      <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label> --}}
                       {{input
                       class="checkbox__input"
                       id="plat_ano00000000"
@@ -542,16 +527,8 @@
 
               {{#each segmentos as |seg| }}
 
-              <div class="col-xs-12 col-lg-3 flow-sm">
+              <div class="col-xs-12 col-lg-2 flow-sm">
                 <h5 class="title-aux">{{seg.titulo}}</h5>
-                {{!-- <div class="row">
-                  <div class="checkbox">
-                    <input class="checkbox__input" type="checkbox" id="segmento{{seg.id}}" onchange={{action
-                      (action "selectSegmento" seg) value='target.checked' }}>
-                    <label class="checkbox__label" for="segmento{{seg.id}}">{{seg.titulo}}</label>
-                  </div>
-                </div> --}}
-
                 {{#each seg.plataformaAnos as |platAno|}}
                 {{#if (isinarray platAno inst_selected.plataformaAnos)}}
                 <ul>
@@ -582,9 +559,8 @@
 
               {{#each segmentos as |seg| }}
 
-              <div class="col-xs-12 col-lg-3 flow-sm">
+              <div class="col-xs-12 col-lg-2 flow-sm">
                 <h5 class="title-aux">{{seg.titulo}}</h5>
-
                 {{#each seg.plataformaAnos as |platAno|}}
                 {{#if (isinarray platAno inst_selected.plataformaAnos)}}
                 <ul>

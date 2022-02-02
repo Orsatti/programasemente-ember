@@ -412,12 +412,12 @@ thisRoute=thisRoute}}
               </div>
               <div class="flow-h-sm" id="areaItemOptions{{turma.id}}">
 
-                {{#if (equalstr pessoaLogged.role "admin")}}
-                <button class="btn btn--text btn--xxs color-error" {{action 'deleteArea' turma.id}}>
+                {{!-- {{#if (equalstr pessoaLogged.role "admin")}} --}}
+                <button class="btn btn--text btn--xxs color-error" style="width: 90px;"{{action 'deleteArea' turma.id}}>
                   {{!-- <span class="btn__icon icon-trash-2"></span> --}}
                   <span class="btn__label">Remover</span>
                 </button>
-                {{/if}}
+                {{!-- {{/if}} --}}
                 <button class="btn btn--ghost btn--xxs" style="width: 90px;" {{action 'editArea' turma.id}}>
                   {{!-- <span class="btn__icon icon-edit"></span> --}}
                   <span class="btn__label">Editar</span>
@@ -582,12 +582,12 @@ thisRoute=thisRoute}}
             </div>
 
             <div class="flow-h-sm m-left--auto" id="areaItemOptions{{turma.id}}">
-              {{#if (equalstr pessoaLogged.role "admin")}}
-              <button class="j-areaFocus btn btn--xxs btn--text color-error" {{action 'deleteArea' turma.id}}>
+              {{!-- {{#if (equalstr pessoaLogged.role "admin")}} --}}
+              <button class="j-areaFocus btn btn--xxs btn--text color-error" style="width: 90px;" {{action 'deleteArea' turma.id}}>
                 {{!-- <span class="btn__icon icon-trash-2"></span> --}}
                 <span class="btn__label">Remover</span>
               </button>
-              {{/if}}
+              {{!-- {{/if}} --}}
               <button class="j-areaFocus btn btn--leaf btn--xxs" style="width: 90px;" {{action 'editArea' turma.id}}>
                 {{!-- <span class="btn__icon icon-edit"></span> --}}
                 <span class="btn__label">Editar</span>

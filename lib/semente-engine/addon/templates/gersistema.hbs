@@ -649,6 +649,7 @@ thisRoute=thisRoute}}
       <p><a {{action 'downloadCodigos'}}><b><u>Clique aqui</u></b></a> para baixar a relação de códigos disponíveis</p>
     </header>
     <div class="flex">
+      {{#if codigos}}
       <div class="institutions__codes list list--striped">
         <table>
           <tr>
@@ -685,6 +686,9 @@ thisRoute=thisRoute}}
           {{/each}}
         </table>
       </div>
+      {{else}}
+      <div>CARREGANDO</div>
+      {{/if}}
     </div>
   </section>
   {{/if}}

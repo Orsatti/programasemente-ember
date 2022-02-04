@@ -1,6 +1,5 @@
 <!-- Header geral -->
-{{!-- <header class="l-user-header l-user-header--themed l-user-header--{{if (equalstr pessoa.role 'aluno') pessoa.role parentController.toggleRole}} flex items-start gap-lg"> --}}
-<header class="l-user-header l-user-header--themed l-user-header--{{if (equalstr pessoa.role 'instrutor') parentController.toggleRole pessoa.role}} flex items-start gap-lg">
+<header class="l-user-header l-user-header--themed l-user-header--{{if (equalstr pessoa.role 'instrutor') parentController.role pessoa.role}} flex items-start gap-lg">
   <picture class="l-user-header__avatar avatar avatar--lg flex justify-center" {{action 'toggleAvatarModal' }}>
     {{#if pessoa.uriAvatar}}
       <img class="avatar__img" src={{pessoa.uriAvatar}} alt="{{pessoa.name}}">
@@ -16,7 +15,7 @@
       <div class="flow-xxs">
         <div class="flex flex-row flex-wrap items-baseline gap-xs flow-xs">
           <span class="title-1">{{firstnameoremailpart pessoa.name}}</span>
-          {{#if (equalstr parentController.toggleRole 'aluno')}}
+          {{#if (equalstr parentController.role 'aluno')}}
             <button class="btn btn--link m-top--auto color-white">
               <span class="btn__label" {{action 'invalidateSession' }}>Não é você? Faça logout</span>
             </button>
@@ -34,7 +33,7 @@
             <span>Gestor{{#if (equalstr pessoa.genero 'feminino')}}a{{/if}}</span>
           {{else if (equalstr pessoa.role 'admin')}}
             <span>Administrador</span>
-          {{else if (equalstr parentController.toggleRole 'instrutor')}}
+          {{else if (equalstr parentController.role 'instrutor')}}
 
             {{#if isAplicador}}
               <span>Professor{{#if (equalstr pessoa.genero 'feminino')}}a{{/if}} aplicador{{#if (equalstr pessoa.genero
@@ -58,7 +57,7 @@
 
           {{else}}
             {{#if parentController}}
-              {{parentController.toggleRole}}
+              {{parentController.role}}
             {{else}}
               {{pessoa.role}}
             {{/if}}
@@ -70,7 +69,7 @@
             <!-- veta quem não tem filho -->
             {{#if pessoa.dependentes}}
               <!-- alterna entre perfis -->
-              {{#if (equalstr parentController.toggleRole 'instrutor')}}
+              {{!-- {{#if (equalstr parentController.role 'instrutor')}}
                 <button class="btn btn--link color-white" type="button" {{action 'toggleRole' 'responsavel' }}>
                   <span class="btn__label">Visualizar como responsável</span>
                 </button>
@@ -78,7 +77,7 @@
                 <button class="btn btn--link color-white" type="button" {{action 'toggleRole' 'instrutor' }}>
                   <span class="btn__label">Visualizar como professor</span>
                 </button>
-              {{/if}}
+              {{/if}} --}}
             {{/if}}
           {{/unless}}
         {{/if}}

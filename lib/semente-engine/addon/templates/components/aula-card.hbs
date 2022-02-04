@@ -1,9 +1,9 @@
 {{#if (or (equalstr situacao selectedSituacao) (equalstr selectedSituacao ""))}}
   <div class="media {{if (not aula.hasContent) 'media--card media--card--is-disabled' 'media--card'}}">
     <picture class="media__picture">
-      <img class="media__thumb" id="thumbnail-aula-card{{aula.id}}" src="{{aulaThumb}}" alt="{{aula.titulo}}"/>
+      <img class="media__thumb" id="thumbnail-aula-card{{aula.id}}" src="{{aula.thumbnail}}" alt="{{aula.titulo}}"/>
     </picture>
-
+    {{aulaThumb}}
     <div class="media__body flow-md self-stretch">
       <div class="flow-xxs">
         {{#if aula.unidade}}
@@ -37,18 +37,18 @@
           <span>{{situacao}}</span>
         {{/if}}
       </span>
-   
+
       {{#if (not aula.hasContent)}}
         <div class="btn btn--disabled btn--ghost btn--xxs">
-          <span class="icon-lock m-right--xs"></span>  
+          <span class="icon-lock m-right--xs"></span>
           <span>Ainda não há materiais</span>
         </div>
       {{else}}
-        <button class="btn btn--ghost btn--xxs" id="header-indicadores" {{action 'transitToAula' aula.id}}>
+        {{#link-to 'aulas.content' aula.id class="btn btn--ghost btn--xxs"}}
           <span class="btn__label">Ver materiais</span>
-        </button>
+        {{/link-to}}
       {{/if}}
-    
+
     </div>
 
   </div>

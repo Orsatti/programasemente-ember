@@ -362,23 +362,25 @@
               </div>
             </div>
           </div>
-
+          {{#if roleError}}<span id="role-error" class="color-error-30 fs--xs">{{errorMsgRole}}</span>{{/if}}
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="form-group w100">
             <label class="form-group__label" for="new_user_name">Nome</label>
-            <input class="form-group__input j-validate-basic" id="new_user_name" type="textbox" value={{new_user_name}}
+            <input class="form-group__input" id="new_user_name" type="textbox" value={{new_user_name}}
               data-type="text" data-required="true" data-context="nome">
           </div>
+          {{#if nameError}}<span id="name-error" class="color-error-30 fs--xs">{{errorMsgName}}</span>{{/if}}
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="form-group w100">
             <label class="form-group__label" for="new_user_login">Login</label>
-            <input class="form-group__input j-validate-basic" id="new_user_login" type="textbox"
+            <input class="form-group__input" id="new_user_login" type="textbox"
               value={{new_user_login}} data-type="text" data-required="true" data-context="login">
           </div>
+          {{#if loginError}}<span id="login-error" class="color-error-30 fs--xs">{{errorMsgLogin}}</span>{{/if}}
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-4">
@@ -432,6 +434,7 @@
             <label class="form-group__label" for="new_user_login">Senha</label>
             <input class="form-group__input" id="new_user_senha" type="textbox" placeholder="Senha aleatória se não preenchido"
               value={{new_user_senha}} data-type="text" data-context="senha">
+              <div class="text-aux m-top--xxs">Mín. 6 caracteres</div>
           </div>
           {{#if senhaError}}<span id="senha-error" class="color-error-30 fs--xs">{{errorMsgSenha}}</span>{{/if}}
         </div>

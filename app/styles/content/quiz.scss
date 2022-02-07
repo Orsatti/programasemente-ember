@@ -59,6 +59,18 @@
     margin-bottom: 2rem;
   }
 
+  & .sigla-pare{
+    font-size: 1rem;
+    line-height: 2rem;
+    font-weight: 400;
+    width: 50%;
+    margin: 1rem auto;
+    background-color: #009e475c;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #009e47;
+  }
+
   &__order {
     @include title-aux;
   }
@@ -413,6 +425,8 @@
     [class*='__pos-statement'] {
       font-weight: inherit;
     }
+
+   
 
   }
 

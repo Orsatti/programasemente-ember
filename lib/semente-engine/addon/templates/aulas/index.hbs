@@ -3,45 +3,28 @@
                 pessoa=pessoa
                 thisRoute=thisRoute
                 livros = livros
-                togglerole=(action 'toggleRole') }}
+                }}
 
 <section class="flow-xl">
   <h1 class="sr-only">Conteúdo de {{thisRoute}}</h1>
 
   {{#unless (equalstr pessoa.role 'aluno')}}
-    <nav>
-      <ul class="tabs">
-        {{#if (or (equalstr this.parentController.toggleRole 'instrutor') (equalstr pessoa.role 'admin'))}}
-          {{#each this.parentController.segmentosObjects as |seg|}}
-            <li>
-              <button type="button" class="tabs__tab {{if (equalstr selectedSegmento seg.titulo) 'tabs__tab--is-active'}}" {{action 'refreshSelectedSegmento' seg.titulo}}>
-                <span>{{seg.titulo}}</span>
-              </button>
-            </li>
-          {{/each}}
-        {{else}}
-          {{#each pessoa.dependentes as |dep|}}
-            <li>
-              <button type="button" class="tabs__tab {{if (equalstr selectedDependente.id dep.id) 'tabs__tab--is-active'}}" {{action 'refreshSelectedDependente' dep.id}}>
-                <span>{{dep.name}}</span>
-                <span class="fs-i fw--3 m-left--xxs">({{dep.plataformaAnos.firstObject.segmento.titulo}}, {{dep.plataformaAnos.firstObject.name}})</span>
-              </button>
-            </li>
-          {{/each}}
-
-          <!-- Só aparece se possui filho de (Infantil ou Fund I) e (Fund II ou Médio) se um dos dependentes tiver no fund 2 ou medio -->
-          {{#if faltaAlguem}}
-            <li class="m-left--auto">
-              <button class="btn btn--text tabs__not-tab">Sentindo falta de alguém?</button>
-            </li>
-          {{/if}}
-        {{/if}}
-      </ul>
-    </nav>
+  <nav>
+    <ul class="tabs">
+      {{#each segmentos as |seg|}}
+      <li>
+        <button type="button" class="tabs__tab {{if (equalstr selectedSegmento.titulo seg.titulo) 'tabs__tab--is-active'}}"
+          {{action 'refreshSelectedSegmento' seg}}>
+          <span>{{seg.titulo}}</span>
+        </button>
+      </li>
+      {{/each}}
+    </ul>
+  </nav>
   {{/unless}}
 
   <div class="l-dots-between">
-    
+
     <aside class="l-dots-between__side">
       <h1 class="sr-only">Filtros de conteúdos</h1>
       <form autocomplete="off" class="flex flex-col flow-md">
@@ -56,23 +39,20 @@
           Fim do exemplo
           ==============
         -->
-        {{#if (equalstr this.parentController.toggleRole 'instrutor')}}
+        {{#unless (equalstr pessoa.role 'aluno')}}
           <div class="two-col-wrap">
-            {{#each pessoa.plataformaAnos as |plat_ano|}}
-              {{#if (equalstr plat_ano.segmento.titulo selectedSegmento)}}
-                <button class="btn btn--as-filter {{if (equalstr selectedAno plat_ano.name) 'btn--is-active'}}" {{action 'refreshSelectedAno' plat_ano}} type="button">
+            {{#each selectedSegmento.plataformaAnos as |plat_ano|}}
+                <button class="btn btn--as-filter {{if (equalstr selectedAno.name plat_ano.name) 'btn--is-active'}}" {{action 'refreshSelectedAno' plat_ano}} type="button">
                   <span class="btn__label">{{plat_ano.name}}</span>
                 </button>
-              {{/if}}
             {{/each}}
           </div>
-        {{/if}}
+        {{/unless}}
 
         <div class="form-group">
           <label class="form-group__label">Busca</label>
           <div class="form-group__wrapper form-group__wrapper--search">
-            <input class="form-group__input" type="text" id="aulapesquisa" value={{search}}
-              {{action 'atualizaAulas' on="input"}}>
+            {{input class="form-group__input" type="text" id="aulapesquisa" value=search}}
           </div>
           <a class="form__aux-link" onclick={{action 'eraseText'}}>Limpar busca</a>
         </div>
@@ -93,7 +73,7 @@
         <div class="form-group">
           <label class="form-group__label">Ordenação</label>
           <div class="form-group__wrapper form-group__wrapper--select">
-            <select class="form-group__input" id="order" {{action 'atualizaAulas' on="change"}}>
+            <select class="form-group__input" id="order"  onchange={{action 'refreshOrdem' value='target.value'}}>
               <option selected="selected" value="0">Ordem Crescente</option>
               <option value="1">Ordem Decrescente</option>
             </select>
@@ -104,74 +84,16 @@
 
     <section class="l-dots-between__content flow-md">
       <hgroup class="divider p-bottom--lg">
-        <h1 class="sr-only">Lista de conteúdos do {{selectedAno}}</h1>
-
+        <h1 class="sr-only">Lista de conteúdos do {{selectedAno.name}}</h1>
         <div class="flex flex-row items-center gap-lg">
-          <h2 class="title-4">{{selectedAno}}<span class="fs--xs fw--3 fs-i color-blue-navy-20"> ({{aulasFiltradas.length}}  {{if isBloco 'blocos' 'aulas'}})</span></h2>
-
-        <!-- AQUI É O BLOCO PARA LIVROS EM MULTI IDIOMA -->
-
-
-          <!-- CASO ONDE PROFESSOR TEM ACESSO A MATERIAIS EM UM IDIOMA -->
-          {{!-- <span class="flex flex-row gap-sm items-baseline m-left--auto">
-            <button class="btn btn--ghost btn--xxs">
-              <span class="btn__label">Livro do Aluno</span>
-            </button>
-            <button class="btn btn--ghost btn--xxs">
-              <span class="btn__label">Livro do Professor</span>
-            </button>
-          </span> --}}
-
-          <!-- CASO ONDE PROFESSOR TEM ACESSO A MATERIAIS EM DOIS IDIOMAS -->
-       <!--   <span class="flex flex-row gap-md items-baseline m-left--auto">
-            {{! each perfil de material que tem acesso --}}
-              <span class="flex flex-row gap-xxs items-center">
-                <span class="title-aux">Livro do Aluno
-                  {{! if pode ver material além do aluno. se só puder ver de aluno, não precisa escrever ":" --}}:{{! /if --}}</span>
-
-                <span class="btn-group">
-                  {{!-- for each idioma --}}
-                    <button class="btn btn--ghost btn--xxs">
-                      <span class="btn__label">pt-br</span>
-                    </button>
-                  {{! /each --}}
-                  <button class="btn btn--ghost btn--xxs">
-                    <span class="btn__label">en-us</span>
-                  </button>
-                </span>
-              </span>
-
-              <span class="flex flex-row gap-xxs items-center">
-                <span class="title-aux">Livro do Professor:</span>
-
-                <span class="btn-group">
-                  {{!-- for each idioma --}}
-                    <button class="btn btn--ghost btn--xxs">
-                      <span class="btn__label">pt-br</span>
-                    </button>
-                  {{! /each --}}
-                  <button class="btn btn--ghost btn--xxs">
-                    <span class="btn__label">en-us</span>
-                  </button>
-                </span>
-              </span>
-            {{! /each--}}
-          </span> -->
-
+          <h2 class="title-4">{{selectedAno.name}}<span class="fs--xs fw--3 fs-i color-blue-navy-20"> ({{aulasFiltradas.length}}  {{if isBloco 'blocos' 'aulas'}})</span></h2>
         </div>
       </hgroup>
-
-      <ul id="card-list-{{selectedDependente.id}}" class="l-card-list animated slow {{if noCards 'd--none'}}">
+      <ul id="card-list-{{pessoaId}}" class="l-card-list animated slow {{if noCards 'd--none'}}">
         {{#each aulasFiltradas as |aulaFiltrada|}}
-          {{#if (equalstr aulaFiltrada.plataformaAno.segmento.titulo selectedSegmento)}}
-            {{#if (equalstr aulaFiltrada.plataformaAno.name selectedAno)}}
-              {{#if (containStr subStr = search mainStr = aulaFiltrada.titulo)}}
-                <li>
-                  {{aula-card transit=(action 'goToAula') aula=aulaFiltrada pessoa=selectedDependente selectedSituacao=selectedSituacao}}
-                </li>
-              {{/if}}
-            {{/if}}
-          {{/if}}
+          <li>
+            {{aula-card aula=aulaFiltrada pessoa=pessoa selectedSituacao=selectedSituacao}}
+          </li>
         {{/each}}
       </ul>
 

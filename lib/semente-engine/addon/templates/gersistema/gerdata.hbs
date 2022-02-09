@@ -497,32 +497,21 @@
                 <ul>
                   <li>
                     <div class="checkbox">
-                      {{input
-                      class="checkbox__input"
-                      id="plat_ano00000000"
-                      name="plat_ano00000000"
+                      <input class="checkbox__input"
+                      id="new_user_aplicador"
                       type="checkbox"
-                      checked=pessoa_selected.isAplicador
-                      data-type="aplicador"
-                      data-required="false"
-                      change=(action 'checkaplicador')
-                      }}
-                      <label class="checkbox__label" for="plat_ano00000000">Sim, eu sou professor aplicador
-                        do
-                        Programa Semente.</label>
+                      checked={{new_user_aplicador}}
+                      onchange={{action 'checkaplicador'}}
+                      {{!-- data-type="aplicador"
+                      data-required="false" --}} >
+                      <label class="checkbox__label" for="new_user_aplicador">Sim, eu sou professor aplicador do Programa Semente.</label>
                     </div>
                   </li>
                 </ul>
-                {{!-- {{/if}}
-                {{/each}} --}}
-
               </div>
-              {{!-- {{/each}} --}}
-              {{!--
-            </div> --}}
           </div>
 
-          {{#if pessoa_selected.isAplicador}}
+          {{#if new_user_aplicador}}
           <section class="blink animated fadeIn fast flow-md">
             <h4 class="title-4">Você aplica em quais séries?</h4>
             <span id="error_aplicador" class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>

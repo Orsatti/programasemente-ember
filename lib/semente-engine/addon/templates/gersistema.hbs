@@ -168,6 +168,12 @@ thisRoute=thisRoute}}
       </button>
       {{/if}}
 
+      {{#if selectedInstTabs.informations}}
+      <button class="j-areaFocus tabs__not-tab btn btn--ghost btn--xxs m-left--auto m-right--md" {{action 'deleteInstituicaoModal' inst_selected}} style="width: 90px;">
+        <span class="btn__label">Excluir</span>
+      </button>
+      {{/if}}
+
 
     </div>
 
@@ -992,4 +998,25 @@ thisRoute=thisRoute}}
   <div class="modal__footer">
     <button class="btn btn-primary" type="submit" {{action 'cancelCodigo' }}>Fechar</button>
   </div>
+</aside>
+
+<aside id="confirm_modal" class="modal animated fast fadeIn">
+
+ 
+  <div id="modal-content" class="modal__content modal__content--md modal__content--no-overflow">
+
+    <header class="modal__header">
+      <button class="modal__close btn-close icon-x"  {{action 'closeModal' 'confirm_modal'}}></button>
+
+      <h3 class="modal__title">Tem certeza que deseja Excluir esta escola?</h3>
+    </header>
+    
+    <div class="modal__footer modal__footer--center">
+      <button id="btn-verify-user-name" class="j-areaFocus btn btn--xxs btn--text color-error"{{action 'closeModal' 'confirm_modal'}}>Cancelar</button>
+      <button id="btn-send-password" class="btn" {{action 'deleteInstituicao' }}>Excluir</button>
+    </div>
+  </div>
+
+
+  <div class="modal__overlayer"></div>
 </aside>

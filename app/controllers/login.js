@@ -617,7 +617,6 @@ export default Ember.Controller.extend({
                   
       this.set('busy', true);
       let emailOrPhone = document.getElementById('informe-email').value;
-      debugger;
       if ((this.hasAnyNonNumericalCharacters(emailOrPhone) && !this.validEmail(emailOrPhone)) || (!this.hasAnyNonNumericalCharacters(emailOrPhone) && !this.validPhone(emailOrPhone))) {
         let errorContainer = document.getElementById('error-forgot');
         this.set('error_forgot', 'Por favor, informe um email ou telefone válido');

@@ -9,5 +9,6 @@ export default DS.Model.extend({
     instituicoes: DS.hasMany('instituicao', { async: true }),
     segmento: DS.belongsTo('segmento', { async: true }),
     aulas: DS.hasMany('aula', { async: true }),
-    pessoas: DS.hasMany('pessoa', { async: true })
+    pessoas: DS.hasMany('pessoa', { async: true }),
+    plataformaTurmas: DS.hasMany('plataforma-turma', { async: true }),
 });

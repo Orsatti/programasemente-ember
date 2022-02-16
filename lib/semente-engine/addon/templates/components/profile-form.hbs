@@ -76,6 +76,7 @@
                             <label class="form-group__label" for="cpf">CPF</label>
                             <button class="form-group__link" {{action 'toggleinput' }}>Não possuo cpf</button>
                         </div>
+                        {{correctCPF}}
                         {{input class="j-validate form-group__input"
                         id="cpf"
                         name="cpf"
@@ -280,7 +281,7 @@
                                     id="serie_student{{pessoa.id}}" name="serie" onchange={{action 'refreshSelectedAno'
                                     value='target.value' }} data-type="select" data-required="true">
                                     <option value="" disabled selected>---</option>
-                                    {{#each pessoa.instituicao.plataformaAnos as |pa|}}
+                                    {{#each platAnos as |pa|}}
                                     {{!-- {{#if (isnotinarray pa plataformaAnosToHide)}} --}}
                                     <option value="{{pa.id}}" selected={{if (equalstr pa.id
                                         pessoa.plataformaAnos.firstObject.id) "selected" }}>
@@ -317,7 +318,6 @@
                     </div>
 
                 </div>
-
             </div>
         </div>
         <div class="row">

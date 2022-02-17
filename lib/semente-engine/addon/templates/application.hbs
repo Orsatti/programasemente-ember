@@ -151,7 +151,14 @@
         <a href="#" class="global-nav__link header-indicadores">
           <span>Meu perfil</span></a></li>
 
-        {{#if (or (equalstr acessoFp '1') (equalstr acessoS '1') )}}
+      {{#if acessoS}}
+        <li class="global-nav__item global-nav--mob-only">
+          <a href="https://s.programasemente.com.br" class="global-nav__link header-indicadores" target="_blank">
+            <span>Plataforma S</span>
+          </a>
+        </li>
+      {{/if}}
+        {{!-- {{#if (or (equalstr acessoFp '1') (equalstr acessoS '1') )}}
          <li class="global-nav__item global-nav--mob-only">
            <span class="bg-leaf-30 fw--5 m-left--sm m-top--md p--xs">Minhas Plataformas</span>
          </li> 
@@ -171,7 +178,7 @@
                   <span>Plataforma S</span>
                 </a>
               </li>
-            {{/if}}
+            {{/if}} --}}
 
 
       <li class="global-nav__item global-nav--mob-only" style="margin-top: auto;">
@@ -181,37 +188,37 @@
 
 
 
-{{!-- {{#if (or (equalstr acessoS '1') (equalstr acessoFp '1'))}} --}}
-    <li class="global-nav__item global-nav__submenu-holder hide-on--xs visible-on--lg">
+{{#if acessoS}}{{!-- (equalstr acessoFp '1') --}}
+  <li class="global-nav__item global-nav__submenu-holder hide-on--xs visible-on--lg">
 
-        <a class="global-nav__link j-apps" href="#">
-          <span class="global-nav__avatar-holder"><img src='/assets/img/dark__thumb.png'></span>
-          <span class="m-left--sm title-aux">Minhas plataformas</span>
-          <span class="icon-chevron-down hide-on--xs"></span>
-        </a>
+      <a class="global-nav__link j-apps" href="https://s.programasemente.com.br" target="_blank">
+        {{!-- <span class="global-nav__avatar-holder"><img src='/assets/img/dark__thumb.png'></span> --}}
+        <span class="m-left--sm title-aux">Plataforma S</span>
+        {{!-- <span class="icon-chevron-down hide-on--xs"></span> --}}
+      </a>
 
-        <div class="global-nav__submenu submenu submenu--header submenu--user" id="appsSubmenu">
-           <ul class="submenu__body">
-            {{#if acessoFp}}
-              {{#unless (equalstr InstituicaoId '105')}}
-                <li class="submenu__item">
-                  <a href="https://fp.programasemente.com.br" class="submenu__link" target="_blank">
-                    <span>Programa Semente FP</span>
-                  </a>
-                </li>
-              {{/unless}}
-            {{/if}}
-            {{#if acessoS}}
+      {{!-- <div class="global-nav__submenu submenu submenu--header submenu--user" id="appsSubmenu">
+          <ul class="submenu__body">
+          {{#if acessoFp}}
+            {{#unless (equalstr InstituicaoId '105')}}
               <li class="submenu__item">
-                <a href="https://s.programasemente.com.br" class="submenu__link" target="_blank">
-                  <span>Plataforma S</span>
+                <a href="https://fp.programasemente.com.br" class="submenu__link" target="_blank">
+                  <span>Programa Semente FP</span>
                 </a>
               </li>
-            {{/if}}
-           </ul>
-        </div>
-    </li>
-{{!-- {{/if}} --}}
+            {{/unless}}
+          {{/if}}
+          {{#if acessoS}}
+            <li class="submenu__item">
+              <a href="https://s.programasemente.com.br" >
+                <span>Plataforma S</span>
+              </a>
+            </li>
+          {{/if}}
+          </ul>
+      </div> --}}
+  </li>
+{{/if}}
 
 
 

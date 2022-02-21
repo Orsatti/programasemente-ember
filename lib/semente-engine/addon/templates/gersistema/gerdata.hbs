@@ -671,7 +671,7 @@
                   name="ano" onchange={{action 'refreshSelectedAno' value='target.value' }} data-type="select"
                   data-required="true" data-type="select" data-context="ano">
                   <option selected="selected" value="0">---</option>
-                  {{#each inst_selected.plataformaAnos as |pa|}}
+                  {{#each (orderby inst_selected.plataformaAnos 'idx') as |pa|}}
                   <option value="{{pa.id}}" selected={{if (equalstr pa.id
                     pessoa_selected.plataformaAnos.firstObject.id) "selected" }}>
                     {{pa.name}}</option>

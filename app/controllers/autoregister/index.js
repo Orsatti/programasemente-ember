@@ -7,10 +7,7 @@ export default Ember.Controller.extend({
   transitionToForm: function(e) { this.transitionToRoute('autoregister.form', e.get('id')); },
 
   preventDefault: Ember.run.later(function(){
-    // debugger;
-    // document.getElementById("inicia-cadastro").addEventListener("click", function(event){
-    //   event.preventDefault()
-    // });
+
   }),
 
   currentRole: '',
@@ -32,10 +29,10 @@ export default Ember.Controller.extend({
         // that.transitionToForm(e);
         that.transitionToRoute('autoregister.form', e.get('id'));
       }).catch(function(error) {
-    
+
        // Se existe um erro qualificado
         if (error.errors && error.errors[0].status != null) {
-           
+
           button.innerHTML = 'Iniciar cadastro';
           // Pega alerta
           const errorCompartiment = document.getElementById('codigo-error');
@@ -45,30 +42,30 @@ export default Ember.Controller.extend({
           const msg = errorCompartiment.querySelector('[class*="__msg"]');
           // Pega a identificação do erro
           const errorStatus =  error.errors[0].status;
-          
+
           // Foco no input
           if (input) {
             input.focus();
           }
 
           // Define mensagem de erro, caso seja o erro XYZ
-          let errorMsg; 
+          let errorMsg;
           if ( errorStatus === "400") {
             switch(true) {
               case schoolCode.length == 0:
                 errorMsg = 'Por favor, insira o código fornecido pela escola.';
                 break;
               case schoolCode.length > 0:
-                
+
                 errorMsg = error.errors[0].title
                 break;
-                
+
             }
           } else if (errorStatus === "500") {
             errorMsg = 'Ocorreu um erro no sistema, mas não se preocupe, nossos desenvolvedores já foram alertados.'
           }
-                
-                   
+
+
 
           // Injeta mensagem de erro.
           msg.innerHTML = '<strong>' + errorMsg + '</strong>';
@@ -82,20 +79,20 @@ export default Ember.Controller.extend({
           // Se não existe um erro qualificado
         } else if (error.errors[0].status == null) {
           let errorMsg = 'Não conseguimos conexão com nossos servidores. Por favor, tente novamente em instantes.'
-               
+
           // Pega alerta
           const errorCompartiment = document.getElementById('codigo-error');
           // Pega animação do alerta
           const alertAnimation = errorCompartiment.dataset.animation;
           // Pega container da mensagem a ser escrita
           const msg = errorCompartiment.querySelector('[class*="__msg"]');
-          
+
           // Injeta mensagem de erro.
                msg.innerHTML = '<strong>' + errorMsg + '</strong>';
 
                button.innerHTML = 'Iniciar cadastro';
-              
-              
+
+
 
                // Confere se o elemento já está aparecendo
                if(!errorCompartiment.classList.contains('alert--is-show')) {
@@ -123,7 +120,6 @@ export default Ember.Controller.extend({
 
 
     identifyRole() {
-      //debugger;
       let target = event.target;
       let inputedCode = target.value.trim();
       target.value = inputedCode;

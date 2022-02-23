@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
   busy: false,
   retrievedUsername: '',
   detectIE() {
-   
+
     var ua = window.navigator.userAgent;
 
     // Test values; Uncomment to check result …
@@ -75,7 +75,7 @@ export default Ember.Controller.extend({
       firstName,
       lastName
     }
-    
+
     let response = await fetch(`${ENV.APP.host}/${ENV.APP.namespace}/pessoas/CheckPossibleCities`, {
       method: 'POST',
       headers: {
@@ -112,7 +112,7 @@ export default Ember.Controller.extend({
       .toArray()
       .filter(x => x.schoolCity == this.get('answers').toArray().filter(x => x.pergunta == 5).get('firstObject').resposta)
       .map(x => x.schoolName);
-      
+
     var states = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.whitespace,
       queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -134,7 +134,7 @@ export default Ember.Controller.extend({
       }
   );
   },
-  
+
   async resgatarLogin() {
     let isAluno = this.get('answers').toArray().filter(x => x.pergunta == 1).get('firstObject').resposta == 'Sim';
     let dateOfBirth = this.get('answers').toArray().filter(x => x.pergunta == 2).get('firstObject')?.resposta;
@@ -151,7 +151,7 @@ export default Ember.Controller.extend({
       city,
       schoolName
     }
-    
+
     let response = await fetch(`${ENV.APP.host}/${ENV.APP.namespace}/pessoas/RetrieveLogin`, {
       method: 'POST',
       headers: {
@@ -159,11 +159,11 @@ export default Ember.Controller.extend({
       },
       body: JSON.stringify(data),
     });
-    
+
     let successResgate = response.status == 200 ? 1 : 0;
     this.set('successResgate', successResgate);
 
-    let responseJson = await response.json();  
+    let responseJson = await response.json();
     this.set('loginIsEmail', responseJson.isEmail);
     if (successResgate == 1){
       this.set('retrievedUsername', responseJson.username.replace(/["']/g, ""));
@@ -178,17 +178,17 @@ export default Ember.Controller.extend({
      this.set('mostraAviso', false)
     } else {
       this.set('mostraAviso', true)
-    } 
-    
+    }
+
     // Caps lock detection
     let that = this;
     window.addEventListener("keydown", function (e) {
-    
+
       if (that.get('mostraAviso') == false) {
        if (navigator.vendor != 'Apple Computer, Inc.') {
          const caps = e.getModifierState && e.getModifierState('CapsLock');
          const msg = document.getElementById('msg-caps-on');
-   
+         if (!msg) return;
          if (caps) msg.classList.add('form__msg--on');
          else msg.classList.remove('form__msg--on');
        }
@@ -253,7 +253,7 @@ export default Ember.Controller.extend({
       }
     });
   },
- 
+
   actions: {
     passwordVisibility() {
       document.querySelector('.login__show-pass').classList.toggle('login__show-pass--is-show');
@@ -263,7 +263,7 @@ export default Ember.Controller.extend({
       else password.type = 'password';
     },
     authenticate() {
-     
+
       document.getElementById('login_button').disabled = true;
       document.getElementById('login_button').innerHTML = 'Aguarde...'
 
@@ -298,13 +298,13 @@ export default Ember.Controller.extend({
       });
     },
     forgotPass(type) {
-     
+
       this.set('modalType', '');
       document.getElementById('forgot_modal').classList.remove('fadeOutDown');
-      
-    
+
+
       if (type == 'password') {
-                        
+
         this.set('modalType', type);
         this.set('modalTitle', 'Solicitar nova senha');
         this.set('modalInfo', 'Por favor, preencha seu nome de usuário (login)');
@@ -313,14 +313,14 @@ export default Ember.Controller.extend({
         if (email) {
           if (email.length > 4 && email.search('@') > 3) {
             this.set('user_email', email);
-  
+
           }
         }
         this.set('error_forgot', '');
         this.set('success_mail', '');
         this.set('errorMessage', '');
         document.getElementById('forgot_modal').classList.add('modal--is-show');
-        
+
         setTimeout(() => {
           let usernameInput = document.getElementById('user_name');
           usernameInput.value = email;
@@ -330,8 +330,8 @@ export default Ember.Controller.extend({
 
 
       if (type == 'username') {
-                       
-            
+
+
         this.set('error_forgot', '');
         this.set('loginStep', 0);
         this.set('citiesList', []);
@@ -348,7 +348,7 @@ export default Ember.Controller.extend({
     },
 
     async moveToNextQuestion(moveTo, answer) {
-      
+
       this.set('busy', true);
       if (this.get('loginStep') !== 'email') {
         let inputToCheck = document.querySelector('.step--' + this.get('loginStep') + ' input#question' + this.get('loginStep'));
@@ -365,15 +365,15 @@ export default Ember.Controller.extend({
           }
         }
       }
-      
-      
+
+
       if (this.get('loginStep') !== 'email' && (this.get('loginStep') !== 0)) {
-        
+
         if (!answer) {
           let answerInput = document.querySelector('.step--' + this.get('loginStep') + ' input#question' + this.get('loginStep'));
           answer = answerInput.value;
         }
-      
+
         this.send('registerAnswer', answer);
         if (this.get('loginStep') == 4) {
           let newMoveTo = await this.refreshCitiesList();
@@ -388,20 +388,20 @@ export default Ember.Controller.extend({
           await this.resgatarLogin();
         }
       }
-      
-      this.set('loginStep', moveTo); 
+
+      this.set('loginStep', moveTo);
       this.set('busy', false);
     },
 
     registerAnswer(answer) {
       let answers = this.get('answers');
-      
+
       let step = this.get('loginStep');
       answers.push({
         pergunta: step,
         resposta: answer
       })
-      
+
     },
 
     autoRegister() {
@@ -427,7 +427,7 @@ export default Ember.Controller.extend({
       }
 
       if (this.get('modalType') == 'username') {
-  
+
         document.getElementById('forgot_modal').classList.remove('modal--is-show');
         document.getElementById('question2').value = '';
         document.getElementById('question3').value = '';
@@ -440,7 +440,7 @@ export default Ember.Controller.extend({
         this.set('answers', []);
 
       }
-      
+
 
     },
     sendMail() {
@@ -614,7 +614,7 @@ export default Ember.Controller.extend({
     },
 
     async resgataLoginPorEmail() {
-                  
+
       this.set('busy', true);
       let emailOrPhone = document.getElementById('informe-email').value;
       if ((this.hasAnyNonNumericalCharacters(emailOrPhone) && !this.validEmail(emailOrPhone)) || (!this.hasAnyNonNumericalCharacters(emailOrPhone) && !this.validPhone(emailOrPhone))) {
@@ -628,7 +628,7 @@ export default Ember.Controller.extend({
       let data = {
         emailOrPhone
       }
-      
+
       let response = await fetch(`${ENV.APP.host}/${ENV.APP.namespace}/pessoas/RetrieveLogin`, {
         method: 'POST',
         headers: {
@@ -636,12 +636,12 @@ export default Ember.Controller.extend({
         },
         body: JSON.stringify(data),
       });
-      
+
       if (response.status === 200) {
         let successContainer = document.getElementById('success-forgot');
         this.set('success_forgot', 'Seu login foi enviado para ' + emailOrPhone + ' com sucesso');
         successContainer.style.display = 'block';
-        
+
         let errorContainer = document.getElementById('error-forgot');
         this.set('error_forgot', '');
         errorContainer.style.opacity = 0;
@@ -657,7 +657,7 @@ export default Ember.Controller.extend({
         errorContainer.style.opacity = 1;
         errorContainer.style.visibility = 'visible';
       }
-      
+
       let errorContainer = document.getElementById('error-forgot');
       this.set('busy', false);
     },

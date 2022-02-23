@@ -277,7 +277,7 @@
       <!-- delete user -->
       {{#if (equalstr staticType 'delete')}}
       <button class="btn btn--xs btn--text" type="submit" {{action 'cancelDel' }}>Cancelar</button>
-      <button class="btn" type="submit" {{action 'confirmDel' confirm_entity}}>Apagar</button>
+      <button id="button-confirm-delete" class="btn" type="submit" {{action 'confirmDel' confirm_entity}}>Apagar</button>
       {{/if}}
       <!-- -->
       <!-- reset user progress -->

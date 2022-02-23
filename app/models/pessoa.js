@@ -109,4 +109,5 @@ export default DS.Model.extend({
   autoRegister: memberAction({ path: 'autoRegisterPlataforma', type: 'post' }),
   termoAceite: DS.attr(),
   senha: DS.attr(),
+  acessoPlataformaS: DS.attr(),
 });

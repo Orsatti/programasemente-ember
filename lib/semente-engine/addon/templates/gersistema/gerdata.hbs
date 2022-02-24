@@ -174,7 +174,7 @@
         </thead>
         <tbody>
           {{#each pessoas_sorted as |pessoa|}}
-          <tr>
+          <tr id="linha-pessoa-{{pessoa.id}}" >
             <td class="table__name">
               <p><strong class="title-4">{{pessoa.name}}</strong></p>
               <p class='color-green-40 truncate'>{{pessoa.userName}}</p>
@@ -187,10 +187,7 @@
               <span class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
             </td>
             <td class="table__actions">
-              {{#if (equalstr pessoa.role 'admin')}}
-              {{else}}
               <button class="btn btn--text btn--xxs" {{action 'deletePessoa' pessoa.id}}>Remover</button>
-              {{/if}}
               <button class="btn btn--ghost btn--xxs" {{action 'userModal' pessoa.id}}>Editar</button>
             </td>
           </tr>
@@ -277,7 +274,7 @@
       <!-- delete user -->
       {{#if (equalstr staticType 'delete')}}
       <button class="btn btn--xs btn--text" type="submit" {{action 'cancelDel' }}>Cancelar</button>
-      <button class="btn" type="submit" {{action 'confirmDel' confirm_entity}}>Apagar</button>
+      <button id="button-confirm-delete" class="btn" type="submit" {{action 'confirmDel' confirm_entity}}>Apagar</button>
       {{/if}}
       <!-- -->
       <!-- reset user progress -->
@@ -354,7 +351,7 @@
                     <option value="gestor" selected={{thisUserRole.gestor}}>Gestor</option>
                     <option value="secretaria" selected={{thisUserRole.secretaria}}>Secretaria</option>
                     <option value="marketing" selected={{thisUserRole.marketing}}>Marketing</option>
-                    {{#if (equalstr new_user_role 'admin')}}
+                    {{#if (equalstr pessoaLogged.role 'admin')}}
                     <option value="admin" selected={{thisUserRole.admin}}>Admin</option>
                     {{/if}}
                   </select>

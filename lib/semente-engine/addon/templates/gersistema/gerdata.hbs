@@ -174,7 +174,7 @@
         </thead>
         <tbody>
           {{#each pessoas_sorted as |pessoa|}}
-          <tr>
+          <tr id="linha-pessoa-{{pessoa.id}}" >
             <td class="table__name">
               <p><strong class="title-4">{{pessoa.name}}</strong></p>
               <p class='color-green-40 truncate'>{{pessoa.userName}}</p>

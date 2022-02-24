@@ -187,10 +187,7 @@
               <span class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
             </td>
             <td class="table__actions">
-              {{#if (equalstr pessoa.role 'admin')}}
-              {{else}}
               <button class="btn btn--text btn--xxs" {{action 'deletePessoa' pessoa.id}}>Remover</button>
-              {{/if}}
               <button class="btn btn--ghost btn--xxs" {{action 'userModal' pessoa.id}}>Editar</button>
             </td>
           </tr>

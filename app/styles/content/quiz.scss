@@ -59,6 +59,12 @@
     margin-bottom: 2rem;
   }
 
+  & .sigla-pare{
+    font-size: 1rem;
+    line-height: 2rem;
+    font-weight: normal;
+  }
+
   &__order {
     @include title-aux;
   }
@@ -413,6 +419,8 @@
     [class*='__pos-statement'] {
       font-weight: inherit;
     }
+
+   
 
   }
 

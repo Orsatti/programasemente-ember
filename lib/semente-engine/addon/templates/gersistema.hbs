@@ -756,7 +756,7 @@ thisRoute=thisRoute}}
                   </label>
                 </span>
               </div>
-              <div class="form-group">
+              <div class="form-group form-group--aired-h m-top--sm">
                 <label class="form-group__label">É escola?</label>
                 <span class="switch switch--institutions">
                   <input class="switch__checkbox" id="new_inst_isSchool" type="checkbox" checked={{new_inst_isSchool}}>
@@ -772,24 +772,6 @@ thisRoute=thisRoute}}
               </div>
 
             </div>
-            <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-            <!-- comentar depois de estilizar -->
-            <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-            <!--
-            <div class="form-group form-group--full-width m-top--md">
-              <label class="form-group__label">Marca</label>
-              <div class="image-change">
-                <span class="image-change__image image-change__image--empty" id="new_inst_uploadPreview"></span>
-                <label class="image-change__cta btn btn--ghost btn--xxs" for="new_inst_uploadImage">Buscar imagem
-                  <input id="new_inst_uploadImage" type="file" name="myPhoto" {{action 'previewImage' 'new' on="change"}} style="display: none;">
-                </label>
-                <button class="btn btn--text m-left--md">Redefinir</button>
-              </div>
-            </div>
-            -->
-            <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-            <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-            <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
           </section>
           <section class="sections__subsection">
             <h4 class="main__subsubtitle">Número de usuários</h4>
@@ -813,22 +795,15 @@ thisRoute=thisRoute}}
             </div>
           </section>
 
-
-
-
           <section class="sections__subsection">
             <h4 class="main__subsubtitle">Sistemas</h4>
             <div class="checkbox m-bottom--md">
-              <input class="checkbox__input" id="new_sis_1" type="checkbox">
+              <input class="checkbox__input" id="new_sis_1" type="checkbox" >
               <label class="checkbox__label" for="new_sis_1">Programa.Semente</label>
             </div>
             <div class="checkbox m-bottom--md">
               <input class="checkbox__input" id="new_sis_2" type="checkbox">
               <label class="checkbox__label" for="new_sis_2">Plataforma S</label>
-            </div>
-            <div class="checkbox m-bottom--md">
-              <input class="checkbox__input" id="new_sis_3" type="checkbox">
-              <label class="checkbox__label" for="new_sis_3">CoreSkills</label>
             </div>
           </section>
         </div>
@@ -1002,7 +977,7 @@ thisRoute=thisRoute}}
 
 <aside id="confirm_modal" class="modal animated fast fadeIn">
 
- 
+
   <div id="modal-content" class="modal__content modal__content--md modal__content--no-overflow">
 
     <header class="modal__header">
@@ -1010,7 +985,7 @@ thisRoute=thisRoute}}
 
       <h3 class="modal__title">Tem certeza que deseja Excluir esta escola?</h3>
     </header>
-    
+
     <div class="modal__footer modal__footer--center">
       <button id="btn-verify-user-name" class="j-areaFocus btn btn--xxs btn--text color-error"{{action 'closeModal' 'confirm_modal'}}>Cancelar</button>
       <button id="btn-send-password" class="btn" {{action 'deleteInstituicao' }}>Excluir</button>

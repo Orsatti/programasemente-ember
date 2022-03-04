@@ -105,7 +105,7 @@ thisRoute=thisRoute}}
   <header class="main__header">
     <!-- back to institutions list -->
     <!-- Só aparece se for admin -->
-    {{#if (equalstr role 'admin')}}
+    {{#if (isbigger model.instituicoes.length 1)}}
     <!-- Só aparece após ter o nome da instituição -->
     {{#if inst_selected.name}}
     <button

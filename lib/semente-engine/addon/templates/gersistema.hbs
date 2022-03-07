@@ -169,11 +169,24 @@ thisRoute=thisRoute}}
       {{/if}}
 
       {{#if selectedInstTabs.informations}}
-      <button class="j-areaFocus tabs__not-tab btn btn--ghost btn--xxs m-left--auto m-right--md" {{action 'deleteInstituicaoModal' inst_selected}} style="width: 90px;">
-        <span class="btn__label">Excluir</span>
-      </button>
-      {{/if}}
+        {{#if (equalstr role 'admin')}}
+          
+          <button class="btn--xxs m-left--auto m-right--md" {{action 'deleteInstituicaoModal' inst_selected}} style="width: 90px;">
+            <span class="btn">Excluir</span>
+          </button>
 
+          <div style="display:none" id="btn_save_inst">
+            <button class="j-areaFocus tabs__not-tab btn btn--ghost btn--xxs m-left--auto m-right--md" {{action 'saveInformations' inst_selected.id}} style="width: 140px;">
+              <span class="btn__label">Salvar alterações</span>
+            </button>
+          </div>
+
+          
+          {{!-- <button class="j-areaFocus tabs__not-tab btn btn--ghost btn--xxs m-left--auto m-right--md" {{action 'deleteInstituicaoModal' inst_selected}} style="width: 90px;">
+            <span class="btn__label">Excluir</span>
+          </button> --}}
+        {{/if}}
+      {{/if}}
 
     </div>
 
@@ -193,16 +206,6 @@ thisRoute=thisRoute}}
         -->
     <!-- selected institution tab information -->
     {{#if selectedInstTabs.informations}}
-
-    {{#if (equalstr role 'admin')}}
-    <div class="flex flex-row items-center justify-start" style="display:none" id="btn_save_inst">
-      <button class="btn btn--ghost btn--xxs m-left--md" {{action 'saveInformations' inst_selected.id}}>
-        <span class="btn__icon icon-save"></span>
-        <span class="btn__label">Salvar alterações</span>
-      </button>
-    </div>
-    {{/if}}
-
     <section class="sections__subsection flow-md animated fadeInLeftShort faster d750">
       <h3 class="main__subsubtitle">Básicas</h3>
       <div class="form-group form-group--full-width flex flex-row flex-wrap gap-sm flow-h-sm">
@@ -213,15 +216,24 @@ thisRoute=thisRoute}}
             onkeyup={{action 'dataChange' 'btn_save_inst' }}>
           {{else}}
           <input class="form-group__input" type="textbox" id="inst_name" value={{inst_selected.name}} disabled="true">
-          {{!-- {{inst_selected.name}} --}}
           {{/if}}
         </div>
+
+        <div class="form-group">
+          <label class="form-group__label">Radical</label>
+          {{#if (equalstr role 'admin')}}
+          <input class="form-group__input" type="textbox" id="inst_rad" value={{inst_selected.radical}}
+            onkeyup={{action 'dataChange' 'btn_save_inst' }}>
+          {{else}}
+          <input class="form-group__input" type="textbox" id="inst_rad" value={{inst_selected.radical}} disabled="true">
+          {{/if}}
+        </div>
+
         <div class="form-group">
           <label class="form-group__label">UF</label>
           {{#if (equalstr role 'admin')}}
           <input class="form-group__input" type="textbox" id="inst_uf" value={{inst_selected.uf}}
             onkeyup={{action 'dataChange' 'btn_save_inst' }}>
-          {{!-- {{input value=inst_selected.uf}} --}}
           {{else}}
           <input class="form-group__input" type="textbox" id="inst_uf" value={{inst_selected.uf}} disabled="true">
           {{/if}}
@@ -249,39 +261,19 @@ thisRoute=thisRoute}}
             </label>
           </span>
         </div>
-         <div class="form-group">
-                <label class="form-group__label">Status</label>
-                <span class="switch switch--institutions">
-                  <input class="switch__checkbox" id="inst_hab" type="checkbox" checked={{inst_selected.enabled}}
-                    disabled={{if (equalstr role 'admin' ) false true}} onchange={{action 'dataChange' 'btn_save_inst' }}>
-                  <label class="switch__label" for="inst_hab">
-                    <span class="switch__inner"></span>
-                    <span class="switch__head"></span>
-                  </label>
-                </span>
-              </div>
 
-              <div class="form-group">
-                <label class="form-group__label">É escola?</label>
-                <span class="switch switch--institutions">
-                  <input class="switch__checkbox" id="inst_isSchool" type="checkbox" checked={{inst_selected.isEscola}}
-                    disabled={{if (equalstr role 'admin' ) false true}} onchange={{action 'dataChange' 'btn_save_inst' }}>
-                  <label class="switch__label" for="inst_isSchool">
-                    <span class="switch__inner"></span>
-                    <span class="switch__head"></span>
-                  </label>
-                </span>
-              </div>
-                   <div class="form-group">
-                    <label class="form-group__label">Radical</label>
-                    {{#if (equalstr role 'admin')}}
-                    <input class="form-group__input" type="textbox" id="inst_rad" value={{inst_selected.radical}}
-                      onkeyup={{action 'dataChange' 'btn_save_inst' }}>
-                    {{else}}
-                    <input class="form-group__input" type="textbox" id="inst_rad" value={{inst_selected.radical}} disabled="true">
-                    {{!-- {{inst_selected.name}} --}}
-                    {{/if}}
-                  </div>
+        <div class="form-group">
+          <label class="form-group__label">É escola?</label>
+          <span class="switch switch--institutions">
+            <input class="switch__checkbox" id="inst_isSchool" type="checkbox" checked={{inst_selected.isEscola}}
+              disabled={{if (equalstr role 'admin' ) false true}} onchange={{action 'dataChange' 'btn_save_inst' }}>
+            <label class="switch__label" for="inst_isSchool">
+              <span class="switch__inner"></span>
+              <span class="switch__head"></span>
+            </label>
+          </span>
+        </div>
+
       </div>
     </section>
 
@@ -306,6 +298,24 @@ thisRoute=thisRoute}}
             onkeyup={{action 'dataChange' 'btn_save_inst' }}>
           {{else}}
           {{inst_selected.nrcoordenadores}}
+          {{/if}}
+        </div>
+        <div class="form-group">
+          <label class="form-group__label">Secretaria</label>
+          {{#if (equalstr role 'admin')}}
+          <input class="form-group__input" type="textbox" id="nr_secretaria" value={{inst_selected.nrsecretaria}}
+            onkeyup={{action 'dataChange' 'btn_save_inst' }}>
+          {{else}}
+          {{inst_selected.nrsecretaria}}
+          {{/if}}
+        </div>
+        <div class="form-group">
+          <label class="form-group__label">Marketing</label>
+          {{#if (equalstr role 'admin')}}
+          <input class="form-group__input" type="textbox" id="nr_marketing" value={{inst_selected.nrmarketing}}
+            onkeyup={{action 'dataChange' 'btn_save_inst' }}>
+          {{else}}
+          {{inst_selected.nrmarketing}}
           {{/if}}
         </div>
         <div class="form-group">
@@ -462,11 +472,11 @@ thisRoute=thisRoute}}
             checked={{temS}} disabled={{if (equalstr role 'admin' ) false true}}>
           <label class="checkbox__label" for="sis_2">Plataforma S</label>
         </li>
-        <li class="checkbox">
+        {{!-- <li class="checkbox">
           <input class="checkbox__input" id="sis_3" type="checkbox" onchange={{action 'dataChange' 'btn_save_inst' }}
             checked={{temCoreSkills}} disabled={{if (equalstr role 'admin' ) false true}}>
           <label class="checkbox__label" for="sis_3">CoreSkills</label>
-        </li>
+        </li> --}}
       </ul>
     </section>
     {{/if}}
@@ -739,6 +749,10 @@ thisRoute=thisRoute}}
                 <input class="form-group__input" type="textbox" id="new_inst_name" value={{new_inst_name}}>
               </div>
               <div class="form-group form-group--aired-h" flex="20">
+                <label class="form-group__label">Radical (para códigos)</label>
+                <input class="form-group__input" type="textbox" id="new_inst_rad" value={{new_inst_rad}}>
+              </div>
+              <div class="form-group form-group--aired-h" flex="20">
                 <label class="form-group__label">UF</label>
                 <input class="form-group__input" type="textbox" id="new_inst_uf" value={{new_inst_uf}}>
               </div>
@@ -746,7 +760,7 @@ thisRoute=thisRoute}}
                 <label class="form-group__label">Cidade</label>
                 <input class="form-group__input" type="textbox" id="new_inst_cidade" value={{new_inst_cidade}}>
               </div>
-              <div class="form-group">
+              <div class="form-group form-group--aired-h m-top--sm">
                 <label class="form-group__label">Status</label>
                 <span class="switch switch--institutions">
                   <input class="switch__checkbox" id="new_inst_enabled" type="checkbox" checked={{new_inst_enabled}}>
@@ -766,11 +780,6 @@ thisRoute=thisRoute}}
                   </label>
                 </span>
               </div>
-              <div class="form-group form-group--aired-h m-top--sm" flex="20">
-                <label class="form-group__label">Radical (para códigos)</label>
-                <input class="form-group__input" type="textbox" id="new_inst_rad" value={{new_inst_rad}}>
-              </div>
-
             </div>
           </section>
           <section class="sections__subsection">
@@ -783,6 +792,14 @@ thisRoute=thisRoute}}
               <div class="form-group" flex="20">
                 <label class="form-group__label" for="new_inst_nrcoord">Coordenadores</label>
                 <input class="form-group__input" type="textbox" id="new_inst_nrcoord" value={{new_inst_nrcoord}}>
+              </div>
+              <div class="form-group" flex="20">
+                <label class="form-group__label" for="new_inst_nrsecretaria">Secretaria</label>
+                <input class="form-group__input" type="textbox" id="new_inst_nrsecretaria" value={{new_inst_nrsecretaria}}>
+              </div>
+              <div class="form-group" flex="20">
+                <label class="form-group__label" for="new_inst_nrmarketing">Marketing</label>
+                <input class="form-group__input" type="textbox" id="new_inst_nrmarketing" value={{new_inst_nrmarketing}}>
               </div>
               <div class="form-group" flex="20">
                 <label class="form-group__label" for="new_inst_nrinstr">Professores</label>

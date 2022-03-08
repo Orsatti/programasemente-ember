@@ -484,7 +484,7 @@ thisRoute=thisRoute}}
             checked={{temS}} disabled={{if (equalstr role 'admin' ) false true}}>
           <label class="checkbox__label" for="sis_2">Plataforma S</label>
         </li>
-        {{#if temS}}
+        {{#if instTemS}}
           <li class="checkbox" style="margin-left:45px;">
             <input class="checkbox__input" id="inst_sPlus" type="checkbox" onchange={{action 'dataChange' 'btn_save_inst' }}
               checked={{inst_selected.sPlusEnabled}} disabled={{if (equalstr role 'admin' ) false true}}>

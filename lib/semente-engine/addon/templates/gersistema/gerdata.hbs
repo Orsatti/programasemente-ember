@@ -459,12 +459,14 @@
           </div>
         </div>
 
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="checkbox w100">
-            <input class="checkbox__input" onchange={{action 'verifyPlatAno' }} checked={{new_user_acessoPlataformaS}} id="new_user_acessoPlataformaS" type="checkbox">
-            <label class="checkbox__label" for="new_user_acessoPlataformaS">Acesso à Plataforma S</label>
+        {{#if sEnabled}}
+          <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="checkbox w100">
+              <input class="checkbox__input" onchange={{action 'verifyPlatAno' }} checked={{new_user_acessoPlataformaS}} id="new_user_acessoPlataformaS" type="checkbox">
+              <label class="checkbox__label" for="new_user_acessoPlataformaS">Acesso à Plataforma S</label>
+            </div>
           </div>
-        </div>
+        {{/if}}
 
         {{!-- {{#if (equalstr activeProfile "aluno")}} --}}
         <div class="col-xs-12" id="gender-birth"> {{!-- Virou apenas a data de nascimento--}}

@@ -38,4 +38,5 @@ export default DS.Model.extend({
     codigoAlunos: DS.attr(),
     codigoAlunosInfantil: DS.attr(),
     codigosCadastro: DS.hasMany('codigo-cadastro', {async: true}),
+    sPlusEnabled: DS.attr(),
 });

@@ -274,6 +274,18 @@ thisRoute=thisRoute}}
           </span>
         </div>
 
+        <div class="form-group">
+          <label class="form-group__label">Termo Aceite</label>
+          <span class="switch switch--institutions">
+            <input class="switch__checkbox" id="inst_termoAceite" type="checkbox" checked={{inst_selected.statusTermoAceite}}
+              disabled={{if (equalstr role 'admin' ) false true}} onchange={{action 'dataChange' 'btn_save_inst' }}>
+            <label class="switch__label" for="inst_termoAceite">
+              <span class="switch__inner"></span>
+              <span class="switch__head"></span>
+            </label>
+          </span>
+        </div>
+
       </div>
     </section>
 
@@ -472,6 +484,13 @@ thisRoute=thisRoute}}
             checked={{temS}} disabled={{if (equalstr role 'admin' ) false true}}>
           <label class="checkbox__label" for="sis_2">Plataforma S</label>
         </li>
+        {{#if temS}}
+          <li class="checkbox" style="margin-left:45px;">
+            <input class="checkbox__input" id="inst_sPlus" type="checkbox" onchange={{action 'dataChange' 'btn_save_inst' }}
+              checked={{inst_selected.sPlusEnabled}} disabled={{if (equalstr role 'admin' ) false true}}>
+            <label class="checkbox__label" for="inst_sPlus">S Plus</label>
+          </li>
+        {{/if}}
         {{!-- <li class="checkbox">
           <input class="checkbox__input" id="sis_3" type="checkbox" onchange={{action 'dataChange' 'btn_save_inst' }}
             checked={{temCoreSkills}} disabled={{if (equalstr role 'admin' ) false true}}>
@@ -503,7 +522,6 @@ thisRoute=thisRoute}}
 
         <div class="col-xs-12 col-lg-2 flow-sm">
           <h5 class="title-aux">{{seg.titulo}}</h5>
-
           {{#each seg.plataformaAnos as |platAno|}}
           <ul>
             <li>
@@ -780,6 +798,16 @@ thisRoute=thisRoute}}
                   </label>
                 </span>
               </div>
+              <div class="form-group form-group--aired-h m-top--sm">
+                <label class="form-group__label">Termo Aceite</label>
+                <span class="switch switch--institutions">
+                  <input class="switch__checkbox" id="new_inst_termoAceite" type="checkbox" checked={{new_inst_termoAceite}}>
+                  <label class="switch__label" for="new_inst_termoAceite">
+                    <span class="switch__inner"></span>
+                    <span class="switch__head"></span>
+                  </label>
+                </span>
+              </div>
             </div>
           </section>
           <section class="sections__subsection">
@@ -814,14 +842,22 @@ thisRoute=thisRoute}}
 
           <section class="sections__subsection">
             <h4 class="main__subsubtitle">Sistemas</h4>
-            <div class="checkbox m-bottom--md">
-              <input class="checkbox__input" id="new_sis_1" type="checkbox" >
-              <label class="checkbox__label" for="new_sis_1">Programa.Semente</label>
-            </div>
-            <div class="checkbox m-bottom--md">
-              <input class="checkbox__input" id="new_sis_2" type="checkbox">
-              <label class="checkbox__label" for="new_sis_2">Plataforma S</label>
-            </div>
+            <ul class="flex flex-col flow-sm">
+              <div class="checkbox">
+                <input class="checkbox__input" id="new_sis_1" type="checkbox" >
+                <label class="checkbox__label" for="new_sis_1">Programa.Semente</label>
+              </div>
+              <div class="checkbox">
+                <input class="checkbox__input" id="new_sis_2" type="checkbox" onchange={{action 'checkboxSPlus'}}>
+                <label class="checkbox__label" for="new_sis_2">Plataforma S</label>
+              </div>
+              {{#if newInstTemS}}
+                <li class="checkbox" style="margin-left:45px;">
+                  <input class="checkbox__input" id="new_sis_sPlus" type="checkbox">
+                  <label class="checkbox__label" for="new_sis_sPlus">S Plus</label>
+                </li>
+              {{/if}}
+            </ul>
           </section>
         </div>
         <!-- new institution step 2 -->

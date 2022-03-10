@@ -71,6 +71,32 @@
     border: 1px solid #009e47;
   }
 
+  & .quadro{
+    background-color: #000;
+    text-align: center;
+    padding: 1rem;
+    margin: 1rem;
+
+    & .azul{
+      color: blue;
+    }
+    & .vermelho{
+      color: red;
+    }
+    & .amarelo{
+      color: yellow;
+    }
+    & .verde{
+      color: green;
+    }
+    & .roxo{
+      color: purple;
+    }
+    & .branco{
+      color: white;
+    }
+  }
+
   &__order {
     @include title-aux;
   }

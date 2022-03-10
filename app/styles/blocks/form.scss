@@ -110,6 +110,19 @@
     &__container {
       position: relative;
       margin-bottom: $distance--md;
+
+      &--h50{
+        height: 50vh;
+
+        & input{
+          padding: 5vh 0 40vh 2vh;
+
+          &::placeholder{
+            position: absolute;
+            top:2vh;
+          }
+        }
+      }
     }
 
     &__label {

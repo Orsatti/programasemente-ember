@@ -215,7 +215,7 @@
                 </li>
             {{/if}}
 
-            {{#if (equalstr toggleRole "instrutor")}}
+            {{#if (equalstr role "instrutor")}}
             {{!-- Comentado enquanto não recebemos as informações do Bucci --}}
               {{!-- <li>
               <div class="flex flex-row items-center">
@@ -229,7 +229,7 @@
               </div>
               </li> --}}
               <li id="aplicacaoAula">
-                  {{content-aplicacao pessoa=this.parentController.selectedDependente aula=aula TurmasAplicadas=TurmasAplicadas UltimaAplicacao=UltimaAplicacao}}
+                  {{content-aplicacao pessoa=pessoa aula=aula TurmasAplicadas=TurmasAplicadas UltimaAplicacao=UltimaAplicacao}}
               </li>
             {{/if}}
             </ul>

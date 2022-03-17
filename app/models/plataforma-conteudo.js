@@ -17,4 +17,5 @@ export default DS.Model.extend({
     situacao: DS.attr('boolean'),
     calendarios: DS.hasMany('calendario', {async: true}),
     dataCriacao: DS.attr("date"),
+    descricao: DS.attr(),
 });

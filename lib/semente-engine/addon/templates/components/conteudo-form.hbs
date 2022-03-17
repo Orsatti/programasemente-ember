@@ -92,25 +92,27 @@
 
                 </div>
             </div>
-             <div class="row">
-                <div class="col-xs-12 col-sm-6">
+            {{#if isBiblioteca}}
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
 
-                    <div class="flex flex-col flow-xs form-group__container">
-                        <div class="form-group w100 form-group__container--h50">
-                        <label class="form-group__label" for="">Descrição do Conteúdo</label>
-                        {{textarea class="form-group-descricao" cols="30" rows="5" id="descricaoConteudo"
-                                            name=''
-                                            value=conteudo.descricao
-                                            change=(action 'tituloChanged')
-                                            placeholder='Descrição do Conteúdo'
-                                            maxlength=240}}
+                        <div class="flex flex-col flow-xs form-group__container">
+                            <div class="form-group w100 form-group__container--h50">
+                            <label class="form-group__label" for="">Descrição do Conteúdo</label>
+                            {{textarea class="form-group-descricao" cols="30" rows="5" id="descricaoConteudo"
+                                                name=''
+                                                value=conteudo.descricao
+                                                change=(action 'descricaoChanged')
+                                                placeholder='Descrição do Conteúdo'
+                                                maxlength=240}}
+                            </div>
+                            <p class="text-aux {{if (isbigger conteudo.descricao.length '60') 'color-warning-60 bg-warning-10'}}">
+                            {{if (isbigger conteudo.descricao.length 0) conteudo.descricao.length "0"}}/240 caracteres permitidos.</p>
                         </div>
-                        <p class="text-aux {{if (isbigger conteudo.descricao.length '60') 'color-warning-60 bg-warning-10'}}">
-                        {{if (isbigger conteudo.descricao.length 0) conteudo.descricao.length "0"}}/240 caracteres permitidos.</p>
-                    </div>
 
+                    </div>
                 </div>
-            </div>
+            {{/if}}
             {{setPublicoOnCreate}}
             <div class="row">
                 <div class="col-xs-12 col-sm-6">

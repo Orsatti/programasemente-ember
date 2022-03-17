@@ -215,7 +215,7 @@
                 </li>
             {{/if}}
 
-            {{#if (equalstr toggleRole "instrutor")}}
+            {{#if (equalstr role "instrutor")}}
             {{!-- Comentado enquanto não recebemos as informações do Bucci --}}
               {{!-- <li>
               <div class="flex flex-row items-center">
@@ -229,7 +229,7 @@
               </div>
               </li> --}}
               <li id="aplicacaoAula">
-                  {{content-aplicacao pessoa=this.parentController.selectedDependente aula=aula TurmasAplicadas=TurmasAplicadas UltimaAplicacao=UltimaAplicacao}}
+                  {{content-aplicacao pessoa=pessoa aula=aula turmas=plataformaTurmas TurmasAplicadas=TurmasAplicadas UltimaAplicacao=UltimaAplicacao}}
               </li>
             {{/if}}
             </ul>
@@ -354,7 +354,7 @@
     <div class="modal__body">
       {{#if selectedConteudo}}
         <div class="flow-sm" id="vimeoVideo">
-          {{plataforma-conteudo-video-player conteudo=selectedConteudo controller=this pessoa=this.parentController.selectedDependente stopVideo=stopVideo}}
+          {{plataforma-conteudo-video-player conteudo=selectedConteudo controller=this pessoa=pessoa stopVideo=stopVideo}}
           <p class="ta-c title-4 color-gray-20">{{selectedConteudo.titulo}}</p>
         </div>
       {{/if}}

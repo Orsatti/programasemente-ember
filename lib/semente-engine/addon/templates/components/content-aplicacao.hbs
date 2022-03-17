@@ -6,7 +6,7 @@
     {{else}}
         <span class="flex-none m-left--xs">Não aplicada.</span>
     {{/if}}
-    {{#if (equalstr toggleRole "instrutor")}}
+    {{#if (equalstr pessoa.role "instrutor")}}
        
         <div class="popover m-left--xs">
             <button class="btn btn--link color-leaf-50 popover__trigger" type="button" {{action "mostrarTurmas" }}>
@@ -30,20 +30,18 @@
                             </div>
                         </li>
                         <li class="divider"></li>
-                        {{#each pessoa.plataformaTurmas as |turma|}}
-                            {{#if (equalstr turma.plataformaAno.id aula.plataformaAno.id)}}
-                                <li>
-                                    <div class="checkbox">
-                                        <input  class="checkbox__input"
-                                                id="{{turma.id}}"
-                                                type="checkbox"
-                                                checked={{if (containInListID turma.id TurmasAplicadas) "checked" ""}}
-                                                value={{turma.id}}
-                                                onchange={{action 'turmasChanged' value='target.value'}} />
-                                        <label class="checkbox__label" for="{{turma.id}}">{{turma.name}}</label>
-                                    </div>
-                                </li>
-                            {{/if}}
+                        {{#each turmas as |turma|}}
+                            <li>
+                                <div class="checkbox">
+                                    <input  class="checkbox__input"
+                                            id="{{turma.id}}"
+                                            type="checkbox"
+                                            checked={{if (containInListID turma.id TurmasAplicadas) "checked" ""}}
+                                            value={{turma.id}}
+                                            onchange={{action 'turmasChanged' value='target.value'}} />
+                                    <label class="checkbox__label" for="{{turma.id}}">{{turma.name}}</label>
+                                </div>
+                            </li>
                         {{/each}}
                     </ul>
 

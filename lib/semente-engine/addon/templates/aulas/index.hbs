@@ -92,7 +92,7 @@
       <ul id="card-list-{{pessoaId}}" class="l-card-list animated slow {{if noCards 'd--none'}}">
         {{#each aulasFiltradas as |aulaFiltrada|}}
           <li>
-            {{aula-card aula=aulaFiltrada pessoa=pessoa selectedSituacao=selectedSituacao}}
+            {{aula-card aula=aulaFiltrada selectedAno=selectedAno pessoa=pessoa selectedSituacao=selectedSituacao}}
           </li>
         {{/each}}
       </ul>

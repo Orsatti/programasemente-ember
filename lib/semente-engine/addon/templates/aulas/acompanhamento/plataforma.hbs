@@ -15,7 +15,7 @@
       {{/each}}
       <li>
         <button type="button" class="tabs__tab" {{action 'goToEad'}}>
-          <span>Ensino Médio (EAD)</span>
+          <span>EAD</span>
         </button>
       </li>
     </ul>
@@ -66,7 +66,7 @@
             </div>
 
             {{#if (equalstr selectedFilteredRole "alunos")}}
-                <div class="form-group">
+                {{!-- <div class="form-group">
                     <label class="form-group__label">Turma</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
                         <select class="form-group__input" id="situation" onchange={{action 'refreshSelectedTurma'
@@ -78,7 +78,7 @@
                             {{/each}}
                         </select>
                     </div>
-                </div>
+                </div> --}}
             {{/if}}
 
         </form>

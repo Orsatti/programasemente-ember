@@ -111,8 +111,8 @@
       position: relative;
       margin-bottom: $distance--md;
 
-      &--h50{
-        height: 50vh;
+      &--h30{
+        height: 30vh;
 
         & input{
           padding: 5vh 0 40vh 2vh;
@@ -123,7 +123,12 @@
           }
         }
       }
+
+      &--descricao{
+        height: 12rem !important;
+      }
     }
+
 
     &__label {
       @include title-aux;
@@ -329,5 +334,7 @@
     }
 
   }
+
+
 
 }

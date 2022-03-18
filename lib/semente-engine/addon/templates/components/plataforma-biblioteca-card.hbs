@@ -1,4 +1,21 @@
-<div class="media" id="conteudo-{{conteudo.id}}" style="cursor: pointer;" onclick={{action 'openModal' conteudo}}>
+{{#if (equalstr conteudo.tipo 'Video')}}
+  <div class="media" id="conteudo-{{conteudo.id}}" style="cursor: pointer;" onclick={{action 'openModal' conteudo}}>
+    <picture class="media__picture">
+      <img class="media__thumb" id="file-{{conteudo.id}}" src={{thumbnail}} alt="{{conteudo.titulo}}">
+    </picture>
+    <div class="media__body flow-md">
+      <div class="flex flex-col flow-xxs">
+        <span class="title-aux">{{conteudo.tema.name}}</span>
+        <span class="media__title title-3">{{conteudo.titulo}}</span>
+        <p class="media__descricao-biblioteca">{{conteudo.descricao}}</p>
+
+      </div>
+    </div>
+  </div>
+{{else}}
+
+<div class="media" id="conteudo-{{conteudo.id}}" style="cursor: pointer;">
+  <a class="global-nav__link" href="{{conteudo.arquivoUrl}}" target="_blank" rel="nofollow noopener noreferrer">
   <picture class="media__picture">
     <img class="media__thumb" id="file-{{conteudo.id}}" src={{thumbnail}} alt="{{conteudo.titulo}}">
   </picture>
@@ -7,7 +24,9 @@
       <span class="title-aux">{{conteudo.tema.name}}</span>
       <span class="media__title title-3">{{conteudo.titulo}}</span>
       <p class="media__descricao-biblioteca">{{conteudo.descricao}}</p>
-
     </div>
   </div>
+  </a>
 </div>
+
+{{/if}}

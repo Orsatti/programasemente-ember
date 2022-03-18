@@ -90,9 +90,9 @@
         <li>
           {{#unless (or (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '0')) (equalstr pessoa.role 'secretaria'))}}
             {{#if isAlunoMedio}}
-              {{#link-to 'modulos.modlist' pessoa.modulos.firstObject.id class="tabs__tab" id="aulas-header"}}
+              {{!-- {{#link-to 'modulos.modlist' pessoa.modulos.firstObject.id class="tabs__tab" id="aulas-header"}}
                 <span>Aulas</span>
-              {{/link-to}}
+              {{/link-to}} --}}
             {{else}}
               {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
                 {{#link-to 'aulas.index' class="tabs__tab" id="aulas-header"}}
@@ -104,9 +104,11 @@
         </li>
         <li>
           {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
-            {{#link-to 'aulas.bibliotecaindex' class="tabs__tab"}}
-              <span>Biblioteca</span>
-            {{/link-to}}
+            {{#unless isAlunoMedio}}  
+              {{#link-to 'aulas.bibliotecaindex' class="tabs__tab"}}
+                <span>Biblioteca</span>
+              {{/link-to}}
+            {{/unless}}
           {{/unless}}
         </li>
 

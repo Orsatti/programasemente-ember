@@ -181,7 +181,14 @@
 
             </td>
             <td class="table__role">
-              <p class="">{{if (equalstr pessoa.role 'instrutor') 'professor' pessoa.role}}</p>
+              {{#if (equalstr pessoa.role 'instrutor')}}
+                <p class="">professor</p>
+              {{else if (equalstr pessoa.role 'recursosHumanos')}}
+                <p class="">RH</p>
+              {{else}}
+                <p class="">{{pessoa.role}}</p>
+              {{/if}}
+
             </td>
             <td class="ta-c">
               <span class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
@@ -347,10 +354,13 @@
                     <option value="">Selecione...</option>
                     <option value="aluno" selected={{thisUserRole.aluno}}>Aluno</option>
                     <option value="instrutor" selected={{thisUserRole.instrutor}}>Professor</option>
-                    <option value="coordenador" selected={{thisUserRole.coordenador}}>Coordenador</option>
-                    <option value="gestor" selected={{thisUserRole.gestor}}>Gestor</option>
                     <option value="secretaria" selected={{thisUserRole.secretaria}}>Secretaria</option>
                     <option value="marketing" selected={{thisUserRole.marketing}}>Marketing</option>
+                    <option value="coordenador" selected={{thisUserRole.coordenador}}>Coordenador</option>
+                    <option value="gestor" selected={{thisUserRole.gestor}}>Gestor</option>
+                    {{#if (or (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.role 'recursosHumanos'))}}
+                      <option value="recursosHumanos" selected={{thisUserRole.recursosHumanos}}>Recursos Humanos</option>
+                    {{/if}}
                     {{#if (and (or (equalstr inst_selected.name "Minimo")(equalstr inst_selected.name "Semente")) (equalstr pessoaLogged.role 'admin'))}}
                       <option value="admin" selected={{thisUserRole.admin}}>Admin</option>
                     {{/if}}

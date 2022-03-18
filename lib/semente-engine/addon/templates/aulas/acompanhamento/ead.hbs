@@ -3,13 +3,21 @@
   <nav>
         <ul class="tabs">
               {{#each this.aulasController.segmentosObjects as |seg|}}
-                    {{#unless (equalstr seg.titulo 'Ensino Medio')}}
-                          <li>
-                                <button type="button" class="tabs__tab" {{action 'goToPlataforma' seg}}>
-                                      <span>{{seg.titulo}}</span>
-                                </button>
-                          </li>
-                    {{/unless}}
+                {{#if (equalstr seg.titulo 'Adultos')}}
+                    {{#if (or (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.role 'recursosHumanos'))}}
+                      <li>
+                            <button type="button" class="tabs__tab" {{action 'goToPlataforma' seg}}>
+                                  <span>{{seg.titulo}}</span>
+                            </button>
+                      </li>
+                    {{/if}}
+                {{else}}
+                    <li>
+                      <button type="button" class="tabs__tab" {{action 'goToPlataforma' seg}}>
+                            <span>{{seg.titulo}}</span>
+                      </button>
+                    </li>
+                {{/if}}
               {{/each}}
               <li>
                     <button type="button" class="tabs__tab tabs__tab--is-active">

@@ -73,7 +73,7 @@
     <header class="main__header">
       <!-- back to institutions list -->
       <!-- Só aparece se for admin -->
-      {{#if (equalstr role 'admin')}}
+      {{#if (isbigger model.instituicoes.length 1)}}
         <!-- Só aparece após ter o nome da instituição -->
         {{#if inst_selected.name}}
           <button class="main__back btn btn--link color-blue-navy-60 {{if inst_selected.name 'animated fadeInLeftShort faster'}}" id="back-person-specific_old" {{action 'backToInstList' on="click" }} type="button">

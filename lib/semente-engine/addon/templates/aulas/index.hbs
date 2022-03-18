@@ -12,12 +12,23 @@
   <nav>
     <ul class="tabs">
       {{#each segmentos as |seg|}}
-      <li>
-        <button type="button" class="tabs__tab {{if (equalstr selectedSegmento.titulo seg.titulo) 'tabs__tab--is-active'}}"
-          {{action 'refreshSelectedSegmento' seg}}>
-          <span>{{seg.titulo}}</span>
-        </button>
-      </li>
+        {{#if (equalstr seg.titulo 'Adultos')}}
+          {{#if (or (equalstr pessoa.role 'admin') (equalstr pessoa.role 'recursosHumanos'))}}
+            <li>
+              <button type="button" class="tabs__tab {{if (equalstr selectedSegmento.titulo seg.titulo) 'tabs__tab--is-active'}}"
+                {{action 'refreshSelectedSegmento' seg}}>
+                <span>{{seg.titulo}}</span>
+              </button>
+            </li>
+          {{/if}}  
+        {{else}}
+          <li>
+            <button type="button" class="tabs__tab {{if (equalstr selectedSegmento.titulo seg.titulo) 'tabs__tab--is-active'}}"
+              {{action 'refreshSelectedSegmento' seg}}>
+              <span>{{seg.titulo}}</span>
+            </button>
+          </li>
+        {{/if}}
       {{/each}}
     </ul>
   </nav>

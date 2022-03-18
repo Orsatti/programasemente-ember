@@ -31,6 +31,8 @@
             <span>Secretaria</span>
           {{else if (equalstr pessoa.role 'gestor')}}
             <span>Gestor{{#if (equalstr pessoa.genero 'feminino')}}a{{/if}}</span>
+          {{else if (equalstr pessoa.role 'recursosHumanos')}}
+            <span>Recursos Humanos</span>
           {{else if (equalstr pessoa.role 'admin')}}
             <span>Administrador</span>
           {{else if (equalstr parentController.role 'instrutor')}}
@@ -141,7 +143,7 @@
           {{/link-to}}
         {{/if}}
 
-        {{#if (or (or (equalstr pessoa.role 'admin') (equalstr pessoa.role 'secretaria')) (equalstr pessoa.role 'gestor') )}}
+        {{#if (or (or (or (equalstr pessoa.role 'admin') (equalstr pessoa.role 'secretaria')) (equalstr pessoa.role 'gestor')) (equalstr pessoa.role 'recursosHumanos'))}}
           {{#link-to 'gersistema.gerdata' class="tabs__tab"}}
             <span>Administração</span>
           {{/link-to}}

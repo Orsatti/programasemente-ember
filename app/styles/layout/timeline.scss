@@ -21,6 +21,11 @@
     color: $timeline-marks-color;
   }
 
+&:first-child{
+  padding: 0;
+  background: none;
+}
+
   background-image: linear-gradient($timeline-color, $timeline-color);
   background-position: top left;
   background-repeat: no-repeat;
@@ -84,6 +89,15 @@
       width: $size;
     }
   }
+
+  & iframe {
+    border: 20px solid #fff;
+    background-color: #fff;
+    margin-left: 10vh;
+    max-width: 100%;
+
+    }
+  
 
   &__line {
     z-index: 1;
@@ -210,38 +224,6 @@
       }
     }
 
-    & iframe {
-      margin: 1rem auto;
-      max-width: 100%;
-      height: auto;
-      margin-left: 0vh;
-
-     
-      @include media(">sm") {
-        height: 35vh;
-        margin-left: 0vh;
-    }
-   
-
-    @include media(">md") {
-      height: 35vh;
-      margin-left: 0vh;
-    }
-
-  @include media(">lg") {
-    height: 50vh;
-  //  margin-left: 3vh !important;
-  }
-
-  @media(min-width: 1800px) {
-    height: 20vh;
-    margin-left: 3vh;
-  //  margin-left: 3vh !important;
-  }
-
-    
-      }
-    
   }
 
   &__status {
@@ -321,3 +303,4 @@
   height: 35px;
   position: relative;
 }
+

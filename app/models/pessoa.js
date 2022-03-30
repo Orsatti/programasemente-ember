@@ -110,4 +110,7 @@ export default DS.Model.extend({
   termoAceite: DS.attr(),
   senha: DS.attr(),
   acessoPlataformaS: DS.attr(),
+  nameLower: Ember.computed('name', function(){
+    return this.get('name').toLowerCase();
+  })
 });

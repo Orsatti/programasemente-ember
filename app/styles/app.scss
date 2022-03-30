@@ -143,3 +143,8 @@
 @import "utils/flexbox/flex-order";
 @import "utils/flexbox/flex-shrink";
 @import "utils/flexbox/flex-wraps";
+
+
+.capitalized{
+    text-transform: capitalize;
+}

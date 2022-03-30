@@ -612,8 +612,8 @@
                           <img class="avatar__img" src="/assets/img/avatar-default.svg" alt="{{pessoa.name}}">
                           {{/if}}
                         </span>
-                        <span class="truncate">
-                          {{pessoa.name}}
+                        <span class="truncate capitalized">
+                          {{pessoa.nameLower}}
                         </span>
                       </td>
                       {{#if (equalstr pessoa.progressoAtividades.length '0')}}

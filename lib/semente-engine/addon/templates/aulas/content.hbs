@@ -136,6 +136,9 @@
                                         oninput="this.parentNode.dataset.replicatedValue = this.value"></textarea>
                         </div>
 
+                        <button class="btn btn--ghost btn--xxs" {{action "cancelAnotacao"}}>
+                            <span class="btn__label">Cancelar</span>
+                        </button>
                         <button class="btn btn--ghost btn--xxs" id="header-indicadores" {{action "createAnotacao"}}>
                             <span class="btn__label">Adicionar</span>
                         </button>

@@ -316,3 +316,14 @@
   bottom: 0rem;
 }
 
+
+.area-certificado {
+
+
+  &__certificado{
+
+    &--fundo-esq-top{
+      background-image: url(/new-certificado/certificado/certificado-eja_01.jpg);
+    }
+  }
+}

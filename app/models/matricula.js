@@ -24,4 +24,6 @@ export default DS.Model.extend({
   }),
   moduloId: DS.attr(),
   statusVideoInicio: DS.attr(),
+  codigoCertificado: DS.attr(),
+  dataConclusao: DS.attr(),
 });

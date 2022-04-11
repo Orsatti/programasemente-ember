@@ -83,9 +83,13 @@
         {{/if}}
         ano
       </div>
-     <div class="content-btn-certificado">
-       <button class="class__cta btn btn--sm btn-certificado" data-ember-action="" data-ember-action-775="775">Ver seu certificado</button>
-     </div>
+
+      <div class="content-btn-certificado">
+      {{#if certificado}}
+          {{#link-to 'modulos.certificado' moduloId class="class-list__class_cta btn trail__certificate-btn"}}Ver seu certificado{{/link-to}}
+          {{!-- <button class="class__cta btn btn--sm btn-certificado" data-ember-action="" data-ember-action-775="775">Ver seu certificado</button> --}}
+      {{/if}}
+      </div>
     </div>
 
   </section>

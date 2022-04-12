@@ -3,7 +3,33 @@
     <h2 class="main__title certificado__noprint">certificado</h2>
     <div id="toPDF" class="btn-imprimir certificado__noprint" {{action 'toPDF'}}>Baixar em PDF</div>
     <div id="certificado" class="certificado certificado__print-cert">
-        <div class="certificado__detalhe-esq-top">
+
+        <div class="area-certificado">
+   <div class="area-certificado__infos">
+      <div class="area-certificado__infos--codigo">
+       <p><b>{{codigo}}</b></p>
+     </div>
+     <div class="area-certificado__infos--logo">
+       <img src="/assets/img/certificado/certificado-eja_05.jpg" alt="">
+     </div>
+     <div class="area-certificado__infos--texto">
+       <p>declaramos que {{pessoa.name}} cumpriu <b>20h do {{percurso}}</b> correpondente ao <b>módulo X</b></p>
+     </div>
+     <div class="area-certificado__infos--data">São Paulo {{dateFormat matricula.dataConclusao}}</div>
+     <div class="area-certificado__infos--assinatura">
+       <img src="/assets/img/certificado/certificado-eja_11.jpg" alt="">
+     </div>
+   </div>
+        <div class="area-certificado__certificado">
+          <div class="area-certificado__certificado--fundo-esq-top"></div>
+          <div class="area-certificado__certificado--fundo-dir-top"></div>
+          <div class="area-certificado__certificado--fundo-esq-bottom"></div>
+          <div class="area-certificado__certificado--fundo-dir-bottom"></div>
+        </div>
+    </div>
+
+
+     <!--   <div class="certificado__fundo-esq-top">
             <div class="certificado__detalhe-esq-top--int-branco">
                 <div class="certificado__detalhe-esq-top--int-laranja">
                     <div class="certificado__detalhe-esq-top--int-branco-int">
@@ -51,7 +77,7 @@
                 <div class="certificado__detalhe-esq-top--int-branco"></div>
             </div>
 
-        </div>
+        </div> -->
     </div>
 
 </main>

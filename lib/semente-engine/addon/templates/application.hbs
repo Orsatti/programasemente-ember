@@ -34,9 +34,10 @@
         <span class="m-top--xxs fs--xxs animated {{if allowSendMessage 'fadeOut'}}">Mínimo de 5 caracteres</span>
       </div>
       <div style="display: flex;flex-direction: row;justify-content: space-between;">
+        <button class="help__cta btn self-end btn--text-remove" id="help_logout" {{action 'logout' }}>Sair</button>
         <button class="help__cta btn self-start" id="help__cta" {{action 'supportMailer' }} disabled={{if allowSendMessage
           false true}}>Enviar</button>
-        <button class="help__cta btn self-end" id="help_logout" {{action 'logout' }}>Sair</button>
+        
       </div>
      
     {{#unless (or (equalstr role 'aluno'))}}

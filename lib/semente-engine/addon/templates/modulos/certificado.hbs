@@ -1,83 +1,32 @@
 <main class="main certificado__print-canvas">
-    <section id="section" class="main__section"></section>
-    <h2 class="main__title certificado__noprint">certificado</h2>
-    <div id="toPDF" class="btn-imprimir certificado__noprint" {{action 'toPDF'}}>Baixar em PDF</div>
+    {{!-- <section id="section" class="main__section"></section> --}}
+    {{!-- <h2 class="main__title certificado__noprint">certificado</h2> --}}
+    
     <div id="certificado" class="certificado certificado__print-cert">
-
         <div class="area-certificado">
-   <div class="area-certificado__infos">
-      <div class="area-certificado__infos--codigo">
-       <p><b>{{codigo}}</b></p>
-     </div>
-     <div class="area-certificado__infos--logo">
-       <img src="/assets/img/certificado/certificado-eja_05.jpg" alt="">
-     </div>
-     <div class="area-certificado__infos--texto">
-       <p>declaramos que {{pessoa.name}} cumpriu <b>20h do {{percurso}}</b> correpondente ao <b>módulo X</b></p>
-     </div>
-     <div class="area-certificado__infos--data">São Paulo {{dateFormat matricula.dataConclusao}}</div>
-     <div class="area-certificado__infos--assinatura">
-       <img src="/assets/img/certificado/certificado-eja_11.jpg" alt="">
-     </div>
-   </div>
-        <div class="area-certificado__certificado">
-          <div class="area-certificado__certificado--fundo-esq-top"></div>
-          <div class="area-certificado__certificado--fundo-dir-top"></div>
-          <div class="area-certificado__certificado--fundo-esq-bottom"></div>
-          <div class="area-certificado__certificado--fundo-dir-bottom"></div>
-        </div>
-    </div>
-
-
-     <!--   <div class="certificado__fundo-esq-top">
-            <div class="certificado__detalhe-esq-top--int-branco">
-                <div class="certificado__detalhe-esq-top--int-laranja">
-                    <div class="certificado__detalhe-esq-top--int-branco-int">
-                        <div class="certificado__detalhe-esq-top--int-laranja-int">
-                            <div class="certificado__detalhe-esq-top--int-branco-int2"></div>
-                        </div>
-                    </div>
+            <div class="area-certificado__infos">
+                <div class="area-certificado__infos--codigo">
+                    <p><b>{{codigo}}</b></p>
+                </div>
+                <div class="area-certificado__infos--logo">
+                    <img src="/assets/img/certificado/certificado-eja_05.jpg" alt="">
+                </div>
+                <div class="area-certificado__infos--texto">
+                    <p>declaramos que {{pessoa.name}} cumpriu <b>20h do {{percurso}}</b> correpondente ao <b>módulo X</b></p>
+                </div>
+                <div class="area-certificado__infos--data">São Paulo {{dateFormat matricula.dataConclusao}}</div>
+                <div class="area-certificado__infos--assinatura">
+                    <img src="/assets/img/certificado/certificado-eja_11.jpg" alt="">
                 </div>
             </div>
-        </div>
-        <div class="certificado__codigo">
-            <h3>{{codigo}}</h3>
-        </div>
-        <div class="certificado__logo"><img src="/assets/img/logo.png" alt="">
-            <div class="certificado__percurso">
-                <h3>Certificado de conclusão do 1º ciclo formativo do {{percurso}}</h3>
+            <div class="area-certificado__certificado">
+                <div class="area-certificado__certificado--fundo-esq-top"></div>
+                <div class="area-certificado__certificado--fundo-dir-top"></div>
+                <div class="area-certificado__certificado--fundo-esq-bottom"></div>
+                <div class="area-certificado__certificado--fundo-dir-bottom"></div>
             </div>
-            <span class="certificado__carga-horaria">Carga horária de <strong>  20h</strong></span>
         </div>
-        <div class="certificado__nome">
-            <h3>{{pessoa.name}}</h3>
-            <div class="certificado__nome--linha"></div>
-        </div>
-        <div class="certificado__data">
-            <h3>{{dateFormat matricula.dataConclusao}}</h3>
-            <div class="certificado__nome--linha"></div>
-            <p>Data de conclusão</p>
-        </div>
-          <div class="certificado__assinatura">
-           <img src="/assets/img/assinatura.png" alt="">
-            <div class="certificado__nome--linha"></div>
-            <p>Prof. Eduardo Calbucci</p>
-        </div>
-        <div class="certificado__detalhe-dir-top">
-            <div class="certificado__borda-dir-topo"></div>
-            <div class="certificado__borda-dir-topo-baixo"></div>
-        </div>
-        <div class="certificado__detalhe-esq-botom">
-            <div class="certificado__borda-esq-topo"></div>
-            <div class="certificado__borda-esq-topo-baixo"></div>
-        </div>
-        <div class="certificado__logo"></div>
-        <div class="certificado__detalhe-dir-botom">
-            <div class="certificado__detalhe-esq-top">
-                <div class="certificado__detalhe-esq-top--int-branco"></div>
-            </div>
-
-        </div> -->
     </div>
 
+    <div id="toPDF" class="class-list__class_cta btn trail__certificate-btn class__cta btn btn--sm btn-certificado" {{action 'toPDF'}}>Baixar em PDF</div>
 </main>

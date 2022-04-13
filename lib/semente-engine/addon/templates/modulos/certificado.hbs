@@ -1,7 +1,4 @@
 <main class="main certificado__print-canvas">
-    {{!-- <section id="section" class="main__section"></section> --}}
-    {{!-- <h2 class="main__title certificado__noprint">certificado</h2> --}}
-    
     <div id="certificado" class="certificado certificado__print-cert">
         <div class="area-certificado">
             <div class="area-certificado__infos">
@@ -12,9 +9,9 @@
                     <img src="/assets/img/certificado/certificado-eja_05.png" alt="">
                 </div>
                 <div class="area-certificado__infos--texto">
-                    <p>declaramos que {{pessoa.name}} cumpriu <b>20h do {{percurso}}</b> correpondente ao <b>módulo X</b></p>
+                    <p>Declaramos que o(a) aluno(a) <b>{{pessoa.name}}</b> cumpriu com a carga horária de <b>20h</b>, correpondente ao percurso <b>{{percurso}}</b>.</p>
                 </div>
-                <div class="area-certificado__infos--data">São Paulo {{dateFormat matricula.dataConclusao}}</div>
+                <div class="area-certificado__infos--data">São Paulo, {{dateFormat matricula.dataConclusao}}.</div>
                 <div class="area-certificado__infos--assinatura">
                     <img src="/assets/img/certificado/certificado-eja_11.png" alt="">
                 </div>
@@ -27,6 +24,5 @@
             </div>
         </div>
     </div>
-
-    <div id="toPDF" class="class-list__class_cta btn trail__certificate-btn class__cta btn btn--sm btn-certificado" {{action 'toPDF'}}>Baixar em PDF</div>
+    <div id="toPDF" class="btn btn--sm btn-certificado lass-list__class_cta trail__certificate-btn" {{action 'toPDF'}}>Baixar em PDF</div>
 </main>

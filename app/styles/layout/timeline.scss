@@ -304,3 +304,144 @@
   position: relative;
 }
 
+.content-btn-certificado{
+  text-align: right;
+  position: relative;
+  margin-right: 0;
+}
+
+.btn-certificado{
+  position: absolute;
+  right: 0;
+  bottom: 0rem;
+}
+
+
+.area-certificado{
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+
+  &__infos{
+    position: absolute;
+    z-index: 9;
+    top: 0rem;
+
+    &--codigo{
+      text-align: right;
+      font-size: 1rem;
+      width: 95%;
+      margin: 2rem auto 5rem;
+
+      @include media("<sm") {
+        font-size: 1rem;
+        margin: 2rem auto 10rem;
+      }
+    }
+
+    &--logo{
+      width: 30%;
+      margin: auto;
+      z-index: 999999999999;
+      top: 20rem;
+    }
+
+    &--assinatura{
+      width: 30%;
+      margin: auto;
+      z-index: 999999999999;
+      top: 10rem;
+    }
+
+    &--texto{
+      text-align: center;
+      font-size: 2rem;
+      width: 80%;
+      margin: 2rem auto;
+
+      @include media("<sm") {
+        font-size: 1rem;
+      }
+      
+      @include media("<md") {
+        font-size: 1rem;
+      }
+    }
+
+    &--data{
+      text-align: center;
+      font-size: 2rem;
+      width: 80%;
+      margin: 2rem auto;
+
+      @include media("<sm") {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  &__certificado{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    margin-top: 2rem;
+    position: relative;
+    display: inline-table;
+    height: 100vh;
+
+    &--fundo-esq-top{
+      background-image: url(/assets/img/certificado/certificado-eja_01.jpg);
+      position: relative;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 60vh;
+      width: 50%;
+    }
+    &--fundo-dir-top{
+      background-image: url(/assets/img/certificado/certificado-eja_02.jpg);
+      position: relative;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 60vh;
+      width: 46%;
+    }
+    &--fundo-esq-bottom{
+      background-image: url(/assets/img/certificado/certificado-eja_03.jpg);
+      position: relative;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      display: inline-block;
+      background-position: bottom;
+      height: 51vh;
+      width: 50%;
+
+      @include media("<sm") {
+        height: 15vh;
+      }
+
+      @include media("<md") {
+        height: 15vh;
+      }
+    }
+    &--fundo-dir-bottom{
+      background-image: url(/assets/img/certificado/certificado-eja_04.jpg);
+      position: relative;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      display: inline-block;
+      background-position: bottom;
+      height: 52vh;
+      width: 46%;
+
+      @include media("<sm") {
+        height: 15vh;
+      }
+
+      @include media("<md") {
+        height: 15vh;
+      }
+    }
+  }
+}

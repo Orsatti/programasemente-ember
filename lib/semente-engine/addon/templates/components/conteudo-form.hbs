@@ -104,10 +104,10 @@
                                                 value=conteudo.descricao
                                                 change=(action 'descricaoChanged')
                                                 placeholder='Descrição do Conteúdo'
-                                                maxlength=240}}
+                                                maxlength=500}}
                             </div>
                             <p class="text-aux {{if (isbigger conteudo.descricao.length '60') 'color-warning-60 bg-warning-10'}}">
-                            {{if (isbigger conteudo.descricao.length 0) conteudo.descricao.length "0"}}/240 caracteres permitidos.</p>
+                            {{if (isbigger conteudo.descricao.length 0) conteudo.descricao.length "0"}}/500 caracteres permitidos.</p>
                         </div>
 
                     </div>

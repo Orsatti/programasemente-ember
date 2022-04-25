@@ -61,6 +61,12 @@
             <li>
               {{plataforma-biblioteca-card conteudo=conteudo toggleModal=(action 'toggleModal')}}
             </li>
+          {{else}}
+            {{#if (containStr subStr = search mainStr = conteudo.descricao)}}
+              <li>
+                {{plataforma-biblioteca-card conteudo=conteudo toggleModal=(action 'toggleModal')}}
+              </li>
+            {{/if}}
           {{/if}}
         {{/each}}
       </ul>

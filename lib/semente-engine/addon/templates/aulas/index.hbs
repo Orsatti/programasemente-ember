@@ -136,5 +136,18 @@
     </div>
   </div>
 </aside>
+
+<aside id="eja_modal" class="modal">
+  <div class="modal__overlayer"></div>
+  <div class="modal__content">
+    <div class="modal__header">
+      <button class="modal__close btn-close icon-x" type="submit" {{action 'closeEjaModal'}}></button>
+      <h2 class="modal__title color-leaf-40"> </h2>
+    </div>
+    <button class="btn btn-primary" type="submit" {{action 'transitToS'}}>Acessar Plataforma S</button>
+  </div>
+</aside>
+
 {{termoAceito}}
 {{isProfAplicador}}
+{{!-- {{isMedioEja}} --}}

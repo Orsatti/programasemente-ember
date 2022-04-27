@@ -6,3 +6,12 @@
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
   grid-template-rows: repeat(auto-fill, minmax(4rem, 1fr));
 }
+
+.m-card-list {
+  $this: &;
+
+  display: grid;
+  gap: $distance--lg;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(18rem, 1fr));
+}

@@ -93,6 +93,14 @@
     &[data-ember-action]:hover {
       background-color: $gray-10;
     }
+
+    &--fundo{
+      background-image: url(../assets/img/Fund1-1Ano/FUND1-1ANO_Page_01.jpg);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      border-radius: 20px;
+      box-shadow: 5px 10px 5px rgb(8 12 10 / 30%);
+    }
   }
 
 //   &--as-button {

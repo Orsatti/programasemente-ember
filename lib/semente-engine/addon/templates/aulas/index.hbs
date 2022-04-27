@@ -62,8 +62,28 @@
 
         <div class="form-group">
           <label class="form-group__label">Busca</label>
-          <div class="form-group__wrapper form-group__wrapper--search">
-            {{input class="form-group__input" type="text" id="aulapesquisa" value=search}}
+          <div class="form-group__wrapper form-group__wrapper--select">
+            <select class="form-group__input" id="busca">
+             <!-- onchange={{action 'refreshSelectedBusca' value='target.value'}}> -->
+              <option selected="selected">Buscar por competências</option>
+              <option value="Foco">Foco</option>
+              <option value="Orgsnização">Orgsnização</option>
+              <option value="Determinação">Determinação</option>
+               <option value="Persistência">Persistência</option>
+              <option value="Responsabilidade">Responsabilidade</option>
+              <option value="Curiosidade">Curiosidade</option>
+               <option value="Imaginação criativa">Imaginação criativa</option>
+              <option value="Sensibilidade estética">Sensibilidade estética</option>
+              <option value="Modulação do medo">Modulação do medo</option>
+               <option value="Modulação da raiva">Modulação da raiva</option>
+              <option value="Modulação da tristeza">Modulação da tristeza</option>
+              <option value="Iniciativa social">Iniciativa social</option>
+               <option value="Assertividade">Assertividade</option>
+              <option value="Entusiasmo">Entusiasmo</option>
+               <option value="Empatia">Empatia</option>
+              <option value="Respeito">Respeito</option>
+              <option value="Confiança">Confiança</option>
+            </select>
           </div>
           <a class="form__aux-link" onclick={{action 'eraseText'}}>Limpar busca</a>
         </div>
@@ -100,7 +120,7 @@
           <h2 class="title-4">{{selectedAno.name}}<span class="fs--xs fw--3 fs-i color-blue-navy-20"> ({{aulasFiltradas.length}}  {{if isBloco 'blocos' 'aulas'}})</span></h2>
         </div>
       </hgroup>
-      <ul id="card-list-{{pessoaId}}" class="l-card-list animated slow {{if noCards 'd--none'}}">
+      <ul id="card-list-{{pessoaId}}" class="m-card-list animated slow {{if noCards 'd--none'}}">
         {{#each aulasFiltradas as |aulaFiltrada|}}
           <li>
             {{aula-card aula=aulaFiltrada selectedAno=selectedAno pessoa=pessoa selectedSituacao=selectedSituacao}}

@@ -5,6 +5,7 @@
                 livros = livros
                 }}
 
+
 <section class="flow-xl">
   <h1 class="sr-only">Conteúdo de {{thisRoute}}</h1>
 
@@ -106,7 +107,12 @@
             {{aula-card aula=aulaFiltrada selectedAno=selectedAno pessoa=pessoa selectedSituacao=selectedSituacao}}
           </li>
         {{/each}}
+
       </ul>
+
+      {{!-- {{#if certificado}}
+        {{#link-to 'modulos.certificado' moduloId class="class-list__class_cta btn trail__certificate-btn class__cta btn btn--sm btn-certificado"}}Ver seu certificado{{/link-to}}
+      {{/if}} --}}
 
       {{#if noCards}}
         <div class="empty animated fadeIn">

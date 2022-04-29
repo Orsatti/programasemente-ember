@@ -6,18 +6,23 @@
     </picture> -->
     {{aulaThumb}}
     <div class="media__body flow-md self-stretch">
+      <div class="titulo-aula">
       <div class="flow-xxs">
         {{#if aula.unidade}}
           <span class="title-aux">
             {{aula.unidade.titulo}}
           </span>
         {{/if}}
-        <span class="media__title title-2">{{aula.titulo}}</span>
+        <span class="media__title  media__title--novo-titulo">{{aula.titulo}}</span>
       </div>
-      {{#if aula.descricao}}
-        <span>{{aula.descricao}}</span>
-      {{/if}}
+      </div>
+      <div class="descricao-aula">
+      <p class="media__title--nova-descricao-aula">Descrição do bloco de no máximo 2 linhas.</p>
+      </div>
 
+      <div class="habilidades">
+        <div>Assertividade</div> <div>Foco</div> <div>Entusiasmo</div> <div>Curiosidade</div>
+      </div>
     <!--   <span class="flex flex-row items-center m-bottom--md">
         <svg xmlns="http://www.w3.org/2000/svg"
             class="stroke-green-20 m-right--xs"
@@ -38,18 +43,18 @@
           <span>{{situacao}}</span>
         {{/if}} 
       </span>-->
-
+<div class="btn-materiais-aula">
       {{#if (not aula.hasContent)}}
-        <div class="btn btn--disabled btn--ghost btn--xxs">
+        <div class="btn btn--disabled btn--ghost btn--xxs novo-btn-materiais-aula">
           <span class="icon-lock m-right--xs"></span>
           <span>Ainda não há materiais</span>
         </div>
       {{else}}
-        {{#link-to 'aulas.content' aula.id class="btn btn--ghost btn--xxs"}}
+        {{#link-to 'aulas.content' aula.id class="btn btn--ghost btn--xxs btn-materiais-aula"}}
           <span class="btn__label">Ver materiais</span>
         {{/link-to}}
       {{/if}}
-
+</div>
     </div>
 
   </div>

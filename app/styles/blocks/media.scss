@@ -68,6 +68,18 @@
 
   &__title {
     display: block;
+
+    &--novo-titulo{
+      color: #fff;
+      font-size: 20px;;
+      font-weight: bold;
+      margin-top: 8rem;
+    }   
+
+    &--nova-descricao-aula{
+      margin-top: 0 !important;
+      color: #fff;
+    }
   }
 
   // Modifiers
@@ -100,6 +112,13 @@
       background-repeat: no-repeat;
       border-radius: 20px;
       box-shadow: 5px 10px 5px rgb(8 12 10 / 30%);
+      position: relative;
+    }
+
+    .btn-materiais-aula{
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
     }
   }
 

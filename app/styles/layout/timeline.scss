@@ -312,8 +312,8 @@
 
 .btn-certificado{
   position: absolute;
-  right: 0;
-  bottom: 0rem;
+  right: 1rem;
+  bottom: -3rem;
 }
 
 
@@ -321,11 +321,16 @@
   background-color: #fff;
   position: relative;
   z-index: 1;
+  margin-bottom: 10rem;
 
   &__infos{
     position: absolute;
     z-index: 9;
-    top: 0rem;
+    top: 10rem;
+
+    @include media("<lg") {
+      top: 5rem;
+    }
 
     &--codigo{
       text-align: right;
@@ -443,5 +448,17 @@
         height: 15vh;
       }
     }
+  }
+}
+
+.certificado{
+  &__print-canvas{
+    padding: 0;
+    border: 0;
+  }
+
+  &__eja{
+    margin: 5rem -1rem;
+    position: relative;
   }
 }

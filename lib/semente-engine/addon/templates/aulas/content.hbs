@@ -296,34 +296,36 @@ livros = livros
 
 
 <!-- Modal de visualizar o conteudo -->
-
-<aside id="content-modal" class="modal modal--is-content animated fadeIn faster">
-  <button class="modal__close btn-close icon-x" type="button" {{action "closeConteudoModal" }}></button>
-  <div class="modal__content">
-    <div class="modal__body">
-      {{#if selectedConteudo}}
-      <div class="flow-sm" id="vimeoVideo">
-        {{plataforma-conteudo-video-player conteudo=selectedConteudo controller=this pessoa=pessoa stopVideo=stopVideo}}
-        <p class="ta-c title-4 color-gray-20">{{selectedConteudo.titulo}}</p>
+  <aside id="content-modal" class="modal modal--is-content animated fadeIn faster">
+    <button class="modal__close btn-close icon-x" type="button" {{action "closeConteudoModal" }}></button>
+    <div class="modal__content">
+      <div class="modal__body">
+        {{#if selectedConteudo}}
+        <div class="flow-sm" id="vimeoVideo">
+          {{plataforma-conteudo-video-player conteudo=selectedConteudo controller=this pessoa=pessoa stopVideo=stopVideo endVideo=endVideo tarefa=tarefa}}
+          <p class="ta-c title-4 color-gray-20">{{selectedConteudo.titulo}}</p>
+        </div>
+        {{/if}}
       </div>
-      {{/if}}
     </div>
-  </div>
-  <div class="modal__overlayer">       
-  </div>
-  <div class="modal__content--banner-final"> 
-	<div class="transition__whatnext animated fadeIn d1250">
-    	<h1 class="transition__title animated fadeIn d500"><span>Parabéns!</span> Você finalizou esta aula.</h1>
-		<h2 class="transition__subtitle">O que deseja fazer agora?</h2>
-		<div class="transition__cta-group">
-			<button class="transition__cta btn btn--md animated fadeIn d2250" {{action 'goNext' next_atividade_id
-				next_ativsec_id 'atividade' }}><span class="hide-on--xs">Continuar para a</span> próxima aula</button>
-			<button class="transition__cta btn btn--md btn--ghost animated fadeIn d1750" {{action 'reverVideo' }}>{{if
-				rever_quiz 'Rever o quiz' 'Rever o video'}}</button>	
-		</div>
-	</div>
-  </div>
-</aside>
+    <div class="modal__overlayer">       
+    </div>
+    {{#if endVideo}}
+      <div class="modal__content--banner-final"> 
+      <div class="transition__whatnext animated fadeIn d1250">
+          <h1 class="transition__title animated fadeIn d500"><span>Parabéns!</span> Você finalizou esta aula.</h1>
+        <h2 class="transition__subtitle">O que deseja fazer agora?</h2>
+        <div class="transition__cta-group">
+          <button class="transition__cta btn btn--md animated fadeIn d2250" {{action "voltar" }}>
+            <span class="hide-on--xs">Voltar à página de aulas</span></button>
+          <button class="transition__cta btn btn--md btn--ghost animated fadeIn d1750" {{action "closeConteudoModal" }}>
+            Sair do video
+          </button>	
+        </div>
+      </div>
+      </div>
+    {{/if}}
+  </aside>
 
 
 <aside id="content-modal-ead" class="modal modal--is-content animated fadeIn faster">

@@ -18,4 +18,6 @@ export default DS.Model.extend({
     calendarios: DS.hasMany('calendario', {async: true}),
     dataCriacao: DS.attr("date"),
     descricao: DS.attr(),
+    indicacao: DS.attr(),
+    indicacaoUrl: DS.attr(),
 });

@@ -20,4 +20,5 @@ export default DS.Model.extend({
     descricao: DS.attr(),
     indicacao: DS.attr(),
     indicacaoUrl: DS.attr(),
+    indicacaoDescricao: DS.attr(),
 });

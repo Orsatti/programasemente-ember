@@ -164,6 +164,20 @@
                         </div>
 
                         <div class="flex-col flow-xs">
+                            <div class="form-group w100 form-group__container--h50">
+                            <label class="form-group__label" for="">Descrição do Conteúdo</label>
+                            {{textarea class="form-group-descricao" cols="30" rows="5" id="indicacaoDescricao"
+                                                name=''
+                                                value=conteudo.indicacaoDescricao
+                                                change=(action 'indicacaoDescricaoChanged')
+                                                placeholder='Descrição do Conteúdo'
+                                                maxlength=500}}
+                            </div>
+                            <p class="text-aux {{if (isbigger conteudo.indicacaoDescricao.length '480') 'color-warning-60 bg-warning-10'}}">
+                            {{if (isbigger conteudo.indicacaoDescricao.length 0) conteudo.indicacaoDescricao.length "0"}}/500 caracteres permitidos.</p>
+                        </div>
+
+                        <div class="flex-col flow-xs">
                             <div class="form-group w100">
                                 <label class="form-group__label" for="indicacaoUrl">Endereço de Vídeo</label>
                                 <input class="form-group__input j-validate" id="indicacaoUrl" name="indicacaoUrl"

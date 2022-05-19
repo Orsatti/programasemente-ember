@@ -144,16 +144,20 @@
 </aside>
 
 <aside id="eja_modal" class="modal">
-  <div class="modal__overlayer"></div>
-  <div class="modal__content">
-    <div class="modal__header">
-      <button class="modal__close btn-close icon-x" type="submit" {{action 'closeEjaModal'}}></button>
-      <h2 class="modal__title color-leaf-40"> </h2>
+    <div class="modal__overlayer"></div>
+    <div class="modal__content">
+      <div class="modal__header">
+        <h3 class="modal__title ">Você precisa terminar o seu percurso na Plataforma S para acessar o Portal do Semente.</h3>
+      </div>
+      <div class="modal__footer">
+        <a href="https://s.programasemente.com.br" class="btn btn-primary" target="_blank">
+              <span>Acessar Plataforma S</span>
+        </a>
+        <button class="btn" type="submit" {{action 'cancelEjaModal' }}>Fazer Logout</button>
+      </div>
     </div>
-    <button class="btn btn-primary" type="submit" {{action 'transitToS'}}>Acessar Plataforma S</button>
-  </div>
-</aside>
+  </aside>
 
 {{termoAceito}}
+{{ejaAcessoMedio}}
 {{isProfAplicador}}
-{{!-- {{isMedioEja}} --}}

@@ -76,21 +76,22 @@
             </div>
 
             {{#if (equalstr selectedFilteredRole "alunos")}}
-                {{!-- <div class="form-group">
-                    <label class="form-group__label">Turma</label>
-                    <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" id="situation" onchange={{action 'refreshSelectedTurma'
-                                                value='target.value' }}>
-                            <option selected="selected" value="">Todas</option>
-                            {{#each plataformaTurmas as |pt|}}
-                            <option value={{pt.id}} selected={{if (equalstr pt.id selectedPlataformaTurma.id) "selected"}}>
-                                {{pt.name}}</option>
-                            {{/each}}
-                        </select>
+                {{#if platAnoFiltered}}
+                    <div class="form-group">
+                        <label class="form-group__label">Turma</label>
+                        <div class="form-group__wrapper form-group__wrapper--select">
+                            <select class="form-group__input" id="situation" onchange={{action 'refreshSelectedTurma'
+                                                    value='target.value' }}>
+                                <option selected="selected" value="">Todas</option>
+                                {{#each plataformaTurmas as |pt|}}
+                                <option value={{pt.id}} selected={{if (equalstr pt.id selectedPlataformaTurma.id) "selected"}}>
+                                    {{pt.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
                     </div>
-                </div> --}}
+                {{/if}}
             {{/if}}
-
         </form>
     </header>
     <section class="l-dots-between__content flow-md">

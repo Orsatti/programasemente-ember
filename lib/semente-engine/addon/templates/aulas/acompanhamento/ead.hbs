@@ -30,164 +30,119 @@
   <div class="l-dots-between">
     <header class="l-dots-between__side">
       <form autocomplete="off" class="flex flex-col flow-md">
-          <div class="two-col-wrap">
-            <button class="btn btn--as-filter {{if (equalstr selectedContent 'g') 'btn--is-active'}}" {{action 'refreshContent' 'g'}} type="button">
-              <span class="btn__label">Geral</span>
-            </button>
-            <button id="detalhado" class="btn btn--as-filter {{if (equalstr selectedContent 'd') 'btn--is-active'}}" {{action 'refreshContent' 'd'}} type="button">
-              <span class="btn__label">Detalhado</span>
-            </button>
-          </div>
+        <div class="two-col-wrap">
+          <button class="btn btn--as-filter {{if (equalstr selectedContent 'g') 'btn--is-active'}}" {{action 'refreshContent' 'g'}} type="button">
+            <span class="btn__label">Geral</span>
+          </button>
+          <button id="detalhado" class="btn btn--as-filter {{if (equalstr selectedContent 'd') 'btn--is-active'}}" {{action 'refreshContent' 'd'}} type="button">
+            <span class="btn__label">Detalhado</span>
+          </button>
+        </div>
 
-          {{#if (equalstr selectedContent 'g')}}
-
+        {{#if (equalstr selectedContent 'g')}}
+          {{!-- {{#if hasChildren}}
             <div class="form-group">
-              <label class="form-group__label" for="select_course">Ano</label>
-
+              <label class="form-group__label">Instituição</label>
               <div class="form-group__wrapper form-group__wrapper--select">
-                <select class="form-group__input form-group__input--select"
-                        id="select_course"
-                        value="select_inst"
-                        {{action 'selectCursoAno' on="change"}}>
-                  {{#each inst_selected.modulos as |modulo|}}
-                    {{#if (equalstr curso_selected.id modulo.id)}}
-                      <option value={{modulo.id}} selected>{{modulo.name}}</option>
-                    {{else}}
-                      <option value={{modulo.id}}>{{modulo.name}}</option>
-                    {{/if}}
+                <select id="inst_selector" class="form-group__input form-group__input--select"
+                  {{action 'filterInstF' on='change'}}>
+                  <option value="0" selected>Escolha uma instituição</option>
+                  {{#each inst_selected.instituicaoFilhas as |instF|}}
+                    <option id="opt_{{instF.id}}" style="display: block" value={{instF.id}}>{{instF.name}}</option>
                   {{/each}}
                 </select>
               </div>
-
-
             </div>
+          {{/if}} --}}
 
-            {{#if curso_selected}}
-                {{!-- <div class="form-group">
-                  <label class="form-group__label" for="turma_selector">Turma</label>
-                  <div class="form-group__wrapper form-group__wrapper--select">
-                    <select id="turma_selector" class="form-group__input form-group__input--select" {{action 'filterTurmaAno' on='change'}}>
-
-                      <option value="0" selected>Todas as turmas</option>
-                        {{#each inst_selected.turmas as |turma|}}
-                          {{#if (equalstr turma.modulo.id curso_selected.id)}}
-                            <option id="opt_{{turma.id}}" value={{turma.id}}>{{turma.name}}</option>
-                          {{/if}}
-                        {{/each}}
-                    </select>
-                  </div>
-                </div> --}}
-
-                <div class="form-group">
-                  <label class="form-group__label" for="matchClass">Busca</label>
-                  <form class="flex flex-col" id="searchAllEnrolled" autocomplete="off" aria-autocomplete="none">
-
-                    <div class="form-group__wrapper form-group__wrapper--search m-right--none" flex="100">
-                      {{input class="form-group__input" aria-describedby="basic-addon1" id="matchClass"
-                      key-up="filterClasses" type="text" autocomplete="off" aria-autocomplete="none"}}
-                    </div>
-
-                    <button class="form__aux-link" {{action 'exitpagedsearch'}}>
-                      Limpar busca
-                    </button>
-
-                  </form>
-                </div>
-            {{/if}}
-
-          {{/if}}
-
-      {{#if (equalstr selectedContent 'd')}}
-        {{#if hasChildren}}
           <div class="form-group">
-            <label class="form-group__label">Instituição</label>
+            <label class="form-group__label" for="select_course">Ano</label>
             <div class="form-group__wrapper form-group__wrapper--select">
-              <select id="inst_selector" class="form-group__input form-group__input--select"
-                {{action 'filterInstF' on='change'}}>
-                <option value="0" selected>Escolha uma instituição</option>
-                {{#each inst_selected.instituicaoFilhas as |instF|}}
-                  <option id="opt_{{instF.id}}" style="display: block" value={{instF.id}}>{{instFilter instF.name "Fundação Bradesco - "}}</option>
-                {{/each}}
-              </select>
-            </div>
-          </div>
-        {{/if}}
-
-        {{!-- <div class="two-col-wrap">
-          {{currentAnos}}
-          {{#each inst_selected.modulos as |mod index|}}
-            <button class="btn btn--as-filter {{if (equalstr selectedTipo tipo) 'btn--is-active'}}" {{action 'filterano' mod.id on='change'}} type="button">
-              {{mod.id}}
-              <span class="btn__label">{{mod.name}}</span>
-            </button>
-          {{/each}}
-        </div> --}}
-
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!-- checkbox para select -->
-        <div class="form-group">
-          <span class="form-group__label">Ano</span>
-            <div class="form-group__wrapper form-group__wrapper--select">
-              <select id="mod_selector_det" class="form-group__input form-group__input--select" {{action 'filterano' on='change'}}>
-                {{#each inst_selected.modulos as |mod|}}
-                  <option id="ano_{{mod.id}}" value={{mod.id}}>{{mod.name}}</option>
-                {{/each}}
-              </select>
-            </div>
-        </div>
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        <!--- VAZ -->
-        {{!-- {{#if inst_filtered}} --}}
-          {{!-- <div class="form-group">
-            <label class="form-group__label">Turma</label>
-
-            <div class="form-group__wrapper form-group__wrapper--select">
-              <select id="turma_selector_det" class="form-group__input form-group__input--select" {{action 'filterTurma' on='change'}}>
-                <option value="0" selected>Todas as turmas</option>
-                {{#each inst_filtered.turmas as |turma|}}
-                  {{#if (equalstr turma.modulo.id anos)}}
-                    <option id="opt_tur_{{turma.id}}" value={{turma.id}} style="display: block;">{{turma.name}}</option>
+              <select class="form-group__input form-group__input--select"
+                      id="select_course"
+                      value="select_inst"
+                      {{action 'selectCursoAno' on="change"}}>
+                {{#each inst_selected.modulos as |modulo|}}
+                  {{#if (equalstr curso_selected.id modulo.id)}}
+                    <option value={{modulo.id}} selected>{{modulo.name}}</option>
                   {{else}}
-                    <option id="opt_tur_{{turma.id}}" value={{turma.id}} style="display: none;">{{turma.name}}</option>
+                    <option value={{modulo.id}}>{{modulo.name}}</option>
                   {{/if}}
                 {{/each}}
               </select>
             </div>
-          </div> --}}
-        {{!-- {{else}} --}}
-          {{!-- {{#if hasChildren}}
-            <div class="form-group">
-              <label class="form-group__label">Turma</label>
+          </div>
 
+          {{#if curso_selected}}
+              {{!-- <div class="form-group">
+                <label class="form-group__label" for="turma_selector">Turma</label>
+                <div class="form-group__wrapper form-group__wrapper--select">
+                  <select id="turma_selector" class="form-group__input form-group__input--select" {{action 'filterTurmaAno' on='change'}}>
+
+                    <option value="0" selected>Todas as turmas</option>
+                      {{#each inst_selected.turmas as |turma|}}
+                        {{#if (equalstr turma.modulo.id curso_selected.id)}}
+                          <option id="opt_{{turma.id}}" value={{turma.id}}>{{turma.name}}</option>
+                        {{/if}}
+                      {{/each}}
+                  </select>
+                </div>
+              </div> --}}
+          {{/if}}
+
+        {{/if}}
+
+        {{#if (equalstr selectedContent 'd')}}
+          <div class="form-group">
+            <label class="form-group__label" for="search">Busca (<strong>{{totalPessoas}} pessoas</strong>)</label>
+            <form class="flex flex-col" id="searchAllEnrolled" autocomplete="off" aria-autocomplete="none">
+              <div class="form-group__wrapper form-group__wrapper--search m-right--none" flex="100">
+                {{input class="form-group__input"
+                        aria-autocomplete="none"
+                        aria-describedby="basic-addon1"
+                        autocomplete="off"
+                        id="search_input_pessoas_adm"
+                        key-up="pagedsearch"
+                        type="text"}}
+              </div>
+              <button class="form__aux-link" {{action 'exitpagedsearch'}}>Limpar busca</button>
+            </form>
+          </div>
+
+          {{#if hasChildren}}
+            <div class="form-group">
+              <label class="form-group__label">Instituição</label>
               <div class="form-group__wrapper form-group__wrapper--select">
-                <select id="turma_selector_det" class="form-group__input form-group__input--select" disabled>
-                  <option value="0" selected>Todas as turmas</option>
+                <select id="inst_selector" class="form-group__input form-group__input--select"
+                  {{action 'filterInstF' on='change'}}>
+                  <option value="0" selected>Escolha uma instituição</option>
+                  {{#each inst_selected.instituicaoFilhas as |instF|}}
+                    <option id="opt_{{instF.id}}" style="display: block" value={{instF.id}}>{{instF.name}}</option>
+                  {{/each}}
                 </select>
               </div>
             </div>
-          {{else}}
-            <div class="form-group">
+          {{/if}}
+
+          <div class="form-group">
+            <span class="form-group__label">Ano</span>
+              <div class="form-group__wrapper form-group__wrapper--select">
+                <select id="mod_selector_det" class="form-group__input form-group__input--select" {{action 'filterano' on='change'}}>
+                  {{#each inst_selected.modulos as |mod|}}
+                    <option id="ano_{{mod.id}}" value={{mod.id}}>{{mod.name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+          </div>
+
+          {{!-- {{#if inst_filtered}} --}}
+            {{!-- <div class="form-group">
               <label class="form-group__label">Turma</label>
 
               <div class="form-group__wrapper form-group__wrapper--select">
                 <select id="turma_selector_det" class="form-group__input form-group__input--select" {{action 'filterTurma' on='change'}}>
                   <option value="0" selected>Todas as turmas</option>
-                  {{#each inst_selected.turmas as |turma|}}
+                  {{#each inst_filtered.turmas as |turma|}}
                     {{#if (equalstr turma.modulo.id anos)}}
                       <option id="opt_tur_{{turma.id}}" value={{turma.id}} style="display: block;">{{turma.name}}</option>
                     {{else}}
@@ -196,103 +151,109 @@
                   {{/each}}
                 </select>
               </div>
+            </div> --}}
+          {{!-- {{else}} --}}
+            {{!-- {{#if hasChildren}}
+              <div class="form-group">
+                <label class="form-group__label">Turma</label>
+
+                <div class="form-group__wrapper form-group__wrapper--select">
+                  <select id="turma_selector_det" class="form-group__input form-group__input--select" disabled>
+                    <option value="0" selected>Todas as turmas</option>
+                  </select>
+                </div>
+              </div>
+            {{else}}
+              <div class="form-group">
+                <label class="form-group__label">Turma</label>
+
+                <div class="form-group__wrapper form-group__wrapper--select">
+                  <select id="turma_selector_det" class="form-group__input form-group__input--select" {{action 'filterTurma' on='change'}}>
+                    <option value="0" selected>Todas as turmas</option>
+                    {{#each inst_selected.turmas as |turma|}}
+                      {{#if (equalstr turma.modulo.id anos)}}
+                        <option id="opt_tur_{{turma.id}}" value={{turma.id}} style="display: block;">{{turma.name}}</option>
+                      {{else}}
+                        <option id="opt_tur_{{turma.id}}" value={{turma.id}} style="display: none;">{{turma.name}}</option>
+                      {{/if}}
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+            {{/if}}
+          {{/if}} --}}
+
+          {{#if hasChildren}}
+            <div class="form-group form-group--horizontal m-left--auto m-v--md">
+              <label class="form-group__label" for="amount">Exibir</label>
+              <div class="form-group__wrapper form-group__wrapper--select">
+                <select id="amount" class="form-group__input form-group__input--select form-group__input--amount" name="order"
+                  {{action 'setExibir' on='change'}}>
+                  {{#if (equalstr perPage 5)}}
+                  <option value="5" selected>5</option>
+                  <option value="10">10 resultados</option>
+                  <option value="25">25 resultados</option>
+                  <option value="50">50 resultados</option>
+                  <option value="100">100 resultados</option>
+                  <option value="500">500 resultados</option>
+                  <option value="1000">1000 resultados</option>
+                  {{else if (equalstr perPage 25)}}
+                  <option value="5">5 resultados</option>
+                  <option value="10">10 resultados</option>
+                  <option value="25" selected>25 resultados</option>
+                  <option value="50">50 resultados</option>
+                  <option value="100">100 resultados</option>
+                  <option value="500">500 resultados</option>
+                  <option value="1000">1000 resultados</option>
+                  {{else if (equalstr perPage 50)}}
+                  <option value="5">5 resultados</option>
+                  <option value="10">10 resultados</option>
+                  <option value="25">25 resultados</option>
+                  <option value="50" selected>50 resultados</option>
+                  <option value="100">100 resultados</option>
+                  <option value="500">500 resultados</option>
+                  <option value="1000">1000 resultados</option>
+                  {{else if (equalstr perPage 100)}}
+                  <option value="5">5 resultados</option>
+                  <option value="10">10 resultados</option>
+                  <option value="25">25 resultados</option>
+                  <option value="50">50 resultados</option>
+                  <option value="100" selected>100 resultados</option>
+                  <option value="500">500 resultados</option>
+                  <option value="1000">1000 resultados</option>
+                  {{else if (equalstr perPage 500)}}
+                  <option value="5">5 resultados</option>
+                  <option value="10">10 resultados</option>
+                  <option value="25">25 resultados</option>
+                  <option value="50">50 resultados</option>
+                  <option value="100">100 resultados</option>
+                  <option value="500" selected>500 resultados</option>
+                  <option value="1000">1000 resultados</option>
+                  {{else if (equalstr perPage 1000)}}
+                  <option value="5">5 resultados</option>
+                  <option value="10">10 resultados</option>
+                  <option value="25">25 resultados</option>
+                  <option value="50">50 resultados</option>
+                  <option value="100">100 resultados</option>
+                  <option value="500">500 resultados</option>
+                  <option value="1000" selected>1000 resultados</option>
+                  {{else}}
+                  <option value="5">5 resultados</option>
+                  <option value="10" selected>10 resultados</option>
+                  <option value="25">25 resultados</option>
+                  <option value="50">50 resultados</option>
+                  <option value="100">100 resultados</option>
+                  <option value="500">500 resultados</option>
+                  <option value="1000">1000 resultados</option>
+                  {{/if}}
+                </select>
+              </div>
             </div>
           {{/if}}
-        {{/if}} --}}
-
-        {{#if hasChildren}}
-          <div class="form-group form-group--horizontal m-left--auto m-v--md">
-            <label class="form-group__label" for="amount">Exibir</label>
-            <div class="form-group__wrapper form-group__wrapper--select">
-              <select id="amount" class="form-group__input form-group__input--select form-group__input--amount" name="order"
-                {{action 'setExibir' on='change'}}>
-                {{#if (equalstr perPage 5)}}
-                <option value="5" selected>5</option>
-                <option value="10">10 resultados</option>
-                <option value="25">25 resultados</option>
-                <option value="50">50 resultados</option>
-                <option value="100">100 resultados</option>
-                <option value="500">500 resultados</option>
-                <option value="1000">1000 resultados</option>
-                {{else if (equalstr perPage 25)}}
-                <option value="5">5 resultados</option>
-                <option value="10">10 resultados</option>
-                <option value="25" selected>25 resultados</option>
-                <option value="50">50 resultados</option>
-                <option value="100">100 resultados</option>
-                <option value="500">500 resultados</option>
-                <option value="1000">1000 resultados</option>
-                {{else if (equalstr perPage 50)}}
-                <option value="5">5 resultados</option>
-                <option value="10">10 resultados</option>
-                <option value="25">25 resultados</option>
-                <option value="50" selected>50 resultados</option>
-                <option value="100">100 resultados</option>
-                <option value="500">500 resultados</option>
-                <option value="1000">1000 resultados</option>
-                {{else if (equalstr perPage 100)}}
-                <option value="5">5 resultados</option>
-                <option value="10">10 resultados</option>
-                <option value="25">25 resultados</option>
-                <option value="50">50 resultados</option>
-                <option value="100" selected>100 resultados</option>
-                <option value="500">500 resultados</option>
-                <option value="1000">1000 resultados</option>
-                {{else if (equalstr perPage 500)}}
-                <option value="5">5 resultados</option>
-                <option value="10">10 resultados</option>
-                <option value="25">25 resultados</option>
-                <option value="50">50 resultados</option>
-                <option value="100">100 resultados</option>
-                <option value="500" selected>500 resultados</option>
-                <option value="1000">1000 resultados</option>
-                {{else if (equalstr perPage 1000)}}
-                <option value="5">5 resultados</option>
-                <option value="10">10 resultados</option>
-                <option value="25">25 resultados</option>
-                <option value="50">50 resultados</option>
-                <option value="100">100 resultados</option>
-                <option value="500">500 resultados</option>
-                <option value="1000" selected>1000 resultados</option>
-                {{else}}
-                <option value="5">5 resultados</option>
-                <option value="10" selected>10 resultados</option>
-                <option value="25">25 resultados</option>
-                <option value="50">50 resultados</option>
-                <option value="100">100 resultados</option>
-                <option value="500">500 resultados</option>
-                <option value="1000">1000 resultados</option>
-                {{/if}}
-              </select>
-            </div>
-            {{!-- <span>resultados por página</span> --}}
-          </div>
         {{/if}}
-
-        <div class="form-group">
-          <label class="form-group__label" for="search">Busca (<strong>{{totalPessoas}} pessoas</strong>)</label>
-          <form class="flex flex-col" id="searchAllEnrolled" autocomplete="off" aria-autocomplete="none">
-            <div class="form-group__wrapper form-group__wrapper--search m-right--none" flex="100">
-              {{input class="form-group__input"
-                      aria-autocomplete="none"
-                      aria-describedby="basic-addon1"
-                      autocomplete="off"
-                      id="search_input_pessoas_adm"
-                      key-up="pagedsearch"
-                      type="text"}}
-            </div>
-
-            <button class="form__aux-link" {{action 'exitpagedsearch'}}>
-              Limpar busca
-            </button>
-
-          </form>
-        </div>
-
-      {{/if}}
-
       </form>
     </header>
+
     <section class="l-dots-between__content flow-md">
       {{#if (equalstr selectedContent 'g')}}
         {{#if curso_selected}}

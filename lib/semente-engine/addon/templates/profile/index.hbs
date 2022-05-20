@@ -149,10 +149,44 @@
       </ul>
     </section>
 
-    {{#if pessoa.hasDirtyAttributes}}
-    <button class="btn btn--ghost btn--xxs self-start" type="button" {{action 'saveChanges' }}>Salvar
-      alterações</button>
-    {{/if}}
+    
   </div>
+
+  {{#if isAplicador}}
+    <div class="col-xs-12">
+      <section class="flow-sm">
+        <header class="flex flex-row items-baseline">
+          <h3 class="title-3">Anos aplicados</h3>
+        </header>
+
+        <form class="flex flow-md" autocomplete="off">
+          {{#each segmentos as |seg| }}
+            <div class="col-xs-12 col-lg-2 flow-sm">
+              <h5 class="title-aux">{{seg.titulo}}</h5>
+              {{#each seg.plataformaAnos as |platAno|}}
+              <ul>
+                <li>
+                  <div class="checkbox">
+                    <input class="j-validate-aplicador-child checkbox__input" checked={{if (isinarray platAno
+                      pessoa.plataformaAnos) "checked" '' }} id="plat_ano{{platAno.id}}" onchange={{action
+                  (action "selectAno") }} type="checkbox">
+                    <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
+                  </div>
+                </li>
+              </ul>
+              {{/each}}
+            </div>
+          {{/each}}
+        </form>
+
+      </section> 
+    </div>
+  {{/if}}
+
+  {{#if pessoa.hasDirtyAttributes}}
+    <button class="btn btn--ghost btn--xxs self-start" type="button" {{action 'saveChanges' }}>
+      Salvar alterações
+    </button>
+  {{/if}}
 </div>
 <div style="display: none;">{{shouldReview}}</div>

@@ -112,5 +112,6 @@ export default DS.Model.extend({
   acessoPlataformaS: DS.attr(),
   nameLower: Ember.computed('name', function(){
     return this.get('name').toLowerCase();
-  })
+  }),
+  ejaAcessoMedio: DS.attr(),
 });

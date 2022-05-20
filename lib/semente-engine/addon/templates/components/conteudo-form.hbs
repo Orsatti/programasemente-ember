@@ -73,10 +73,11 @@
             <span class="form__msg form__msg--for-title form__msg--right form__msg--error fs--sm animated slow m-left--sm"  id="error_title" aria-live="polite"></span>
         </div>
         <div class="flow-xl">
+
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
 
-                    <div class="flex flex-col flow-xs form-group__container">
+                    <div class="flex flex-col flow-xs">
                         <div class="form-group w100">
                         <label class="form-group__label" for="">Titulo do Conteúdo</label>
                         {{input class="form-group__input" id="tituloConteudo"
@@ -92,11 +93,12 @@
 
                 </div>
             </div>
+
             {{#if isBiblioteca}}
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
 
-                        <div class="flex flex-col flow-xs form-group__container">
+                        <div class="flex-col flow-xs">
                             <div class="form-group w100 form-group__container--h50">
                             <label class="form-group__label" for="">Descrição do Conteúdo</label>
                             {{textarea class="form-group-descricao" cols="30" rows="5" id="descricaoConteudo"
@@ -106,13 +108,87 @@
                                                 placeholder='Descrição do Conteúdo'
                                                 maxlength=500}}
                             </div>
-                            <p class="text-aux {{if (isbigger conteudo.descricao.length '60') 'color-warning-60 bg-warning-10'}}">
+                            <p class="text-aux {{if (isbigger conteudo.descricao.length '480') 'color-warning-60 bg-warning-10'}}">
                             {{if (isbigger conteudo.descricao.length 0) conteudo.descricao.length "0"}}/500 caracteres permitidos.</p>
                         </div>
 
                     </div>
                 </div>
+            {{else}}
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="radio flex flex-col items-start">
+                            <input class="radio__input" id="descricao" name="descricao"
+                            onchange={{ action 'refreshDescricao' }} type="checkbox">
+                            <label class="radio__label strong" for="descricao">Possui descrição?</label>
+                        </div>
+                        {{#if haveDescription}}
+                            <div class="flex-col flow-xs">
+                                <div class="form-group w100 form-group__container--h50">
+                                <label class="form-group__label" for="">Descrição do Conteúdo</label>
+                                {{textarea class="form-group-descricao" cols="30" rows="5" id="descricaoConteudo"
+                                                    name=''
+                                                    value=conteudo.descricao
+                                                    change=(action 'descricaoChanged')
+                                                    placeholder='Descrição do Conteúdo'
+                                                    maxlength=500}}
+                                </div>
+                                <p class="text-aux {{if (isbigger conteudo.descricao.length '480') 'color-warning-60 bg-warning-10'}}">
+                                {{if (isbigger conteudo.descricao.length 0) conteudo.descricao.length "0"}}/500 caracteres permitidos.</p>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
             {{/if}}
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="radio flex flex-col items-start">
+                        <input class="radio__input" id="indicacao" name="indicacao"
+                        onchange={{ action 'refreshIndicacao' }} type="checkbox">
+                        <label class="radio__label strong" for="indicacao">Possui indicação?</label>
+                    </div>
+                    {{#if haveRecommendation}}
+                        <div class="flex-col flow-xs">
+                            <div class="form-group w100">
+                            <label class="form-group__label" for="">Titulo da Indicação</label>
+                            {{input class="form-group__input" id="tituloIndicacao"
+                                                name=''
+                                                value=conteudo.indicacao
+                                                change=(action 'tituloIndicacaoChanged')
+                                                placeholder='Titulo da Indicação'
+                                                maxlength=120}}
+                            </div>
+                            <p class="text-aux {{if (isbigger conteudo.titulo.length '100') 'color-warning-60 bg-warning-10'}}">
+                            {{if (isbigger conteudo.titulo.length 0) conteudo.titulo.length "0"}}/120 caracteres permitidos.</p>
+                        </div>
+
+                        <div class="flex-col flow-xs">
+                            <div class="form-group w100 form-group__container--h50">
+                            <label class="form-group__label" for="">Descrição do Conteúdo</label>
+                            {{textarea class="form-group-descricao" cols="30" rows="5" id="indicacaoDescricao"
+                                                name=''
+                                                value=conteudo.indicacaoDescricao
+                                                change=(action 'indicacaoDescricaoChanged')
+                                                placeholder='Descrição do Conteúdo'
+                                                maxlength=500}}
+                            </div>
+                            <p class="text-aux {{if (isbigger conteudo.indicacaoDescricao.length '480') 'color-warning-60 bg-warning-10'}}">
+                            {{if (isbigger conteudo.indicacaoDescricao.length 0) conteudo.indicacaoDescricao.length "0"}}/500 caracteres permitidos.</p>
+                        </div>
+
+                        <div class="flex-col flow-xs">
+                            <div class="form-group w100">
+                                <label class="form-group__label" for="indicacaoUrl">Endereço de Vídeo</label>
+                                <input class="form-group__input j-validate" id="indicacaoUrl" name="indicacaoUrl"
+                                onchange={{ action 'indicacaoUrlChanged' value='target.value' }} placeholder='Endereço de Vídeo' type="text"
+                                value={{conteudo.indicacaoUrl}}>
+                            </div>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+
             {{setPublicoOnCreate}}
             <div class="row">
                 <div class="col-xs-12 col-sm-6">

@@ -106,7 +106,7 @@
         transition: 300ms;
         width: 96%;
         z-index: 2;
-        overflow: auto;
+        overflow: hidden;
 
         [class*='is-show'] & {
             transition-delay: 100ms;
@@ -140,6 +140,27 @@
 
         &--no-overflow {
             overflow: hidden;
+        }
+
+        &--banner-final{
+            position: absolute;
+            margin: 10% auto;
+            text-align: center;
+            width: 100%;
+            top: 0;
+            color: #fff;
+            z-index: 999999999;
+            display: block;
+
+            @include media('<md') {
+                margin: 50% auto;
+            
+         }
+
+            @include media('<sm') {
+                margin: 50% auto;
+            
+         }
         }
 
     }
@@ -237,6 +258,7 @@
         top: 0;
         transition: 200ms cubic-bezier(.455, .03, .515, .955); // IE fallback
         transition: 200ms var(--ease-in-out-quad);
+      
 
         [class*='is-show'] & {
             opacity: $overlayer-opacity;

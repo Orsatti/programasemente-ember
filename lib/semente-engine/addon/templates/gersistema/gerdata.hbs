@@ -686,7 +686,7 @@
                   {{#each (orderby inst_selected.plataformaAnos 'idx') as |pa|}}
                   <option value="{{pa.id}}" selected={{if (equalstr pa.id
                     pessoa_selected.plataformaAnos.firstObject.id) "selected" }}>
-                    {{pa.name}}</option>
+                    {{pa.segmento.titulo}} - {{pa.name}}</option>
                   {{/each}}
                 </select>
               </div>

@@ -1,0 +1,28 @@
+<main class="main certificado__print-canvas">
+    <div id="certificado" class="certificado certificado__print-cert">
+        <div class="area-certificado">
+            <div class="area-certificado__infos">
+                {{!-- <div class="area-certificado__infos--codigo">
+                    <p><b>{{codigo}}</b></p>
+                </div> --}}
+                <div class="area-certificado__infos--logo">
+                    <img src="/assets/img/certificado/certificado-eja_05.png" alt="">
+                </div>
+                <div class="area-certificado__infos--texto">
+                    <p>Declaramos que o(a) aluno(a) <b>{{pessoa.name}}</b> cumpriu com a carga horária de <b>20h</b>, correpondente ao percurso <b>{{segmento}}</b> - <b>{{plataformaAno}}</b>.</p>
+                </div>
+                <div class="area-certificado__infos--data">São Paulo, {{dateFormat dataConclusao}}.</div>
+                <div class="area-certificado__infos--assinatura">
+                    <img src="/assets/img/certificado/certificado-eja_11.png" alt="">
+                </div>
+            </div>
+            <div class="area-certificado__certificado">
+                <div class="area-certificado__certificado--fundo-esq-top"></div>
+                <div class="area-certificado__certificado--fundo-dir-top"></div>
+                <div class="area-certificado__certificado--fundo-esq-bottom"></div>
+                <div class="area-certificado__certificado--fundo-dir-bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div id="toPDF" class="btn btn--sm btn-certificado lass-list__class_cta trail__certificate-btn" {{action 'toPDF'}}>Baixar em PDF</div>
+</main>

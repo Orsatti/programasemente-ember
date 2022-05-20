@@ -1,28 +1,37 @@
+
 {{#if (or (equalstr situacao selectedSituacao) (equalstr selectedSituacao ""))}}
-  <div class="media {{if (not aula.hasContent) 'media--card media--card--is-disabled' 'media--card  media--card--fundo'}}">
-   
+<div
+  class="media {{if (not aula.hasContent) 'media--card media--card--is-disabled' 'media--card  media--card--fundo'}}">
+<div class="degrade"></div>
   <!--  <picture class="media__picture">
       <img class="media__thumb" id="thumbnail-aula-card{{aula.id}}" src="{{aula.thumbnail}}" alt="{{aula.titulo}}"/>
     </picture> -->
-    {{aulaThumb}}
-    <div class="media__body flow-md self-stretch">
-      <div class="titulo-aula">
+  {{aulaThumb}}
+  <div class="media__body flow-md self-stretch">
+    <div class="titulo-aula">
       <div class="flow-xxs">
         {{#if aula.unidade}}
-          <span class="title-aux">
-            {{aula.unidade.titulo}}
-          </span>
+        <span class="title-aux">
+          {{aula.unidade.titulo}}
+        </span>
         {{/if}}
+        
         <span class="media__title  media__title--novo-titulo">{{aula.titulo}}</span>
       </div>
-      </div>
-      <div class="descricao-aula">
+    </div>
+    <div class="descricao-aula">
       <p class="media__title--nova-descricao-aula">Descrição do bloco de no máximo 2 linhas.</p>
-      </div>
+    </div>
 
-      <div class="habilidades">
-        <div>Assertividade</div> <div>Foco</div> <div>Entusiasmo</div> <div>Curiosidade</div>
-      </div>
+    <div class="habilidades">
+      <span class="habilidades__engajamento-com-outros etiquetas">Assertividade</span> <span
+        class="habilidades__autogestao etiquetas">Foco</span> <span class="habilidades__engajamento-com-outros etiquetas">Entusiasmo</span>
+      <span class="habilidades__abertura-novo etiquetas">Curiosidade</span><span
+        class="habilidades__amabilidade etiquetas">Empatia</span><span class="habilidades__modulacao-emocional etiquetas">Modulação da Tristeza</span>
+        <span class="habilidades__amabilidade etiquetas">Respeito</span><span class="habilidades__amabilidade etiquetas">Confiança</span> <span
+        class="habilidades__autogestao etiquetas">Determinação</span> <span
+        class="habilidades__autogestao etiquetas">Persistência</span>
+    </div>
     <!--   <span class="flex flex-row items-center m-bottom--md">
         <svg xmlns="http://www.w3.org/2000/svg"
             class="stroke-green-20 m-right--xs"
@@ -43,19 +52,19 @@
           <span>{{situacao}}</span>
         {{/if}} 
       </span>-->
-<div class="btn-materiais-aula">
+    <div class="btn-materiais-aula">
       {{#if (not aula.hasContent)}}
-        <div class="btn btn--disabled btn--ghost btn--xxs novo-btn-materiais-aula">
-          <span class="icon-lock m-right--xs"></span>
-          <span>Ainda não há materiais</span>
-        </div>
+      <div class="btn btn--disabled btn--ghost btn--xxs novo-btn-materiais-aula">
+        <span class="icon-lock m-right--xs"></span>
+        <span>Ainda não há materiais</span>
+      </div>
       {{else}}
-        {{#link-to 'aulas.content' aula.id class="btn btn--ghost btn--xxs btn-materiais-aula"}}
-          <span class="btn__label">Ver materiais</span>
-        {{/link-to}}
+      {{#link-to 'aulas.content' aula.id class="btn btn--ghost btn--xxs btn-materiais-aula"}}
+      <span class="btn__label">Ver materiais</span>
+      {{/link-to}}
       {{/if}}
-</div>
     </div>
-
   </div>
+
+</div>
 {{/if}}

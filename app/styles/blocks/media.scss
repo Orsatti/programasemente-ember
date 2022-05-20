@@ -73,12 +73,14 @@
       color: #fff;
       font-size: 20px;;
       font-weight: bold;
-      margin-top: 8rem;
+      margin-top: 5rem;
+      z-index: 9;
     }   
 
     &--nova-descricao-aula{
       margin-top: 0 !important;
       color: #fff;
+      z-index: 9;
     }
   }
 
@@ -113,12 +115,21 @@
       border-radius: 20px;
       box-shadow: 5px 10px 5px rgb(8 12 10 / 30%);
       position: relative;
+      height: 19rem;
     }
 
     .btn-materiais-aula{
       position: absolute;
-      right: 1rem;
-      bottom: 1rem;
+      right: 0.5rem;
+      bottom: 0.3rem;
+      background-color: #8CC63E;
+      color: #fff;
+      border: 1px solid #8CC63E;
+
+      &:hover{
+        color: #8CC63E;
+        background-color: #fff;
+      }
     }
   }
 
@@ -143,4 +154,57 @@
   color: #707070;
 }
 
+}
+
+.habilidades{
+  margin-top: 0 !important;
+  z-index: 9;
+ 
+  & .etiquetas{
+    border-radius: 10px;
+    padding: 1px 5px;
+    font-size: 0.9rem;
+    line-height: 1.5rem;
+  }
+
+  &__autogestao{
+    background-color: #E6F9EC;
+    color: #37CC97;
+  }
+
+  &__abertura-novo{
+    background-color: #F4EFFF;
+    color: #9E66FF;
+  }
+
+  &__modulacao-emocional{
+    background-color: #E7FAFA;
+    color: #2BD1DA;
+  }
+
+  &__engajamento-com-outros{
+    background-color: #FDF7E5;
+    color: #EFB800;
+  }
+
+  &__amabilidade{
+    background-color: #FEE8EC;
+    color: #F82063;
+  }
+}
+
+.degrade{
+  background: linear-gradient(transparent, rgb(0, 0, 0));
+  width: 100%;
+  height: 19rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-radius: 10px;
+}
+
+.titulo-aula,
+.descricao-aula{
+  z-index: 9;
+  margin-top: 0 !important;
 }

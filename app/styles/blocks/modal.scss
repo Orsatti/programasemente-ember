@@ -66,6 +66,10 @@
         
     }
 
+    &__eja{
+        max-width: 40rem !important;
+    }
+
     & .img-passoapasso{
        height: 2600px;
        padding: $distance--sm;
@@ -107,6 +111,7 @@
         width: 96%;
         z-index: 2;
         overflow: hidden;
+
 
         [class*='is-show'] & {
             transition-delay: 100ms;
@@ -162,7 +167,6 @@
             
          }
         }
-
     }
 
     &__close {

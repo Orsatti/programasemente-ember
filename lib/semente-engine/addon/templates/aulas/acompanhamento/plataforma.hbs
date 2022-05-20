@@ -2,7 +2,7 @@
   <h1 class="scr-only">Acompanhamento do {{parentController.selectedSegmentoLocal.titulo}}</h1>
   <nav>
     <ul class="tabs">
-      {{#each this.aulasController.segmentosObjects as |seg|}}
+      {{#each segmentos as |seg|}}
         {{#if (equalstr seg.titulo 'Adultos')}}
             {{#if (or (equalstr role 'admin') (equalstr role 'recursosHumanos'))}}
                 <li>

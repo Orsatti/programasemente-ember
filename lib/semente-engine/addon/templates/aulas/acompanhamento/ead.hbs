@@ -2,7 +2,7 @@
   <h1 class="scr-only">Acompanhamento do Ensino Médio</h1>
   <nav>
         <ul class="tabs">
-              {{#each this.aulasController.segmentosObjects as |seg|}}
+              {{#each segmentos as |seg|}}
                 {{#if (equalstr seg.titulo 'Adultos')}}
                     {{#if (or (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.role 'recursosHumanos'))}}
                       <li>
@@ -73,8 +73,8 @@
             </div>
           </div>
 
-          {{#if curso_selected}}
-              {{!-- <div class="form-group">
+          {{!-- {{#if curso_selected}}
+              <div class="form-group">
                 <label class="form-group__label" for="turma_selector">Turma</label>
                 <div class="form-group__wrapper form-group__wrapper--select">
                   <select id="turma_selector" class="form-group__input form-group__input--select" {{action 'filterTurmaAno' on='change'}}>
@@ -87,8 +87,8 @@
                       {{/each}}
                   </select>
                 </div>
-              </div> --}}
-          {{/if}}
+              </div>
+          {{/if}} --}}
 
         {{/if}}
 
@@ -263,16 +263,6 @@
 
               <h2 class="title-4">
                 {{curso_selected.name}}
-                {{!-- <span class="fs--xs fw--3 fs-i color-blue-navy-20 m-left--xxs">(
-
-                  <span class="inline-flex m-right--xxs">{{#each inst_selected.acompanhamentosCursoInstituicao as |acomp|}}
-                    {{#if (equalstr acomp.modulo.id curso_selected.id)}}
-                      {{if acomp.matriculas acomp.matriculas '0'}}
-                    {{/if}}
-                  {{/each}}</span>
-
-                  pessoas
-                )</span> --}}
               </h2>
             </hgroup>
 
@@ -288,20 +278,9 @@
                   </div>
                   <div class="report-class__stacked-bar stacked-bar">
                     <div class="stacked-bar__values">
-                      {{!-- {{#if (equalstr acomp.styleNaoiniciado "width: 0%;")}}
-                      {{else}} --}}
                       <span class="stacked-bar__value--1" style={{acomp.styleNaoiniciado}}></span>
-                      {{!-- {{/if}} --}}
-
-                      {{!-- {{#if (equalstr acomp.styleAndamento "width: 0%;")}}
-                      {{else}} --}}
                       <span class="stacked-bar__value--2" style={{acomp.styleAndamento}}></span>
-                      {{!-- {{/if}} --}}
-
-                      {{!-- {{#if (equalstr acomp.styleCompletaram "width: 0%;")}}
-                      {{else}} --}}
                       <span class="stacked-bar__value--3" style={{acomp.styleCompletaram}}></span>
-                      {{!-- {{/if}} --}}
                     </div>
 
                     <div class="stacked-bar__legend">
@@ -337,19 +316,6 @@
 
               <h2 class="title-4">
                 {{curso_selected.name}}
-                {{!-- <span class="fs--xs fw--3 fs-i color-blue-navy-20 m-left--xxs">(
-
-                  <span class="inline-flex m-right--xxs">
-                    {{#each inst_selected.acompanhamentosCursoInstituicao as |acomp|}}
-                      {{#if (equalstr acomp.modulo.id curso_selected.id)}}
-                        {{if acomp.matriculas acomp.matriculas '0'}}
-                        {{acomp.modulo.id}}
-                      {{/if}}
-                    {{/each}}
-                  </span>
-
-                  pessoas
-                )</span> --}}
               </h2>
             </hgroup>
 
@@ -367,20 +333,9 @@
                     {{#if (equalstr acomp.atividade.id atividade.id)}}
                       <div class="report-class__stacked-bar stacked-bar">
                         <div class="stacked-bar__values">
-                          {{!-- {{#if (equalstr acomp.styleNaoiniciado "width: 0%;")}}
-                          {{else}} --}}
                           <span class="stacked-bar__value--1" style={{acomp.styleNaoiniciado}}></span>
-                          {{!-- {{/if}} --}}
-
-                          {{!-- {{#if (equalstr acomp.styleAndamento "width: 0%;")}}
-                          {{else}} --}}
                           <span class="stacked-bar__value--2" style={{acomp.styleAndamento}}></span>
-                          {{!-- {{/if}} --}}
-
-                          {{!-- {{#if (equalstr acomp.styleCompletaram "width: 0%;")}}
-                          {{else}} --}}
                           <span class="stacked-bar__value--3" style={{acomp.styleCompletaram}}></span>
-                          {{!-- {{/if}} --}}
                         </div>
 
                         <div class="stacked-bar__legend">
@@ -423,14 +378,6 @@
       {{#if (equalstr selectedContent 'd')}}
 
         {{#unless hasChildren}}
-          <!--- VAZ -->
-          <!--- VAZ -->
-          <!--- VAZ -->
-          <!--- VAZ -->
-          <!--- VAZ -->
-          <!--- VAZ -->
-          <!--- VAZ -->
-          <!--- VAZ -->
           <hgroup>
             <h1 class="sr-only">Lista de aulas do {{selectedModuloName}} - {{selectedTurmaName}}
             </h1>
@@ -442,12 +389,6 @@
               <button class="btn btn--ghost btn--xs m-left--sm" {{action 'downloadFile'}}>Baixar relatório em Excel</button>
             </div>
           </hgroup>
-          <!--- VAZ -->
-          <!--- VAZ -->
-          <!--- VAZ -->
-          <!--- VAZ -->
-          <!--- VAZ -->
-          <!--- VAZ -->
 
           <div class="flex flex-row items-end justify-between">
 
@@ -455,9 +396,6 @@
               {{page-numbers content=pagedContent perPage=perPage class="pagination--sm pagination--right"}}
             {{/unless}}
 
-            <!-- ========================
-            ######### ORDERING ##########
-            ========================= -->
             <div class="form-group flex flex-row items-center">
               <label class="form-group__label" for="amount">Exibir</label>
               <div class="form-group__wrapper form-group__wrapper--select">
@@ -522,16 +460,12 @@
                   {{/if}}
                 </select>
               </div>
-              {{!-- <span>resultados por página</span> --}}
             </div>
 
           </div>
 
         {{/unless}}
 
-        <!-- ========================
-        ########### LIST ############
-        ========================= -->
         <div class="loader-local {{if (equalstr admdataLoaderState 1) 'loader-local--is-show' ''}}">
 
           <div class="loader-local__loader">
@@ -540,8 +474,6 @@
           </div>
 
           <div class="container-scroll container-scroll--v">
-            <!-- VAZ -->
-            {{!-- <div class="container-scroll__scroll" style="max-height: {{(48 * perPage) + 'px'}};"> --}}
             <div class="container-scroll__scroll" style="max-height: {{stylePerPageText}};">
               <table class="report-people__table table table--striped table--short table--fix-col">
                 <thead>
@@ -563,7 +495,6 @@
                 </thead>
                 <tbody>
                   {{#each pagedContent.content as |pessoa|}}
-                    {{!-- {{#if (equalstr pessoa.role 'aluno')}} --}}
                     <tr {{action 'selectPessoa' pessoa.id}}>
                       <td class="report-people__person flex flex-row items-center justify-start">
                         <span class="report-people__avatar avatar avatar--sm m-right--xs">
@@ -604,7 +535,6 @@
                         {{/each}}
                       {{/if}}
                     </tr>
-                    {{!-- {{/if}} --}}
                   {{/each}}
                 </tbody>
               </table>
@@ -614,31 +544,11 @@
         </div>
       {{/if}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </section>
   </div>
 
 </section>
 
-<!-- snackbak -->
 <div id="downloading" class="alert  alert--has-icon alert--no-interaction">
   <p>O relatório está sendo gerado e seu download iniciará em breve.</p>
-
 </div>

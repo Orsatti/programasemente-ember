@@ -1,6 +1,6 @@
 
 {{#if (equalstr conteudo.tipo 'Video')}}
-  <div class="media media--middle">
+  <div class="media ">
     <picture class="media__picture" id="conteudo-{{conteudo.id}}" style="cursor: pointer;" onclick={{action 'openModal' conteudo}}>
       <img class="media__thumb" id="file-{{conteudo.id}}" src={{thumbnail}} alt="{{conteudo.titulo}}">
     </picture>

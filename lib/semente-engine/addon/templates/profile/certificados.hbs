@@ -1,0 +1,104 @@
+<div class="main__back-container">
+  <button class="btn btn--link color-blue-navy-60" {{action 'goToAulas' on="click" }} type="button">
+    <span class="btn__icon icon-chevron-left"></span>
+    <span class="btn__voltar">Voltar</span>
+  </button>
+</div>
+
+<div class="row flow-lg">
+  <h2 class="col-xs-12 title-2">Meus certificados</h2>
+
+  {{#if hasAnyCertificado}}
+    {{#if hasAnyCertificadoSemente}}
+        <h3 class="col-xs-12 title-2">- Programa Semente</h3>
+        {{#each certificados as |certificado| }}
+            {{#if (equalstr certificado.sistema "1")}}
+                <main class="main certificado__print-canvas">
+                    <div id="certificado" class="certificado certificado__print-cert">
+                        <div class="area-certificado">
+                            <div class="area-certificado__infos">
+                                <div class="area-certificado__infos--logo">
+                                    <img src="/assets/img/certificado/certificado-eja_05.png" alt="">
+                                </div>
+                                <div class="area-certificado__infos--texto">
+                                    <p>Declaramos que o(a) aluno(a) <b>{{certificado.pessoa}}</b> cumpriu com a carga horária de <b>20h</b>
+                                    , correpondente ao percurso <b>{{certificado.segmento}} - {{certificado.plataformaAno}}</b>.</p>
+                                </div>
+                                <div class="area-certificado__infos--data">São Paulo, {{dateFormat certificado.dataEmissao}}.</div>
+                                <div class="area-certificado__infos--assinatura">
+                                    <img src="/assets/img/certificado/certificado-eja_11.png" alt="">
+                                </div>
+                            </div>
+                            <div class="area-certificado__certificado">
+                                <div class="area-certificado__certificado--fundo-esq-top"></div>
+                                <div class="area-certificado__certificado--fundo-dir-top"></div>
+                                <div class="area-certificado__certificado--fundo-esq-bottom"></div>
+                                <div class="area-certificado__certificado--fundo-dir-bottom"></div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            {{/if}}
+        {{/each}}
+    {{/if}}
+
+    {{#if hasAnyCertificadoS}}
+        <h3 class="col-xs-12 title-2">- Plataforma S</h3>
+        {{#each certificados as |certificado| }}
+            {{#if (equalstr certificado.sistema "2")}}
+                <main class="main certificado__print-canvas">
+                    <div id="certificado" class="certificado certificado__print-cert">
+                        <div class="certificado__detalhe-esq-top">
+                            <div class="certificado__detalhe-esq-top--int-branco">
+                                <div class="certificado__detalhe-esq-top--int-laranja">
+                                    <div class="certificado__detalhe-esq-top--int-branco-int">
+                                        <div class="certificado__detalhe-esq-top--int-laranja-int">
+                                            <div class="certificado__detalhe-esq-top--int-branco-int2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="certificado__logo"><img src="/assets/img/logo.png" alt="">
+                            <div class="certificado__percurso">
+                                <h3>Certificado de conclusão do 1º Módulo formativo do <b style="text-transform: capitalize;">{{certificado.segmento}} - {{certificado.plataformaAno}}</b></h3>
+                            </div>
+                            <span class="certificado__carga-horaria">Carga horária de <strong>  40h</strong></span>
+                        </div>
+                        <div class="certificado__nome">
+                            <h3>{{certificado.name}}</h3>
+                            <div class="certificado__nome--linha"></div>
+                        </div>
+                        <div class="certificado__data">
+                            <h3>{{dateFormat certificado.dataEmissao}}</h3>
+                            <div class="certificado__nome--linha"></div>
+                            <p>Data de conclusão</p>
+                        </div>
+                        <div class="certificado__assinatura">
+                        <img src="/assets/img/assinatura.png" alt="">
+                            <div class="certificado__nome--linha"></div>
+                            <p>Prof. Eduardo Calbucci</p>
+                        </div>
+                        <div class="certificado__detalhe-dir-top">
+                            <div class="certificado__borda-dir-topo"></div>
+                            <div class="certificado__borda-dir-topo-baixo"></div>
+                        </div>
+                        <div class="certificado__detalhe-esq-botom">
+                            <div class="certificado__borda-esq-topo"></div>
+                            <div class="certificado__borda-esq-topo-baixo"></div>
+                        </div>
+                        <div class="certificado__logo"></div>
+                        <div class="certificado__detalhe-dir-botom">
+                            <div class="certificado__detalhe-esq-top">
+                                <div class="certificado__detalhe-esq-top--int-branco"></div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            {{/if}}
+        {{/each}}
+    {{/if}}
+  {{else}}
+    <h2 class="col-xs-12 title-2">Você ainda não possui certificado.</h2>
+  {{/if}}
+</div>

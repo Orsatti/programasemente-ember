@@ -16,27 +16,10 @@ thisRoute=thisRoute}}
       <span class="btn__icon icon-plus"></span>
       <span class="btn__label">Nova Instituição</span>
     </button>
-    <button class="btn btn--xxs animated fadeInLeftShort faster d250" {{action 'cadastroCodigo' }}>
-      {{!-- <span class="btn__icon icon-users"></span> --}}
+    {{!-- <button class="btn btn--xxs animated fadeInLeftShort faster d250" {{action 'cadastroCodigo' }}>
       <span class="btn__label">Cadastro codigo</span>
-    </button>
+    </button> --}}
     {{/if}}
-
-
-
-
-
-
-    {{!-- {{#if (equalstr role 'admin')}}
-    <label class="btn btn--xxs animated fadeInLeftShort faster d250" for="get_lote">Cadastro Código</label>
-    <input id="get_lote" multiple="false" onchange={{action "buscarArquivo" }} accept="text/csv" type="file"
-      style="display: none;" />
-
-    <div id="error_lote">
-      {{error_lote}}
-    </div>
-
-    {{/if}} --}}
   </header>
 
   <section class="sections__section animated fadeInLeftShort faster d500">
@@ -865,15 +848,9 @@ thisRoute=thisRoute}}
           <ul class="list list--img-name-action list--striped">
             {{#each plataformaAnos as |pa|}}
             <li>
-              {{!-- <span class="list__img"
-                style="background-image: url('{{if mod.coverImage mod.coverImage '/assets/img/online-course.png'}}')"></span>
-              --}}
-              <h3 class="list__name title-3">{{pa.name}}</h3>
+              <h3 class="list__name title-3">{{pa.segmento.titulo}} - {{pa.name}}</h3>
               <span class="switch switch--institutions">
-                <!-- temporary save controll -->
-                <input id="isCkb{{pa.id}}" type="checkbox" checked={{isinarray pa inst_selected.plataformaAnos}}
-                  style="display:none">
-                <!-- -->
+                <input id="isCkb{{pa.id}}" type="checkbox" checked={{isinarray pa inst_selected.plataformaAnos}} style="display:none">
                 <input class="switch__checkbox" id="ckb_new_{{pa.id}}" type="checkbox">
                 <label class="switch__label" for="ckb_new_{{pa.id}}">
                   <span class="switch__inner"></span>

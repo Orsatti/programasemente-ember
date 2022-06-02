@@ -395,7 +395,6 @@ thisRoute=thisRoute}}
         </div>
         <section class="sections__subsection">
           <ul class="institutions__areas list list--striped">
-            <!--  style="display:none" -->
             <li id="newArea">
               <label class="form-group__label sr-only" for="newAreaName">Nome da nova área</label>
               <div class="edit-text">
@@ -404,11 +403,9 @@ thisRoute=thisRoute}}
               </div>
               <div class="flow-h-sm m-left--lg">
                 <button class="btn btn--xs btn--text" type="submit" {{action 'cancelAreaAction' 'new' }}>
-                  {{!-- <span class="btn__icon icon-x"></span> --}}
                   <span class="btn__label">Cancelar</span>
                 </button>
                 <button class="btn btn--xs" type="submit" {{action 'addArea' }} style="width: 90px;">
-                  {{!-- <span class="btn__icon icon-check"></span> --}}
                   <span class="btn__label">Salvar</span>
                 </button>
               </div>
@@ -422,25 +419,18 @@ thisRoute=thisRoute}}
                 </div>
               </div>
               <div class="flow-h-sm" id="areaItemOptions{{turma.id}}">
-
-                {{!-- {{#if (equalstr pessoaLogged.role "admin")}} --}}
                 <button class="btn btn--text btn--xxs color-error" style="width: 90px;"{{action 'deleteArea' turma.id}}>
-                  {{!-- <span class="btn__icon icon-trash-2"></span> --}}
                   <span class="btn__label">Remover</span>
                 </button>
-                {{!-- {{/if}} --}}
                 <button class="btn btn--ghost btn--xxs" style="width: 90px;" {{action 'editArea' turma.id}}>
-                  {{!-- <span class="btn__icon icon-edit"></span> --}}
                   <span class="btn__label">Editar</span>
                 </button>
               </div>
               <div class="flow-h-sm" id="areaItemActions{{turma.id}}" style="display:none">
                 <button class="btn btn--text btn--xxs" type="submit" {{action 'cancelAreaAction' turma.id}}>
-                  {{!-- <span class="btn__icon icon-x"></span> --}}
                   <span class="btn__label">Cancelar</span>
                 </button>
                 <button class="btn btn--xxs" style="width: 90px;" type="submit" {{action 'saveArea' turma.id}}>
-                  {{!-- <span class="btn__icon icon-check"></span> --}}
                   <span class="btn__label">Salvar</span>
                 </button>
               </div>
@@ -449,10 +439,6 @@ thisRoute=thisRoute}}
           </ul>
         </section>
         {{/if}}
-
-
-
-
 
     <section class="sections__subsection flow-md animated fadeInLeftShort faster d1250">
       <h3 class="main__subsubtitle">Sistemas</h3>
@@ -474,20 +460,23 @@ thisRoute=thisRoute}}
             <label class="checkbox__label" for="inst_sPlus">S Plus</label>
           </li>
         {{/if}}
-        {{!-- <li class="checkbox">
-          <input class="checkbox__input" id="sis_3" type="checkbox" onchange={{action 'dataChange' 'btn_save_inst' }}
-            checked={{temCoreSkills}} disabled={{if (equalstr role 'admin' ) false true}}>
-          <label class="checkbox__label" for="sis_3">CoreSkills</label>
-        </li> --}}
       </ul>
     </section>
+
+    {{!--         checkbox dos calendarios nao apagar!!!!!       --}}
+    {{!-- <section class="sections__subsection flow-md animated fadeInLeftShort faster d1250">
+      <h3 class="main__subsubtitle">Calendário</h3>
+      <ul class="flex flex-col flow-sm">
+        {{#each calendarios as |calendario|}}
+          <li class="checkbox">
+            <input class="checkbox__input" id="calendario_{{calendario.id}}" onchange={{action 'calendarioChanged' calendario.id}}
+              checked={{if (equalstr calendario.id inst_selected.calendario.id) "checked" '' }} disabled={{if (equalstr role 'admin' ) false true}} type="radio">
+            <label class="checkbox__label" for="calendario_{{calendario.id}}">{{calendario.nome}}</label>
+          </li>
+        {{/each}}
+      </ul>
+    </section> --}}
     {{/if}}
-    <!-- /selected institution tab information -->
-
-
-
-
-
 
 
     <!--

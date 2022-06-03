@@ -25,6 +25,7 @@
     "ember-bootstrap": "^1.0.0-rc.3",
     "ember-changeset": "^2.2.4",
     "ember-changeset-validations": "^2.2.1",
+    "ember-cli": "~2.16.2",
     "ember-cli-app-version": "^3.0.0",
     "ember-cli-autoprefixer": "^0.8.1",
     "ember-cli-chart": "^3.7.2",

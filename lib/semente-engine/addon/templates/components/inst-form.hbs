@@ -1,0 +1,60 @@
+<aside id="new_inst_modal" class="modal modal--is-show">
+    <div class="modal__overlayer"></div>
+    <div class="modal__content">
+        <header class="modal__header">
+            {{#link-to 'gersistema'}}
+            <button class="modal__close btn-close icon-x"></button>
+            {{/link-to}}
+            <h3 class="modal__title">Nova Instituição</h3>
+        </header>
+        <div class="modal__body">
+            <!-- new institution step 1 -->
+            <form {{action 'submit' on='submit' }}>
+                <div class="flow-lg institutions__step-content institutions__step-content--is-show">
+                    <section class="sections__subsection">
+                        <div class="flex flex-row gap-lg justify-content-center">
+                            <div class="flex flex-col">
+                                {{validated-input class="" label="Nome" propertyName="name" changeset=changeset}}
+                                {{validated-input class="" label="Radical (para códigos)" propertyName="radical"
+                                changeset=changeset}}
+                                {{validated-input class="" label="UF" propertyName="uf" changeset=changeset}}
+                                {{validated-input class="" label="Cidade" propertyName="cidade" changeset=changeset}}
+                            </div>
+                            <div class="flex flex-col">
+                                <h4></h4>
+                                {{switch-input label="Status" propertyName="enabled" changeset=changeset}}
+                                {{switch-input label="É escola?" propertyName="isEscola" changeset=changeset}}
+                                {{switch-input label="Termo Aceite" propertyName="statusTermoAceite"
+                                changeset=changeset}}
+                                {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset
+                                onchange="checkSPlus"}}
+                                {{switch-input label="S Plus" propertyName="sPlusEnabled" changeset=changeset}}
+                            </div>
+                            <div class="flex flex-col">
+                                {{validated-input class="" label="#Gestores" propertyName="nrgestores"
+                                changeset=changeset}}
+                                {{validated-input class="" label="#Coordenadores" propertyName="nrcoordenadores"
+                                changeset=changeset}}
+                                {{validated-input class="" label="#Secretaria" propertyName="nrsecretaria"
+                                changeset=changeset}}
+                                {{validated-input class="" label="#Marketing" propertyName="nrmarketing"
+                                changeset=changeset}}
+                                {{validated-input class="" label="#Professores" propertyName="nrinstrutores"
+                                changeset=changeset}}
+                                {{validated-input class="" label="#Alunos" propertyName="nralunos" changeset=changeset}}
+                            </div>
+                            <div class="flex flex-col">
+                                {{#each segmentos as |segmento|}}
+                                {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id) classe="segmento"                                }}
+                                {{/each}}
+                            </div>
+                            <div class="flex flex-col justify-content-end">
+                                <button class="btn" type="submit">Criar Instituição</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </div>
+    </div>
+</aside>

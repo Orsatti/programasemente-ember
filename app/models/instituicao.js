@@ -39,5 +39,6 @@ export default DS.Model.extend({
     codigoAlunosInfantil: DS.attr(),
     codigosCadastro: DS.hasMany('codigo-cadastro', {async: true}),
     sPlusEnabled: DS.attr(),
+    sEnabled: DS.attr(),
     calendario: DS.belongsTo('calendario', {async: true}),
 });

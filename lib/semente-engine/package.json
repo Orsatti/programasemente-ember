@@ -8,7 +8,6 @@
     "ember-cli-htmlbars": "*",
     "ember-cli-babel": "*",
     "ember-changeset": "*",
-    "ember-changeset-validations": "*",
-    "ember-resolver": "*"
+    "ember-changeset-validations": "*"
   }
 }

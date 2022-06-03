@@ -1,6 +1,6 @@
 <div class="form-group w100 m-top--sm">
     <label class="form-group__label">{{label}}</label>
-    {{input class=""
+    {{input class=(concatenate "" classe) 
         value=(get changeset propertyName)
         onblur=(action 'validateProperty' changeset property) }}
     {{#if (get changeset.error propertyName)}}

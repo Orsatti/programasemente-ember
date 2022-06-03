@@ -14,34 +14,26 @@
                     <section class="sections__subsection">
                         <div class="flex flex-row gap-lg justify-content-center">
                             <div class="flex flex-col">
-                                {{validated-input class="" label="Nome" propertyName="name" changeset=changeset}}
-                                {{validated-input class="" label="Radical (para códigos)" propertyName="radical"
-                                changeset=changeset}}
-                                {{validated-input class="" label="UF" propertyName="uf" changeset=changeset}}
-                                {{validated-input class="" label="Cidade" propertyName="cidade" changeset=changeset}}
+                                {{validated-input label="Nome" propertyName="name" changeset=changeset}}
+                                {{validated-input label="Radical (para códigos)" propertyName="radical" changeset=changeset}}
+                                {{validated-input label="UF" propertyName="uf" changeset=changeset}}
+                                {{validated-input label="Cidade" propertyName="cidade" changeset=changeset}}
                             </div>
                             <div class="flex flex-col">
                                 <h4></h4>
                                 {{switch-input label="Status" propertyName="enabled" changeset=changeset}}
                                 {{switch-input label="É escola?" propertyName="isEscola" changeset=changeset}}
-                                {{switch-input label="Termo Aceite" propertyName="statusTermoAceite"
-                                changeset=changeset}}
-                                {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset
-                                onchange="checkSPlus"}}
+                                {{switch-input label="Termo Aceite" propertyName="statusTermoAceite" changeset=changeset}}
+                                {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkSPlus"}}
                                 {{switch-input label="S Plus" propertyName="sPlusEnabled" changeset=changeset}}
                             </div>
                             <div class="flex flex-col">
-                                {{validated-input class="" label="#Gestores" propertyName="nrgestores"
-                                changeset=changeset}}
-                                {{validated-input class="" label="#Coordenadores" propertyName="nrcoordenadores"
-                                changeset=changeset}}
-                                {{validated-input class="" label="#Secretaria" propertyName="nrsecretaria"
-                                changeset=changeset}}
-                                {{validated-input class="" label="#Marketing" propertyName="nrmarketing"
-                                changeset=changeset}}
-                                {{validated-input class="" label="#Professores" propertyName="nrinstrutores"
-                                changeset=changeset}}
-                                {{validated-input class="" label="#Alunos" propertyName="nralunos" changeset=changeset}}
+                                {{validated-input label="#Gestores" propertyName="nrgestores" changeset=changeset classe="numeric"}}
+                                {{validated-input label="#Coordenadores" propertyName="nrcoordenadores" changeset=changeset classe="numeric"}}
+                                {{validated-input label="#Secretaria" propertyName="nrsecretaria" changeset=changeset classe="numeric"}}
+                                {{validated-input label="#Marketing" propertyName="nrmarketing" changeset=changeset classe="numeric"}}
+                                {{validated-input label="#Professores" propertyName="nrinstrutores" changeset=changeset classe="numeric"}}
+                                {{validated-input label="#Alunos" propertyName="nralunos" changeset=changeset}}
                             </div>
                             <div class="flex flex-col">
                                 {{#each segmentos as |segmento|}}
@@ -49,6 +41,7 @@
                                 {{/each}}
                             </div>
                             <div class="flex flex-col justify-content-end">
+                                <div class="color-error-40 m-bottom--lg" id="create-inst-error"></div>
                                 <button class="btn" type="submit">Criar Instituição</button>
                             </div>
                         </div>

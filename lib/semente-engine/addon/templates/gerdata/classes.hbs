@@ -1,0 +1,119 @@
+{{#if selectedInstTabs.areas}}
+  <section class="animated d1250 fadeInLeftShort sections__subsection flow-md">
+    <ul class="institutions__areas list list--striped">
+      <li class="{{if creatingNewArea 'animated fadeInLeftShort faster bg-info-10' 'd--none'}}
+                         {{if savingNewArea 'loader-local loader-local--is-show'}} " id="newArea">
+        <div class="form-group m-right--md">
+          <div class="form-group__wrapper form-group__wrapper--select">
+            <select class="form-group__input form-group__input--select j-areaFocus" id="define_year"
+              onchange={{action 'refreshAno' value='target.value' }} data-type="select" data-required="true">
+              <option value="0" selected>Selecionar ano</option>
+              {{#each inst_selected.plataformaAnos as |ano|}}
+              <option style="display: block" value="{{ano.id}}" selected={{if (equalstr ano selectedAno) "selected" }}>
+                {{ano.name}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        <div class="flex-1 m-right--lg">
+          <div class="edit-text">
+            <input class="j-areaFocus edit-text__input form-group__input title-3 bg-white p-h--xs" id="newAreaName"
+              type="textbox" value="{{turma.name}}">
+            <span class="edit-text__indicator"></span>
+          </div>
+        </div>
+        <div class="flow-h-sm m-left--lg">
+          <button class="j-areaFocus btn btn--xxs btn--text" type="submit" {{action 'cancelAreaAction' 'new' }}>
+            <span class="btn__label">Cancelar</span>
+          </button>
+          <button class="j-areaFocus btn btn--xxs bg-info-60" type="submit" {{action 'addArea' }} style="width: 90px;">
+            <span class="btn__icon icon-check"></span>Salvar
+          </button>
+        </div>
+      </li>
+
+      {{#each inst_selected.plataformaTurmas as |turma|}}
+      <li>
+
+        <div class="flex flex-row flex-1 gap-sm flow-h-sm items-center">
+          <div class="edit-text flex-1">
+            <input class="j-areaFocus edit-text__input title-3" id="areaItemName{{turma.id}}" value="{{turma.name}}">
+            <span class="edit-text__indicator"></span>
+          </div>
+
+          <div class="flow-h-sm m-left--auto" id="areaItemOptions{{turma.id}}">
+            <button class="j-areaFocus btn btn--xxs btn--text color-error" style="width: 90px;" {{action 'deleteArea'
+              turma.id}}>
+              <span class="btn__label">Remover</span>
+            </button>
+            <button class="j-areaFocus btn btn--leaf btn--xxs" style="width: 90px;" {{action 'editArea' turma.id}}>
+              <span class="btn__label">Editar</span>
+            </button>
+          </div>
+
+
+          <div class="flow-h-sm m-left--auto" id="areaItemActions{{turma.id}}" style="display:none">
+            <button class="j-areaFocus j-cancelArea btn btn--xxs btn--text" type="submit" {{action 'cancelAreaAction'
+              turma.id}}>
+              <span class="btn__label">Cancelar</span>
+            </button>
+            <button class="j-areaFocus btn btn--xxs" style="width: 90px;" type="submit" {{action 'saveArea' turma.id}}>
+              <span class="btn__label">Salvar</span>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="w100">
+          <span>{{turma.plataformaAno.name}}</span><span class="m-h--sm">|</span><em>{{turma.numAlunos}} alunos</em>
+        </div>
+
+      </li>
+      {{/each}}
+    </ul>
+  </section>
+  {{/if}}
+
+  <aside class="alert-container">
+
+  <!-- CONFIRMATION || LIST -->
+  <div id="staticAlertAdm" class="alert alert--x bg-blue-navy-50 color-white alert--has-interaction">
+
+    <div class="flex flex-col flow-lg flex-1">
+      <div class="flow-xs">
+        <h2 class="title-3">{{alertTitle}}</h2>
+        <p>{{alertDesc}}</p>
+      </div>
+      <p class="p--md bg-blue-navy-60 title-4 ta-c tt-u">{{staticTxt2}}</p>
+    </div>
+
+    <div class="alert__footer">
+      <!-- area to delete -->
+      {{#if (equalstr staticType 'area')}}
+      <button class="btn btn--text-inverted" {{action staticAlert 'close' }}>
+        <span class="btn__label">Cancelar</span>
+      </button>
+      <button class="btn bg-blue-navy-0 color-blue-navy-60" {{action 'actionConfirmation' areaToDelete}}>
+        {{!-- <span class="btn__icon icon-trash-2"></span> --}}
+        <span class="btn__label">Sim, desejo remover</span>
+      </button>
+      {{/if}}
+      <!-- -->
+    </div>
+  </div>
+
+  {{redirectToTurmas}}
+
+  <!-- LOADING || SUCCESS || ERROR -->
+  <div id="timeoutAlertAdm" class="alert alert--x bg-blue-navy-50 color-white alert--has-icon alert--no-interaction">
+    {{#if (equalstr timeoutIcon 'load')}}<span class="alert__icon icon-reload icon--lg"></span>{{/if}}
+    {{#if (equalstr timeoutIcon 'error')}}<span class="alert__icon icon-x icon--lg"></span>{{/if}}
+    {{#if (equalstr timeoutIcon 'success')}}<span class="alert__icon icon-check icon--lg"></span>{{/if}}
+    <div style="max-width: 80%;"><strong>{{timeoutTxt}}</strong></div>
+  </div>
+
+</aside>
+
+ <button class="j-areaFocus tabs__not-tab btn btn--ghost btn--xxs m-left--auto m-right--md" {{action 'newArea' }}>
+      <span class="btn__label">Nova Turma</span>
+    </button>

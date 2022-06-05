@@ -1,0 +1,40 @@
+<section class="sections__section flow-xl">
+  <div class="tabs animated fadeInLeftShort faster d500">
+    {{#if (equalstr role "admin")}}
+    {{#link-to 'gerdata.informations' instituicao.id }}
+    <button class="report__tab tabs__tab {{if informations 'tabs__tab--is-active'}}">
+        <span>Informações</span>
+    </button>
+    {{/link-to}}
+    {{#link-to 'gerdata.years' instituicao.id }}
+    <button class="report__tab tabs__tab {{if years 'tabs__tab--is-active'}}">
+      <span>Anos</span>
+    </button>
+    {{/link-to}}
+    {{/if}}
+    {{#link-to 'gerdata.classes' instituicao.id }}
+    <button class="report__tab tabs__tab {{if classes 'tabs__tab--is-active'}}">
+      <span>Turmas</span>
+    </button>
+    {{/link-to}}
+     {{#link-to 'gerdata.users' instituicao.id }}
+    <button class="report__tab tabs__tab {{if users 'tabs__tab--is-active'}}">
+      <span>Usuários</span>
+    </button>
+     {{/link-to}}
+     {{#link-to 'gerdata.codes' instituicao.id }}
+    <button class="report__tab tabs__tab {{if codes 'tabs__tab--is-active'}}">
+      <span>Códigos</span>
+    </button>
+     {{/link-to}}
+  </div>
+
+
+  {{#if informations}}
+  {{#link-to 'gerdata.informations.deleteInst' instituicao.id}}
+  <button class="btn--xxs m-left--auto m-right--md" style="width: 90px;">
+    <span class="btn">Excluir</span>
+  </button>
+  {{/link-to}}
+  {{/if}}
+</section>

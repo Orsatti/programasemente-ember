@@ -1,0 +1,28 @@
+ {{#if selectedInstTabs.courses}}
+  <section class="sections__subsection">
+    <div class="row">
+      {{#each segmentos as |seg| }}
+      <div class="col-xs-12 col-lg-2 flow-sm">
+        <h5 class="title-aux">{{seg.titulo}}</h5>
+        {{#each seg.plataformaAnos as |platAno|}}
+        <ul>
+          <li>
+            <div class="checkbox">
+              <input class="j-validate-aplicador-child checkbox__input" checked={{if (isinarray platAno
+                inst_selected.plataformaAnos) "checked" '' }} id="plat_ano{{platAno.id}}" onchange={{action
+                (action "selectAno" platAno) value='target.checked' }} type="checkbox">
+              <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
+            </div>
+          </li>
+        </ul>
+        {{/each}}
+      </div>
+      {{/each}}
+    </div>
+  </section>
+  {{#if (equalstr role 'admin')}}
+  <footer class="modal__footer">
+    <button class="btn" type="submit" {{action 'saveCourses' }}>Editar</button>
+  </footer>
+  {{/if}}
+  {{/if}}

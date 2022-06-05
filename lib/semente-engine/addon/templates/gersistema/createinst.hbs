@@ -1,2 +1,15 @@
-{{inst-form changeset=(changeset model.newInst InstValidations) segmentos=model.segmentos action=(action 'save')}}
-
+<aside id="new_inst_modal" class="modal modal--is-show">
+    <div class="modal__overlayer"></div>
+    <div class="modal__content">
+        <header class="modal__header">
+            {{#link-to 'gersistema'}}
+            <button class="modal__close btn-close icon-x"></button>
+            {{/link-to}}
+            <h3 class="modal__title">Nova Instituição</h3>
+        </header>
+        <div class="modal__body">
+            {{inst-form changeset=(changeset model.newInst InstValidations) segmentos=model.segmentos action=(action
+            'save')}}
+        </div>
+    </div>
+</aside>

@@ -1,0 +1,11 @@
+<div class="flex flex-row m-top--md">
+    <h1 class="main__title animated fadeInLeftShort faster d250">{{model.instituicao.name}}</h1>
+  </div>
+
+{{gerdata-header role=role informations=true instituicao=model}}
+
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d750">
+  {{inst-form changeset=(changeset model.instituicao InstValidations) action=(action 'save')}}
+</section>
+
+{{outlet}}

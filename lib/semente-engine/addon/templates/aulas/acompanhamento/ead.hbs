@@ -20,9 +20,9 @@
                 {{/if}}
               {{/each}}
               <li>
-                    <button type="button" class="tabs__tab tabs__tab--is-active">
-                          <span>EAD</span>
-                    </button>
+                  <button type="button" class="tabs__tab tabs__tab--is-active">
+                        <span>EAD</span>
+                  </button>
               </li>
         </ul>
   </nav>
@@ -329,7 +329,7 @@
                         {{action 'goToAtividade' curso_selected.id atividade.id on="click"}}><span>{{atividade.name}}</span></a>
                     </h3>
                   </div>
-                  {{#each inst_selected.acompanhamentosatividades as |acomp|}}
+                  {{#each acompanhamentosatividades as |acomp|}}
                     {{#if (equalstr acomp.atividade.id atividade.id)}}
                       <div class="report-class__stacked-bar stacked-bar">
                         <div class="stacked-bar__values">

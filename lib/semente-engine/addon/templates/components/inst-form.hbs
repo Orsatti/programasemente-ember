@@ -2,44 +2,48 @@
 <form {{action 'submit' on='submit' }}>
     <div class="flow-lg institutions__step-content institutions__step-content--is-show">
         <section class="sections__subsection">
-            <div class="flex flex-row gap-lg justify-content-center">
-                <div class="flex flex-col">
-                    {{validated-input label="Nome" propertyName="name" changeset=changeset}}
-                    {{validated-input label="Radical (para códigos)" propertyName="radical" changeset=changeset}}
-                    {{validated-input label="UF" propertyName="uf" changeset=changeset}}
-                    {{validated-input label="Cidade" propertyName="cidade" changeset=changeset}}
+            <div class="flex flex-col m-top--sm">
+                <div class="flex flex-row justify-around">
+                    <div class="w35">
+                        {{validated-input label="Nome" propertyName="name" changeset=changeset}}
+                    </div>
+                    <div class="flex flex-row justify-between w60">
+                        {{validated-input label="Radical (para códigos)" propertyName="radical" changeset=changeset}}
+                        {{validated-input label="UF" propertyName="uf" changeset=changeset}}
+                        {{validated-input label="Cidade" propertyName="cidade" changeset=changeset}}
+                    </div>
                 </div>
-                <div class="flex flex-col">
-                    <h4></h4>
+                <div class="flex flex-row justify-around">
                     {{switch-input label="Status" propertyName="enabled" changeset=changeset}}
                     {{switch-input label="É escola?" propertyName="isEscola" changeset=changeset}}
                     {{switch-input label="Termo Aceite" propertyName="statusTermoAceite" changeset=changeset}}
-                    {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset
-                    onchange="checkSPlus"}}
+                    {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkSPlus"}}
                     {{switch-input label="S Plus" propertyName="sPlusEnabled" changeset=changeset}}
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-row justify-around">
                     {{validated-input label="#Gestores" propertyName="nrgestores" changeset=changeset classe="numeric"}}
                     {{validated-input label="#Coordenadores" propertyName="nrcoordenadores" changeset=changeset
                     classe="numeric"}}
                     {{validated-input label="#Secretaria" propertyName="nrsecretaria" changeset=changeset
                     classe="numeric"}}
+                </div>
+                <div class="flex flex-row justify-around">
                     {{validated-input label="#Marketing" propertyName="nrmarketing" changeset=changeset
                     classe="numeric"}}
                     {{validated-input label="#Professores" propertyName="nrinstrutores" changeset=changeset
                     classe="numeric"}}
                     {{validated-input label="#Alunos" propertyName="nralunos" changeset=changeset}}
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-row justify-around">
                     {{#each segmentos as |segmento|}}
                     {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id)
                     classe="segmento" }}
                     {{/each}}
                 </div>
-                <div class="flex flex-col justify-content-end">
-                    <div class="color-error-40 m-bottom--lg" id="create-inst-error"></div>
-                    <button class="btn" type="submit">Criar Instituição</button>
-                </div>
+            </div>
+            <div class="flex flex-col justify-content-end">
+                <div class="color-error-40 m-bottom--lg" id="create-inst-error"></div>
+                <button class="btn" type="submit">Criar Instituição</button>
             </div>
         </section>
     </div>

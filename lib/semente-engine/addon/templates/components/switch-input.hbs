@@ -1,18 +1,22 @@
-<div class="form-group  m-top--sm">
-    <label class="form-group__label">{{label}}</label>
-    <span class="switch switch--institutions">
-        {{#if changeset}}
-        {{#if onchange}}
-        <input class="switch__checkbox {{classe}}" type="checkbox" id="{{propertyName}}" checked={{get changeset propertyName}} onchange={{action onchange}} >
-        {{else}}
-        <input class="switch__checkbox {{classe}}" type="checkbox" id="{{propertyName}}" checked={{get changeset propertyName}} >
-        {{/if}}
-        {{else}}
-        <input class="switch__checkbox {{classe}}" type="checkbox" id="{{propertyName}}" checked="checked" >
-        {{/if}}
-        <label class="switch__label" for="{{propertyName}}">
-            <span class="switch__inner"></span>
-            <span class="switch__head"></span>
-        </label>
-    </span>
+<div class="flex-col w95 mt1">
+    <div>
+        <label class="form-group__label">{{label}}</label>
+    </div>
+    <div>
+        <span class="switch switch--institutions">
+            {{#if changeset}}
+            {{#if onchange}}
+            <input class="switch__checkbox {{classe}}" type="checkbox" id="{{propertyName}}" checked={{get changeset propertyName}} onchange={{action onchange}} >
+            {{else}}
+            <input class="switch__checkbox {{classe}}" type="checkbox" id="{{propertyName}}" checked={{get changeset propertyName}} >
+            {{/if}}
+            {{else}}
+            <input class="switch__checkbox {{classe}}" type="checkbox" id="{{propertyName}}" checked="checked" >
+            {{/if}}
+            <label class="switch__label" for="{{propertyName}}">
+                <span class="switch__inner"></span>
+                <span class="switch__head"></span>
+            </label>
+        </span>
+    </div>
 </div>

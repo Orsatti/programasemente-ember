@@ -161,36 +161,16 @@
   z-index: 9;
  
   & .etiquetas{
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 1px 5px;
-    font-size: 0.9rem;
-    line-height: 1.5rem;
+    font-size: .9rem;
+    line-height: 2rem;
+    background-color: #8e8e8e;
+    color: #fff;
+    margin: 5px;
+    font-weight: bold;
   }
 
-  &__autogestao{
-    background-color: #E6F9EC;
-    color: #37CC97;
-  }
-
-  &__abertura-novo{
-    background-color: #F4EFFF;
-    color: #9E66FF;
-  }
-
-  &__modulacao-emocional{
-    background-color: #E7FAFA;
-    color: #2BD1DA;
-  }
-
-  &__engajamento-com-outros{
-    background-color: #FDF7E5;
-    color: #EFB800;
-  }
-
-  &__amabilidade{
-    background-color: #FEE8EC;
-    color: #F82063;
-  }
 }
 
 .degrade{

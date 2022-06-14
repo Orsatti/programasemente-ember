@@ -26,8 +26,8 @@
   @include media('>sm') {
     margin-bottom: $distance--lg;
     margin-top: -$main-top-padding--sm;
-    padding: $distance--md $distance--lg;
-    padding: clamp(#{$distance--md}, 4vh, #{$distance--xl}) $distance--lg;
+    // padding: $distance--md $distance--lg;
+    // padding: clamp(#{$distance--md}, 4vh, #{$distance--xl}) $distance--lg;
   }
 
   @include media('>md') {

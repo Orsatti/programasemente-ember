@@ -112,11 +112,11 @@
     margin-right: auto;
 
     @include media('>sm') {
-      margin-bottom: calc(#{$distance--xxl} + 1vw);
+      margin-bottom: calc(#{$distance--sm} + 1vw);
     }
 
     &:not(:first-child) {
-      margin-top: $distance--md;
+      margin-top: $distance--xxs;
     }
 
     [class*='main__header'] & {

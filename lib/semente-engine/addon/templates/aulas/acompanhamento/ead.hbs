@@ -331,7 +331,9 @@
                         {{action 'goToAtividade' curso_selected.id atividade.id on="click"}}><span>{{atividade.name}}</span></a>
                     </h3>
                   </div>
-                  <div class="stacked-bar__loader" name="loader-" style="display: none;"></div>{{!-- {{atividade.id}} --}}
+                  {{#if showLoader}}
+                    <div class="stacked-bar__loader" name="loader-" style="display: block;"></div>{{!-- {{atividade.id}} --}}
+                  {{/if}}
                   {{#each acompanhamentosatividades as |acomp|}}
                     <div style="display: none;">{{endLoader}}</div>
                     {{#if (equalstr acomp.atividade.id atividade.id)}}

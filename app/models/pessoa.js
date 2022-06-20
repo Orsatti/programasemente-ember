@@ -114,4 +114,6 @@ export default DS.Model.extend({
     return this.get('name').toLowerCase();
   }),
   ejaAcessoMedio: DS.attr(),
+  isEja: DS.attr(),
+  certificados: DS.hasMany('certificado', { async:true }),
 });

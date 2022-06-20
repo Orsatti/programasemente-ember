@@ -26,4 +26,5 @@ export default DS.Model.extend({
   statusVideoInicio: DS.attr(),
   codigoCertificado: DS.attr(),
   dataConclusao: DS.attr(),
+  dataUltimoProgresso: DS.attr(),
 });

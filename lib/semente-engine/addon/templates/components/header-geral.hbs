@@ -104,7 +104,7 @@
         </li>
         <li>
           {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
-            {{#unless isAlunoMedio}}  
+            {{#unless (or isAlunoMedio isEja)}}  
               {{#link-to 'aulas.bibliotecaindex' class="tabs__tab"}}
                 <span>Biblioteca</span>
               {{/link-to}}
@@ -146,7 +146,7 @@
         {{/if}}
 
         {{#if (or (or (or (equalstr pessoa.role 'admin') (equalstr pessoa.role 'secretaria')) (equalstr pessoa.role 'gestor')) (equalstr pessoa.role 'recursosHumanos'))}}
-          {{#link-to 'gersistema.gerdata' class="tabs__tab"}}
+          {{#link-to 'gersistema' class="tabs__tab"}}
             <span>Administração</span>
           {{/link-to}}
         {{/if}}

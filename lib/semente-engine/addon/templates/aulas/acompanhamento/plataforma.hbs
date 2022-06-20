@@ -2,9 +2,18 @@
   <h1 class="scr-only">Acompanhamento do {{parentController.selectedSegmentoLocal.titulo}}</h1>
   <nav>
     <ul class="tabs">
-      {{#each segmentos as |seg|}}
-        {{#if (equalstr seg.titulo 'Adultos')}}
-            {{#if (or (equalstr role 'admin') (equalstr role 'recursosHumanos'))}}
+        {{#each segmentos as |seg|}}
+            {{#if (equalstr seg.titulo 'Adultos')}}
+                {{#if (or (equalstr role 'admin') (equalstr role 'recursosHumanos'))}}
+                    <li>
+                        <button type="button"
+                            class="tabs__tab {{if (equalstr parentController.selectedSegmentoLocal.titulo seg.titulo) 'tabs__tab--is-active'}}"
+                            {{action 'refreshSelectedSegmento' seg}}>
+                            <span>{{seg.titulo}}</span>
+                        </button>
+                    </li>
+                {{/if}}
+            {{else}}
                 <li>
                     <button type="button"
                         class="tabs__tab {{if (equalstr parentController.selectedSegmentoLocal.titulo seg.titulo) 'tabs__tab--is-active'}}"
@@ -13,21 +22,14 @@
                     </button>
                 </li>
             {{/if}}
-        {{else}}
+        {{/each}}
+        {{#if haveEad}}
             <li>
-                <button type="button"
-                    class="tabs__tab {{if (equalstr parentController.selectedSegmentoLocal.titulo seg.titulo) 'tabs__tab--is-active'}}"
-                    {{action 'refreshSelectedSegmento' seg}}>
-                    <span>{{seg.titulo}}</span>
+                <button type="button" class="tabs__tab" {{action 'goToEad'}}>
+                <span>EAD</span>
                 </button>
             </li>
         {{/if}}
-      {{/each}}
-      <li>
-        <button type="button" class="tabs__tab" {{action 'goToEad'}}>
-          <span>EAD</span>
-        </button>
-      </li>
     </ul>
   </nav>
   <div class="l-dots-between">
@@ -115,7 +117,7 @@
                     <tr>
                         <td>
                             <div class="flex flex-col flow-sm">
-                                <span class="title-4">{{p.name}}</span>
+                                <span class="title-4 capitalized">{{p.name}}</span>
                             </div>
                         </td>
                         <td>
@@ -166,7 +168,7 @@
                     {{#if (containStr subStr = this.search mainStr = a.name)}}
                     <tr>
                         <td>
-                            <span class="title-4">{{a.name}}</span>
+                            <span class="title-4 capitalized">{{a.name}}</span>
                         </td>
                         <td class="ta-c">
                             <span class="fs--xxs tt-u">{{a.nrVideosAlunos}}</span>

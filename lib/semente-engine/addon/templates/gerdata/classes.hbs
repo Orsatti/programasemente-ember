@@ -1,119 +1,65 @@
-{{#if selectedInstTabs.areas}}
-  <section class="animated d1250 fadeInLeftShort sections__subsection flow-md">
-    <ul class="institutions__areas list list--striped">
-      <li class="{{if creatingNewArea 'animated fadeInLeftShort faster bg-info-10' 'd--none'}}
-                         {{if savingNewArea 'loader-local loader-local--is-show'}} " id="newArea">
-        <div class="form-group m-right--md">
-          <div class="form-group__wrapper form-group__wrapper--select">
-            <select class="form-group__input form-group__input--select j-areaFocus" id="define_year"
-              onchange={{action 'refreshAno' value='target.value' }} data-type="select" data-required="true">
-              <option value="0" selected>Selecionar ano</option>
-              {{#each inst_selected.plataformaAnos as |ano|}}
-              <option style="display: block" value="{{ano.id}}" selected={{if (equalstr ano selectedAno) "selected" }}>
-                {{ano.name}}</option>
-              {{/each}}
-            </select>
-          </div>
-        </div>
-        <div class="flex-1 m-right--lg">
-          <div class="edit-text">
-            <input class="j-areaFocus edit-text__input form-group__input title-3 bg-white p-h--xs" id="newAreaName"
-              type="textbox" value="{{turma.name}}">
-            <span class="edit-text__indicator"></span>
-          </div>
-        </div>
-        <div class="flow-h-sm m-left--lg">
-          <button class="j-areaFocus btn btn--xxs btn--text" type="submit" {{action 'cancelAreaAction' 'new' }}>
-            <span class="btn__label">Cancelar</span>
+ {{gerdata-header role=role informations=false instituicao=model.instituicao}}
+ 
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d750">
+  <div class="row">
+    {{#each segmentos as |segmento| }}
+    <div class="col-xs-12 col-lg-2 flow-sm">
+      <h4 class="title-aux"><b>{{segmento.titulo}}</b></h4>
+      {{#each segmento.plataformaAnos as |plataformaAno|}}
+        <div class="flex-col">
+          <h5 class="title-aux"><b>-</b> {{plataformaAno.name}}</h5>
+          {{#each plataformaTurmas as |plataformaTurma|}}
+            {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
+              <ul>
+                <li>
+                  <div class="checkbox">
+                    <input class="j-validate-aplicador-child checkbox__input" 
+                      type="checkbox"
+                      id="plat_turma{{plataformaTurma.id}}" 
+                      checked='checked' 
+                      {{!-- onchange={{action (action "selectTurma" plataformaAno) value='target.checked' }}  --}}
+                    >
+                    <label class="checkbox__label" for="plat_turma{{plataformplataformaTurmaaAno.id}}">{{plataformaTurma.name}}</label>
+                  </div>
+                </li>
+              </ul>
+            {{/if}}
+          {{/each}}
+          <button type="button" class="btn btn--add-turma" 
+              id="plat_ano{{plataformaAno.id}}" onclick={{action 'openModal' plataformaAno}}>
+              <span class="btn__icon icon-plus"></span>
+              <span class="btn__label">Adicionar</span>
           </button>
-          <button class="j-areaFocus btn btn--xxs bg-info-60" type="submit" {{action 'addArea' }} style="width: 90px;">
-            <span class="btn__icon icon-check"></span>Salvar
-          </button>
         </div>
-      </li>
-
-      {{#each inst_selected.plataformaTurmas as |turma|}}
-      <li>
-
-        <div class="flex flex-row flex-1 gap-sm flow-h-sm items-center">
-          <div class="edit-text flex-1">
-            <input class="j-areaFocus edit-text__input title-3" id="areaItemName{{turma.id}}" value="{{turma.name}}">
-            <span class="edit-text__indicator"></span>
-          </div>
-
-          <div class="flow-h-sm m-left--auto" id="areaItemOptions{{turma.id}}">
-            <button class="j-areaFocus btn btn--xxs btn--text color-error" style="width: 90px;" {{action 'deleteArea'
-              turma.id}}>
-              <span class="btn__label">Remover</span>
-            </button>
-            <button class="j-areaFocus btn btn--leaf btn--xxs" style="width: 90px;" {{action 'editArea' turma.id}}>
-              <span class="btn__label">Editar</span>
-            </button>
-          </div>
-
-
-          <div class="flow-h-sm m-left--auto" id="areaItemActions{{turma.id}}" style="display:none">
-            <button class="j-areaFocus j-cancelArea btn btn--xxs btn--text" type="submit" {{action 'cancelAreaAction'
-              turma.id}}>
-              <span class="btn__label">Cancelar</span>
-            </button>
-            <button class="j-areaFocus btn btn--xxs" style="width: 90px;" type="submit" {{action 'saveArea' turma.id}}>
-              <span class="btn__label">Salvar</span>
-            </button>
-          </div>
-
-        </div>
-
-        <div class="w100">
-          <span>{{turma.plataformaAno.name}}</span><span class="m-h--sm">|</span><em>{{turma.numAlunos}} alunos</em>
-        </div>
-
-      </li>
       {{/each}}
-    </ul>
-  </section>
-  {{/if}}
+    </div>
+    {{/each}}
+  </div>
+</section>
 
-  <aside class="alert-container">
 
-  <!-- CONFIRMATION || LIST -->
-  <div id="staticAlertAdm" class="alert alert--x bg-blue-navy-50 color-white alert--has-interaction">
+<aside id="turma_modal" class="modal">
+  <div class="modal__overlayer"></div>
+  <div class="modal__content">
+    <div class="modal__header">
+      <button class="modal__close btn-close icon-x" type="submit" {{action 'closeModal'}}></button>
+      <h2 class="modal__title color-leaf-40">Nova Turma - {{plataformaAnoName}}</h2>
 
-    <div class="flex flex-col flow-lg flex-1">
-      <div class="flow-xs">
-        <h2 class="title-3">{{alertTitle}}</h2>
-        <p>{{alertDesc}}</p>
+      <div class="tabs">
+        <button class="report__tab tabs__tab">
+          <span>Individual</span>
+        </button>
+        <button class="report__tab tabs__tab">
+          <span>Automático</span>
+        </button>
       </div>
-      <p class="p--md bg-blue-navy-60 title-4 ta-c tt-u">{{staticTxt2}}</p>
-    </div>
 
-    <div class="alert__footer">
-      <!-- area to delete -->
-      {{#if (equalstr staticType 'area')}}
-      <button class="btn btn--text-inverted" {{action staticAlert 'close' }}>
-        <span class="btn__label">Cancelar</span>
-      </button>
-      <button class="btn bg-blue-navy-0 color-blue-navy-60" {{action 'actionConfirmation' areaToDelete}}>
-        {{!-- <span class="btn__icon icon-trash-2"></span> --}}
-        <span class="btn__label">Sim, desejo remover</span>
-      </button>
-      {{/if}}
-      <!-- -->
+    </div>
+    <div class="modal__body">
+      Teste
+    </div>
+    <div class="modal__footer">
+      <button class="btn btn-primary" type="submit" {{action 'save'}}>Salvar</button>
     </div>
   </div>
-
-  {{redirectToTurmas}}
-
-  <!-- LOADING || SUCCESS || ERROR -->
-  <div id="timeoutAlertAdm" class="alert alert--x bg-blue-navy-50 color-white alert--has-icon alert--no-interaction">
-    {{#if (equalstr timeoutIcon 'load')}}<span class="alert__icon icon-reload icon--lg"></span>{{/if}}
-    {{#if (equalstr timeoutIcon 'error')}}<span class="alert__icon icon-x icon--lg"></span>{{/if}}
-    {{#if (equalstr timeoutIcon 'success')}}<span class="alert__icon icon-check icon--lg"></span>{{/if}}
-    <div style="max-width: 80%;"><strong>{{timeoutTxt}}</strong></div>
-  </div>
-
 </aside>
-
- <button class="j-areaFocus tabs__not-tab btn btn--ghost btn--xxs m-left--auto m-right--md" {{action 'newArea' }}>
-      <span class="btn__label">Nova Turma</span>
-    </button>

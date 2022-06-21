@@ -1,28 +1,31 @@
- {{#if selectedInstTabs.courses}}
-  <section class="sections__subsection">
-    <div class="row">
-      {{#each segmentos as |seg| }}
-      <div class="col-xs-12 col-lg-2 flow-sm">
-        <h5 class="title-aux">{{seg.titulo}}</h5>
-        {{#each seg.plataformaAnos as |platAno|}}
-        <ul>
-          <li>
-            <div class="checkbox">
-              <input class="j-validate-aplicador-child checkbox__input" checked={{if (isinarray platAno
-                inst_selected.plataformaAnos) "checked" '' }} id="plat_ano{{platAno.id}}" onchange={{action
-                (action "selectAno" platAno) value='target.checked' }} type="checkbox">
-              <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
-            </div>
-          </li>
-        </ul>
-        {{/each}}
-      </div>
+ {{gerdata-header role=role informations=false instituicao=model.instituicao}}
+ 
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d750">
+  <div class="row">
+    {{#each segmentos as |segmento| }}
+    <div class="col-xs-12 col-lg-2 flow-sm">
+      <h4 class="title-aux"><b>{{segmento.titulo}}</b></h4>
+      {{#each segmento.plataformaAnos as |plataformaAno|}}
+      <ul>
+        <li>
+          <div class="checkbox">
+            <input class="j-validate-aplicador-child checkbox__input" 
+              type="checkbox"
+              id="plat_ano{{plataformaAno.id}}" 
+              checked={{if (isinarray plataformaAno instituicao.plataformaAnos) "checked" '' }} 
+              onchange={{action (action "selectAno" plataformaAno) value='target.checked' }} 
+            >
+            <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}">{{plataformaAno.name}}</label>
+          </div>
+        </li>
+      </ul>
       {{/each}}
     </div>
-  </section>
+    {{/each}}
+  </div>
   {{#if (equalstr role 'admin')}}
-  <footer class="modal__footer">
-    <button class="btn" type="submit" {{action 'saveCourses' }}>Editar</button>
-  </footer>
+    <footer class="modal__footer">
+      <button class="btn" type="submit" {{action 'saveCourses' }}>Editar</button>
+    </footer>
   {{/if}}
-  {{/if}}
+</section>

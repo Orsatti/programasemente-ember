@@ -17,6 +17,19 @@
         margin-left: $distance--xs;
     }
 
+    &-segmento {
+        font-size: .95rem;
+    }
+    &-platano {
+        font-size: .9rem;
+        margin-bottom: 5px;
+    }
+    &-platturma {
+        font-size: .95rem;
+        margin-bottom: 4px;
+        font-weight: 500;
+    }
+
 }
 
 .text-aux { @include text-aux; }

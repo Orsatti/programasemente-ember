@@ -4,30 +4,24 @@
   <div class="row">
     {{#each segmentos as |segmento| }}
       <div class="col-xs-12 col-lg-2 flow-sm">
-        <h4 class="title-aux"><b>{{segmento.titulo}}</b></h4>
+        <h4 class="title-segmento">{{segmento.titulo}}</h4>
         {{#each plataformaAnos as |plataformaAno|}}
           {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
             <div class="flex-col">
-              <h5 class="title-aux"><b>-</b> {{plataformaAno.name}}</h5>
+              <h4 class="title-platano"><b>·</b> {{plataformaAno.name}}</h4>
               {{#each plataformaTurmas as |plataformaTurma|}}
                 {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
-                  <ul>
-                    <li>
-                      <div class="checkbox">
-                        <input class="j-validate-aplicador-child checkbox__input" 
-                          type="checkbox"
-                          id="plat_turma{{plataformaTurma.id}}" 
-                          checked='checked' 
-                          {{!-- onchange={{action (action "selectTurma" plataformaAno) value='target.checked' }}  --}}
-                        >
-                        <label class="checkbox__label" for="plat_turma{{plataformplataformaTurmaaAno.id}}">{{plataformaTurma.name}}</label>
-                      </div>
-                    </li>
-                  </ul>
+                    <div>
+                      <h5 class="title-platturma capitalized" id="plat_turma{{plataformaTurma.id}}"for="plat_turma{{plataformplataformaTurmaaAno.id}}">
+                        - {{plataformaTurma.name}}
+                        <span class="btn_icon_edit icon-edit" onclick={{action 'openModal' 'edit' plataformaAno plataformaTurma}}></span>
+                      </h5>
+                      
+                    </div>
                 {{/if}}
               {{/each}}
               <button type="button" class="btn btn--add-turma" 
-                  id="plat_ano{{plataformaAno.id}}" onclick={{action 'openModal' plataformaAno}}>
+                  id="plat_ano{{plataformaAno.id}}" onclick={{action 'openModal' 'create' plataformaAno ''}}>
                   <span class="btn__icon icon-plus"></span>
                   <span class="btn__label">Adicionar</span>
               </button>
@@ -40,11 +34,11 @@
 </section>
 
 
-<aside id="turma_modal" class="modal">
+<aside id="create_turma_modal" class="modal">
   <div class="modal__overlayer"></div>
   <div class="modal__content">
     <div class="modal__header">
-      <button class="modal__close btn-close icon-x" type="submit" {{action 'closeModal'}}></button>
+      <button class="modal__close btn-close icon-x" type="submit" {{action 'closeModal' "create"}}></button>
       <h2 class="modal__title color-leaf-40">Nova Turma - {{plataformaAnoName}}</h2>
       <div class="tabs">
         <button class="report__tab tabs__tab tabs__tab--is-active" onclick={{action 'showTab' 1}} id="tab-1">
@@ -76,6 +70,19 @@
           <button class="btn btn-primary" onclick={{action 'create' 'quantity'}}>Salvar</button>
         </div>
       </div>
+    </div>
+  </div>
+</aside>
+
+<aside id="edit_turma_modal" class="modal">
+  <div class="modal__overlayer"></div>
+  <div class="modal__content">
+    <div class="modal__header">
+      <button class="modal__close btn-close icon-x" type="submit" {{action 'closeModal' "edit"}}></button>
+      <h2 class="modal__title color-leaf-40 capitalized">Edicão {{plataformaTurmaName}}</h2>
+    </div>
+
+    <div class="modal__body">
     </div>
   </div>
 </aside>

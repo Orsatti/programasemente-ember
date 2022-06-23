@@ -3,6 +3,7 @@
     <div class="flow-lg institutions__step-content institutions__step-content--is-show">
         <section class="sections__subsection">
             <div class="flex flex-col m-top--sm">
+                <h4 class="modal__subtitle">Informações gerais</h4>
                 <div class="flex flex-row justify-around">
                     <div class="w35">
                         {{validated-input label="Nome" propertyName="name" changeset=changeset}}
@@ -20,30 +21,36 @@
                     {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkSPlus"}}
                     {{switch-input label="S Plus" propertyName="sPlusEnabled" changeset=changeset}}
                 </div>
+                <h4 class="modal__subtitle">Gestão de usuários</h4>
                 <div class="flex flex-row justify-around">
-                    {{validated-input label="#Gestores" propertyName="nrgestores" changeset=changeset classe="numeric"}}
-                    {{validated-input label="#Coordenadores" propertyName="nrcoordenadores" changeset=changeset
+                    {{validated-input label="Gestores" propertyName="nrgestores" changeset=changeset classe="numeric"}}
+                    {{validated-input label="Coordenadores" propertyName="nrcoordenadores" changeset=changeset
                     classe="numeric"}}
-                    {{validated-input label="#Secretaria" propertyName="nrsecretaria" changeset=changeset
+                    {{validated-input label="Secretaria" propertyName="nrsecretaria" changeset=changeset
                     classe="numeric"}}
                 </div>
                 <div class="flex flex-row justify-around">
-                    {{validated-input label="#Marketing" propertyName="nrmarketing" changeset=changeset
+                    {{validated-input label="Marketing" propertyName="nrmarketing" changeset=changeset
                     classe="numeric"}}
-                    {{validated-input label="#Professores" propertyName="nrinstrutores" changeset=changeset
+                    {{validated-input label="Professores" propertyName="nrinstrutores" changeset=changeset
                     classe="numeric"}}
-                    {{validated-input label="#Alunos" propertyName="nralunos" changeset=changeset}}
+                    {{validated-input label="Alunos" propertyName="nralunos" changeset=changeset}}
                 </div>
+                {{#if haveSegmentos}}
+                    <h4 class="modal__subtitle">Gestão escolar</h4>
+                {{/if}}
                 <div class="flex flex-row justify-around">
                     {{#each segmentos as |segmento|}}
                     {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id)
                     classe="segmento" }}
                     {{/each}}
                 </div>
-                <div class="flex flex-col justify-content-end">
-                    <div class="color-error-40 m-bottom--lg" id="form-inst-error"></div>
-                    <button class="btn" type="submit">{{buttonLabel}}</button>
-                </div>
+                {{#if haveSegmentos}}
+                    <div class="flex flex-col justify-content-end">
+                        <div class="color-error-40 m-bottom--lg" id="form-inst-error"></div>
+                        <button class="btn" type="submit">{{buttonLabel}}</button>
+                    </div>
+                {{/if}}
             </div>
         </section>
     </div>

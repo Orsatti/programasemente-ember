@@ -1,27 +1,30 @@
 <div class="flex flex-row m-top--md">
-  {{#if (equalstr role 'admin')}}
-  {{#link-to 'gersistema'}}
-  <button class="main__back btn btn--link color-blue-navy-60 animated fadeInLeftShort faster"
-    id="back-person-specific_old" type="button">
-    <span class="icon-arrow-left"></span>
-    <span class="btn__label">voltar</span>
-  </button>
-  {{/link-to}}
-  {{/if}}
+  <div class="mt1">
+    {{#if (equalstr role 'admin')}}
+      {{#link-to 'gersistema'}}
+        <button class="main__back btn btn--link color-blue-navy-60 animated fadeInLeftShort faster"
+          id="back-person-specific_old" type="button">
+          <span class="icon-arrow-left"></span>
+          <span class="btn__label">voltar</span>
+        </button>
+      {{/link-to}}
+    {{/if}}
+  </div>
 
-  <h1 class="main__title animated fadeInLeftShort faster d250 m-left--lg m-top--xxs m-bottom--xs">{{instituicao.name}}
+  <h1 class="main__title animated fadeInLeftShort faster d100 m-left--lg m-top--xxs m-bottom--xs">
+    {{instituicao.name}}
   </h1>
-  {{#if informations}}
+  {{!-- {{#if informations}}
   {{#link-to 'gerdata.informations.deleteinst' instituicao.id}}
   <button class="btn--xxs m-left--auto m-right--md" style="width: 90px;">
     <span class="btn">Excluir</span>
   </button>
   {{/link-to}}
-  {{/if}}
+  {{/if}} --}}
 </div>
 
 <section class="sections__section flow-xl">
-  <div class="tabs animated fadeInLeftShort faster d500">
+  <div class="tabs animated fadeInLeftShort faster d250">
     {{#if (equalstr role "admin")}}
     {{#link-to 'gerdata.informations' instituicao.id }}
     <button class="report__tab tabs__tab">

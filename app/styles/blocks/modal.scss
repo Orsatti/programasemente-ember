@@ -185,11 +185,10 @@
     // Acho que está descontinuado...
     &__subtitle {
         @include title-3;
-
-        margin-bottom: $distance--sm;
+        letter-spacing: 0rem;
 
         &:not(:first-child) {
-            margin-top: $distance--xxl;
+            margin-top: .7rem;;
         }
 
     }

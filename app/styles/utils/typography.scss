@@ -18,16 +18,17 @@
     }
 
     &-segmento {
-        font-size: .95rem;
+        font-size: 1.1rem;
     }
     &-platano {
-        font-size: .9rem;
+        font-size: 1.05rem;
         margin-bottom: 5px;
     }
     &-platturma {
-        font-size: .95rem;
+        font-size: 1.05rem;
         margin-bottom: 4px;
         font-weight: 500;
+        max-height: 30px;
     }
 
 }

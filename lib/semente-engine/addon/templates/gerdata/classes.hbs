@@ -9,19 +9,22 @@
           {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
             <div class="flex-col">
               <h4 class="title-platano"><b>·</b> {{plataformaAno.name}}</h4>
-              {{#each plataformaTurmas as |plataformaTurma|}}
-                {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
-                    <div>
-                      <h5 class="title-platturma capitalized" id="plat_turma{{plataformaTurma.id}}"for="plat_turma{{plataformplataformaTurmaaAno.id}}">
-                        - {{plataformaTurma.name}}
-                        <span class="btn_icon_edit icon-edit" onclick={{action 'openModal' 'edit' plataformaAno plataformaTurma}}></span>
-                      </h5>
-                      
-                    </div>
-                {{/if}}
-              {{/each}}
+              <ul id="platTurmas-list-{{plataformaAno.id}}">
+                {{#each plataformaTurmas as |plataformaTurma|}}
+                  {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
+                    <li class="row">
+                      <p class="title-platturma capitalized" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformplataformaTurmaaAno.id}}">
+                        {{plataformaTurma.name}}
+                      </p>
+                      <span id="icon-edit{{plataformaTurma.id}}" class="btn_icon_edit icon-edit" onclick={{action 'edit' plataformaTurma}} style="display: block;"></span>
+                      <span id="icon-x{{plataformaTurma.id}}" class="btn_icon_edit icon-x" onclick={{action 'cancelEdit' plataformaTurma}} style="display: none;"></span>
+                      <span id="icon-save{{plataformaTurma.id}}" class="btn_icon_edit icon-save" onclick={{action 'saveEdit' plataformaTurma}} style="display: none;"></span>
+                    </li>
+                  {{/if}}
+                {{/each}}
+              </ul>
               <button type="button" class="btn btn--add-turma" 
-                  id="plat_ano{{plataformaAno.id}}" onclick={{action 'openModal' 'create' plataformaAno ''}}>
+                  id="plat_ano{{plataformaAno.id}}" onclick={{action 'create' plataformaAno}}>
                   <span class="btn__icon icon-plus"></span>
                   <span class="btn__label">Adicionar</span>
               </button>
@@ -32,57 +35,3 @@
     {{/each}}
   </div>
 </section>
-
-
-<aside id="create_turma_modal" class="modal">
-  <div class="modal__overlayer"></div>
-  <div class="modal__content">
-    <div class="modal__header">
-      <button class="modal__close btn-close icon-x" type="submit" {{action 'closeModal' "create"}}></button>
-      <h2 class="modal__title color-leaf-40">Nova Turma - {{plataformaAnoName}}</h2>
-      <div class="tabs">
-        <button class="report__tab tabs__tab tabs__tab--is-active" onclick={{action 'showTab' 1}} id="tab-1">
-          <span>Individual</span>
-        </button>
-        <button class="report__tab tabs__tab" onclick={{action 'showTab' 2}} id="tab-2">
-          <span>Automático</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="modal__body">
-      <div id="tab-11" style="display:block; margin-bottom: 0rem;">
-        <div class="flex flex-row justify-between">
-          <div>
-            <label for="name">Nome da nova turma:</label>
-            <input type="text" id="name" name="name">
-          </div>
-          <button class="btn btn-primary" onclick={{action 'create' 'name'}}>Salvar</button>
-        </div>
-      </div>
-
-      <div id="tab-21" style="display:none;">
-        <div class="flex flex-row justify-between">
-          <div>
-            <label for="quantity">Quantidade de turmas que deseja criar:</label>
-            <input type="number" id="quantity" name="quantity" min="1" max="5">
-          </div>
-          <button class="btn btn-primary" onclick={{action 'create' 'quantity'}}>Salvar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</aside>
-
-<aside id="edit_turma_modal" class="modal">
-  <div class="modal__overlayer"></div>
-  <div class="modal__content">
-    <div class="modal__header">
-      <button class="modal__close btn-close icon-x" type="submit" {{action 'closeModal' "edit"}}></button>
-      <h2 class="modal__title color-leaf-40 capitalized">Edicão {{plataformaTurmaName}}</h2>
-    </div>
-
-    <div class="modal__body">
-    </div>
-  </div>
-</aside>

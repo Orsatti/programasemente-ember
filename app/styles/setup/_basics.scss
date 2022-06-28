@@ -160,7 +160,7 @@ td {
 }
 
 [contenteditable] {
-    margin-left: -$distance--xs;
+   // margin-left: 0.2rem !important;
     margin-right: -$distance--xs;
     padding: $distance--xs;
     position: relative;

@@ -33,7 +33,7 @@
 .icon-chevrons-left:before { content: $icon-chevrons-left; }
 .icon-chevrons-right:before { content: $icon-chevrons-right; }
 .icon-clock:before { content: $icon-clock; }
-.icon-edit:before { content: $icon-edit; }
+.icon-edit:before { content: $icon-edit; ;margin-top: 1.5rem; }
 .icon-eye-off:before { content: $icon-eye-off; }
 .icon-eye:before { content: $icon-eye; }
 .icon-file-text:before { content: $icon-file-text; }
@@ -80,4 +80,6 @@
   font-weight: 500;
   font-size: .9rem;
   cursor: pointer;
+  margin-top: 0.8rem;
+
 }

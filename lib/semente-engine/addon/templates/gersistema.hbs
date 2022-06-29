@@ -4,14 +4,14 @@
   <header class="main__header main__header--has-side-info">
     <h1 class="main__title animated fadeInLeftShort faster">Administração</h1>
     {{#link-to 'gersistema.createinst'}}
-    <button class="btn btn--xxs animated fadeInLeftShort faster d250">
+    <button class="btn btn--xxs animated fadeInLeftShort faster d100">
       <span class="btn__icon icon-plus"></span>
       <span class="btn__label">Nova Instituição</span>
     </button>
     {{/link-to}}
   </header>
 
-  <section class="sections__section animated fadeInLeftShort faster d500">
+  <section class="sections__section animated fadeInLeftShort faster d100">
     <form class="main__search" autocomplete="off" aria-autocomplete="none">
       <div class="form-group form-group--full-width">
         <label class="form-group__label" for="search">Busca</label>
@@ -47,7 +47,7 @@
     {{/each}}
   </ul>
 
-  <ul id="modelInstList" class="list list--striped animated fadeInLeftShort faster d750">
+  <ul id="modelInstList" class="list list--striped animated fadeInLeftShort faster d100">
     {{#each model.instituicoes as |inst|}}
     <li class="l-devil-albatross">
       {{#link-to 'gerdata.informations' inst.id}}

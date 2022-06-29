@@ -44,12 +44,19 @@
                     classe="segmento" }}
                     {{/each}}
                 </div>
-                {{#if haveSegmentos}}
+                <div class="flex flex-row justify-content-between m-top--sm">
+                    {{#unless haveSegmentos}}
+                        {{#link-to 'gerdata.informations.deleteinst' instituicao.id}}
+                            <button class="btn" style="background-color: #b62020;">
+                                <span>Excluir</span>
+                            </button>
+                        {{/link-to}}
+                    {{/unless}}
                     <div class="flex flex-col justify-content-end">
-                        <div class="color-error-40 m-bottom--lg" id="form-inst-error"></div>
+                        <div class="color-error-40 " id="form-inst-error"></div>
                         <button class="btn" type="submit">{{buttonLabel}}</button>
                     </div>
-                {{/if}}
+                </div>
             </div>
         </section>
     </div>

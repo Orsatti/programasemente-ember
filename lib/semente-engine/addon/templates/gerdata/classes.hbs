@@ -1,6 +1,6 @@
  {{gerdata-header role=role informations=false instituicao=model.instituicao}}
  
-<section class="sections__subsection flow-md animated fadeInLeftShort faster d100">
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
   <div class="row">
     {{#each segmentos as |segmento| }}
       <div class="col-xs-12 col-lg-2 flow-sm">
@@ -13,7 +13,7 @@
                 {{#each plataformaTurmas as |plataformaTurma|}}
                   {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
                     <li class="row">
-                      <p class="title-platturma capitalized" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformplataformaTurmaaAno.id}}">
+                      <p class="title-platturma capitalized" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">
                         {{plataformaTurma.name}}
                       </p>
                       <span id="icon-edit{{plataformaTurma.id}}" class="btn_icon_edit icon-edit" onclick={{action 'edit' plataformaTurma}} style="display: block;"></span>

@@ -1,0 +1,290 @@
+<aside id="new_user_modal" class="modal modal--is-show">
+    <div class="modal__overlayer"></div>
+    <div class="modal__content">
+        <header class="modal__header">
+            {{#link-to 'gerdata.users'}}
+                <button class="modal__close btn-close icon-x"></button>
+            {{/link-to}}
+            <h3 class="modal__title">
+                {{!-- {{#if new_user_name}}
+                    Edição do usuário <span class="m-left--xxs color-green-40">{{new_user_name}}</span>
+                {{else}} --}}
+                    Cadastro de novo usuário
+                {{!-- {{/if}} --}}
+            </h3>
+        </header>
+
+        <div class="modal__body">
+
+            <section class="flow-md row">
+                <div style="display: none;">{{startInformation}}</div>
+
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group w100">
+                                <label class="form-group__label" for="new_user_role">Perfil</label>
+                                <div class="form-group__wrapper form-group__wrapper--select">
+                                    <select class="form-group__input j-validate-basic" id="new_user_role"
+                                        onchange={{action isAluno value="target.value" }} data-type="select">
+                                        <option value="">Selecione...</option>
+                                        <option value="aluno">Aluno</option>
+                                        <option value="instrutor">Professor</option>
+                                        <option value="secretaria">Secretaria</option>
+                                        <option value="marketing">Marketing</option>
+                                        <option value="coordenador">Coordenador</option>
+                                        <option value="gestor">Gestor</option>
+                                        {{#if (or (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.role 'recursosHumanos'))}}
+                                            <option value="recursosHumanos">Recursos Humanos</option>
+                                        {{/if}}
+                                        {{#if (and (or (equalstr inst_selected.name "Minimo")(equalstr inst_selected.name "Semente")) 
+                                                    (equalstr pessoaLogged.role 'admin'))}}
+                                            <option value="admin">Admin</option>
+                                        {{/if}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{#if roleError}}<span id="role-error" class="color-error-30 fs--xs">{{errorMsgRole}}</span>{{/if}}
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group w100">
+                        {{!-- {{validated-input label="Nome" propertyName="name" changeset=changeset id="new_user_name" value=new_user_name}} --}}
+                        <div class="form-group w100">
+                            <label class="form-group__label" for="new_user_name">Nome</label>
+                            <input class="form-group__input" id="new_user_name" type="textbox" value={{new_user_name}}
+                                data-type="text" data-required="true" data-context="name">
+                        </div>
+                    </div>
+                    {{#if nameError}}<span id="name-error" class="color-error-30 fs--xs">{{errorMsgName}}</span>{{/if}}
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group w100">
+                        <label class="form-group__label" for="new_user_login">Login</label>
+                        <input class="form-group__input" id="new_user_login" type="textbox" value={{new_user_login}}
+                            data-type="text" data-required="true" data-context="login">
+                    </div>
+                    {{#if loginError}}<span id="login-error" class="color-error-30 fs--xs">{{errorMsgLogin}}</span>{{/if}}
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="form-group w100">
+                        <label class="form-group__label" for="new_user_email">E-mail</label>
+                        <input class="form-group__input" id="new_user_email" type="textbox" value={{if new_user_email
+                            new_user_email}} data-type="text" data-context="email">
+                    </div>
+                    {{#if emailError}}<span class="color-error-30 fs--xs">E-mail inválido</span>{{/if}}
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group w100">
+                        <label class="form-group__label" for="new_user_phone">Telefone</label>
+                        <input class="form-group__input" maxlength="15" id="new_user_phone" type="textbox"
+                            onloadstart={{action 'replacePhone' }} onkeydown={{action 'replacePhone' }}
+                            value={{new_user_phone}} data-type="text" data-context="phone" data-animation="fadeIn">
+                        <div class="text-aux m-top--xxs">(00) 00000-0000</div>
+                    </div>
+                    {{#if phoneError}}<span id="phone-error" class="color-error-30 fs--xs">{{errorMsgPhone}}</span>{{/if}}
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group w100">
+                        <label class="form-group__label" for="new_user_cpf">CPF</label>
+                        <input class="form-group__input" maxlength="14" id="new_user_cpf" type="textbox"
+                             onloadstart={{action 'replaceCPF' }} onkeydown={{action 'replaceCPF'}} 
+                             value={{new_user_cpf}} data-type="text" data-context="cpf" data-animation="fadeIn">
+                    </div>
+                    {{#if cpfError}}<span id="cpf-error" class="color-error-30 fs--xs">{{errorMsgCPF}}</span>{{/if}}
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group w100">
+                        <label class="form-group__label" for="new_user_login">Senha</label>
+                        <input class="form-group__input" id="new_user_senha" type="textbox"
+                            placeholder="Mínimo 6 caracteres" value={{new_user_senha}} data-type="text"
+                            data-context="senha">
+                        <div class="text-aux m-top--xxs">Senha aleatória se não preenchido</div>
+                    </div>
+                    {{#if senhaError}}<span id="senha-error" class="color-error-30 fs--xs">{{errorMsgSenha}}</span>{{/if}}
+                </div>
+
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group w100">
+                                <label class="form-group__label" for="new_user_gender">Sexo</label>
+                                <div class="form-group__wrapper form-group__wrapper--select">
+                                    <select class="form-group__input j-validate-aluno" id="new_user_gender" data-type="select"
+                                        data-context="sexo">
+                                        <option value="">Selecione...</option>
+                                        <option value="feminino">Feminino</option>
+                                        <option value="masculino">Masculino</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{#if (equalstr activeProfile "aluno")}}
+                            <div class="col-md-4 animated fadeInLeftShort faster d100">
+                                <div class="form-group w100">
+                                    <label class="form-group__label" for="new_user_birth">Nascimento</label>
+                                    <input class="form-group__input j-validate-aluno" id="new_user_birth" maxlength="10"
+                                        name="date" onkeyup="var v = this.value;
+                                    if (v.match(/^\d{2}$/) !== null) {
+                                        this.value = v + '/';
+                                    } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+                                        this.value = v + '/';
+                                    }" type="date" value={{new_user_birth}} data-type="text" data-context="nascimento">
+                                    <div class="text-aux m-top--xxs">dd/mm/aaaa</div>
+                                </div>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="checkbox w100">
+                        <input class="checkbox__input" checked={{new_user_enabled}} id="new_user_enabled" type="checkbox">
+                        <label class="checkbox__label" for="new_user_enabled">Habilitado</label>
+                    </div>
+                </div>
+
+                {{#if sEnabled}}
+                    <div class="col-md-4">
+                        <div class="checkbox w100">
+                            <input class="checkbox__input" 
+                            {{!-- onchange={{action 'verifyPlatAno' }} --}}
+                                checked={{new_user_acessoPlataformaS}} id="new_user_acessoPlataformaS" type="checkbox">
+                            <label class="checkbox__label" for="new_user_acessoPlataformaS">Acesso à Plataforma S</label>
+                        </div>
+                    </div>
+                {{/if}}
+            </section>
+
+            {{#if (equalstr activeProfile "instrutor")}}
+                <section class="flow-md animated fadeInLeftShort faster d100">
+                    <h4 class="modal__subtitle">Você é professor aplicador?</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="checkbox w100">
+                                <input class="checkbox__input" id="new_user_aplicador" type="checkbox"
+                                    checked={{new_user_aplicador}} onchange={{action 'checkaplicador' }}>
+                                <label class="checkbox__label" for="new_user_aplicador">Sim, eu sou professor aplicador do Programa Semente.</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{#if isAplicador}}
+                        <section class="blink animated fadeIn fast flow-md">
+                            <h4 class="title-4">Você aplica em quais turmas?</h4>
+                            {{#if aplicadorError}}<span id="error_aplicador" class="color-error-30 fs--xs">{{errorMsgAplicador}}</span>{{/if}}
+                            <div class="row">
+                            {{#each segmentos as |segmento| }}
+                                <div class="col-xs-12 col-lg-2 flow-sm">
+                                    <h4 class="title-segmento">{{segmento.titulo}}</h4>
+                                    {{#each plataformaAnos as |plataformaAno|}}
+                                    {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
+                                        <div class="flex-col">
+                                        <h4 class="title-platano"><b>·</b> {{plataformaAno.name}}</h4>
+                                        <ul id="platTurmas-list-{{plataformaAno.id}}">
+                                            {{#each plataformaTurmas as |plataformaTurma|}}
+                                            {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
+                                            <ul>
+                                                <li>
+                                                <div class="checkbox">
+                                                    <input class="j-validate-aplicador-child checkbox__input" 
+                                                    type="checkbox"
+                                                    id="plat_turma{{plataformaTurma.id}}"
+                                                    {{!-- onchange={{action (action "selectAno" plataformaAno) value='target.checked' }}  --}}
+                                                    >
+                                                    <label class="checkbox__label" for="plat_turma{{plataformaTurma.id}}">{{plataformaTurma.name}}</label>
+                                                </div>
+                                                </li>
+                                            </ul>
+                                            {{/if}}
+                                            {{/each}}
+                                        </ul>
+                                        </div>
+                                    {{/if}}
+                                    {{/each}}
+                                </div>
+                            {{/each}}
+                            </div>
+                        </section>
+                    {{/if}}
+                </section>
+            {{/if}}
+
+            {{#if (equalstr activeProfile "aluno")}}
+                <section class="flow-md animated fadeInLeftShort faster d100">
+                    <h4 class="modal__subtitle">Em qual ano e turma deve ser inscrito?</h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group w100">
+                                <label class="form-group__label" for="new_user_ano">Ano</label>
+                                <div class="form-group__wrapper form-group__wrapper--select">
+                                    <select class="j-validate-aluno form-group__input form-group__input--select"
+                                        id="new_user_ano" name="ano" 
+                                        onchange={{action 'refreshPlataformaTurmas' value='target.value' }} 
+                                        data-type="select" data-required="true" data-type="select"
+                                        data-context="ano">
+                                        <option selected="selected" value="0">---</option>
+                                        {{#each (orderby plataformaAnos 'idx') as |pa|}}
+                                        <option value="{{pa.id}}">
+                                            {{!-- selected={{if (equalstr pa.id pessoa_selected.plataformaAnos.firstObject.id) "selected" }} --}}
+                                            {{pa.segmento.titulo}} - {{pa.name}}
+                                        </option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                                <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group__container">
+                                <div class="form-group w100">
+                                    <label class="form-group__label" for="new_user_turma">Turma</label>
+                                    <div class="form-group__wrapper form-group__wrapper--select">
+                                        <select class="j-validate-aluno form-group__input form-group__input--select"
+                                            id="new_user_turma" name="turma"
+                                            {{!-- onchange={{action 'refreshSelectedPlataformaTurma' value='target.value' }} --}}
+                                            data-type="select" data-required="true" data-context="turma">
+                                            <option selected="selected" value="0">---</option>
+                                            {{#each plataformaTurmas as |pt|}}
+                                            {{!-- {{#if (equalstr pt.plataformaAno.id
+                                            pessoa_selected.plataformaAnos.firstObject.id)}}
+                                            <option value="{{pt.id}}" selected={{if (equalstr pt.id
+                                                pessoa_selected.plataformaTurmas.firstObject.id)"selected"}}>
+                                                {{pt.name}}</option>
+                                            {{else}}--}}
+                                            {{#if (equalstr selectedPlataformaAno '')}}
+                                                <option value="{{pt.id}}">{{pt.name}}</option>
+                                            {{else}}
+                                                {{#if (equalstr pt.plataformaAno.id selectedPlataformaAno.id)}}
+                                                    <option value="{{pt.id}}">{{pt.name}}</option>
+                                                {{/if}}
+                                            {{/if}} 
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                </div>
+                                <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
+                            </div>
+                        </div>
+                </div>
+            </section>
+        {{/if}}
+    </div>
+    <footer class="modal__footer">
+        {{!-- {{#if new_user_id}}
+        <button class="btn" type="submit" {{action 'userSave' new_user_id}}>Editar</button>
+        {{else}} --}}
+        <button class="btn" type="submit" >OK</button>{{!--{{action 'userSave' }}--}}
+        {{!-- {{/if}} --}}
+    </footer>
+    </div>
+</aside>

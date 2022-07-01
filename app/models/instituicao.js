@@ -3,6 +3,7 @@ import DS from 'ember-data';
 export default DS.Model.extend({
     name: DS.attr(),
     enabled: DS.attr(),
+    deleted: DS.attr(),
     timestamps: DS.attr(),
     acessos: DS.attr(),
     ativcompletas: DS.attr(),

@@ -1,6 +1,6 @@
 <aside id="new_user_modal" class="modal modal--is-show">
     <div class="modal__overlayer"></div>
-    <div class="modal__content">
+    <div class="modal__content m-top--md">
         <header class="modal__header">
             {{#link-to 'gerdata.users'}}
                 <button class="modal__close btn-close icon-x"></button>
@@ -50,65 +50,70 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group w100">
-                        {{!-- {{validated-input label="Nome" propertyName="name" changeset=changeset id="new_user_name" value=new_user_name}} --}}
+                    {{validated-input label="Nome" propertyName="name" changeset=(changeset model.newUser PessoaValidations)}}
+                    {{!-- <div class="form-group w100">
                         <div class="form-group w100">
                             <label class="form-group__label" for="new_user_name">Nome</label>
                             <input class="form-group__input" id="new_user_name" type="textbox" value={{new_user_name}}
                                 data-type="text" data-required="true" data-context="name">
                         </div>
                     </div>
-                    {{#if nameError}}<span id="name-error" class="color-error-30 fs--xs">{{errorMsgName}}</span>{{/if}}
+                    {{#if nameError}}<span id="name-error" class="color-error-30 fs--xs">{{errorMsgName}}</span>{{/if}} --}}
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group w100">
+                    {{validated-input label="Login" propertyName="login" changeset=(changeset model.newUser PessoaValidations)}}
+                    {{!-- <div class="form-group w100">
                         <label class="form-group__label" for="new_user_login">Login</label>
                         <input class="form-group__input" id="new_user_login" type="textbox" value={{new_user_login}}
                             data-type="text" data-required="true" data-context="login">
                     </div>
-                    {{#if loginError}}<span id="login-error" class="color-error-30 fs--xs">{{errorMsgLogin}}</span>{{/if}}
+                    {{#if loginError}}<span id="login-error" class="color-error-30 fs--xs">{{errorMsgLogin}}</span>{{/if}} --}}
                 </div>
                 
                 <div class="col-md-4">
-                    <div class="form-group w100">
+                    {{validated-input label="E-mail" propertyName="email" changeset=(changeset model.newUser PessoaValidations)}}
+                    {{!-- <div class="form-group w100">
                         <label class="form-group__label" for="new_user_email">E-mail</label>
                         <input class="form-group__input" id="new_user_email" type="textbox" value={{if new_user_email
                             new_user_email}} data-type="text" data-context="email">
                     </div>
-                    {{#if emailError}}<span class="color-error-30 fs--xs">E-mail inválido</span>{{/if}}
+                    {{#if emailError}}<span class="color-error-30 fs--xs">E-mail inválido</span>{{/if}} --}}
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group w100">
+                    {{validated-input label="Telefone" propertyName="telefone" changeset=(changeset model.newUser PessoaValidations)}}
+                    {{!-- <div class="form-group w100">
                         <label class="form-group__label" for="new_user_phone">Telefone</label>
                         <input class="form-group__input" maxlength="15" id="new_user_phone" type="textbox"
                             onloadstart={{action 'replacePhone' }} onkeydown={{action 'replacePhone' }}
                             value={{new_user_phone}} data-type="text" data-context="phone" data-animation="fadeIn">
                         <div class="text-aux m-top--xxs">(00) 00000-0000</div>
                     </div>
-                    {{#if phoneError}}<span id="phone-error" class="color-error-30 fs--xs">{{errorMsgPhone}}</span>{{/if}}
+                    {{#if phoneError}}<span id="phone-error" class="color-error-30 fs--xs">{{errorMsgPhone}}</span>{{/if}} --}}
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group w100">
+                    {{validated-input label="CPF" propertyName="cpf" changeset=(changeset model.newUser PessoaValidations)}}
+                    {{!-- <div class="form-group w100">
                         <label class="form-group__label" for="new_user_cpf">CPF</label>
                         <input class="form-group__input" maxlength="14" id="new_user_cpf" type="textbox"
                              onloadstart={{action 'replaceCPF' }} onkeydown={{action 'replaceCPF'}} 
                              value={{new_user_cpf}} data-type="text" data-context="cpf" data-animation="fadeIn">
                     </div>
-                    {{#if cpfError}}<span id="cpf-error" class="color-error-30 fs--xs">{{errorMsgCPF}}</span>{{/if}}
+                    {{#if cpfError}}<span id="cpf-error" class="color-error-30 fs--xs">{{errorMsgCPF}}</span>{{/if}} --}}
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group w100">
+                    {{validated-input label="Senha" propertyName="senha" changeset=(changeset model.newUser PessoaValidations)}}
+                    {{!-- <div class="form-group w100">
                         <label class="form-group__label" for="new_user_login">Senha</label>
                         <input class="form-group__input" id="new_user_senha" type="textbox"
                             placeholder="Mínimo 6 caracteres" value={{new_user_senha}} data-type="text"
                             data-context="senha">
                         <div class="text-aux m-top--xxs">Senha aleatória se não preenchido</div>
                     </div>
-                    {{#if senhaError}}<span id="senha-error" class="color-error-30 fs--xs">{{errorMsgSenha}}</span>{{/if}}
+                    {{#if senhaError}}<span id="senha-error" class="color-error-30 fs--xs">{{errorMsgSenha}}</span>{{/if}} --}}
                 </div>
 
                 <div class="col-xs-12">

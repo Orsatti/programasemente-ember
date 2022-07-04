@@ -1,9 +1,9 @@
-{{gerdata-header role=role informations=false instituicao=model.instituicao}}
+{{gerdata-header role=role informations=false instituicao=instituicao}}
 
 <section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
     <div class="flex flex-row items-center justify-end">
         <div class="institutions__btn-group">
-            {{#link-to 'gerdata.users.createuser' model.instituicao.id}}
+            {{#link-to 'gerdata.users.createuser' instituicao.id}}
                 <button class="btn btn--xxs">
                     <span class="btn__label">Novo Usuário</span>
                 </button>
@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    {{!-- <div class="l-dots-between">
+    <div class="l-dots-between">
         <header class="l-dots-between__side">
             <form class="flex flex-col flow-md" autocomplete="off" aria-autocomplete="none">
                 <div class="form-group">
@@ -31,7 +31,7 @@
                     <a class="form__aux-link" onclick={{action 'exitsearch' }}>Limpar busca</a>
                 </div>
 
-                {{#if instituicaoMae}}
+                {{!-- {{#if instituicaoMae}}
                 <div class="form-group">
                     <label class="form-group__label">Instituições</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
@@ -47,19 +47,20 @@
                         </select>
                     </div>
                 </div>
-                {{/if}}
+                {{/if}} --}}
 
                 <div class="form-group">
                     <label class="form-group__label">Segmentos</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="year" id="segmento_selector"
-                            onchange={{action 'refreshSelectedSegmento' value='target.value' }} data-type="select"
+                        <select class="form-group__input" name="segmento" id="segmento_selector"
+                            onchange={{action 'selectedSegmento' value='target.value' }} 
+                            data-type="select"
                             data-required="true">
-                            <option selected="selected" value="0">Todos</option>
+                            <option selected="selected" value="">Todos</option>
                             {{#each segmentos as |seg|}}
-                            <option style="display: block" value="{{seg.id}}" selected={{if (equalstr seg
-                                selectedSegmento) "selected" }}>
-                                {{seg.titulo}}</option>
+                            <option style="display: block" value="{{seg.id}}" selected={{if (equalstr seg selectedSegmento) "selected" }}>
+                                {{seg.titulo}}
+                            </option>
                             {{/each}}
                         </select>
                     </div>
@@ -68,14 +69,19 @@
                 <div class="form-group">
                     <label class="form-group__label">Ano</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="year" id="ano_selector"
-                            onchange={{action 'refreshFilterAno' value='target.value' }} data-type="select"
+                        <select class="form-group__input" name="plataformaAno" id="platano_selector"
+                            onchange={{action 'selectedPlataformaAno' value='target.value' }} 
+                            data-type="select"
                             data-required="true">
-                            <option selected="selected" value="0">Todas</option>
-                            {{#each anos as |ano|}}
-                            <option style="display: block" value="{{ano.id}}" selected={{if (equalstr ano
-                                selectedAno) "selected" }}>
-                                {{ano.name}}</option>
+                            <option selected="selected" value="">Todas</option>
+                            {{#each plataformaAnos as |platAno|}}
+                                {{#if (equalstr selectedSegmento '')}}
+                                    <option value="{{platAno.id}}" selected={{if (equalstr platAno selectedPlataformaAno) "selected" }}>{{platAno.name}}</option>
+                                {{else}}
+                                    {{#if (equalstr platAno.segmento.id selectedSegmento.id)}}
+                                        <option value="{{platAno.id}}" selected={{if (equalstr platAno selectedPlataformaAno) "selected" }}>{{platAno.name}}</option>
+                                    {{/if}}
+                                {{/if}} 
                             {{/each}}
                         </select>
                     </div>
@@ -84,32 +90,53 @@
                 <div class="form-group">
                     <label class="form-group__label">Turma</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="year" id="turma_selector"
-                            onchange={{action 'refreshFilterTurma' value='target.value' }} data-type="select"
+                        <select class="form-group__input" name="plataformaTurma" id="platturma_selector"
+                            onchange={{action 'selectedPlataformaTurma' value='target.value' }} 
+                            data-type="select"
                             data-required="true">
-                            <option selected="selected" value="0">Todas</option>
-                            {{#each turmas as |turma|}}
-                            <option style="display: block" value="{{turma.id}}" selected={{if (equalstr turma
-                                selectedTurma) "selected" }}>
-                                {{turma.name}}</option>
+                            <option selected="selected" value="">Todas</option>
+                            {{#each plataformaTurmas as |platTurma|}}
+                                {{#if (equalstr selectedSegmento '')}}
+                                    {{#if (equalstr selectedPlataformaAno '')}}
+                                        <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                                    {{else}}
+                                        {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                                            <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                                        {{/if}}
+                                    {{/if}} 
+                                {{else}}
+                                    {{#if (equalstr selectedPlataformaAno '')}}
+                                        {{#each plataformaAnos as |platAno|}}
+                                            {{#if (equalstr platAno.segmento.id selectedSegmento.id)}}
+                                                {{#if (equalstr platTurma.plataformaAno.id platAno.id)}}
+                                                    <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                                                {{/if}}
+                                            {{/if}}
+                                        {{/each}}
+                                    {{else}}
+                                        {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                                            <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                                        {{/if}}
+                                    {{/if}} 
+                                {{/if}}
                             {{/each}}
                         </select>
                     </div>
                 </div>
             </form>
         </header>
+
         <section class="l-dots-between__content flow-md">
             <div class="flex flex-row items-end justify-between">
                 {{#unless (equalstr totalPessoas '0')}}
-                {{page-numbers content=pagedContent class="pagination--sm pagination--right"}}
+                    {{page-numbers content=pagedContent class="pagination--sm pagination--right"}}
                 {{/unless}}
 
                 <div class="form-group flex flex-row items-center">
                     <label class="form-group__label" for="amount">Exibir</label>
                     <div class="self-start">
                         <div class="form-group__wrapper form-group__wrapper--select">
-                            <select class="form-group__input form-group__input--amount" id="amount" name="order"
-                                {{action 'setExibir' on='change' }}>
+                            <select class="form-group__input form-group__input--amount" id="amount" name="order" {{action 'setExibir' on='change' }}>
                                 <option value="5" selected={{paginationSelected.p5}}>5 resultados</option>
                                 <option value="10" selected={{paginationSelected.p10}}>10 resultados</option>
                                 <option value="25" selected={{paginationSelected.p25}}>25 resultados</option>
@@ -135,8 +162,7 @@
                                 <div {{action 'setSort' 'name' }}>
                                     Nome
                                     {{#if (equalstr sortCol 'name')}}
-                                    <i class="{{if sortAsc 'fa fa-caret-down' 'fa fa-caret-up'}}"
-                                        aria-hidden="true"></i>
+                                        <i class="{{if sortAsc 'fa fa-caret-down' 'fa fa-caret-up'}}" aria-hidden="true"></i>
                                     {{/if}}
                                 </div>
                             </th>
@@ -151,26 +177,22 @@
                             <td class="table__name">
                                 <p><strong class="title-4 capitalized">{{pessoa.nameLower}}</strong></p>
                                 <p class='color-green-40 truncate'>{{pessoa.userName}}</p>
-
                             </td>
                             <td class="table__role">
                                 {{#if (equalstr pessoa.role 'instrutor')}}
-                                <p class="">professor</p>
+                                    <p class="">professor</p>
                                 {{else if (equalstr pessoa.role 'recursosHumanos')}}
-                                <p class="">RH</p>
+                                    <p class="">RH</p>
                                 {{else}}
-                                <p class="">{{pessoa.role}}</p>
+                                    <p class="">{{pessoa.role}}</p>
                                 {{/if}}
-
                             </td>
                             <td class="ta-c">
-                                <span
-                                    class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+                                <span class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
                             </td>
                             <td class="table__actions">
-                                <button class="btn btn--text btn--xxs" {{action 'deletePessoa'
-                                    pessoa.id}}>Remover</button>
-                                <button class="btn btn--ghost btn--xxs" {{action 'userModal' pessoa.id}}>Editar</button>
+                                <button class="btn btn--text btn--xxs" >Remover</button>{{!--{{action 'deletePessoa' pessoa.id}}--}}
+                                <button class="btn btn--ghost btn--xxs" >Editar</button>{{!--{{action 'userModal' pessoa.id}}--}}
                             </td>
                         </tr>
                         {{/each}}
@@ -178,8 +200,8 @@
                 </table>
             </div>
         </section>
-    </div> --}}
-
+    </div>
+{{!--
     <!-- -------------------------------------------------- administration users alert -->
     {{!-- <div class="alert-container">
 

@@ -1,14 +1,13 @@
 <form {{action 'submit' on='submit' }}>
     <div class="flow-lg institutions__step-content institutions__step-content--is-show">
         <section class="sections__subsection">
-            <div style="display: none;">{{startInformation}}</div>
             <div class="flex flex-row">
                 <div class="col-md-4">
                     <div class="form-group w100 mt1">
                         <label class="form-group__label" for="new_user_role">Perfil</label>
                         <div class="form-group__wrapper form-group__wrapper--select">
                             <select class="form-group__input j-validate-basic" id="new_user_role"
-                                onchange={{action isAluno value="target.value" }} data-type="select">
+                                onchange={{action setRole value="target.value" }} data-type="select">
                                 <option value="">Selecione...</option>
                                 <option value="aluno">Aluno</option>
                                 <option value="instrutor">Professor</option>
@@ -218,6 +217,7 @@
                 <button class="btn" type="submit">{{buttonLabel}}</button>
             </div>
 
+            <div style="display: none;">{{startInformation}}</div>
         </section>
     </div>
 </form>

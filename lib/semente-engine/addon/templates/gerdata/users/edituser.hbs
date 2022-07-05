@@ -2,14 +2,14 @@
     <div class="modal__overlayer"></div>
     <div class="modal__content m-top--md">
         <header class="modal__header">
-            {{#link-to 'gerdata.users' model.instituicao.id}}
+            {{#link-to 'gerdata.users' instituicao.id}}
                 <button class="modal__close btn-close icon-x"></button>
             {{/link-to}}
-            <h3 class="modal__title">Cadastro de novo usuário</h3>
+            <h3 class="modal__title">Edição do usuário <b class='color-green-40'>{{model.pessoa.name}}</b></h3>
         </header>
 
         <div class="modal__body" style="max-height: 75vh;">
-            {{user-form changeset=(changeset model.newUser PessoaValidations) instituicao=model.instituicao segmentos=model.segmentos action=(action 'save')}}
+            {{user-form changeset=(changeset model.pessoa PessoaValidations) instituicao=instituicao segmentos=model.segmentos action=(action 'save')}}
         </div>
     </div>
 </aside>

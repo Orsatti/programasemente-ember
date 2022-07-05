@@ -1,13 +1,11 @@
 {{gerdata-header role=role informations=false instituicao=model.instituicao}}
 
-<section class="sections__subsection flow-md animated fadeInLeftShort faster d100">
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
+    <div class="flex institutions__codes">
+        <p><a {{action 'downloadCodigos' }}><b><u>Clique aqui</u></b></a> para baixar a relação de códigos disponíveis</p>
+    </div>
     <div class="flex">
         <div style="display:none;">{{codigos}}</div>
-    {{!-- <header class="flex flex-row items-baseline">
-        <p>
-            <a {{action 'downloadCodigos' }}><b><u>Clique aqui</u></b></a> para baixar a relação de códigos disponíveis
-        </p>
-    </header> --}}
         <div class="institutions__codes list list--striped">
             <div class="flex flex-row justify-between">
                 <div><b>Total:</b> {{totalCodigosAlunos}} códigos</div>  

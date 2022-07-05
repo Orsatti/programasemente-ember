@@ -1,16 +1,18 @@
-{{gerdata-header role=role informations=false instituicao=model.instituicao}}
+{{gerdata-header role=role informations=false instituicao=instituicao}}
 
-<section class="sections__subsection flow-md animated fadeInLeftShort faster d100">
-    <div class="flex flex-row  items-center justify-start">
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
+    <div class="flex flex-row items-center justify-end">
         <div class="institutions__btn-group">
-            <button class="btn btn--xxs btn--ghost" {{action 'userModal' }}>
-                <span class="btn__label">Novo Usuário</span>
+            {{#link-to 'gerdata.users.createuser' instituicao.id}}
+                <button class="btn btn--xxs">
+                    <span class="btn__label">Novo Usuário</span>
+                </button>
+            {{/link-to}}
+            <button class="btn btn--xxs ">{{!-- {{action 'cadastroLote' }} --}}
+                <span class="btn__label">Cadastro em lote</span>
             </button>
-            <button class="btn btn--xxs btn--ghost" {{action 'cadastroLote' }}>
-                <span class="btn__label">Cadastro e matrícula em lote</span>
-            </button>
-            <button class="btn btn--xxs btn--ghost" type="submit" {{action 'baixarTemplateAtivos' }}>Usuários
-                Ativos</button>
+            <button class="btn btn--xxs" type="submit" {{action 'baixarTemplateAtivos' }}>
+                Usuários Ativos</button>
         </div>
     </div>
 
@@ -29,7 +31,7 @@
                     <a class="form__aux-link" onclick={{action 'exitsearch' }}>Limpar busca</a>
                 </div>
 
-                {{#if instituicaoMae}}
+                {{!-- {{#if instituicaoMae}}
                 <div class="form-group">
                     <label class="form-group__label">Instituições</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
@@ -45,19 +47,20 @@
                         </select>
                     </div>
                 </div>
-                {{/if}}
+                {{/if}} --}}
 
                 <div class="form-group">
                     <label class="form-group__label">Segmentos</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="year" id="segmento_selector"
-                            onchange={{action 'refreshSelectedSegmento' value='target.value' }} data-type="select"
+                        <select class="form-group__input" name="segmento" id="segmento_selector"
+                            onchange={{action 'selectedSegmento' value='target.value' }} 
+                            data-type="select"
                             data-required="true">
-                            <option selected="selected" value="0">Todos</option>
+                            <option selected="selected" value="">Todos</option>
                             {{#each segmentos as |seg|}}
-                            <option style="display: block" value="{{seg.id}}" selected={{if (equalstr seg
-                                selectedSegmento) "selected" }}>
-                                {{seg.titulo}}</option>
+                            <option style="display: block" value="{{seg.id}}" selected={{if (equalstr seg selectedSegmento) "selected" }}>
+                                {{seg.titulo}}
+                            </option>
                             {{/each}}
                         </select>
                     </div>
@@ -66,14 +69,19 @@
                 <div class="form-group">
                     <label class="form-group__label">Ano</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="year" id="ano_selector"
-                            onchange={{action 'refreshFilterAno' value='target.value' }} data-type="select"
+                        <select class="form-group__input" name="plataformaAno" id="platano_selector"
+                            onchange={{action 'selectedPlataformaAno' value='target.value' }} 
+                            data-type="select"
                             data-required="true">
-                            <option selected="selected" value="0">Todas</option>
-                            {{#each anos as |ano|}}
-                            <option style="display: block" value="{{ano.id}}" selected={{if (equalstr ano
-                                selectedAno) "selected" }}>
-                                {{ano.name}}</option>
+                            <option selected="selected" value="">Todas</option>
+                            {{#each plataformaAnos as |platAno|}}
+                                {{#if (equalstr selectedSegmento '')}}
+                                    <option value="{{platAno.id}}" selected={{if (equalstr platAno selectedPlataformaAno) "selected" }}>{{platAno.name}}</option>
+                                {{else}}
+                                    {{#if (equalstr platAno.segmento.id selectedSegmento.id)}}
+                                        <option value="{{platAno.id}}" selected={{if (equalstr platAno selectedPlataformaAno) "selected" }}>{{platAno.name}}</option>
+                                    {{/if}}
+                                {{/if}} 
                             {{/each}}
                         </select>
                     </div>
@@ -82,32 +90,53 @@
                 <div class="form-group">
                     <label class="form-group__label">Turma</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="year" id="turma_selector"
-                            onchange={{action 'refreshFilterTurma' value='target.value' }} data-type="select"
+                        <select class="form-group__input" name="plataformaTurma" id="platturma_selector"
+                            onchange={{action 'selectedPlataformaTurma' value='target.value' }} 
+                            data-type="select"
                             data-required="true">
-                            <option selected="selected" value="0">Todas</option>
-                            {{#each turmas as |turma|}}
-                            <option style="display: block" value="{{turma.id}}" selected={{if (equalstr turma
-                                selectedTurma) "selected" }}>
-                                {{turma.name}}</option>
+                            <option selected="selected" value="">Todas</option>
+                            {{#each plataformaTurmas as |platTurma|}}
+                                {{#if (equalstr selectedSegmento '')}}
+                                    {{#if (equalstr selectedPlataformaAno '')}}
+                                        <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                                    {{else}}
+                                        {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                                            <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                                        {{/if}}
+                                    {{/if}} 
+                                {{else}}
+                                    {{#if (equalstr selectedPlataformaAno '')}}
+                                        {{#each plataformaAnos as |platAno|}}
+                                            {{#if (equalstr platAno.segmento.id selectedSegmento.id)}}
+                                                {{#if (equalstr platTurma.plataformaAno.id platAno.id)}}
+                                                    <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                                                {{/if}}
+                                            {{/if}}
+                                        {{/each}}
+                                    {{else}}
+                                        {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                                            <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                                        {{/if}}
+                                    {{/if}} 
+                                {{/if}}
                             {{/each}}
                         </select>
                     </div>
                 </div>
             </form>
         </header>
+
         <section class="l-dots-between__content flow-md">
             <div class="flex flex-row items-end justify-between">
                 {{#unless (equalstr totalPessoas '0')}}
-                {{page-numbers content=pagedContent class="pagination--sm pagination--right"}}
+                    {{page-numbers content=pagedContent class="pagination--sm pagination--right"}}
                 {{/unless}}
 
                 <div class="form-group flex flex-row items-center">
                     <label class="form-group__label" for="amount">Exibir</label>
                     <div class="self-start">
                         <div class="form-group__wrapper form-group__wrapper--select">
-                            <select class="form-group__input form-group__input--amount" id="amount" name="order"
-                                {{action 'setExibir' on='change' }}>
+                            <select class="form-group__input form-group__input--amount" id="amount" name="order" {{action 'setExibir' on='change' }}>
                                 <option value="5" selected={{paginationSelected.p5}}>5 resultados</option>
                                 <option value="10" selected={{paginationSelected.p10}}>10 resultados</option>
                                 <option value="25" selected={{paginationSelected.p25}}>25 resultados</option>
@@ -133,8 +162,7 @@
                                 <div {{action 'setSort' 'name' }}>
                                     Nome
                                     {{#if (equalstr sortCol 'name')}}
-                                    <i class="{{if sortAsc 'fa fa-caret-down' 'fa fa-caret-up'}}"
-                                        aria-hidden="true"></i>
+                                        <i class="{{if sortAsc 'fa fa-caret-down' 'fa fa-caret-up'}}" aria-hidden="true"></i>
                                     {{/if}}
                                 </div>
                             </th>
@@ -149,26 +177,24 @@
                             <td class="table__name">
                                 <p><strong class="title-4 capitalized">{{pessoa.nameLower}}</strong></p>
                                 <p class='color-green-40 truncate'>{{pessoa.userName}}</p>
-
                             </td>
                             <td class="table__role">
                                 {{#if (equalstr pessoa.role 'instrutor')}}
-                                <p class="">professor</p>
+                                    <p class="">professor</p>
                                 {{else if (equalstr pessoa.role 'recursosHumanos')}}
-                                <p class="">RH</p>
+                                    <p class="">RH</p>
                                 {{else}}
-                                <p class="">{{pessoa.role}}</p>
+                                    <p class="">{{pessoa.role}}</p>
                                 {{/if}}
-
                             </td>
                             <td class="ta-c">
-                                <span
-                                    class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+                                <span class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
                             </td>
                             <td class="table__actions">
-                                <button class="btn btn--text btn--xxs" {{action 'deletePessoa'
-                                    pessoa.id}}>Remover</button>
-                                <button class="btn btn--ghost btn--xxs" {{action 'userModal' pessoa.id}}>Editar</button>
+                                <button class="btn btn--text btn--xxs" >Remover</button>{{!--{{action 'deletePessoa' pessoa.id}}--}}
+                                {{#link-to 'gerdata.users.edituser' pessoa.id}}
+                                    <button class="btn btn--ghost btn--xxs">Editar</button>
+                                {{/link-to}}
                             </td>
                         </tr>
                         {{/each}}
@@ -177,9 +203,9 @@
             </div>
         </section>
     </div>
-
+{{!--
     <!-- -------------------------------------------------- administration users alert -->
-    <div class="alert-container">
+    {{!-- <div class="alert-container">
 
         <!-- CONFIRMATION || LIST -->
         <div id="staticAlertUser" class="alert alert--x  alert--blue-navy-50 alert--has-interaction">
@@ -252,379 +278,10 @@
             <div style="max-width: 80%;"><strong>{{timeoutTxt}}</strong></div>
         </div>
 
-    </div>
+    </div> --}}
 </section>
 
-<aside id="userModal" class="modal">
-    <div class="modal__overlayer"></div>
-    <div class="modal__content">
-        <header class="modal__header">
-            <button class="modal__close btn-close icon-x" {{action 'closeUserModal' }} type="submit"></button>
-
-            <h3 class="modal__title">
-                {{#if new_user_name}}
-                Edição do usuário <span class="m-left--xxs color-green-40">{{new_user_name}}</span>
-                {{else}}
-                Cadastro de novo usuário
-                {{/if}}
-            </h3>
-        </header>
-
-        <div class="modal__body">
-
-            <section class="flow-md row">
-
-                <div class="col-xs-12">
-                    <h4 class="modal__subtitle">Informações básicas</h4>
-                </div>
-
-                <div class="col-xs-12">
-
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="form-group w100">
-                                <label class="form-group__label" for="new_user_role">Perfil</label>
-                                <div class="form-group__wrapper form-group__wrapper--select">
-                                    <select class="form-group__input j-validate-basic" id="new_user_role"
-                                        onchange={{action seAluno value="target.value" }} data-type="select">
-                                        <option value="">Selecione...</option>
-                                        <option value="aluno" selected={{thisUserRole.aluno}}>Aluno</option>
-                                        <option value="instrutor" selected={{thisUserRole.instrutor}}>Professor</option>
-                                        <option value="secretaria" selected={{thisUserRole.secretaria}}>Secretaria
-                                        </option>
-                                        <option value="marketing" selected={{thisUserRole.marketing}}>Marketing</option>
-                                        <option value="coordenador" selected={{thisUserRole.coordenador}}>Coordenador
-                                        </option>
-                                        <option value="gestor" selected={{thisUserRole.gestor}}>Gestor</option>
-                                        {{#if (or (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.role
-                                        'recursosHumanos'))}}
-                                        <option value="recursosHumanos" selected={{thisUserRole.recursosHumanos}}>
-                                            Recursos Humanos</option>
-                                        {{/if}}
-                                        {{#if (and (or (equalstr inst_selected.name "Minimo")(equalstr
-                                        inst_selected.name "Semente")) (equalstr pessoaLogged.role 'admin'))}}
-                                        <option value="admin" selected={{thisUserRole.admin}}>Admin</option>
-                                        {{/if}}
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{#if roleError}}<span id="role-error" class="color-error-30 fs--xs">{{errorMsgRole}}</span>{{/if}}
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="new_user_name">Nome</label>
-                        <input class="form-group__input" id="new_user_name" type="textbox" value={{new_user_name}}
-                            data-type="text" data-required="true" data-context="nome">
-                    </div>
-                    {{#if nameError}}<span id="name-error" class="color-error-30 fs--xs">{{errorMsgName}}</span>{{/if}}
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="new_user_login">Login</label>
-                        <input class="form-group__input" id="new_user_login" type="textbox" value={{new_user_login}}
-                            data-type="text" data-required="true" data-context="login">
-                    </div>
-                    {{#if loginError}}<span id="login-error"
-                        class="color-error-30 fs--xs">{{errorMsgLogin}}</span>{{/if}}
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="new_user_email">E-mail</label>
-                        <input class="form-group__input" id="new_user_email" type="textbox" value={{if new_user_email
-                            new_user_email}} data-type="text" data-context="email">
-                    </div>
-                    {{#if emailError}}<span class="color-error-30 fs--xs">E-mail inválido</span>{{/if}}
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="new_user_phone">Telefone</label>
-                        <input class="form-group__input" maxlength="15" id="new_user_phone" type="textbox"
-                            onloadstart={{action 'replacePhone' }} onkeydown={{action 'replacePhone' }}
-                            value={{new_user_phone}} data-type="text" data-context="phone" {{!--
-                            pattern="^[\(]\d{2}[\)]\d{5}[\-]\d{4}$" --}}>
-                        <div class="text-aux m-top--xxs">(00) 00000-0000</div>
-                    </div>
-                    {{#if phoneError}}<span id="phone-error"
-                        class="color-error-30 fs--xs">{{errorMsgPhone}}</span>{{/if}}
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="new_user_cpf">CPF</label>
-                        <input class="form-group__input" maxlength="14" id="new_user_cpf" type="textbox"
-                            value={{new_user_cpf}} onloadstart={{action 'replaceCPF' }} onkeydown={{action 'replaceCPF'
-                            }} data-type="text" data-context="cpf" data-animation="fadeIn">
-                    </div>
-                    {{#if cpfError}}<span id="cpf-error" class="color-error-30 fs--xs">{{errorMsgCPF}}</span>{{/if}}
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="new_user_login">Senha</label>
-                        <input class="form-group__input" id="new_user_senha" type="textbox"
-                            placeholder="Senha aleatória se não preenchido" value={{new_user_senha}} data-type="text"
-                            data-context="senha">
-                        <div class="text-aux m-top--xxs">Mín. 6 caracteres</div>
-                    </div>
-                    {{#if senhaError}}<span id="senha-error"
-                        class="color-error-30 fs--xs">{{errorMsgSenha}}</span>{{/if}}
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4 {{unless editUser (if (equalstr activeProfile "
-                    aluno") 'animated fadeInLeftShort faster d250' )}}">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="new_user_gender">Sexo</label>
-                        <div class="form-group__wrapper form-group__wrapper--select">
-                            <select class="form-group__input j-validate-aluno" id="new_user_gender" data-type="select"
-                                data-context="sexo">
-                                <option value="notSelected">Selecione...</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="masculino">Masculino</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-md-4"></div>
-                <div class="col-xs-12 col-sm-6 col-md-4"></div>
-
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="checkbox w100">
-                        <input class="checkbox__input" checked={{new_user_enabled}} id="new_user_enabled"
-                            type="checkbox">
-                        <label class="checkbox__label" for="new_user_enabled">Habilitado</label>
-                    </div>
-                </div>
-
-                {{#if sEnabled}}
-                <div class="col-xs-12 col-sm-6 col-md-4">
-                    <div class="checkbox w100">
-                        <input class="checkbox__input" onchange={{action 'verifyPlatAno' }}
-                            checked={{new_user_acessoPlataformaS}} id="new_user_acessoPlataformaS" type="checkbox">
-                        <label class="checkbox__label" for="new_user_acessoPlataformaS">Acesso à Plataforma S</label>
-                    </div>
-                </div>
-                {{/if}}
-
-                {{!-- {{#if (equalstr activeProfile "aluno")}} --}}
-                <div class="col-xs-12" id="gender-birth"> {{!-- Virou apenas a data de nascimento--}}
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-4{{unless editUser (if (equalstr activeProfile "
-                            aluno") 'animated fadeInLeftShort faster d500' )}}">
-                            <div class="form-group w100">
-                                <label class="form-group__label" for="new_user_birth">Nascimento</label>
-                                <input class="form-group__input j-validate-aluno" id="new_user_birth" maxlength="10"
-                                    name="date" onkeyup="var v = this.value;
-                                if (v.match(/^\d{2}$/) !== null) {
-                                    this.value = v + '/';
-                                } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-                                    this.value = v + '/';
-                                }" type="date" value={{new_user_birth}} data-type="text" data-context="nascimento">
-                                <div class="text-aux m-top--xxs">dd/mm/aaaa</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{!-- {{/if}} --}}
-
-            </section>
-
-            <!-- ANOS SÓ É EXIBIDO PARA ALUNOS E INSTRUTORES -->
-            {{#if (equalstr activeProfile "instrutor")}}
-            <section class="flow-md {{unless editUser (if (equalstr activeProfile "
-                instrutor") 'animated fadeInLeftShort faster d250' )}}">
-                <h4 class="modal__subtitle">Você é professor aplicador?</h4>
-                <div class="row">
-                    <div class="col-xs-12 col-lg-3 flow-sm">
-                        <ul>
-                            <li>
-                                <div class="checkbox">
-                                    <input class="checkbox__input" id="new_user_aplicador" type="checkbox"
-                                        checked={{new_user_aplicador}} onchange={{action 'checkaplicador' }} {{!--
-                                        data-type="aplicador" data-required="false" --}}>
-                                    <label class="checkbox__label" for="new_user_aplicador">Sim, eu sou professor
-                                        aplicador do Programa Semente.</label>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                {{#if new_user_aplicador}}
-                <section class="blink animated fadeIn fast flow-md">
-                    <h4 class="title-4">Você aplica em quais séries?</h4>
-                    <span id="error_aplicador" class="form__msg form__msg--bellow form__msg--error"
-                        aria-live="polite"></span>
-                    <div class="row">
-
-                        {{#each segmentos as |seg| }}
-
-                        <div class="col-xs-12 col-lg-2 flow-sm">
-                            <h5 class="title-aux">{{seg.titulo}}</h5>
-                            {{#each seg.plataformaAnos as |platAno|}}
-                            <ul>
-                                <li>
-                                    <div class="checkbox">
-                                        <input class="j-validate-aplicador-child checkbox__input" checked={{if
-                                            (isinarray platAno pessoa_selected.plataformaAnos) "checked" '' }}
-                                            id="plat_ano{{platAno.id}}" onchange={{action (action "selectAno" platAno)
-                                            value='target.checked' }} type="checkbox">
-                                        <label class="checkbox__label"
-                                            for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
-                                    </div>
-                                </li>
-                            </ul>
-                            {{/each}}
-
-                        </div>
-
-                        {{/each}}
-
-                    </div>
-                </section>
-                {{else}}
-                {{#if isAplicador}}
-                <section class="blink animated fadeIn fast flow-md">
-                    <h4 class="title-4">Você aplica em quais séries?</h4>
-                    <span id="error_aplicador" class="form__msg form__msg--bellow form__msg--error"
-                        aria-live="polite"></span>
-                    <div class="row">
-
-                        {{#each segmentos as |seg| }}
-
-                        <div class="col-xs-12 col-lg-2 flow-sm">
-                            <h5 class="title-aux">{{seg.titulo}}</h5>
-                            {{#each seg.plataformaAnos as |platAno|}}
-                            {{#if (isinarray platAno inst_selected.plataformaAnos)}}
-                            <ul>
-                                <li>
-                                    <div class="checkbox">
-                                        <input class="j-validate-aplicador-child checkbox__input" checked={{if
-                                            (isinarray platAno pessoa_selected.plataformaAnos) "checked" '' }}
-                                            id="plat_ano{{platAno.id}}" onchange={{action (action "selectAno" platAno)
-                                            value='target.checked' }} type="checkbox">
-                                        <label class="checkbox__label"
-                                            for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
-                                    </div>
-                                </li>
-                            </ul>
-                            {{/if}}
-                            {{/each}}
-
-                        </div>
-
-                        {{/each}}
-
-                    </div>
-                </section>
-                {{/if}}
-                {{/if}}
-
-
-            </section>
-            {{/if}}
-
-
-
-
-
-            {{!-- {{#if (equalstr activeProfile "aluno")}} --}}
-            <section id='ano-aluno' class="flow-md {{unless editUser (if (equalstr activeProfile "
-                aluno") 'animated fadeInLeftShort faster d1000' )}}">
-                <h4 class="modal__subtitle">Em qual ano e turma deve ser inscrito?</h4>
-                <div class="row">
-
-                    {{!-- <h5 class="title-aux">Título do segmento</h5> --}}
-                    <div class="col-xs-12 col-sm-6 col-md-4 {{unless editUser (if (equalstr activeProfile "
-                        aluno") 'animated fadeInLeftShort faster d250' )}}">
-                        <div class="form-group w100">
-                            <label class="form-group__label" for="new_user_ano">Ano</label>
-                            <div class="form-group__wrapper form-group__wrapper--select">
-                                <select class="j-validate-aluno form-group__input form-group__input--select"
-                                    id="new_user_ano" name="ano" onchange={{action 'refreshSelectedAno'
-                                    value='target.value' }} data-type="select" data-required="true" data-type="select"
-                                    data-context="ano">
-                                    <option selected="selected" value="0">---</option>
-                                    {{#each (orderby inst_selected.plataformaAnos 'idx') as |pa|}}
-                                    <option value="{{pa.id}}" selected={{if (equalstr pa.id
-                                        pessoa_selected.plataformaAnos.firstObject.id) "selected" }}>
-                                        {{pa.segmento.titulo}} - {{pa.name}}</option>
-                                    {{/each}}
-                                </select>
-                            </div>
-                            <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="form-group__container">
-                            <div class="form-group w100">
-                                <label class="form-group__label" for="new_user_turma">Turma</label>
-                                <div class="form-group__wrapper form-group__wrapper--select">
-                                    <select class="j-validate-aluno form-group__input form-group__input--select"
-                                        id="new_user_turma" name="turma"
-                                        onchange={{action 'refreshSelectedPlataformaTurma' value='target.value' }}
-                                        data-type="select" data-required="true" data-context="turma">
-                                        <option selected="selected" value="0">---</option>
-                                        {{#each inst_selected.plataformaTurmas as |pt|}}
-                                        {{#if (equalstr pt.plataformaAno.id
-                                        pessoa_selected.plataformaAnos.firstObject.id)}}
-                                        <option value="{{pt.id}}" selected={{if (equalstr pt.id
-                                            pessoa_selected.plataformaTurmas.firstObject.id)"selected"}}>
-                                            {{pt.name}}</option>
-                                        {{else}}
-                                        {{#if (equalstr pt.plataformaAno.id selectedPA.id)}}
-                                        <option value="{{pt.id}}">
-                                            {{!-- selected="selected"> --}}
-                                            {{pt.name}}</option>
-                                        {{/if}}
-                                        {{/if}}
-                                        {{/each}}
-                                    </select>
-                                </div>
-                            </div>
-                            <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
-                        </div>
-                    </div>
-
-                    {{!--
-                </div> --}}
-
-                {{!-- {{/each}} --}}
-
-        </div>
-        </section>
-        <!-- se retirar esse select para de funcionar -->
-        <section class="hidden">
-            <select class="form-group__input" id="new_user_area">
-                <option value="">Selecione...</option>
-                {{#each inst_selected.areas as |area|}}
-                {{#if (equalstr area.id new_user_area)}}
-                <option value={{area.id}} selected>{{area.name}}</option>
-                {{else}}
-                <option value={{area.id}}>{{area.name}}</option>
-                {{/if}}
-                {{/each}}
-            </select>
-        </section>
-
-    </div>
-    <footer class="modal__footer">
-        <button class="btn btn--text" type="submit" {{action 'closeUserModal' }}>Cancelar</button>
-        {{#if new_user_id}}
-        <button class="btn" type="submit" {{action 'userSave' new_user_id}}>Editar</button>
-        {{else}}
-        <button class="btn" type="submit" {{action 'userSave' }}>OK</button>
-        {{/if}}
-    </footer>
-    </div>
-</aside>
-
+{{!-- 
 <aside id="lote_modal" class="modal">
     <div class="modal__overlayer"></div>
     <div class="modal__content modal__content--lg">
@@ -669,13 +326,6 @@
             </div>
 
             <div class="inside-scroll__scroll">
-                <!-- {{#if selected_file}}
-            <button class="btn btn-primary" type="submit" {{action 'importarLote'}}>Importar</button>
-            {{else}}
-            <button class="btn btn-primary btn--disabled" type="submit" disabled>
-                Importar
-            </button>
-            {{/if}} -->
                 {{#if selected_file}}
                 <div class="institutions__attached-file alert alert--sm alert--has-icon">
                     <span class="alert__icon icon-paperclip"></span>
@@ -736,4 +386,6 @@
     <div class="modal__footer">
         <button class="btn btn-primary" type="submit" {{action 'cancelLote' }}>Fechar</button>
     </div>
-</aside>
+</aside> --}}
+
+{{outlet}}

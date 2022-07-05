@@ -7,9 +7,8 @@
             {{/link-to}}
             <h3 class="modal__title">Nova Instituição</h3>
         </header>
-        <div class="modal__body" style="max-height: 80vh;">
-            {{inst-form changeset=(changeset model.newInst InstValidations) segmentos=model.segmentos action=(action
-            'save')}}
+        <div class="modal__body" style="max-height: 75vh;">
+            {{inst-form changeset=(changeset model.newInst InstValidations) segmentos=model.segmentos action=(action 'save')}}
         </div>
     </div>
 </aside>

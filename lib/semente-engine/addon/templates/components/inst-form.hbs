@@ -38,10 +38,10 @@
                     {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id) classe="segmento"}}
                     {{/each}}
                 </div>
-                <div class="flex flex-row justify-content-between m-top--sm">
+                <div class="flex flex-row justify-content-between m-top--sm btn-right">
                     {{#unless haveSegmentos}}
                         {{#link-to 'gerdata.informations.deleteinst' instituicao.id}}
-                            <button class="btn" style="background-color: #b62020;">
+                            <button class="btn" style="background-color: #b62020; margin-right:1rem;">
                                 <span>Excluir</span>
                             </button>
                         {{/link-to}}

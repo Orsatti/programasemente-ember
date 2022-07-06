@@ -1,13 +1,15 @@
 <form {{action 'submit' on='submit' }}>
     <div class="flow-lg institutions__step-content institutions__step-content--is-show">
         <section class="sections__subsection">
+            <div style="display: none;">{{startInformation}}</div>
             <div class="flex flex-row">
                 <div class="col-md-4">
                     <div class="form-group w100 mt1">
                         <label class="form-group__label" for="new_user_role">Perfil</label>
                         <div class="form-group__wrapper form-group__wrapper--select">
                             <select class="form-group__input j-validate-basic" id="new_user_role"
-                                onchange={{action setRole value="target.value" }} data-type="select">
+                                onchange={{action setRole value="target.value" }} 
+                                data-type="select">
                                 <option value="">Selecione...</option>
                                 <option value="aluno">Aluno</option>
                                 <option value="instrutor">Professor</option>
@@ -18,7 +20,7 @@
                                 {{#if (or (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.role 'recursosHumanos'))}}
                                     <option value="recursosHumanos">Recursos Humanos</option>
                                 {{/if}}
-                                {{#if (and (or (equalstr inst_selected.name "Minimo")(equalstr inst_selected.name "Semente")) 
+                                {{#if (and (or (equalstr instituicao.name "Minimo")(equalstr instituicao.name "Semente")) 
                                             (equalstr pessoaLogged.role 'admin'))}}
                                     <option value="admin">Admin</option>
                                 {{/if}}
@@ -125,12 +127,12 @@
                             {{#if aplicadorError}}<span id="error_aplicador" class="color-error-30 fs--xs">{{errorMsgAplicador}}</span>{{/if}}
                             <div class="flex flex-row mt1">
                             {{#each segmentos as |segmento| }}
-                                <div class="col-xs-12 col-lg-2 flow-sm">
+                                <div class="col-md-2">
                                     <h4 class="title-segmento">{{segmento.titulo}}</h4>
                                     {{#each plataformaAnos as |plataformaAno|}}
                                     {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
                                         <div class="flex-col">
-                                        <h4 class="title-platano"><b>·</b> {{plataformaAno.name}}</h4>
+                                        <h4 class="title-platano mt0"><b>·</b> {{plataformaAno.name}}</h4>
                                         <ul id="platTurmas-list-{{plataformaAno.id}}">
                                             {{#each plataformaTurmas as |plataformaTurma|}}
                                             {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
@@ -217,7 +219,7 @@
                 <button class="btn" type="submit">{{buttonLabel}}</button>
             </div>
 
-            <div style="display: none;">{{startInformation}}</div>
+            <div style="display: none;">{{afterRenderInformation}}</div>
         </section>
     </div>
 </form>

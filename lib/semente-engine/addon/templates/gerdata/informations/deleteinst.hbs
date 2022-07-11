@@ -7,11 +7,12 @@
             {{/link-to}}
             <h3 class="modal__title">Exclusão da instituicao <b>{{instituicao.name}}</b></h3>
         </header>
-        <div class="modal__body">
-            Tem certeza que deseja excluir essa instituição?
-            <div class="justify-content-end">
+
+        <div class="modal__body" style="max-height: 75vh;">
+            <h1>Tem certeza que deseja remover essa instituição?</h1>
+            <div class="flex flx-row justify-content-end">
                 <div class="color-error-40 m-bottom--lg" id="form-inst-error"></div>
-                <button class="btn" type="submit">Excluir</button>
+                <button class="btn" type="submit" {{action 'delete' }}>Excluir</button>
             </div>
         </div>
     </div>

@@ -1,3 +1,5 @@
+
+
 <div class="main__back-container">
   <button class="btn btn--link color-blue-navy-60" {{action 'goToAulas' on="click" }} type="button">
     <span class="btn__icon icon-chevron-left"></span>
@@ -14,14 +16,14 @@
         {{#each certificados as |certificado| }}
             {{#if (equalstr certificado.sistema "1")}}
                 <main class="main certificado__print-canvas">
-                    <div id="certificado" class="certificado certificado__print-cert">
+                    <div class=" certificado__print-cert">
                         <div class="area-certificado">
                             <div class="area-certificado__infos">
                                 <div class="area-certificado__infos--logo">
                                     <img src="/assets/img/certificado/certificado-eja_05.png" alt="">
                                 </div>
                                 <div class="area-certificado__infos--texto">
-                                    <p>Declaramos que o(a) aluno(a) <b>{{certificado.pessoa}}</b> cumpriu com a carga horária de <b>20h</b>
+                                    <p>Declaramos que o(a) aluno(a) <b>{{certificado.pessoa}}</b> cumpriu com a carga horária de <b>40h</b>
                                     , correpondente ao percurso <b>{{certificado.segmento}} - {{certificado.plataformaAno}}</b>.</p>
                                 </div>
                                 <div class="area-certificado__infos--data">São Paulo, {{dateFormat certificado.dataEmissao}}.</div>
@@ -47,7 +49,7 @@
         {{#each certificados as |certificado| }}
             {{#if (equalstr certificado.sistema "2")}}
                 <main class="main certificado__print-canvas">
-                    <div id="certificado" class="certificado certificado__print-cert">
+                    <div class="certificado certificado__print-cert">
                         <div class="certificado__detalhe-esq-top">
                             <div class="certificado__detalhe-esq-top--int-branco">
                                 <div class="certificado__detalhe-esq-top--int-laranja">
@@ -66,7 +68,7 @@
                             <span class="certificado__carga-horaria">Carga horária de <strong>  40h</strong></span>
                         </div>
                         <div class="certificado__nome">
-                            <h3>{{certificado.name}}</h3>
+                            <h3>{{certificado.pessoa}}</h3>
                             <div class="certificado__nome--linha"></div>
                         </div>
                         <div class="certificado__data">

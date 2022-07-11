@@ -20,9 +20,9 @@
                 {{/if}}
               {{/each}}
               <li>
-                    <button type="button" class="tabs__tab tabs__tab--is-active">
-                          <span>EAD</span>
-                    </button>
+                  <button type="button" class="tabs__tab tabs__tab--is-active">
+                        <span>EAD</span>
+                  </button>
               </li>
         </ul>
   </nav>
@@ -266,6 +266,7 @@
               </h2>
             </hgroup>
 
+
             <div class="report-course">
               <ul class="report-class flow-md" id="acomp_classes">
                 {{#each turma_selected.acompanhamentosatividades as |acomp|}}
@@ -276,6 +277,7 @@
                       <a class="title-3 color-blue-navy-50"><span>{{acomp.atividade.name}}</span></a>
                     </h3>
                   </div>
+
                   <div class="report-class__stacked-bar stacked-bar">
                     <div class="stacked-bar__values">
                       <span class="stacked-bar__value--1" style={{acomp.styleNaoiniciado}}></span>
@@ -329,7 +331,11 @@
                         {{action 'goToAtividade' curso_selected.id atividade.id on="click"}}><span>{{atividade.name}}</span></a>
                     </h3>
                   </div>
-                  {{#each inst_selected.acompanhamentosatividades as |acomp|}}
+                  {{#if showLoader}}
+                    <div class="stacked-bar__loader" name="loader-" style="display: block;"></div>{{!-- {{atividade.id}} --}}
+                  {{/if}}
+                  {{#each acompanhamentosatividades as |acomp|}}
+                    <div style="display: none;">{{endLoader}}</div>
                     {{#if (equalstr acomp.atividade.id atividade.id)}}
                       <div class="report-class__stacked-bar stacked-bar">
                         <div class="stacked-bar__values">
@@ -341,18 +347,18 @@
                         <div class="stacked-bar__legend">
                           <span>
                             <span class="stacked-bar__color-element stacked-bar__value--1"></span>
-                            <span>Não iniciado:
+                            <span >Não iniciado:
                               <strong>{{acomp.naoiniciados}}</strong> ({{acomp.naoiniciadosPerc}}%)
                             </span>
-
                           </span>
+
                           <span>
                             <span class="stacked-bar__color-element stacked-bar__value--2"></span>
                             <span>Em andamento:
                               <strong>{{acomp.andamento}}</strong> ({{acomp.andamentoPerc}}%)
                             </span>
-
                           </span>
+
                           <span>
                             <span class="stacked-bar__color-element stacked-bar__value--3"></span>
                             <span>Completo:
@@ -361,11 +367,10 @@
                           </span>
                         </div>
                       </div>
-
                     {{else}}
-
                     {{/if}}
                   {{/each}}
+
                 </li>
                 {{/each}}
               </ul>

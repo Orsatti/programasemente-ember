@@ -191,7 +191,9 @@
                                 <span class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
                             </td>
                             <td class="table__actions">
-                                <button class="btn btn--text btn--xxs" >Remover</button>{{!--{{action 'deletePessoa' pessoa.id}}--}}
+                                {{#link-to 'gerdata.users.deleteuser' pessoa.id}}
+                                    <button class="btn btn--text btn--xxs" >Remover</button>
+                                {{/link-to}}
                                 {{#link-to 'gerdata.users.edituser' pessoa.id}}
                                     <button class="btn btn--ghost btn--xxs">Editar</button>
                                 {{/link-to}}

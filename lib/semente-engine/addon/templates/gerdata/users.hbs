@@ -32,27 +32,28 @@
                 </div>
 
                 {{!-- {{#if instituicaoMae}}
-                <div class="form-group">
-                    <label class="form-group__label">Instituições</label>
-                    <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="year" id="instituicao_filha_selector"
-                            onchange={{action 'refreshSelectedInstFilha' value='target.value' }} data-type="select"
-                            data-required="true">
-                            <option selected="selected" value="0">Todas</option>
-                            {{#each instituicaoFilhas as |instf|}}
-                            <option style="display: block" value="{{instf.id}}" selected={{if (equalstr instf
-                                selectedInstFilha) "selected" }}>
-                                {{instf.name}}</option>
-                            {{/each}}
-                        </select>
+                    <div class="form-group">
+                        <label class="form-group__label">Instituições</label>
+                        <div class="form-group__wrapper form-group__wrapper--select">
+                            <select class="form-group__input" name="instituicao_filha" id="instituicao_filha_selector"
+                                onchange={{action 'selectedInstituicaoFilha' value='target.value' }}
+                                data-type="select" 
+                                data-required="true">
+                                <option selected="selected" value="">Todas</option>
+                                {{#each instituicao.instituicaoFilhas as |instf|}}
+                                <option style="display: block" value="{{instf.id}}" selected={{if (equalstr instf selectedInstFilha) "selected" }}>
+                                    {{instf.name}}
+                                </option>
+                                {{/each}}
+                            </select>
+                        </div>
                     </div>
-                </div>
                 {{/if}} --}}
 
-                <div class="form-group">
+                <div class="form-group" id="segmento_selector">
                     <label class="form-group__label">Segmentos</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="segmento" id="segmento_selector"
+                        <select class="form-group__input" name="segmento" 
                             onchange={{action 'selectedSegmento' value='target.value' }} 
                             data-type="select"
                             data-required="true">
@@ -66,10 +67,10 @@
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group" id="platano_selector">
                     <label class="form-group__label">Ano</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="plataformaAno" id="platano_selector"
+                        <select class="form-group__input" name="plataformaAno"
                             onchange={{action 'selectedPlataformaAno' value='target.value' }} 
                             data-type="select"
                             data-required="true">
@@ -86,43 +87,45 @@
                         </select>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-group__label">Turma</label>
-                    <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="plataformaTurma" id="platturma_selector"
-                            onchange={{action 'selectedPlataformaTurma' value='target.value' }} 
-                            data-type="select"
-                            data-required="true">
-                            <option selected="selected" value="">Todas</option>
-                            {{#each plataformaTurmas as |platTurma|}}
-                                {{#if (equalstr selectedSegmento '')}}
-                                    {{#if (equalstr selectedPlataformaAno '')}}
-                                        <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
-                                    {{else}}
-                                        {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                
+                {{#unless instituicaoMae}}
+                    <div class="form-group" id="platturma_selector">
+                        <label class="form-group__label">Turma</label>
+                        <div class="form-group__wrapper form-group__wrapper--select">
+                            <select class="form-group__input" name="plataformaTurma"
+                                onchange={{action 'selectedPlataformaTurma' value='target.value' }} 
+                                data-type="select"
+                                data-required="true">
+                                <option selected="selected" value="">Todas</option>
+                                {{#each plataformaTurmas as |platTurma|}}
+                                    {{#if (equalstr selectedSegmento '')}}
+                                        {{#if (equalstr selectedPlataformaAno '')}}
                                             <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
-                                        {{/if}}
-                                    {{/if}} 
-                                {{else}}
-                                    {{#if (equalstr selectedPlataformaAno '')}}
-                                        {{#each plataformaAnos as |platAno|}}
-                                            {{#if (equalstr platAno.segmento.id selectedSegmento.id)}}
-                                                {{#if (equalstr platTurma.plataformaAno.id platAno.id)}}
-                                                    <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
-                                                {{/if}}
+                                        {{else}}
+                                            {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                                                <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
                                             {{/if}}
-                                        {{/each}}
+                                        {{/if}} 
                                     {{else}}
-                                        {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
-                                            <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
-                                        {{/if}}
-                                    {{/if}} 
-                                {{/if}}
-                            {{/each}}
-                        </select>
+                                        {{#if (equalstr selectedPlataformaAno '')}}
+                                            {{#each plataformaAnos as |platAno|}}
+                                                {{#if (equalstr platAno.segmento.id selectedSegmento.id)}}
+                                                    {{#if (equalstr platTurma.plataformaAno.id platAno.id)}}
+                                                        <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                                                    {{/if}}
+                                                {{/if}}
+                                            {{/each}}
+                                        {{else}}
+                                            {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                                                <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                                            {{/if}}
+                                        {{/if}} 
+                                    {{/if}}
+                                {{/each}}
+                            </select>
+                        </div>
                     </div>
-                </div>
+                {{/unless}}
             </form>
         </header>
 

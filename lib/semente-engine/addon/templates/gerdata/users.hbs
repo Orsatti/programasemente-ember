@@ -8,11 +8,14 @@
                     <span class="btn__label">Novo Usuário</span>
                 </button>
             {{/link-to}}
-            <button class="btn btn--xxs ">{{!-- {{action 'cadastroLote' }} --}}
-                <span class="btn__label">Cadastro em lote</span>
-            </button>
+            {{#link-to 'gerdata.users.loteuser' instituicao.id}}
+                <button class="btn btn--xxs">
+                    <span class="btn__label">Cadastro em lote</span>
+                </button>
+            {{/link-to}}
             <button class="btn btn--xxs" type="submit" {{action 'baixarTemplateAtivos' }}>
-                Usuários Ativos</button>
+                Usuários Ativos
+            </button>
         </div>
     </div>
 
@@ -208,189 +211,5 @@
             </div>
         </section>
     </div>
-{{!--
-    <!-- -------------------------------------------------- administration users alert -->
-    {{!-- <div class="alert-container">
-
-        <!-- CONFIRMATION || LIST -->
-        <div id="staticAlertUser" class="alert alert--x  alert--blue-navy-50 alert--has-interaction">
-
-            <p class="alert__msg">
-                {{#if alertTitle}}<strong class="m-right--xs">{{alertTitle}}</strong>{{/if}}
-                {{#if staticTxt2}}<span>{{staticTxt2}}</span>{{/if}}
-            </p>
-
-            <p class="alert__msg">
-                <!-- mail action -->
-                {{#if selectedToMail}}
-                {{#if mail_single_pessoa}}
-                <strong>{{mail_single_pessoa.email}}</strong>
-                {{/if}}
-                {{/if}}
-
-                <!-- delete user -->
-                {{#if selectedToDelete}}
-            <p>Você tem certeza que deseja apagar <span class="strong">{{confirm_entity.name}}</span>?</p>
-            {{/if}}
-
-            <!-- reset user progress -->
-            {{#if selectedToReset}}
-            <strong>{{new_user_name}}</strong>
-            {{/if}}
-            </p>
-
-            <ul style="overflow:auto; max-height:60vh;">
-                {{#each staticList as |item|}}
-                <li class="p-v--xxs">{{item.email}}</li>
-                {{/each}}
-            </ul>
-
-            <div class="alert__footer">
-                <!-- check users list -->
-                {{#if (equalstr staticType 'checklist')}}
-                <button class="btn btn--xs btn--text" {{action staticAlert 'close' }}>Desmarcar todos</button>
-                <button class="btn btn--xs" {{action 'emailAction' }}><span class="btn__icon icon-at-sign"></span>Enviar
-                    emails</button>
-                {{/if}}
-                <!-- -->
-                <!-- send email(s) -->
-                {{#if (equalstr staticType 'mail')}}
-                <button class="btn btn--xs btn--text" {{action 'cancelarMail' }}>Cancelar</button>
-                <button class="btn" type="submit" {{action 'sendMail' }}>Enviar email{{#if
-                    mail_single_pessoa}}
-                    {{else}}s{{/if}}</button>
-                {{/if}}
-                <!-- -->
-                <!-- retry failed email -->
-                {{#if (equalstr staticType 'failed')}}
-                <button class="btn btn--xs btn--text" {{action 'cancelarMail' }}>Cancelar</button>
-                <button class="btn" {{action 'sendMail' }}>Tentar Novamente</button>
-                {{/if}}
-                <!-- -->
-                <!-- delete user -->
-                {{#if (equalstr staticType 'delete')}}
-                <button class="btn btn--xs btn--text" type="submit" {{action 'cancelDel' }}>Cancelar</button>
-                <button id="button-confirm-delete" class="btn" type="submit" {{action 'confirmDel'
-                    confirm_entity}}>Apagar</button>
-                {{/if}}
-            </div>
-        </div>
-
-        <div id="timeoutAlertUser" class="alert alert--x alert--blue-navy-50 alert--has-icon alert--no-interaction">
-            {{#if (equalstr timeoutIcon 'load')}}<span class="alert__icon icon-reload icon--lg"></span>{{/if}}
-            {{#if (equalstr timeoutIcon 'error')}}<span class="alert__icon icon-x icon--lg"></span>{{/if}}
-            {{#if (equalstr timeoutIcon 'success')}}<span class="alert__icon icon-check icon--lg"></span>{{/if}}
-            <div style="max-width: 80%;"><strong>{{timeoutTxt}}</strong></div>
-        </div>
-
-    </div> --}}
 </section>
-
-{{!-- 
-<aside id="lote_modal" class="modal">
-    <div class="modal__overlayer"></div>
-    <div class="modal__content modal__content--lg">
-        <div class="modal__header">
-            <button class="modal__close btn-close icon-x" type="submit" {{action 'cancelLote' }}></button>
-            <h3 class="modal__title">Cadastro e Matrícula em Lote</h3>
-        </div>
-        <div class="modal__body modal__body--inside-scroll inside-scroll">
-            <div class="inside-scroll__fixed">
-                <p>Por meio dos botões abaixo, baixe o arquivo de carga, preencha-o, busque-o em seu computador e
-                    realize a importação.</p>
-                <div class="institutions__mass-enroll institutions__btn-group flow-h-sm">
-                    <button class="btn btn-primary btn__claro" type="submit" {{action 'baixarTemplate' }}>Baixar
-                        template</button>
-                    <span><img src="/assets/img/seta-lado.png" alt=""></span>
-                    <label class="btn label_get_lote" for="get_lote">Buscar arquivo</label>
-                    <input id="get_lote" multiple="false" onchange={{action "buscarArquivo" }} accept="text/csv"
-                        type="file" style="display: none;" />
-
-                    {{#if (equalstr selected_file '')}}
-                    <button class="btn btn-primary btn--disabled" type="submit" disabled>Importar</button>
-                    {{else}}
-                    <button class="btn btn-primary" type="submit" {{action 'importarLote' }}>Importar</button>
-                    {{/if}}
-
-                    <div>
-                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="display: none"
-                            id="spinner-importar-lote"></i>
-                    </div>
-                </div>
-                <div class="t-center instrucoes">
-                    <p>Em caso de dúvidas, acesse o nosso passo a passo <span class="destaque"> clicando abaixo</span>
-                    </p>
-                    <div class="passoapasso" id="passoapasso">
-                        <div class="passoapasso__imagem"></div>
-                    </div>
-                    <span {{action 'abrirPasso' }}>
-                        <img class="seta" {{action 'giro' }} src="/assets/img/seta-baixo.png" alt="" id="seta">
-                    </span>
-                </div>
-
-            </div>
-
-            <div class="inside-scroll__scroll">
-                {{#if selected_file}}
-                <div class="institutions__attached-file alert alert--sm alert--has-icon">
-                    <span class="alert__icon icon-paperclip"></span>
-                    <span class="institutions__attached-label">Arquivo selecionado: </span>
-                    <strong>{{selected_file}}</strong>
-                </div>
-                {{/if}}
-                {{#if error_lote}}
-                <p>1- {{error_lote}}</p>
-                {{/if}}
-                {{#if wait_lote}}
-                <p>Um momento...</p>
-                {{else if erro_lista}}
-                <p>2- {{erro_lista}}</p>
-                {{else}}
-                <table class="table table--striped table--mass-enroll">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th class="table__enroller" scope="col">Cadastrador</th>
-                            <th class="table__file" scope="col">Arquivo</th>
-                            <th class="table__import" scope="col">Importação</th>
-                            <th class="table__status" scope="col">Status</th>
-                            <th class="table__users" scope="col">Usuários</th>
-                            <th class="table__processed" scope="col">Processados</th>
-                            <th class="table__not-processed" scope="col">Não Processados</th>
-                            <th class="table__log" scope="col">Log</th>
-                        </tr>
-                    </thead>
-                    <tbody class="gersistema-user-list-box">
-                        {{#each lista_lote as |lista|}}
-                        <tr>
-                            <td class="table__enroller">
-                                {{lista.pessoaNome}}
-                            </td>
-                            <td class="table__file">{{lista.nomeArquivo}}</td>
-                            <td class="table__import">{{lista.data}}</td>
-                            <td class="table__status">{{lista.status}}</td>
-                            <td class="table__users">{{lista.quantidadeDeUsuarios}}</td>
-                            <td class="table__processed">{{lista.usuariosProcessados}}</td>
-                            <td class="table__not-processed">{{lista.usuariosNaoProcessados}}</td>
-                            <td class="table__log">
-                                {{#if lista.link}}
-                                <a href={{lista.link}}>
-                                    <i class="icon-file-text"></i>
-                                </a>
-                                {{else}}
-                                <i class="fa fa-times-o"></i>
-                                {{/if}}
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </tbody>
-                </table>
-                {{/if}}
-            </div>
-        </div>
-    </div>
-    <div class="modal__footer">
-        <button class="btn btn-primary" type="submit" {{action 'cancelLote' }}>Fechar</button>
-    </div>
-</aside> --}}
-
 {{outlet}}

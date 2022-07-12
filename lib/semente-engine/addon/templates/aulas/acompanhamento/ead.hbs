@@ -39,26 +39,6 @@
           </button>
         </div>
 
-        {{#if (equalstr selectedContent 'g')}}
-          <div class="form-group">
-            <label class="form-group__label" for="select_course">Ano</label>
-            <div class="form-group__wrapper form-group__wrapper--select">
-              <select class="form-group__input form-group__input--select"
-                      id="select_course"
-                      value="select_inst"
-                      {{action 'selectCursoAno' on="change"}}>
-                {{#each inst_selected.modulos as |modulo|}}
-                  {{#if (equalstr curso_selected.id modulo.id)}}
-                    <option value={{modulo.id}} selected>{{modulo.name}}</option>
-                  {{else}}
-                    <option value={{modulo.id}}>{{modulo.name}}</option>
-                  {{/if}}
-                {{/each}}
-              </select>
-            </div>
-          </div>
-        {{/if}}
-
         {{#if (equalstr selectedContent 'd')}}
           <div class="form-group">
             <label class="form-group__label" for="search">Busca (<strong>{{totalPessoas}} pessoas</strong>)</label>
@@ -75,18 +55,41 @@
               <button class="form__aux-link" {{action 'exitpagedsearch'}}>Limpar busca</button>
             </form>
           </div>
-
-          <div class="form-group">
-            <span class="form-group__label">Ano</span>
-              <div class="form-group__wrapper form-group__wrapper--select">
-                <select id="mod_selector_det" class="form-group__input form-group__input--select" {{action 'filterano' on='change'}}>
-                  {{#each inst_selected.modulos as |mod|}}
-                    <option id="ano_{{mod.id}}" value={{mod.id}}>{{mod.name}}</option>
-                  {{/each}}
-                </select>
-              </div>
-          </div>
         {{/if}}
+
+        <div class="form-group" id="platano_selector">
+          <label class="form-group__label">Ano</label>
+          <div class="form-group__wrapper form-group__wrapper--select">
+            <select class="form-group__input" name="plataformaAno"
+                onchange={{action 'selectedPlataformaAno' value='target.value' }} 
+                data-type="select"
+                data-required="true">
+                {{#each plataformaAnos as |platAno|}}
+                    <option value="{{platAno.id}}" selected={{if (equalstr platAno selectedPlataformaAno) "selected" }}>{{platAno.name}}</option>
+                {{/each}}
+            </select>
+          </div>
+        </div>
+
+        {{#unless hasChildren}}
+          <div class="form-group" id="platturma_selector">
+            <label class="form-group__label">Turma</label>
+            <div class="form-group__wrapper form-group__wrapper--select">
+              <select class="form-group__input" name="plataformaTurma"
+                  onchange={{action 'selectedPlataformaTurma' value='target.value' }} 
+                  data-type="select"
+                  data-required="true">
+                  <option selected="selected" value="">Todas</option>
+                  {{#each plataformaTurmas as |platTurma|}}
+                      {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                          <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                      {{/if}}
+                  {{/each}}
+              </select>
+            </div>
+          </div>
+        {{/unless}}
+        <div style="display: none;">{{curso_selected}}</div>
       </form>
     </header>
 
@@ -95,13 +98,10 @@
         {{#if curso_selected}}
           {{#if filtered_turma}}
             <hgroup>
-              <h1 class="sr-only">Lista de aulas do {{curso_selected.name}}</h1>
-
               <h2 class="title-4">
-                {{curso_selected.name}}
+                {{curso_selected.name}}aaa
               </h2>
             </hgroup>
-
 
             <div class="report-course">
               <ul class="report-class flow-md" id="acomp_classes">
@@ -148,8 +148,6 @@
             </div>
           {{else}}
             <hgroup>
-              <h1 class="sr-only">Lista de aulas do {{curso_selected.name}}</h1>
-
               <h2 class="title-4">
                 {{curso_selected.name}}
               </h2>
@@ -166,8 +164,9 @@
                     </h3>
                   </div>
                   {{#if showLoader}}
-                    <div class="stacked-bar__loader" name="loader-" style="display: block;"></div>{{!-- {{atividade.id}} --}}
+                    <div class="stacked-bar__loader" name="loader-" style="display: block;"></div>
                   {{/if}}
+
                   {{#each acompanhamentosatividades as |acomp|}}
                     <div style="display: none;">{{endLoader}}</div>
                     {{#if (equalstr acomp.atividade.id atividade.id)}}
@@ -201,10 +200,8 @@
                           </span>
                         </div>
                       </div>
-                    {{else}}
                     {{/if}}
                   {{/each}}
-
                 </li>
                 {{/each}}
               </ul>
@@ -218,11 +215,11 @@
 
         {{#unless hasChildren}}
           <hgroup>
-            <h1 class="sr-only">Lista de aulas do {{selectedModuloName}} - {{selectedTurmaName}}
+            <h1 class="sr-only">Lista de aulas do {{selectedModuloName}}{{selectedTurmaName}}
             </h1>
             <div class="flex justify-between">
               <h2 class="title-4">
-                <span>{{selectedModuloName}} - {{selectedTurmaName}}</span>
+                <span>{{selectedModuloName}}{{selectedTurmaName}}</span>
                 <span class="fs--xs fw--3 fs-i color-blue-navy-20 m-left--xxs">(<span class="inline-flex m-right--xxs">{{totalPessoas}}</span>pessoas)</span>
               </h2>
               <button class="btn btn--ghost btn--xs m-left--sm" {{action 'downloadFile'}}>Baixar relatório em Excel</button>

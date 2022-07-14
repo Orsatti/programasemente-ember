@@ -81,7 +81,7 @@
                   data-required="true">
                   <option selected="selected" value="">Todas</option>
                   {{#each plataformaTurmas as |platTurma|}}
-                      {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                      {{#if (equalstr platTurma.plataformaAno.id selected_ano_id)}}
                           <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
                       {{/if}}
                   {{/each}}
@@ -95,25 +95,30 @@
 
     <section class="l-dots-between__content flow-md">
       {{#if (equalstr selectedContent 'g')}}
-        {{#if curso_selected}}
-          {{#if filtered_turma}}
-            <hgroup>
-              <h2 class="title-4">
-                {{curso_selected.name}}aaa
-              </h2>
-            </hgroup>
+        <div style="display: none">{{acompanhamentoAtividades}}</div>
+        <hgroup>
+          <h2 class="title-4">
+            {{curso_selected.name}}
+          </h2>
+        </hgroup>
 
-            <div class="report-course">
-              <ul class="report-class flow-md" id="acomp_classes">
-                {{#each turma_selected.acompanhamentosatividades as |acomp|}}
-                <li class="report-class__two-col">
-                  <div class="flow-xxs flex flex-col justify-center items-start">
-                    <span class="title-aux">Aula {{acomp.atividade.idx}}</span>
-                    <h3>
-                      <a class="title-3 color-blue-navy-50"><span>{{acomp.atividade.name}}</span></a>
-                    </h3>
-                  </div>
+        <div class="report-course">
+          <ul class="report-class flow-md" id="acomp_classes">
+            {{#each curso_selected.atividades as |atividade|}}
+            <li class="report-class__two-col">
+              <div class="flow-xxs flex flex-col justify-center items-start">
+                <span class="title-aux">Aula {{atividade.idx}}</span>
+                <h3 class="title-3 color-blue-navy-50">
+                  <a class="link--dotted"><span>{{atividade.name}}</span></a>{{!--{{action 'goToAtividade' curso_selected.id atividade.id on="click"}}--}}
+                </h3>
+              </div>
+              {{#if showLoader}}
+                <div class="stacked-bar__loader" name="loader-" style="display: block;"></div>
+              {{/if}}
 
+              {{#each acompanhamentosAtividadesL as |acomp|}}
+                <div style="display: none;">{{endLoader}}</div>
+                {{#if (equalstr acomp.atividade.id atividade.id)}}
                   <div class="report-class__stacked-bar stacked-bar">
                     <div class="stacked-bar__values">
                       <span class="stacked-bar__value--1" style={{acomp.styleNaoiniciado}}></span>
@@ -124,16 +129,18 @@
                     <div class="stacked-bar__legend">
                       <span>
                         <span class="stacked-bar__color-element stacked-bar__value--1"></span>
-                        <span>Não iniciado:
+                        <span >Não iniciado:
                           <strong>{{acomp.naoiniciados}}</strong> ({{acomp.naoiniciadosPerc}}%)
                         </span>
                       </span>
+
                       <span>
                         <span class="stacked-bar__color-element stacked-bar__value--2"></span>
                         <span>Em andamento:
                           <strong>{{acomp.andamento}}</strong> ({{acomp.andamentoPerc}}%)
                         </span>
                       </span>
+
                       <span>
                         <span class="stacked-bar__color-element stacked-bar__value--3"></span>
                         <span>Completo:
@@ -142,72 +149,12 @@
                       </span>
                     </div>
                   </div>
-                </li>
-                {{/each}}
-              </ul>
-            </div>
-          {{else}}
-            <hgroup>
-              <h2 class="title-4">
-                {{curso_selected.name}}
-              </h2>
-            </hgroup>
-
-            <div class="report-course">
-              <ul class="report-class flow-md" id="acomp_classes">
-                {{#each curso_selected.atividades as |atividade|}}
-                <li class="report-class__two-col">
-                  <div class="flow-xxs flex flex-col justify-center items-start">
-                    <span class="title-aux">Aula {{atividade.idx}}</span>
-                    <h3 class="title-3 color-blue-navy-50"><a class="link--dotted"
-                        {{action 'goToAtividade' curso_selected.id atividade.id on="click"}}><span>{{atividade.name}}</span></a>
-                    </h3>
-                  </div>
-                  {{#if showLoader}}
-                    <div class="stacked-bar__loader" name="loader-" style="display: block;"></div>
-                  {{/if}}
-
-                  {{#each acompanhamentosatividades as |acomp|}}
-                    <div style="display: none;">{{endLoader}}</div>
-                    {{#if (equalstr acomp.atividade.id atividade.id)}}
-                      <div class="report-class__stacked-bar stacked-bar">
-                        <div class="stacked-bar__values">
-                          <span class="stacked-bar__value--1" style={{acomp.styleNaoiniciado}}></span>
-                          <span class="stacked-bar__value--2" style={{acomp.styleAndamento}}></span>
-                          <span class="stacked-bar__value--3" style={{acomp.styleCompletaram}}></span>
-                        </div>
-
-                        <div class="stacked-bar__legend">
-                          <span>
-                            <span class="stacked-bar__color-element stacked-bar__value--1"></span>
-                            <span >Não iniciado:
-                              <strong>{{acomp.naoiniciados}}</strong> ({{acomp.naoiniciadosPerc}}%)
-                            </span>
-                          </span>
-
-                          <span>
-                            <span class="stacked-bar__color-element stacked-bar__value--2"></span>
-                            <span>Em andamento:
-                              <strong>{{acomp.andamento}}</strong> ({{acomp.andamentoPerc}}%)
-                            </span>
-                          </span>
-
-                          <span>
-                            <span class="stacked-bar__color-element stacked-bar__value--3"></span>
-                            <span>Completo:
-                              <strong>{{acomp.completaram}}</strong> ({{acomp.completaramPerc}}%)
-                            </span>
-                          </span>
-                        </div>
-                      </div>
-                    {{/if}}
-                  {{/each}}
-                </li>
-                {{/each}}
-              </ul>
-            </div>
-          {{/if}}
-        {{/if}}
+                {{/if}}
+              {{/each}}
+            </li>
+            {{/each}}
+          </ul>
+        </div>
       {{/if}}
 
 

@@ -59,7 +59,7 @@
             </div>
 
             <div class="form-group">
-                <label class="form-group__label" for="situation">Série</label>
+                <label class="form-group__label" for="situation">Anos</label>
 
                 <div class="form-group__wrapper form-group__wrapper--select">
                     <select class="form-group__input"
@@ -67,7 +67,7 @@
                             onchange={{action 'refreshSelectedAno' value='target.value' }}>
 
                         <option selected="selected"
-                                value="">Todas</option>
+                                value="">Todos</option>
 
                         {{#each plataformaAnos as |pa|}}
                             <option selected={{if (equalstr pa.id selectedPlataformaAno.id) "selected"}}
@@ -99,7 +99,7 @@
     <section class="l-dots-between__content flow-md">
         <hgroup>
             <h1 class="sr-only">Lista de aulas do {{parentController.selectedSegmentoLocal.titulo}}</h1>
-            <h2 class="title-4">{{if selectedPlataformaAno.name selectedPlataformaAno.name 'Todas as séries'}}</h2>
+            <h2 class="title-4">{{if selectedPlataformaAno.name selectedPlataformaAno.name 'Todos os anos'}}</h2>
         </hgroup>
         {{#if (equalstr selectedFilteredRole 'professores')}}
             <table class="table table--striped">

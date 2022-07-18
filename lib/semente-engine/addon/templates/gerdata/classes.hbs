@@ -5,12 +5,12 @@
     {{#each segmentos as |segmento| }}
       <div class="col-xs-12 col-lg-2 flow-sm">
         <h4 class="title-segmento">{{segmento.titulo}}</h4>
-        {{#each plataformaAnos as |plataformaAno|}}
+        {{#each (orderby plataformaAnos 'idx') as |plataformaAno|}}
           {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
             <div class="flex-col">
               <h4 class="title-platano"><b>·</b> {{plataformaAno.name}}</h4>
               <ul id="platTurmas-list-{{plataformaAno.id}}">
-                {{#each plataformaTurmas as |plataformaTurma|}}
+                {{#each (orderby plataformaTurmas 'idx') as |plataformaTurma|}}
                   {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
                     <li class="row">
                       <p class="title-platturma capitalized" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">

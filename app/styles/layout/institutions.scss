@@ -110,13 +110,21 @@
   }
 
   &__codes {
-    width: 43%;
+    width: 45%;
     display: inline-block;
     margin: 0 0rem auto 2rem;
 
     &--tits {
       font-size: 1rem;
       font-style: normal;
+    }
+
+    &--center{
+      text-align: center;
+    }
+
+    &--left{
+      text-align: left;
     }
 
     & table {
@@ -127,19 +135,19 @@
 
       & th,
       td {
-        text-align: left;
         padding: 14px;
         text-transform: capitalize;
-        font-weight: 400;
+        font-weight: 500;
+        font-size: 0.9rem;
       }
 
       & td {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
 
         &.utilizado {
           background-image: url(../assets/img/check.png);
           background-repeat: no-repeat;
-          background-position: 30% center;
+          background-position: center;
           background-size: 15%;
         }
       }

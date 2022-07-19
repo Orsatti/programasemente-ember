@@ -302,7 +302,7 @@ livros = livros
       <div class="modal__body">
         {{#if selectedConteudo}}
         <div class="flow-sm" id="vimeoVideo">
-          {{plataforma-conteudo-video-player conteudo=selectedConteudo controller=this pessoa=pessoa stopVideo=stopVideo endVideo=endVideo tarefa=tarefa}}
+          {{plataforma-conteudo-video-player conteudo=selectedConteudo controller=this aula=aula pessoa=pessoa stopVideo=stopVideo endVideo=endVideo tarefa=tarefa}}
           <p class="ta-c title-4 color-gray-20">{{selectedConteudo.titulo}}</p>
         </div>
         {{/if}}

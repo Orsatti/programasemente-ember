@@ -20,3 +20,15 @@ $flex-justify-contents: (
     }
   }
 }
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.justify-content-center {
+  justify-content: center;
+}

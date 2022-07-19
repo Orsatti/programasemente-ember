@@ -540,4 +540,41 @@
 
   }
 
+  &--add-turma {
+    align-self: stretch;
+    background-color: transparent;
+    border: ($button-border-width * 2) dotted $green-10;
+    box-shadow: none;
+    color: $clickables-bg-color;
+    display: flex;
+    font-size: 0.85rem;
+    width: 8rem;
+    height:2.25rem;
+    font-weight: 400;
+
+    &:hover:not([disabled]) ,
+    &:hover:not([disabled=true]) {
+      background-color: $green-0;
+      color: $clickables-bg-color-hover;
+    }
+
+    > [class*='__icon'] {
+      align-items: center;
+      border: ($button-border-width) solid currentColor;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+    }
+
+    &:focus {
+      border-color: transparent;
+    }
+
+  }
+
+}
+
+.btn-right{
+  justify-content: right !important;
+  margin-left: 2rem;
 }

@@ -1,0 +1,19 @@
+<aside id="delete_inst_modal" class="modal modal--is-show">
+    <div class="modal__overlayer"></div>
+    <div class="modal__content">
+        <header class="modal__header">
+            {{#link-to 'gerdata.informations' instituicao.id}}
+                <button class="modal__close btn-close icon-x"></button>
+            {{/link-to}}
+            <h3 class="modal__title">Exclusão da instituicao <b>{{instituicao.name}}</b></h3>
+        </header>
+
+        <div class="modal__body" style="max-height: 75vh;">
+            <h1>Tem certeza que deseja remover essa instituição?</h1>
+            <div class="flex flx-row justify-content-end">
+                <div class="color-error-40 m-bottom--lg" id="form-inst-error"></div>
+                <button class="btn" type="submit" {{action 'delete' }}>Excluir</button>
+            </div>
+        </div>
+    </div>
+</aside>

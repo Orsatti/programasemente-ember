@@ -1,0 +1,37 @@
+ {{gerdata-header role=role informations=false instituicao=model.instituicao}}
+ 
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
+  <div class="row">
+    {{#each segmentos as |segmento| }}
+      <div class="col-xs-12 col-lg-2 flow-sm">
+        <h4 class="title-segmento">{{segmento.titulo}}</h4>
+        {{#each (orderby plataformaAnos 'idx') as |plataformaAno|}}
+          {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
+            <div class="flex-col">
+              <h4 class="title-platano"><b>·</b> {{plataformaAno.name}}</h4>
+              <ul id="platTurmas-list-{{plataformaAno.id}}">
+                {{#each (orderby plataformaTurmas 'idx') as |plataformaTurma|}}
+                  {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
+                    <li class="row">
+                      <p class="title-platturma capitalized" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">
+                        {{plataformaTurma.name}}
+                      </p>
+                      <span id="icon-edit{{plataformaTurma.id}}" class="btn_icon_edit icon-edit" onclick={{action 'edit' plataformaTurma}} style="display: block;"></span>
+                      <span id="icon-x{{plataformaTurma.id}}" class="btn_icon_edit icon-x" onclick={{action 'cancelEdit' plataformaTurma}} style="display: none;"></span>
+                      <span id="icon-save{{plataformaTurma.id}}" class="btn_icon_edit icon-save" onclick={{action 'saveEdit' plataformaTurma}} style="display: none;"></span>
+                    </li>
+                  {{/if}}
+                {{/each}}
+              </ul>
+              <button type="button" class="btn btn--add-turma" 
+                  id="plat_ano{{plataformaAno.id}}" onclick={{action 'create' plataformaAno}}>
+                  <span class="btn__icon icon-plus"></span>
+                  <span class="btn__label">Adicionar</span>
+              </button>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+    {{/each}}
+  </div>
+</section>

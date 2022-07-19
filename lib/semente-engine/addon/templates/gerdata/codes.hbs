@@ -1,0 +1,58 @@
+{{gerdata-header role=role informations=false instituicao=model.instituicao}}
+
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
+    <div class="flex institutions__codes">
+        <p><a {{action 'downloadCodigos' }}><b><u>Clique aqui</u></b></a> para baixar a relação de códigos disponíveis</p>
+    </div>
+    <div class="flex">
+        <div style="display:none;">{{codigos}}</div>
+        <div class="institutions__codes list list--striped">
+            <div class="flex flex-row justify-between">
+                <div><b>Total:</b> {{totalCodigosAlunos}} códigos</div>  
+                <div><b>Utilizados:</b> {{totalUtilizadosAlunos}} códigos</div>
+            </div>
+            <table>
+                <tr>
+                    <th class="institutions__codes--tits institutions__codes--left">Códigos para <b>Alunos</b></th>
+                    <th class="institutions__codes--center">Utilizado</th>
+                </tr>
+                {{#each codigos as |codigo|}}
+                    {{#if (equalstr codigo.typeCadastro "aluno")}}
+                        <tr>
+                            <td class="institutions__codes--left">{{codigo.codigo}}</td>
+                            {{#if codigo.utilizado}}
+                                <td class="utilizado institutions__codes--center"></td>
+                            {{else}}
+                                <td></td>
+                            {{/if}}
+                        </tr>
+                    {{/if}}
+                {{/each}}
+            </table>
+        </div>
+        <div class="institutions__codes list list--striped">
+            <div class="flex flex-row justify-between">
+                <div><b>Total:</b> {{totalCodigosInstrutores}} códigos</div>  
+                <div><b>Utilizados:</b> {{totalUtilizadosInstrutores}} códigos</div>
+            </div>
+            <table>
+                <tr>
+                    <th class="institutions__codes--tits institutions__codes--left">Códigos para <b> professores</b></th>
+                    <th class="institutions__codes--center">Utilizado</th>
+                </tr>
+                {{#each codigos as |codigo|}}
+                    {{#if (equalstr codigo.typeCadastro "instrutor")}}
+                        <tr>
+                            <td class="institutions__codes--left">{{codigo.codigo}}</td>
+                            {{#if codigo.utilizado}}
+                                <td class="utilizado institutions__codes--center"></td>
+                            {{else}}
+                                <td></td>
+                            {{/if}}
+                        </tr>
+                    {{/if}}
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</section>

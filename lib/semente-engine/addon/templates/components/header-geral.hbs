@@ -11,10 +11,9 @@
   <div class="flex-1 flow-md overflow-hidden">
     <section>
       <h1 class="scr-only">Informações do usuário</h1>
-
       <div class="flow-xxs">
         <div class="flex flex-row flex-wrap items-baseline gap-xs flow-xs">
-          <span class="title-1">{{firstnameoremailpart pessoa.name}}</span>
+          {{!-- <span class="title-1">{{firstnameoremailpart pessoa.name}}</span> --}}
           {{#if (equalstr parentController.role 'aluno')}}
             <button class="btn btn--link m-top--auto color-white">
               <span class="btn__label" {{action 'invalidateSession' }}>Não é você? Faça logout</span>
@@ -65,35 +64,14 @@
             {{/if}}
           {{/if}}
         </div>
-        <!-- veta quem não é prof -->
-        {{#if (equalstr pessoa.role 'instrutor')}}
-          {{#unless (equalstr showToggle false)}}
-            <!-- veta quem não tem filho -->
-            {{#if pessoa.dependentes}}
-              <!-- alterna entre perfis -->
-              {{!-- {{#if (equalstr parentController.role 'instrutor')}}
-                <button class="btn btn--link color-white" type="button" {{action 'toggleRole' 'responsavel' }}>
-                  <span class="btn__label">Visualizar como responsável</span>
-                </button>
-              {{else}}
-                <button class="btn btn--link color-white" type="button" {{action 'toggleRole' 'instrutor' }}>
-                  <span class="btn__label">Visualizar como professor</span>
-                </button>
-              {{/if}} --}}
-            {{/if}}
-          {{/unless}}
-        {{/if}}
-      </div>
+   </div>
     </section>
     <nav>
       <ul class="tabs tabs--full-background">
         <li>
           {{#unless (or (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '0')) (equalstr pessoa.role 'secretaria'))}}
             {{#if isAlunoMedio}}
-              {{!-- {{#link-to 'modulos.modlist' pessoa.modulos.firstObject.id class="tabs__tab" id="aulas-header"}}
-                <span>Aulas</span>
-              {{/link-to}} --}}
-            {{else}}
+              {{else}}
               {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
                 {{#link-to 'aulas.index' class="tabs__tab" id="aulas-header"}}
                   <span>Aulas</span>
@@ -104,7 +82,7 @@
         </li>
         <li>
           {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
-            {{#unless isAlunoMedio}}  
+            {{#unless (or isAlunoMedio isEja)}}  
               {{#link-to 'aulas.bibliotecaindex' class="tabs__tab"}}
                 <span>Biblioteca</span>
               {{/link-to}}
@@ -146,7 +124,7 @@
         {{/if}}
 
         {{#if (or (or (or (equalstr pessoa.role 'admin') (equalstr pessoa.role 'secretaria')) (equalstr pessoa.role 'gestor')) (equalstr pessoa.role 'recursosHumanos'))}}
-          {{#link-to 'gersistema.gerdata' class="tabs__tab"}}
+          {{#link-to 'gersistema' class="tabs__tab"}}
             <span>Administração</span>
           {{/link-to}}
         {{/if}}

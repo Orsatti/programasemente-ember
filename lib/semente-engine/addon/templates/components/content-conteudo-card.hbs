@@ -1,6 +1,6 @@
 
 {{#if (equalstr conteudo.tipo 'Video')}}
-  <div class="media media--middle">
+  <div class="media ">
     <picture class="media__picture" id="conteudo-{{conteudo.id}}" style="cursor: pointer;" onclick={{action 'openModal' conteudo}}>
       <img class="media__thumb" id="file-{{conteudo.id}}" src={{thumbnail}} alt="{{conteudo.titulo}}">
     </picture>
@@ -11,7 +11,7 @@
         <span>{{conteudo.descricao}}</span>
       {{/if}}
       {{#if haveRecommendation}}
-        <h2>Indicação:</h2>
+        <h2>Para Saber Mais:</h2>
         <span>{{conteudo.indicacao}}</span>
         <span>{{conteudo.indicacaoDescricao}}</span>
         <a href="{{conteudo.indicacaoUrl}}" target="_blank" rel="noopener noreferrer">{{conteudo.indicacaoUrl}}</a>

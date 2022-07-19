@@ -1,30 +1,30 @@
 <section class="flow-xl">
   <h1 class="scr-only">Acompanhamento do Ensino Médio</h1>
   <nav>
-        <ul class="tabs">
-              {{#each segmentos as |seg|}}
-                {{#if (equalstr seg.titulo 'Adultos')}}
-                    {{#if (or (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.role 'recursosHumanos'))}}
-                      <li>
-                            <button type="button" class="tabs__tab" {{action 'goToPlataforma' seg}}>
-                                  <span>{{seg.titulo}}</span>
-                            </button>
-                      </li>
-                    {{/if}}
-                {{else}}
-                    <li>
-                      <button type="button" class="tabs__tab" {{action 'goToPlataforma' seg}}>
-                            <span>{{seg.titulo}}</span>
-                      </button>
-                    </li>
-                {{/if}}
-              {{/each}}
+    <ul class="tabs">
+        {{#each segmentos as |seg|}}
+          {{#if (equalstr seg.titulo 'Adultos')}}
+            {{#if (or (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.role 'recursosHumanos'))}}
               <li>
-                    <button type="button" class="tabs__tab tabs__tab--is-active">
-                          <span>EAD</span>
-                    </button>
+                <button type="button" class="tabs__tab" {{action 'goToPlataforma' seg}}>
+                  <span>{{seg.titulo}}</span>
+                </button>
               </li>
-        </ul>
+            {{/if}}
+          {{else}}
+            <li>
+              <button type="button" class="tabs__tab" {{action 'goToPlataforma' seg}}>
+                <span>{{seg.titulo}}</span>
+              </button>
+            </li>
+          {{/if}}
+        {{/each}}
+        <li>
+          <button type="button" class="tabs__tab tabs__tab--is-active">
+                <span>EAD</span>
+          </button>
+        </li>
+    </ul>
   </nav>
 
   <div class="l-dots-between">
@@ -38,59 +38,6 @@
             <span class="btn__label">Detalhado</span>
           </button>
         </div>
-
-        {{#if (equalstr selectedContent 'g')}}
-          {{!-- {{#if hasChildren}}
-            <div class="form-group">
-              <label class="form-group__label">Instituição</label>
-              <div class="form-group__wrapper form-group__wrapper--select">
-                <select id="inst_selector" class="form-group__input form-group__input--select"
-                  {{action 'filterInstF' on='change'}}>
-                  <option value="0" selected>Escolha uma instituição</option>
-                  {{#each inst_selected.instituicaoFilhas as |instF|}}
-                    <option id="opt_{{instF.id}}" style="display: block" value={{instF.id}}>{{instF.name}}</option>
-                  {{/each}}
-                </select>
-              </div>
-            </div>
-          {{/if}} --}}
-
-          <div class="form-group">
-            <label class="form-group__label" for="select_course">Ano</label>
-            <div class="form-group__wrapper form-group__wrapper--select">
-              <select class="form-group__input form-group__input--select"
-                      id="select_course"
-                      value="select_inst"
-                      {{action 'selectCursoAno' on="change"}}>
-                {{#each inst_selected.modulos as |modulo|}}
-                  {{#if (equalstr curso_selected.id modulo.id)}}
-                    <option value={{modulo.id}} selected>{{modulo.name}}</option>
-                  {{else}}
-                    <option value={{modulo.id}}>{{modulo.name}}</option>
-                  {{/if}}
-                {{/each}}
-              </select>
-            </div>
-          </div>
-
-          {{!-- {{#if curso_selected}}
-              <div class="form-group">
-                <label class="form-group__label" for="turma_selector">Turma</label>
-                <div class="form-group__wrapper form-group__wrapper--select">
-                  <select id="turma_selector" class="form-group__input form-group__input--select" {{action 'filterTurmaAno' on='change'}}>
-
-                    <option value="0" selected>Todas as turmas</option>
-                      {{#each inst_selected.turmas as |turma|}}
-                        {{#if (equalstr turma.modulo.id curso_selected.id)}}
-                          <option id="opt_{{turma.id}}" value={{turma.id}}>{{turma.name}}</option>
-                        {{/if}}
-                      {{/each}}
-                  </select>
-                </div>
-              </div>
-          {{/if}} --}}
-
-        {{/if}}
 
         {{#if (equalstr selectedContent 'd')}}
           <div class="form-group">
@@ -108,174 +55,70 @@
               <button class="form__aux-link" {{action 'exitpagedsearch'}}>Limpar busca</button>
             </form>
           </div>
-
-          {{#if hasChildren}}
-            <div class="form-group">
-              <label class="form-group__label">Instituição</label>
-              <div class="form-group__wrapper form-group__wrapper--select">
-                <select id="inst_selector" class="form-group__input form-group__input--select"
-                  {{action 'filterInstF' on='change'}}>
-                  <option value="0" selected>Escolha uma instituição</option>
-                  {{#each inst_selected.instituicaoFilhas as |instF|}}
-                    <option id="opt_{{instF.id}}" style="display: block" value={{instF.id}}>{{instF.name}}</option>
-                  {{/each}}
-                </select>
-              </div>
-            </div>
-          {{/if}}
-
-          <div class="form-group">
-            <span class="form-group__label">Ano</span>
-              <div class="form-group__wrapper form-group__wrapper--select">
-                <select id="mod_selector_det" class="form-group__input form-group__input--select" {{action 'filterano' on='change'}}>
-                  {{#each inst_selected.modulos as |mod|}}
-                    <option id="ano_{{mod.id}}" value={{mod.id}}>{{mod.name}}</option>
-                  {{/each}}
-                </select>
-              </div>
-          </div>
-
-          {{!-- {{#if inst_filtered}} --}}
-            {{!-- <div class="form-group">
-              <label class="form-group__label">Turma</label>
-
-              <div class="form-group__wrapper form-group__wrapper--select">
-                <select id="turma_selector_det" class="form-group__input form-group__input--select" {{action 'filterTurma' on='change'}}>
-                  <option value="0" selected>Todas as turmas</option>
-                  {{#each inst_filtered.turmas as |turma|}}
-                    {{#if (equalstr turma.modulo.id anos)}}
-                      <option id="opt_tur_{{turma.id}}" value={{turma.id}} style="display: block;">{{turma.name}}</option>
-                    {{else}}
-                      <option id="opt_tur_{{turma.id}}" value={{turma.id}} style="display: none;">{{turma.name}}</option>
-                    {{/if}}
-                  {{/each}}
-                </select>
-              </div>
-            </div> --}}
-          {{!-- {{else}} --}}
-            {{!-- {{#if hasChildren}}
-              <div class="form-group">
-                <label class="form-group__label">Turma</label>
-
-                <div class="form-group__wrapper form-group__wrapper--select">
-                  <select id="turma_selector_det" class="form-group__input form-group__input--select" disabled>
-                    <option value="0" selected>Todas as turmas</option>
-                  </select>
-                </div>
-              </div>
-            {{else}}
-              <div class="form-group">
-                <label class="form-group__label">Turma</label>
-
-                <div class="form-group__wrapper form-group__wrapper--select">
-                  <select id="turma_selector_det" class="form-group__input form-group__input--select" {{action 'filterTurma' on='change'}}>
-                    <option value="0" selected>Todas as turmas</option>
-                    {{#each inst_selected.turmas as |turma|}}
-                      {{#if (equalstr turma.modulo.id anos)}}
-                        <option id="opt_tur_{{turma.id}}" value={{turma.id}} style="display: block;">{{turma.name}}</option>
-                      {{else}}
-                        <option id="opt_tur_{{turma.id}}" value={{turma.id}} style="display: none;">{{turma.name}}</option>
-                      {{/if}}
-                    {{/each}}
-                  </select>
-                </div>
-              </div>
-            {{/if}}
-          {{/if}} --}}
-
-          {{#if hasChildren}}
-            <div class="form-group form-group--horizontal m-left--auto m-v--md">
-              <label class="form-group__label" for="amount">Exibir</label>
-              <div class="form-group__wrapper form-group__wrapper--select">
-                <select id="amount" class="form-group__input form-group__input--select form-group__input--amount" name="order"
-                  {{action 'setExibir' on='change'}}>
-                  {{#if (equalstr perPage 5)}}
-                  <option value="5" selected>5</option>
-                  <option value="10">10 resultados</option>
-                  <option value="25">25 resultados</option>
-                  <option value="50">50 resultados</option>
-                  <option value="100">100 resultados</option>
-                  <option value="500">500 resultados</option>
-                  <option value="1000">1000 resultados</option>
-                  {{else if (equalstr perPage 25)}}
-                  <option value="5">5 resultados</option>
-                  <option value="10">10 resultados</option>
-                  <option value="25" selected>25 resultados</option>
-                  <option value="50">50 resultados</option>
-                  <option value="100">100 resultados</option>
-                  <option value="500">500 resultados</option>
-                  <option value="1000">1000 resultados</option>
-                  {{else if (equalstr perPage 50)}}
-                  <option value="5">5 resultados</option>
-                  <option value="10">10 resultados</option>
-                  <option value="25">25 resultados</option>
-                  <option value="50" selected>50 resultados</option>
-                  <option value="100">100 resultados</option>
-                  <option value="500">500 resultados</option>
-                  <option value="1000">1000 resultados</option>
-                  {{else if (equalstr perPage 100)}}
-                  <option value="5">5 resultados</option>
-                  <option value="10">10 resultados</option>
-                  <option value="25">25 resultados</option>
-                  <option value="50">50 resultados</option>
-                  <option value="100" selected>100 resultados</option>
-                  <option value="500">500 resultados</option>
-                  <option value="1000">1000 resultados</option>
-                  {{else if (equalstr perPage 500)}}
-                  <option value="5">5 resultados</option>
-                  <option value="10">10 resultados</option>
-                  <option value="25">25 resultados</option>
-                  <option value="50">50 resultados</option>
-                  <option value="100">100 resultados</option>
-                  <option value="500" selected>500 resultados</option>
-                  <option value="1000">1000 resultados</option>
-                  {{else if (equalstr perPage 1000)}}
-                  <option value="5">5 resultados</option>
-                  <option value="10">10 resultados</option>
-                  <option value="25">25 resultados</option>
-                  <option value="50">50 resultados</option>
-                  <option value="100">100 resultados</option>
-                  <option value="500">500 resultados</option>
-                  <option value="1000" selected>1000 resultados</option>
-                  {{else}}
-                  <option value="5">5 resultados</option>
-                  <option value="10" selected>10 resultados</option>
-                  <option value="25">25 resultados</option>
-                  <option value="50">50 resultados</option>
-                  <option value="100">100 resultados</option>
-                  <option value="500">500 resultados</option>
-                  <option value="1000">1000 resultados</option>
-                  {{/if}}
-                </select>
-              </div>
-            </div>
-          {{/if}}
         {{/if}}
+
+        <div class="form-group" id="platano_selector">
+          <label class="form-group__label">Ano</label>
+          <div class="form-group__wrapper form-group__wrapper--select">
+            <select class="form-group__input" name="plataformaAno"
+                onchange={{action 'selectedPlataformaAno' value='target.value' }} 
+                data-type="select"
+                data-required="true">
+                {{#each plataformaAnos as |platAno|}}
+                    <option value="{{platAno.id}}" selected={{if (equalstr platAno selectedPlataformaAno) "selected" }}>{{platAno.name}}</option>
+                {{/each}}
+            </select>
+          </div>
+        </div>
+
+        {{#unless hasChildren}}
+          <div class="form-group" id="platturma_selector">
+            <label class="form-group__label">Turma</label>
+            <div class="form-group__wrapper form-group__wrapper--select">
+              <select class="form-group__input" name="plataformaTurma"
+                  onchange={{action 'selectedPlataformaTurma' value='target.value' }} 
+                  data-type="select"
+                  data-required="true">
+                  <option selected="selected" value="">Todas</option>
+                  {{#each plataformaTurmas as |platTurma|}}
+                      {{#if (equalstr platTurma.plataformaAno.id selected_ano_id)}}
+                          <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                      {{/if}}
+                  {{/each}}
+              </select>
+            </div>
+          </div>
+        {{/unless}}
+        <div style="display: none;">{{curso_selected}}</div>
       </form>
     </header>
 
     <section class="l-dots-between__content flow-md">
       {{#if (equalstr selectedContent 'g')}}
-        {{#if curso_selected}}
-          {{#if filtered_turma}}
-            <hgroup>
-              <h1 class="sr-only">Lista de aulas do {{curso_selected.name}}</h1>
+        <div style="display: none">{{acompanhamentoAtividades}}</div>
+        <hgroup>
+          <h2 class="title-4">
+            {{curso_selected.name}}
+          </h2>
+        </hgroup>
 
-              <h2 class="title-4">
-                {{curso_selected.name}}
-              </h2>
-            </hgroup>
+        <div class="report-course">
+          <ul class="report-class flow-md" id="acomp_classes">
+            {{#each curso_selected.atividades as |atividade|}}
+            <li class="report-class__two-col">
+              <div class="flow-xxs flex flex-col justify-center items-start">
+                <span class="title-aux">Aula {{atividade.idx}}</span>
+                <h3 class="title-3 color-blue-navy-50">
+                  <a class="link--dotted"><span>{{atividade.name}}</span></a>{{!--{{action 'goToAtividade' curso_selected.id atividade.id on="click"}}--}}
+                </h3>
+              </div>
+              {{#if showLoader}}
+                <div class="stacked-bar__loader" name="loader-" style="display: block;"></div>
+              {{/if}}
 
-            <div class="report-course">
-              <ul class="report-class flow-md" id="acomp_classes">
-                {{#each turma_selected.acompanhamentosatividades as |acomp|}}
-                <li class="report-class__two-col">
-                  <div class="flow-xxs flex flex-col justify-center items-start">
-                    <span class="title-aux">Aula {{acomp.atividade.idx}}</span>
-                    <h3>
-                      <a class="title-3 color-blue-navy-50"><span>{{acomp.atividade.name}}</span></a>
-                    </h3>
-                  </div>
+              {{#each acompanhamentosAtividadesL as |acomp|}}
+                <div style="display: none;">{{endLoader}}</div>
+                {{#if (equalstr acomp.atividade.id atividade.id)}}
                   <div class="report-class__stacked-bar stacked-bar">
                     <div class="stacked-bar__values">
                       <span class="stacked-bar__value--1" style={{acomp.styleNaoiniciado}}></span>
@@ -286,18 +129,18 @@
                     <div class="stacked-bar__legend">
                       <span>
                         <span class="stacked-bar__color-element stacked-bar__value--1"></span>
-                        <span>Não iniciado:
+                        <span >Não iniciado:
                           <strong>{{acomp.naoiniciados}}</strong> ({{acomp.naoiniciadosPerc}}%)
                         </span>
-
                       </span>
+
                       <span>
                         <span class="stacked-bar__color-element stacked-bar__value--2"></span>
                         <span>Em andamento:
                           <strong>{{acomp.andamento}}</strong> ({{acomp.andamentoPerc}}%)
                         </span>
-
                       </span>
+
                       <span>
                         <span class="stacked-bar__color-element stacked-bar__value--3"></span>
                         <span>Completo:
@@ -306,72 +149,12 @@
                       </span>
                     </div>
                   </div>
-                </li>
-                {{/each}}
-              </ul>
-            </div>
-          {{else}}
-            <hgroup>
-              <h1 class="sr-only">Lista de aulas do {{curso_selected.name}}</h1>
-
-              <h2 class="title-4">
-                {{curso_selected.name}}
-              </h2>
-            </hgroup>
-
-            <div class="report-course">
-              <ul class="report-class flow-md" id="acomp_classes">
-                {{#each curso_selected.atividades as |atividade|}}
-                <li class="report-class__two-col">
-                  <div class="flow-xxs flex flex-col justify-center items-start">
-                    <span class="title-aux">Aula {{atividade.idx}}</span>
-                    <h3 class="title-3 color-blue-navy-50"><a class="link--dotted"
-                        {{action 'goToAtividade' curso_selected.id atividade.id on="click"}}><span>{{atividade.name}}</span></a>
-                    </h3>
-                  </div>
-                  {{#each inst_selected.acompanhamentosatividades as |acomp|}}
-                    {{#if (equalstr acomp.atividade.id atividade.id)}}
-                      <div class="report-class__stacked-bar stacked-bar">
-                        <div class="stacked-bar__values">
-                          <span class="stacked-bar__value--1" style={{acomp.styleNaoiniciado}}></span>
-                          <span class="stacked-bar__value--2" style={{acomp.styleAndamento}}></span>
-                          <span class="stacked-bar__value--3" style={{acomp.styleCompletaram}}></span>
-                        </div>
-
-                        <div class="stacked-bar__legend">
-                          <span>
-                            <span class="stacked-bar__color-element stacked-bar__value--1"></span>
-                            <span>Não iniciado:
-                              <strong>{{acomp.naoiniciados}}</strong> ({{acomp.naoiniciadosPerc}}%)
-                            </span>
-
-                          </span>
-                          <span>
-                            <span class="stacked-bar__color-element stacked-bar__value--2"></span>
-                            <span>Em andamento:
-                              <strong>{{acomp.andamento}}</strong> ({{acomp.andamentoPerc}}%)
-                            </span>
-
-                          </span>
-                          <span>
-                            <span class="stacked-bar__color-element stacked-bar__value--3"></span>
-                            <span>Completo:
-                              <strong>{{acomp.completaram}}</strong> ({{acomp.completaramPerc}}%)
-                            </span>
-                          </span>
-                        </div>
-                      </div>
-
-                    {{else}}
-
-                    {{/if}}
-                  {{/each}}
-                </li>
-                {{/each}}
-              </ul>
-            </div>
-          {{/if}}
-        {{/if}}
+                {{/if}}
+              {{/each}}
+            </li>
+            {{/each}}
+          </ul>
+        </div>
       {{/if}}
 
 
@@ -379,11 +162,11 @@
 
         {{#unless hasChildren}}
           <hgroup>
-            <h1 class="sr-only">Lista de aulas do {{selectedModuloName}} - {{selectedTurmaName}}
+            <h1 class="sr-only">Lista de aulas do {{selectedModuloName}}{{selectedTurmaName}}
             </h1>
             <div class="flex justify-between">
               <h2 class="title-4">
-                <span>{{selectedModuloName}} - {{selectedTurmaName}}</span>
+                <span>{{selectedModuloName}}{{selectedTurmaName}}</span>
                 <span class="fs--xs fw--3 fs-i color-blue-navy-20 m-left--xxs">(<span class="inline-flex m-right--xxs">{{totalPessoas}}</span>pessoas)</span>
               </h2>
               <button class="btn btn--ghost btn--xs m-left--sm" {{action 'downloadFile'}}>Baixar relatório em Excel</button>

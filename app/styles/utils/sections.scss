@@ -1,5 +1,5 @@
-// .sections {
-//     &__section {
+.sections {
+    &__section {
         // margin-bottom: $distance--lg;
         // position: relative;
         // z-index: 1;
@@ -21,19 +21,12 @@
         //     }
 
         // }
-    // }
+    }
 
-    // &__subsection {
+    &__subsection {
+        > * {
+            margin-top: $distance--xs;
+        }
+    }
 
-    //     > * {
-    //        margin-bottom: $distance--md;
-
-    //         &:last-child {
-    //             margin-bottom: 0;
-    //         }
-
-    //     }
-
-    // }
-
-// }
+}

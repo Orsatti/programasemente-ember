@@ -1,0 +1,83 @@
+<aside id="new_aula_modal" class="modal modal--is-show">
+    <div class="modal__overlayer"></div>
+    <div class="modal__content m-top--md">
+        <header class="modal__header">
+            {{#link-to 'aulas.index'}}
+                <button class="modal__close btn-close icon-x"></button>
+            {{/link-to}}
+            <h3 class="modal__title">Nova aula</h3>
+        </header>
+
+        <div class="modal__body" style="max-height: 75vh;">
+            <form {{action 'submit' on='submit' }}>
+                <div class="flow-lg institutions__step-content institutions__step-content--is-show">
+                    <div class="flex flex-row mt2">
+                        <div class="flex flex-col col-md-6">
+                            <label class="form-group__label" for="">Titulo da aula</label>
+                            {{input class="form-group__input" id="tituloAula" maxlength=50}}
+                        </div>
+
+                        <div class="flex flex-col col-md-6">
+                            <label class="form-group__label" for="">Thumbnail</label>
+                            {{#if thumbnail}}
+                                <ul id="aulaCapa" class="list list--striped {{if thumbnail 'animated fadeInLeftShort faster'}}">
+                                    <li>
+                                        <div class="flex flex-row items-center justify-between gap-sm">
+                                            <div class="flow-xxs flex flex-col">
+                                                <img src="{{aula.thumbnail}}" alt="{{aula.thumbnail}}">
+                                            </div>
+                                            <button class="btn btn--text color-error-40"
+                                                    type="button"
+                                                    {{!-- {{action "removePathCapa"}} --}}
+                                                    >
+                                                <span class="btn__label">Remover</span>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            {{else}}
+                                <label class="btn btn--add-turma {{unless thumbnail 'animated fadeInLeftShort faster'}}">
+                                    <input style="display: none;"
+                                            accept="image/png,image/jpeg"
+                                            id="file-selector-thumb"
+                                            multiple="false"
+                                            name="file"
+                                            {{!-- onchange={{action "UploadCapa"}} --}}
+                                            type="file"
+                                            value="" />
+                                    <span class="btn__icon icon-plus"></span>
+                                    <span class="btn__label">Buscar Capa</span>
+                                </label>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col col-md-12 mt1">
+                        <label class="form-group__label" for="">Competências</label>
+                        <div class="flex flex-row flex-wrap">
+                            {{#each model.competencias as |competencia|}}
+                                <ul>
+                                    <li class="mr3">
+                                    <div class="checkbox">
+                                        <input class="j-validate-aplicador-child checkbox__input" 
+                                        type="checkbox"
+                                        id="competencia_{{competencia.id}}"
+                                        {{!-- onchange={{action (action "addPAPT" plataformaTurma.id) value='target.checked' }} --}}
+                                        >
+                                        <label class="checkbox__label" for="competencia_{{competencia.id}}">{{competencia.name}}</label>
+                                    </div>
+                                    </li>
+                                </ul>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col justify-content-end mt2">
+                    <div class="color-error-40" id="form-user-error"></div>
+                    <button class="btn" type="submit">Adicionar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</aside>

@@ -10,7 +10,7 @@
             <div class="flex-col">
               <h4 class="title-platano"><b>·</b> {{plataformaAno.name}}</h4>
               <ul id="platTurmas-list-{{plataformaAno.id}}">
-                {{#each (orderby plataformaTurmas 'idx') as |plataformaTurma|}}
+                {{#each plataformaTurmas as |plataformaTurma|}}
                   {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
                     <li class="row">
                       <p class="title-platturma capitalized" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">

@@ -15,6 +15,7 @@
                         <div class="flex flex-col col-md-6">
                             <label class="form-group__label" for="">Titulo da aula</label>
                             {{input class="form-group__input" id="tituloAula" maxlength=50}}
+                            <div class="color-error-40" id="titulo-error"></div>
                         </div>
 
                         <div class="flex flex-col col-md-6">
@@ -24,12 +25,9 @@
                                     <li>
                                         <div class="flex flex-row items-center justify-between gap-sm">
                                             <div class="flow-xxs flex flex-col">
-                                                <img src="{{aula.thumbnail}}" alt="{{aula.thumbnail}}">
+                                                <img src="{{model.newAula.thumbnail}}" alt="{{model.newAula.thumbnail}}">
                                             </div>
-                                            <button class="btn btn--text color-error-40"
-                                                    type="button"
-                                                    {{!-- {{action "removePathCapa"}} --}}
-                                                    >
+                                            <button class="btn btn--text color-error-40" type="button" {{action "removeThumbnail"}}>
                                                 <span class="btn__label">Remover</span>
                                             </button>
                                         </div>
@@ -42,13 +40,14 @@
                                             id="file-selector-thumb"
                                             multiple="false"
                                             name="file"
-                                            {{!-- onchange={{action "UploadCapa"}} --}}
+                                            onchange={{action "uploadThumbnail"}}
                                             type="file"
                                             value="" />
                                     <span class="btn__icon icon-plus"></span>
                                     <span class="btn__label">Buscar Capa</span>
                                 </label>
                             {{/if}}
+                            <div class="color-error-40" id="thumb-error"></div>
                         </div>
                     </div>
 
@@ -62,7 +61,7 @@
                                         <input class="j-validate-aplicador-child checkbox__input" 
                                         type="checkbox"
                                         id="competencia_{{competencia.id}}"
-                                        {{!-- onchange={{action (action "addPAPT" plataformaTurma.id) value='target.checked' }} --}}
+                                        onchange={{action (action "addCompetencia" competencia.id) value='target.checked' }}
                                         >
                                         <label class="checkbox__label" for="competencia_{{competencia.id}}">{{competencia.name}}</label>
                                     </div>
@@ -70,6 +69,7 @@
                                 </ul>
                             {{/each}}
                         </div>
+                        <div class="color-error-40" id="competencia-error"></div>
                     </div>
                 </div>
 

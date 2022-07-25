@@ -21,9 +21,9 @@ livros = livros
         {{#if (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel'))}}
         <section class="flow-xs">
           <h4 class="title-4">Tarefa</h4>
-          <div class="checkbox">
-            <input class="checkbox__input" id="checkbox-tarefa" type="checkbox" checked={{if tarefa.realizado "checked"
-              }} onchange={{action "refreshTarefa" }}>
+          <div class="checkbox" style="pointer-events: none;">
+            <input class="checkbox__input" id="checkbox-tarefa" type="checkbox" 
+            checked={{if tarefa.realizado "checked"}} onchange={{action "refreshTarefa" }}>
             <label class="checkbox__label" for="checkbox-tarefa">Realizei a tarefa</label>
           </div>
         </section>

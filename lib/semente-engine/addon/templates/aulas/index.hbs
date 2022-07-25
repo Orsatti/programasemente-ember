@@ -109,11 +109,11 @@
         {{/each}}
 
       </ul>
-    <div class="certificado__eja">
-      {{#if certificado}}
-        {{#link-to 'aulas.certificado' platanoId class="class-list__class_cta btn trail__certificate-btn class__cta btn btn--sm btn-certificado"}}Ver seu certificado{{/link-to}}
-      {{/if}}
-    </div>
+      <div class="certificado__eja">
+        {{#if certificado}}
+          {{#link-to 'aulas.certificado' platanoId class="class-list__class_cta btn trail__certificate-btn class__cta btn btn--sm btn-certificado"}}Ver seu certificado{{/link-to}}
+        {{/if}}
+      </div>
       {{#if noCards}}
         <div class="empty animated fadeIn">
           <div class="animated d250 fadeInUpShort faster flex-1 ta-c">
@@ -122,16 +122,18 @@
           </div>
         </div>
       {{/if}}
-      <div class="row">
-        <div class="col-md-12">
-          {{#link-to 'aulas.createaula' selectedAno.id }}
-            <button class="btn btn--add-list-item">
-              <span class="btn__icon icon-plus"></span>
-                <span class="btn__label">Adicionar Aula</span>
-            </button>
-          {{/link-to}}
+      {{#if (equalstr pessoa.role 'admin')}}
+        <div class="row">
+          <div class="col-md-12">
+            {{#link-to 'aulas.createaula' selectedAno.id }}
+              <button class="btn btn--add-list-item">
+                <span class="btn__icon icon-plus"></span>
+                  <span class="btn__label">Adicionar Aula</span>
+              </button>
+            {{/link-to}}
+          </div>
         </div>
-      </div>
+      {{/if}}
     </section>
 
   </div>

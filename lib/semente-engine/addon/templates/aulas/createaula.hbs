@@ -19,35 +19,23 @@
                         </div>
 
                         <div class="flex flex-col col-md-6">
-                            <label class="form-group__label" for="">Thumbnail</label>
-                            {{#if thumbnail}}
-                                <ul id="aulaCapa" class="list list--striped {{if thumbnail 'animated fadeInLeftShort faster'}}">
-                                    <li>
-                                        <div class="flex flex-row items-center justify-between gap-sm">
-                                            <div class="flow-xxs flex flex-col">
-                                                <img src="{{model.newAula.thumbnail}}" alt="{{model.newAula.thumbnail}}">
-                                            </div>
-                                            <button class="btn btn--text color-error-40" type="button" {{action "removeThumbnail"}}>
-                                                <span class="btn__label">Remover</span>
-                                            </button>
-                                        </div>
+                            <label class="form-group__label" for="">Esta aula é ativa em quais calendários?</label>
+                            <div class="flex flex-row flex-wrap">
+                                {{#each model.calendarios as |calendario|}}
+                                    <ul>
+                                    <li class="mr3">
+                                    <div class="checkbox">
+                                        <input class="j-validate-aplicador-child checkbox__input" 
+                                        type="checkbox"
+                                        id="calendario_{{calendario.id}}"
+                                        onchange={{action (action "addCalendario" calendario.id) value='target.checked' }}>
+                                        <label class="checkbox__label" for="calendario_{{calendario.id}}">{{calendario.nome}}</label>
+                                    </div>
                                     </li>
-                                </ul>
-                            {{else}}
-                                <label class="btn btn--add-turma {{unless thumbnail 'animated fadeInLeftShort faster'}}">
-                                    <input style="display: none;"
-                                            accept="image/png,image/jpeg"
-                                            id="file-selector-thumb"
-                                            multiple="false"
-                                            name="file"
-                                            onchange={{action "uploadThumbnail"}}
-                                            type="file"
-                                            value="" />
-                                    <span class="btn__icon icon-plus"></span>
-                                    <span class="btn__label">Buscar Capa</span>
-                                </label>
-                            {{/if}}
-                            <div class="color-error-40" id="thumb-error"></div>
+                                    </ul>
+                                {{/each}}
+                            </div>
+                            <div class="color-error-40" id="calendario-error"></div>
                         </div>
                     </div>
 
@@ -92,23 +80,35 @@
                     </div>
 
                     <div class="flex flex-col col-md-12 mt1">
-                        <label class="form-group__label" for="">Esta aula é ativa em quais calendários?</label>
-                        <div class="flex flex-row flex-wrap">
-                            {{#each model.calendarios as |calendario|}}
-                                <ul>
-                                <li class="mr3">
-                                <div class="checkbox">
-                                    <input class="j-validate-aplicador-child checkbox__input" 
-                                    type="checkbox"
-                                    id="calendario_{{calendario.id}}"
-                                    onchange={{action (action "addCalendario" calendario.id) value='target.checked' }}>
-                                    <label class="checkbox__label" for="calendario_{{calendario.id}}">{{calendario.nome}}</label>
-                                </div>
+                        <label class="form-group__label" for="">Thumbnail</label>
+                        {{#if thumbnail}}
+                            <ul id="aulaCapa" class="list list--striped {{if thumbnail 'animated fadeInLeftShort faster'}}">
+                                <li>
+                                    <div class="flex flex-row items-center justify-between gap-sm">
+                                        <div class="flow-xxs flex flex-col">
+                                            <img src="{{model.newAula.thumbnail}}" alt="{{model.newAula.thumbnail}}">
+                                        </div>
+                                        <button class="btn btn--text color-error-40" type="button" {{action "removeThumbnail"}}>
+                                            <span class="btn__label">Remover</span>
+                                        </button>
+                                    </div>
                                 </li>
-                                </ul>
-                            {{/each}}
-                        </div>
-                        <div class="color-error-40" id="calendario-error"></div>
+                            </ul>
+                        {{else}}
+                            <label class="btn btn--add-turma {{unless thumbnail 'animated fadeInLeftShort faster'}}">
+                                <input style="display: none;"
+                                        accept="image/png,image/jpeg"
+                                        id="file-selector-thumb"
+                                        multiple="false"
+                                        name="file"
+                                        onchange={{action "uploadThumbnail"}}
+                                        type="file"
+                                        value="" />
+                                <span class="btn__icon icon-plus"></span>
+                                <span class="btn__label">Buscar Capa</span>
+                            </label>
+                        {{/if}}
+                        <div class="color-error-40" id="thumb-error"></div>
                     </div>
                     
                     <div class="flex flex-col col-md-12 mt1">

@@ -23,7 +23,7 @@
                                     <img src="/assets/img/certificado/certificado-eja_05.png" alt="">
                                 </div>
                                 <div class="area-certificado__infos--texto">
-                                    <p>Declaramos que o(a) aluno(a) <b>{{certificado.pessoa}}</b> cumpriu com a carga horária de <b>40h</b>
+                                    <p>Declaramos que o(a) aluno(a) <b>{{certificado.pessoa}}</b> cumpriu com a carga horária de <b>{{certificado.horas}}h</b>
                                     , correpondente ao percurso <b>{{certificado.segmento}} - {{certificado.plataformaAno}}</b>.</p>
                                 </div>
                                 <div class="area-certificado__infos--data">São Paulo, {{dateFormat certificado.dataEmissao}}.</div>
@@ -65,7 +65,7 @@
                             <div class="certificado__percurso">
                                 <h3>Certificado de conclusão do 1º Módulo formativo do <b style="text-transform: capitalize;">{{certificado.segmento}} - {{certificado.plataformaAno}}</b></h3>
                             </div>
-                            <span class="certificado__carga-horaria">Carga horária de <strong>  40h</strong></span>
+                            <span class="certificado__carga-horaria">Carga horária de <strong>{{certificado.horas}}h</strong></span>
                         </div>
                         <div class="certificado__nome">
                             <h3>{{certificado.pessoa}}</h3>

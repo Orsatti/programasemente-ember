@@ -7,4 +7,5 @@ export default DS.Model.extend({
     plataformaAno: DS.attr(),
     segmento: DS.attr(),
     sistema: DS.attr(),
+    horas: DS.attr(),
 });

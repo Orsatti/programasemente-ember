@@ -14,7 +14,6 @@ livros = livros
     <span class="btn__label">Voltar</span>
   </button>
 
-
   <section class="l-dots-between l-dots-between--is-flipped">
     <header class="l-dots-between__side">
       <div class="flow-xl">
@@ -108,19 +107,6 @@ livros = livros
               {{/each}}
             </ul>
             {{/if}}
-
-            {{!-- {{#unless newAnotacao}}
-            <button class="btn btn--ghost btn--xxs" id="header-indicadores" {{action "toggleCreateAnotacao" }}>
-              <span class="btn__label">Nova anotação</span>
-            </button>
-            {{else}}
-            <div class="flow-lg">
-              <textarea class="w100" autofocus id="nova-anotacao" required rows="5" wrap></textarea>
-              <button class="btn btn--ghost btn--xxs" id="header-indicadores" {{action "createAnotacao" }}>
-                <span class="btn__label">Adicionar anotação</span>
-              </button>
-            </div>
-            {{/unless}} --}}
           </div>
         </section>
       </div>
@@ -131,16 +117,6 @@ livros = livros
         <h1 class="title-1">{{aula.titulo}}</h1>
         <span class="fs--md fs-i color-gray-50 m-left--sm">{{aula.plataformaAno.segmento.titulo}} |
           {{aula.plataformaAno.name}}</span>
-        {{!--
-        <button class="btn btn--text">Escolher outra aula</button>
-        <select name="aulas" id="aulas" onchange={{action "refreshSelectedAula" value="target.value" }}>
-          {{#each todasAulas as |a|}}
-          <option value="{{a.id}}" selected={{if (equalstr aula.id a.id) "selected" }}>{{a.plataformaAno.name}} |
-            {{a.titulo}}</option>
-          {{/each}}
-        </select>
-        --}}
-
       </header>
       <section>
         <h2 class="sr-only">Informações da aula</h2>
@@ -162,18 +138,6 @@ livros = livros
           {{/if}}
 
           {{#if (equalstr role "instrutor")}}
-          {{!-- Comentado enquanto não recebemos as informações do Bucci --}}
-          {{!-- <li>
-            <div class="flex flex-row items-center">
-              <span class="flex flex-row items-center">
-                {{icon-prevista-para}}
-                <span class="m-left--xs">Mês limite sugerido para aplicação:</span>
-                <span class="m-left--xs fw--5">
-                  {{aula.mesFimPrevistoFormat}}
-                </span>
-              </span>
-            </div>
-          </li> --}}
           <li id="aplicacaoAula">
             {{content-aplicacao pessoa=pessoa aula=aula turmas=plataformaTurmas TurmasAplicadas=TurmasAplicadas
             UltimaAplicacao=UltimaAplicacao}}
@@ -181,6 +145,7 @@ livros = livros
           {{/if}}
         </ul>
       </section>
+
       <section>
         <h2 class="title-2 m-bottom--xxs hide-on--sm">Contéudos</h2>
         <ul class="tabs">
@@ -209,7 +174,6 @@ livros = livros
         </ul>
       </section>
 
-
       {{#if (or (and (equalstr selectedAgrupamento "Básico") (equalstr conteudos.length '0')) (and (equalstr
       selectedAgrupamento "Complementar") (equalstr conteudos.length '0')))}}
       <div class="empty animated fadeIn">
@@ -221,7 +185,6 @@ livros = livros
       {{/if}}
 
       <ul class="list list--striped">
-
         {{#each conteudos as |conteudo|}}
         <li>
           {{content-conteudo-card conteudo=conteudo
@@ -241,7 +204,6 @@ livros = livros
 
       </ul>
 
-      {{!-- Sugestões para aulas --}}
       {{#if (equalstr role 'instrutor')}}
       <aside class="suggestions">
 
@@ -272,7 +234,6 @@ livros = livros
           </div>
         </div>
 
-
         <div class="suggestions__sent" id="suggestionSent">
           <button class="btn-close">
             <span class="btn__label icon icon-x"></span>
@@ -280,53 +241,42 @@ livros = livros
           <span class="icon icon-check icon--xxl color-success-40"></span>
           <p class="fs--lg">Obrigado por sua sugestão!</p>
         </div>
-
       </aside>
       {{/if}}
-
-
-
     </section>
-
   </section>
-
 </div>
 
-
-
-
-<!-- Modal de visualizar o conteudo -->
-  <aside id="content-modal" class="modal modal--is-content animated fadeIn faster">
-    <button class="modal__close btn-close icon-x" type="button" {{action "closeConteudoModal" }}></button>
-    <div class="modal__content">
-      <div class="modal__body">
-        {{#if selectedConteudo}}
-        <div class="flow-sm" id="vimeoVideo">
-          {{plataforma-conteudo-video-player conteudo=selectedConteudo controller=this aula=aula pessoa=pessoa stopVideo=stopVideo endVideo=endVideo tarefa=tarefa}}
-          <p class="ta-c title-4 color-gray-20">{{selectedConteudo.titulo}}</p>
-        </div>
-        {{/if}}
+<aside id="content-modal" class="modal modal--is-content animated fadeIn faster">
+  <button class="modal__close btn-close icon-x" type="button" {{action "closeConteudoModal" }}></button>
+  <div class="modal__content">
+    <div class="modal__body">
+      {{#if selectedConteudo}}
+      <div class="flow-sm" id="vimeoVideo">
+        {{plataforma-conteudo-video-player conteudo=selectedConteudo controller=this aula=aula pessoa=pessoa stopVideo=stopVideo endVideo=endVideo tarefa=tarefa}}
+        <p class="ta-c title-4 color-gray-20">{{selectedConteudo.titulo}}</p>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="modal__overlayer">       
+  </div>
+  {{#if endVideo}}
+    <div class="modal__content--banner-final"> 
+    <div class="transition__whatnext animated fadeIn d1250">
+        <h1 class="transition__title animated fadeIn d500"><span>Parabéns!</span> Você finalizou esta aula.</h1>
+      <h2 class="transition__subtitle">O que deseja fazer agora?</h2>
+      <div class="transition__cta-group">
+        <button class="transition__cta btn btn--md animated fadeIn d2250" {{action "voltar" }}>
+          <span class="hide-on--xs">Voltar à página de aulas</span></button>
+        <button class="transition__cta btn btn--md btn--ghost animated fadeIn d1750" {{action "closeConteudoModal" }}>
+          Sair do video
+        </button>	
       </div>
     </div>
-    <div class="modal__overlayer">       
     </div>
-    {{#if endVideo}}
-      <div class="modal__content--banner-final"> 
-      <div class="transition__whatnext animated fadeIn d1250">
-          <h1 class="transition__title animated fadeIn d500"><span>Parabéns!</span> Você finalizou esta aula.</h1>
-        <h2 class="transition__subtitle">O que deseja fazer agora?</h2>
-        <div class="transition__cta-group">
-          <button class="transition__cta btn btn--md animated fadeIn d2250" {{action "voltar" }}>
-            <span class="hide-on--xs">Voltar à página de aulas</span></button>
-          <button class="transition__cta btn btn--md btn--ghost animated fadeIn d1750" {{action "closeConteudoModal" }}>
-            Sair do video
-          </button>	
-        </div>
-      </div>
-      </div>
-    {{/if}}
-  </aside>
-
+  {{/if}}
+</aside>
 
 <aside id="content-modal-ead" class="modal modal--is-content animated fadeIn faster">
   <button class="modal__close btn-close icon-x" type="button" {{action "closeConteudoModalEad" }}></button>

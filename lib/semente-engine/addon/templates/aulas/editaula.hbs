@@ -1,0 +1,15 @@
+<aside id="new_aula_modal" class="modal modal--is-show">
+    <div class="modal__overlayer"></div>
+    <div class="modal__content m-top--md">
+        <header class="modal__header">
+            {{#link-to 'aulas.index'}}
+                <button class="modal__close btn-close icon-x"></button>
+            {{/link-to}}
+            <h3 class="modal__title">Edição da aula <b class='color-green-40'>{{model.aula.titulo}}</b></h3>
+        </header>
+
+        <div class="modal__body" style="max-height: 75vh;">
+            {{aula-form aula=model.aula calendarios=model.calendarios competencias=model.competencias action=(action 'save')}}
+        </div>
+    </div>
+</aside>

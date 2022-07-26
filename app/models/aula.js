@@ -40,4 +40,5 @@ export default DS.Model.extend({
     tarefas: DS.hasMany('tarefa', { async: true }),
     avaliacoes: DS.hasMany('avaliacao', { async: true }),
     anotacoes: DS.hasMany('anotacao', { async: true }),
+    calendarios: DS.hasMany('calendario', { async: true }),
 });

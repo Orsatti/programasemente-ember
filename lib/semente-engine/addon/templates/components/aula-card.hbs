@@ -3,7 +3,6 @@
     <picture class="media__picture">
       <img class="media__thumb" id="thumbnail-aula-card{{aula.id}}" src="{{aula.thumbnail}}" alt="{{aula.titulo}}"/>
     </picture>
-    {{aulaThumb}}
     <div class="media__body flow-md self-stretch">
       <div class="flow-xxs">
         {{#if aula.unidade}}
@@ -12,6 +11,11 @@
           </span>
         {{/if}}
         <span class="media__title title-2">{{aula.titulo}}</span>
+        {{#if (equalstr pessoa.role 'admin')}}
+          {{#link-to 'aulas.editaula' aula.id class="btn btn--ghost btn--xxs"}}
+            <span class="btn__label">Editar</span>
+          {{/link-to}}
+        {{/if}}
       </div>
       {{#if aula.descricao}}
         <span>{{aula.descricao}}</span>

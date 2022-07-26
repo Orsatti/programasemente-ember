@@ -11,6 +11,11 @@
           </span>
         {{/if}}
         <span class="media__title title-2">{{aula.titulo}}</span>
+        {{#if (equalstr pessoa.role 'admin')}}
+          {{#link-to 'aulas.editaula' aula.id class="btn btn--ghost btn--xxs"}}
+            <span class="btn__label">Editar</span>
+          {{/link-to}}
+        {{/if}}
       </div>
       {{#if aula.descricao}}
         <span>{{aula.descricao}}</span>

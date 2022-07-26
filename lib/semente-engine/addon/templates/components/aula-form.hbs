@@ -1,0 +1,131 @@
+<form {{action 'submit' on='submit' }}>
+    <div class="flow-lg institutions__step-content institutions__step-content--is-show">
+        <section class="sections__subsection">
+            <div style="display: none;">{{startInformation}}</div>
+            <div class="flex flex-row mt2">
+                <div class="flex flex-col col-md-6">
+                    <label class="form-group__label" for="">Titulo da aula</label>
+                    {{input class="form-group__input" id="tituloAula" maxlength=50 value=new_aula_titulo}}
+                    <div class="color-error-40" id="titulo-error"></div>
+                </div>
+
+                <div class="flex flex-col col-md-6">
+                    <label class="form-group__label" for="">Esta aula é ativa em quais calendários?</label>
+                    <div class="flex flex-row flex-wrap">
+                        {{#each calendarios as |calendario|}}
+                            <ul>
+                            <li class="mr3">
+                            <div class="checkbox">
+                                <input class="j-validate-aplicador-child checkbox__input" 
+                                type="checkbox"
+                                id="calendario_{{calendario.id}}"
+                                onchange={{action (action "addCalendario" calendario.id) value='target.checked' }}>
+                                <label class="checkbox__label" for="calendario_{{calendario.id}}">{{calendario.nome}}</label>
+                            </div>
+                            </li>
+                            </ul>
+                        {{/each}}
+                    </div>
+                    <div class="color-error-40" id="calendario-error"></div>
+                </div>
+            </div>
+
+            <div class="flex flex-col col-md-12 mt1">
+                <label class="form-group__label" for="">Descrição</label>
+                {{input class="form-group__input" id="descricaoAula" maxlength=350 value=new_aula_descricao}}
+                <div class="color-error-40" id="descricao-error"></div>
+            </div>
+
+            <div class="flex flex-row mt2">
+                <div class="flex flex-col col-md-6">
+                    <div class="form-group w100">
+                        <label class="form-group__label" for="new_aula_startdate">Data Início</label>
+                        <input class="form-group__input j-validate-aluno" id="stardate" maxlength="10"
+                            name="date" onkeyup="var v = this.value;
+                        if (v.match(/^\d{2}$/) !== null) {
+                            this.value = v + '/';
+                        } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+                            this.value = v + '/';
+                        }" type="date"
+                        data-type="text" value={{new_aula_startdate}} data-context="dataInicioPrevista">
+                    </div>
+                    <div class="color-error-40" id="stardate-error"></div>
+                </div>
+
+                <div class="flex flex-col col-md-6">
+                    <div class="form-group w100">
+                        <label class="form-group__label" for="new_aula_enddate">Data Fim</label>
+                        <input class="form-group__input j-validate-aluno" id="enddate" maxlength="10"
+                            name="date" onkeyup="var v = this.value;
+                        if (v.match(/^\d{2}$/) !== null) {
+                            this.value = v + '/';
+                        } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+                            this.value = v + '/';
+                        }" type="date" 
+                        data-type="text" value={{new_aula_enddate}} data-context="dataFimPrevista">
+                    </div>
+                    <div class="color-error-40" id="enddate-error"></div>
+                </div>
+            </div>
+
+            <div class="flex flex-col col-md-12 mt1">
+                <label class="form-group__label" for="">Thumbnail</label>
+                {{#if thumbnail}}
+                    <ul id="aulaCapa" class="list list--striped {{if thumbnail 'animated fadeInLeftShort faster'}}">
+                        <li>
+                            <div class="flex flex-row items-center justify-between gap-sm">
+                                <div class="flow-xxs flex flex-col">
+                                    <img src="{{aula.thumbnail}}" alt="{{aula.thumbnail}}">
+                                </div>
+                                <button class="btn btn--text color-error-40" type="button" {{action "removeThumbnail"}}>
+                                    <span class="btn__label">Remover</span>
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                {{else}}
+                    <label class="btn btn--add-turma {{unless thumbnail 'animated fadeInLeftShort faster'}}">
+                        <input style="display: none;"
+                                accept="image/png,image/jpeg"
+                                id="file-selector-thumb"
+                                multiple="false"
+                                name="file"
+                                onchange={{action "uploadThumbnail"}}
+                                type="file"
+                                value="" />
+                        <span class="btn__icon icon-plus"></span>
+                        <span class="btn__label">Buscar Capa</span>
+                    </label>
+                {{/if}}
+                <div class="color-error-40" id="thumb-error"></div>
+            </div>
+            
+            <div class="flex flex-col col-md-12 mt1">
+                <label class="form-group__label" for="">Competências</label>
+                <div class="flex flex-row flex-wrap">
+                    {{#each competencias as |competencia|}}
+                        <ul>
+                        <li class="mr3">
+                        <div class="checkbox">
+                            <input class="j-validate-aplicador-child checkbox__input" 
+                            type="checkbox"
+                            id="competencia_{{competencia.id}}"
+                            onchange={{action (action "addCompetencia" competencia.id) value='target.checked' }}>
+                            <label class="checkbox__label" for="competencia_{{competencia.id}}">{{competencia.name}}</label>
+                        </div>
+                        </li>
+                        </ul>
+                    {{/each}}
+                </div>
+                <div class="color-error-40" id="competencia-error"></div>
+            </div>
+        
+            <div class="flex flex-col justify-content-end mt2">
+                <div class="color-error-40" id="form-user-error"></div>
+                <button class="btn" type="submit">{{buttonLabel}}</button>
+            </div>
+
+            <div style="display: none;">{{afterRenderInformation}}</div>
+        </section>
+    </div>
+</form>

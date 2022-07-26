@@ -5,11 +5,11 @@
             {{#link-to 'aulas.index'}}
                 <button class="modal__close btn-close icon-x"></button>
             {{/link-to}}
-            <h3 class="modal__title">Nova aula</h3>
+            <h3 class="modal__title">Edição da aula <b class='color-green-40'>{{model.aula.titulo}}</b></h3>
         </header>
 
         <div class="modal__body" style="max-height: 75vh;">
-            {{aula-form aula=model.newAula calendarios=model.calendarios competencias=model.competencias action=(action 'create')}}
+            {{aula-form aula=model.aula calendarios=model.calendarios competencias=model.competencias action=(action 'save')}}
         </div>
     </div>
 </aside>

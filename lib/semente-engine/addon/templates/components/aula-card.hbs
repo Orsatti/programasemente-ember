@@ -1,14 +1,15 @@
+
 {{#if (or (equalstr situacao selectedSituacao) (equalstr selectedSituacao ""))}}
-  <div class="media {{if (not aula.hasContent) 'media--card media--card--is-disabled' 'media--card'}}">
-    <picture class="media__picture">
-      <img class="media__thumb" id="thumbnail-aula-card{{aula.id}}" src="{{aula.thumbnail}}" alt="{{aula.titulo}}"/>
-    </picture>
-    <div class="media__body flow-md self-stretch">
+<div class="media {{if (not aula.hasContent) 'media--card media--card--is-disabled' 'media--card media--card--fundo'}}">
+  <div class="degrade"></div>
+  <img id="thumbnail-aula-card{{aula.id}}" src="{{aula.thumbnail}}" alt="{{aula.titulo}}"/>
+  <div class="media__body flow-md self-stretch">
+    <div class="titulo-aula">
       <div class="flow-xxs">
         {{#if aula.unidade}}
-          <span class="title-aux">
-            {{aula.unidade.titulo}}
-          </span>
+        <span class="title-aux">
+          {{aula.unidade.titulo}}
+        </span>
         {{/if}}
         <span class="media__title title-2">{{aula.titulo}}</span>
         {{#if (equalstr pessoa.role 'admin')}}
@@ -17,43 +18,34 @@
           {{/link-to}}
         {{/if}}
       </div>
-      {{#if aula.descricao}}
-        <span>{{aula.descricao}}</span>
-      {{/if}}
-
-      <span class="flex flex-row items-center m-bottom--md">
-        <svg xmlns="http://www.w3.org/2000/svg"
-            class="stroke-green-20 m-right--xs"
-            fill="none"
-            height="24"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            width="24">
-          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-        </svg>
-        {{#if (equalstr situacao "Aplicada")}}
-          <span>Aplicada em: <span class="fw--4">{{UltimaAplicacao.dataAplicacaoFormatShort}}</span></span>
-        {{else}}
-          <span>{{situacao}}</span>
-        {{/if}}
-      </span>
-
-      {{#if (not aula.hasContent)}}
-        <div class="btn btn--disabled btn--ghost btn--xxs">
-          <span class="icon-lock m-right--xs"></span>
-          <span>Ainda não há materiais</span>
-        </div>
-      {{else}}
-        {{#link-to 'aulas.content' aula.id class="btn btn--ghost btn--xxs"}}
-          <span class="btn__label">Ver materiais</span>
-        {{/link-to}}
-      {{/if}}
-
+    </div>
+    <div class="descricao-aula">
+      <p class="media__title--nova-descricao-aula">{{aula.descricao}}</p>
     </div>
 
+    <div class="habilidades">
+      {{#each aula.comps as |competencia|}}
+        <span class="habilidades etiquetas">{{competencia.sigla}}</span>
+      {{/each}}
+    </div>
+    {{#if (equalstr situacao "Aplicada")}}
+      <span class="descricao-aula">Aplicada em: <span class="fw--4">{{UltimaAplicacao.dataAplicacaoFormatShort}}</span></span>
+    {{else}}
+      <span class="descricao-aula">{{situacao}}</span>
+    {{/if}} 
+    <div class="btn-materiais-aula">
+      {{#if (not aula.hasContent)}}
+      <div class="btn btn--disabled btn--ghost btn--xxs novo-btn-materiais-aula">
+        <span class="icon-lock m-right--xs"></span>
+        <span>Ainda não há materiais</span>
+      </div>
+      {{else}}
+      {{#link-to 'aulas.content' aula.id class="btn-materiais-aula-box"}}
+        <h2 class="btn-materiais-aula-text">Ver materiais</h2>
+      {{/link-to}}
+      {{/if}}
+    </div>
   </div>
+
+</div>
 {{/if}}

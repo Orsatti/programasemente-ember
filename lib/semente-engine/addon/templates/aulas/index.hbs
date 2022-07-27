@@ -40,17 +40,6 @@
     <aside class="l-dots-between__side">
       <h1 class="sr-only">Filtros de conteúdos</h1>
       <form autocomplete="off" class="flex flex-col flow-md">
-        <!--
-          ==============
-          Exemplo de botão para tela de acompanhamento, não ficará aqui no hbs de aulas
-          ==============
-        -->
-        {{!-- <button class="btn btn--ghost">Download como Excel</button> --}}
-        <!--
-          ==============
-          Fim do exemplo
-          ==============
-        -->
         {{#unless (equalstr pessoa.role 'aluno')}}
           <div class="two-col-wrap">
             {{#each selectedSegmento.plataformaAnos as |plat_ano|}}
@@ -63,8 +52,28 @@
 
         <div class="form-group">
           <label class="form-group__label">Busca</label>
-          <div class="form-group__wrapper form-group__wrapper--search">
-            {{input class="form-group__input" type="text" id="aulapesquisa" value=search}}
+          <div class="form-group__wrapper form-group__wrapper--select">
+            <select class="form-group__input" id="busca">
+             <!-- onchange={{action 'refreshSelectedBusca' value='target.value'}}> -->
+              <option selected="selected">Buscar por competências</option>
+              <option value="Foco">Foco</option>
+              <option value="Orgsnização">Orgsnização</option>
+              <option value="Determinação">Determinação</option>
+              <option value="Persistência">Persistência</option>
+              <option value="Responsabilidade">Responsabilidade</option>
+              <option value="Curiosidade">Curiosidade</option>
+              <option value="Imaginação criativa">Imaginação criativa</option>
+              <option value="Sensibilidade estética">Sensibilidade estética</option>
+              <option value="Modulação do medo">Modulação do medo</option>
+              <option value="Modulação da raiva">Modulação da raiva</option>
+              <option value="Modulação da tristeza">Modulação da tristeza</option>
+              <option value="Iniciativa social">Iniciativa social</option>
+              <option value="Assertividade">Assertividade</option>
+              <option value="Entusiasmo">Entusiasmo</option>
+              <option value="Empatia">Empatia</option>
+              <option value="Respeito">Respeito</option>
+              <option value="Confiança">Confiança</option>
+            </select>
           </div>
           <a class="form__aux-link" onclick={{action 'eraseText'}}>Limpar busca</a>
         </div>
@@ -101,19 +110,27 @@
           <h2 class="title-4">{{selectedAno.name}}<span class="fs--xs fw--3 fs-i color-blue-navy-20"> ({{aulasFiltradas.length}}  {{if isBloco 'blocos' 'aulas'}})</span></h2>
         </div>
       </hgroup>
-      <ul id="card-list-{{pessoaId}}" class="l-card-list animated slow {{if noCards 'd--none'}}">
+
+      <ul id="card-list-{{pessoaId}}" class="m-card-list animated slow {{if noCards 'd--none'}}">
         {{#each aulasFiltradas as |aulaFiltrada|}}
           <li>
             {{aula-card aula=aulaFiltrada selectedAno=selectedAno pessoa=pessoa selectedSituacao=selectedSituacao}}
           </li>
         {{/each}}
-
       </ul>
+<<<<<<< HEAD
+=======
+
+>>>>>>> novos-cards-aulas
       <div class="certificado__eja">
         {{#if certificado}}
           {{#link-to 'aulas.certificado' platanoId class="class-list__class_cta btn trail__certificate-btn class__cta btn btn--sm btn-certificado"}}Ver seu certificado{{/link-to}}
         {{/if}}
       </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> novos-cards-aulas
       {{#if noCards}}
         <div class="empty animated fadeIn">
           <div class="animated d250 fadeInUpShort faster flex-1 ta-c">
@@ -135,7 +152,6 @@
         </div>
       {{/if}}
     </section>
-
   </div>
 </section>
 {{outlet}}
@@ -171,4 +187,4 @@
 
 {{termoAceito}}
 {{ejaAcessoMedio}}
-{{isProfAplicador}}-->
+{{isProfAplicador}}

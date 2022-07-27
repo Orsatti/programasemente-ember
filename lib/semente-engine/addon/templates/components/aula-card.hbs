@@ -2,22 +2,27 @@
 {{#if (or (equalstr situacao selectedSituacao) (equalstr selectedSituacao ""))}}
 <div class="media {{if (not aula.hasContent) 'media--card media--card--is-disabled' 'media--card media--card--fundo'}}">
   <div class="degrade"></div>
-  <img id="thumbnail-aula-card{{aula.id}}" src="{{aula.thumbnail}}" alt="{{aula.titulo}}"/>
+  <img class="" id="thumbnail-aula-card{{aula.id}}" src="{{aula.thumbnail}}" alt="{{aula.titulo}}"/>
   <div class="media__body flow-md self-stretch">
-    <div class="titulo-aula">
-      <div class="flow-xxs">
-        {{#if aula.unidade}}
-        <span class="title-aux">
-          {{aula.unidade.titulo}}
-        </span>
-        {{/if}}
-        <span class="media__title title-2">{{aula.titulo}}</span>
-        {{#if (equalstr pessoa.role 'admin')}}
+    <div class="flex flex-row justify-between">
+      <div class="titulo-aula">
+        <div class="flow-xxs">
+          {{#if aula.unidade}}
+          <span class="title-aux">
+            {{aula.unidade.titulo}}
+          </span>
+          {{else}}
+          <span class="media__title title-2">{{aula.titulo}}</span>
+          {{/if}}
+        </div>
+      </div>
+      {{#if (equalstr pessoa.role 'admin')}}
+        <div style="z-index: 11;">
           {{#link-to 'aulas.editaula' aula.id class="btn btn--ghost btn--xxs"}}
             <span class="btn__label">Editar</span>
           {{/link-to}}
-        {{/if}}
-      </div>
+        </div>
+      {{/if}}
     </div>
     <div class="descricao-aula">
       <p class="media__title--nova-descricao-aula">{{aula.descricao}}</p>

@@ -98,7 +98,7 @@
     width: 100%;
 
     &:focus-within {
-      outline: $focus-line-width solid $focus-line-color;
+    //  outline: $focus-line-width solid $focus-line-color;
     }
 
     &--is-disabled {
@@ -113,7 +113,7 @@
       //background-image: url(../assets/img/Fund1-1Ano/FUND1-1ANO_Page_01.jpg);
       background-size: 100%;
       background-repeat: no-repeat;
-      border-radius: 4px;
+      border-radius: 1rem;
       box-shadow: 5px 10px 5px rgb(8 12 10 / 30%);
       position: relative;
       //height: 16rem;
@@ -168,7 +168,7 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  border-radius: 4px;
+  border-radius: 1rem;
 }
 
 .titulo-aula,
@@ -197,6 +197,7 @@
     height: 0%;
     opacity: 0;
     transition: height .35s ease;
+    border-radius: 1rem;
     
     &::after{
       height: 100%;

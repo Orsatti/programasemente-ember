@@ -1,0 +1,15 @@
+<aside id="new_marketing_modal" class="modal modal--is-show">
+    <div class="modal__overlayer"></div>
+    <div class="modal__content m-top--md">
+        <header class="modal__header">
+            {{#link-to 'marketing.areas.index' model.pasta.id}}
+                <button class="modal__close btn-close icon-x"></button>
+            {{/link-to}}
+            <h3 class="modal__title">Cadastro de item de marketing</h3>
+        </header>
+
+        <div class="modal__body" style="max-height: 75vh;">
+            {{marketing-cadastro-edicao model=model.newMarketing pasta=model.pasta areas=model.areas transitTo=(action 'transitToArea')}}
+        </div>
+    </div>
+</aside>

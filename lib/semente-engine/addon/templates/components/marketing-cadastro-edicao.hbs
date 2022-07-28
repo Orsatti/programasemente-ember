@@ -1,94 +1,62 @@
-{{#link-to 'marketing.index' class="btn btn--link color-blue-navy-60"}}
-    <span class="btn__icon icon-chevron-left"></span>
-    <span class="btn__label">Voltar</span>
-{{/link-to}}
-
-<h1 class="title-1">{{if editando 'Edição de item de Marketing' 'Cadastro de item de Marketing'}}</h1>
-<div class="flow-xxl">
-    <div class="row">
-        <div class="col-xs-12 col-md-6">
-
-            <div class="flow-xxl">
-
-                <div class="flex flex-col flow-md form-group__container">
-                    <h2 class="title-3">Informações</h2>
-                    <div class="form-group__container">
-                        <div class="form-group w100">
-                            <label class="form-group__label">Áreas</label>
-                            <div class="form-group__wrapper form-group__wrapper--select">
-                                <select class="form-group__input form-group__input--select j-validate" name="area" id="area{{model.id}}" onchange={{action 'refreshSelectedArea' value='target.value'}}>
-                                    <option value="" selected="selected">---</option>
-                                    {{#each areas as |area|}}
-                                        <option value="{{area.id}}" selected={{if (equalstr area.id model.area.id) "selected"}}>{{area.name}}</option>
-                                    {{/each}}
-                                </select>
-                            </div>
-                        </div>
-                        <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite">Este campo é obrigatório</span>
-                    </div>
-                    <div class="form-group__container">
-                        <div class="form-group w100">
-                            <label class="form-group__label">Nome do item</label>
-                            {{input class="form-group__input j-validate" name='' value=model.titulo placeholder='Nome do item' key-down=(action 'removeErrorTag')}}
-                        </div>
-                        <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite">Este campo é obrigatório</span>
+<form {{action "saveItem" model on='submit' }}>
+    <div class="flow-lg institutions__step-content institutions__step-content--is-show">
+        <section class="sections__subsection">
+            <div class="flex flex-col m-top--sm">
+                <h4 class="modal__subtitle">Informações gerais</h4>
+                <div class="flex flex-row justify-between">
+                    <div class="flex flex-col w100 mt2">
+                        <label class="form-group__label">Titulo do item</label>
+                        {{input class="form-group__input j-validate w95" id='tituloItem' value=model.titulo}}
+                        <div class="color-error-40" id="titulo-error"></div>
                     </div>
 
-
-                    <div class="form-group">
-                        <label class="form-group__label">Descrição</label>
-                        {{textarea class="form-group__input" value=model.descricao placeholder='Descrição do item' rows="5"}}
+                    <div class="flex flex-col w100 mt2">
+                        <label class="form-group__label">Áreas</label>
+                        <div class="form-group__wrapper form-group__wrapper--select">
+                            <select class="form-group__input form-group__input--select j-validate w95" name="area" id="area">
+                                <option value="" selected="selected">---</option>
+                                {{#each areas as |area|}}
+                                    <option value="{{area.id}}" selected={{if (equalstr area.id model.area.id) "selected"}}>{{area.name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="color-error-40" id="area-error"></div>
                     </div>
                 </div>
-                <div class="flex flex-col flow-md {{if missingFile 'blink blink--fast'}} ">
-                    <div>
-                        <h2 class="title-3">Arquivos</h2>
-                        <p>Adicione os diferentes formatos de arquivo para este item.</p>
-                    </div>
+                <div class="flex flex-col mt2">
+                    <label class="form-group__label">Descrição</label>
+                    {{textarea class="form-group__input" value=model.descricao placeholder='Descrição do item' rows="5"}}
+                </div>
 
-                    {{#if model.arquivos}}
-                        <ul class="list list--striped">
-                            {{#each model.arquivos as |arquivoItem|}}
-                                <li>
-                                    <div class="flex flex-row items-center justify-between gap-sm">
-
-                                        <div class="flow-xxs flex flex-col">
-                                            <span class="title-3 tt-u">{{arquivoItem.tipo}}</span>
-                                            <span class="color-leaf-50">{{arquivoItem.name}}</span>
-                                        </div>
-                                        {{#if (containerUrl arquivoItem.url)}}
-                                            {{!-- <span class="avatar avatar--lg avatar--bordered avatar--square"> --}}
-                                            <a class="btn btn--link color-success-40" href={{arquivoItem.url}} target="_blank"> {{!-- rel="nofollow noopener noreferrer"> --}}
-                                                <span class="btn__label">Abrir arquivo</span>
-                                            </a>
-                                            {{!-- </span> --}}
-                                        {{/if}}
-                                        <button class="btn btn--text color-error-40" type="button" {{action "removeArquivo" arquivoItem}}>
-                                            <span class="btn__label">Remover</span>
-                                        </button>
-
+                <h4 class="modal__subtitle mt3">Arquivos</h4>
+                <p>Adicione os diferentes formatos de arquivo para este item.</p>
+                {{#if model.arquivos}}
+                    <ul class="list list--striped">
+                        {{#each model.arquivos as |arquivoItem|}}
+                            <li>
+                                <div class="flex flex-row items-center justify-between gap-sm">
+                                    <div class="flow-xxs flex flex-col">
+                                        <span class="title-3 tt-u">{{arquivoItem.tipo}}</span>
+                                        <span class="color-leaf-50">{{arquivoItem.name}}</span>
                                     </div>
-                                </li>
-                            {{/each}}
-                        </ul>
-                    {{/if}}
-                </div>
-
-                {{!-- {{#if capa}}
-                    <div class="flex flex-col flow-md">
-                        <h2 class="title-3">Capa</h2>
-                        {{model.capaName}}
-                        <img src="{{model.capa}}" alt="{{model.capaName}}" width="50%">
-                        <button type="button" class="btn" {{action "removePathCapa"}}>Remover</button>
-                    </div>
-                {{/if}} --}}
-
+                                    {{#if (containerUrl arquivoItem.url)}}
+                                        <a class="btn btn--link color-success-40" href={{arquivoItem.url}} target="_blank"> 
+                                            <span class="btn__label">Abrir arquivo</span>
+                                        </a>
+                                    {{/if}}
+                                    <button class="btn btn--text color-error-40" type="button" {{action "removeArquivo" arquivoItem}}>
+                                        <span class="btn__label">Remover</span>
+                                    </button>
+                                </div>
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
                 {{#if uploadingFile}}
                     <div class="flex justify-center" id="message-processing-capa">
                         <img style="width: 10%;" src="/assets/img/carregando.gif">
                     </div>
                 {{/if}}
-
                 <label class="btn btn--add-list-item" for="file-selector">
                     <input  style="display: none;"
                             accept=".png, .jpeg, .jpg, .pdf, .ai, .mp4, .mov, .avi, .pptx, .ppsx, .cdr, application/vnd.ms-powerpoint"
@@ -102,70 +70,58 @@
                     <span class="btn__icon icon-plus"></span>
                     <span class="btn__label">Adicionar Arquivo</span>
                 </label>
+                <div class="color-error-40" id="file-error"></div>
 
-
-                <div class="flex flex-col flow-md {{if missingCover 'blink blink--fast'}}">
-                    <div>
-                        <h2 class="title-3">Capa</h2>
-                        <p>Adicione uma capa para identificação do item de marketing.</p>
-                    </div>
-                    {{#if capa}}
-                        <ul class="list list--striped">
-                            <li>
-                                <div class="flex flex-row items-center justify-between gap-sm">
-                                    <div class="flow-xxs flex flex-col">
-                                        <img class="self-start" src="{{model.capa}}" alt="{{model.capaName}}">
-                                        <span class="color-leaf-50">{{model.capaName}}</span>
-                                    </div>
-                                    {{#if (containerUrl model.capa)}}
-                                        {{!-- <span class="avatar avatar--lg avatar--bordered avatar--square"> --}}
-                                        <a class="btn btn--link color-success-40" href={{model.capa}} target="_blank"> {{!-- rel="nofollow noopener noreferrer"> --}}
-                                            <span class="btn__label">Abrir arquivo</span>
-                                        </a>
-                                        {{!-- </span> --}}
-                                    {{/if}}
-                                    <button class="btn btn--text color-error-40" type="button" {{action "removePathCapa"}}>
-                                        <span class="btn__label">Remover</span>
-                                    </button>
+                <h4 class="modal__subtitle mt3">Capa</h4>
+                <p>Adicione uma capa para identificação do item de marketing.</p>
+                {{#if capa}}
+                    <ul class="list list--striped">
+                        <li>
+                            <div class="flex flex-row items-center justify-between gap-sm">
+                                <div class="flow-xxs flex flex-col">
+                                    <img class="self-start" src="{{model.capa}}" alt="{{model.capaName}}">
+                                    <span class="color-leaf-50">{{model.capaName}}</span>
                                 </div>
-                            </li>
-                        </ul>
-                    {{/if}}
-                    {{#if (not model.capa)}}
-                        {{#if showProcessing}}
-                            <div class="flex justify-center" id="message-processing-capa">
-                                <img style="width: 10%;" src="/assets/img/carregando.gif">
+                                {{#if (containerUrl model.capa)}}
+                                    <a class="btn btn--link color-success-40" href={{model.capa}} target="_blank">
+                                        <span class="btn__label">Abrir arquivo</span>
+                                    </a>
+                                {{/if}}
+                                <button class="btn btn--text color-error-40" type="button" {{action "removePathCapa"}}>
+                                    <span class="btn__label">Remover</span>
+                                </button>
                             </div>
-                        {{else}}
-                            <label class="btn btn--add-list-item">
-                                <input style="display: none;" multiple="false" id="file-selector-capa" name='file' type="file" value="" placeholder='Adicionar Capa' onchange={{action 'UploadCapa'}} accept="image/png,image/jpeg" />
-                                <span class="btn__icon icon-plus"></span>
-                                <span class="btn__label">Adicionar Capa</span>
-                            </label>
-                        {{/if}}
-                    {{/if}}
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="flex flex-row items-center">
-                    {{#if generalSaveLoader}}
-                        <img style="width: 5%;" class="m-right--xs" src="/assets/img/carregando.gif">
-                        <p>
-                            Carregando arquivo(s)... (Não feche esta janela)
-                        </p>
+                        </li>
+                    </ul>
+                {{/if}}
+                {{#if (not model.capa)}}
+                    {{#if showProcessing}}
+                        <div class="flex justify-center" id="message-processing-capa">
+                            <img style="width: 10%;" src="/assets/img/carregando.gif">
+                        </div>
                     {{else}}
-                        <button type="button" class="btn" {{action "saveItem" model}} >{{salvarbutton}}</button>
+                        <label class="btn btn--add-list-item">
+                            <input style="display: none;" multiple="false" id="file-selector-capa" name='file' type="file" value="" placeholder='Adicionar Capa' onchange={{action 'UploadCapa'}} accept="image/png,image/jpeg" />
+                            <span class="btn__icon icon-plus"></span>
+                            <span class="btn__label">Adicionar Capa</span>
+                        </label>
                     {{/if}}
-                   <div class="child-v--center flex-1">
-                        <p  class="alert alert--form alert--sm alert--error alert--has-icon animated d250 fadeIn {{if errorMsg 'alert--is-show'}} m-left--sm"
-                        id="error_form">{{errorMsg}}</p>
-                   </div>
+                {{/if}}
+                <div class="color-error-40" id="capa-error"></div>
             </div>
-        </div>
+
+            <div class="flex flex-col justify-content-end mt2">
+                {{#if generalSaveLoader}}
+                    <img style="width: 5%;" class="m-right--xs" src="/assets/img/carregando.gif">
+                    <p>Carregando arquivo(s)... (Não feche esta janela)</p>
+                {{else}}
+                    <button type="button" class="btn" type="submit">{{salvarbutton}}</button>
+                {{/if}}
+                <div class="child-v--center flex-1">
+                    <p class="alert alert--form alert--sm alert--error alert--has-icon animated d250 fadeIn 
+                    {{if errorMsg 'alert--is-show'}} m-left--sm" id="error_form">{{errorMsg}}</p>
+                </div>
+            </div>
+        </section>
     </div>
-</div>
+</form>

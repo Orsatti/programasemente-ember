@@ -1,0 +1,18 @@
+<aside id="new_marketing_modal" class="modal modal--is-show">
+    <div class="modal__overlayer"></div>
+    <div class="modal__content m-top--md">
+        <header class="modal__header">
+            {{#link-to 'marketing.areas.index' model.pasta.id}}
+                <button class="modal__close btn-close icon-x"></button>
+            {{/link-to}}
+            <h3 class="modal__title">Edição de item</h3>
+        </header>
+
+        <div class="modal__body" style="max-height: 75vh;">
+            {{marketing-cadastro-edicao model=model.marketing pasta=pasta areas=model.areas transitTo=(action 'transitToArea') editando=editando}}
+        </div>
+    </div>
+</aside>
+
+
+

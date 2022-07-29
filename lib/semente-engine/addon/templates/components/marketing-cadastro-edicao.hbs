@@ -1,19 +1,20 @@
 <form {{action "saveItem" model on='submit' }}>
     <div class="flow-lg institutions__step-content institutions__step-content--is-show">
         <section class="sections__subsection">
+            <div style="display: none;">{{startInformation}}</div>
             <div class="flex flex-col m-top--sm">
                 <h4 class="modal__subtitle">Informações gerais</h4>
                 <div class="flex flex-row justify-between">
                     <div class="flex flex-col w100 mt2">
                         <label class="form-group__label">Titulo do item</label>
-                        {{input class="form-group__input j-validate w95" id='tituloItem' value=model.titulo}}
+                        {{input class="form-group__input w95" id='new_item_titulo' maxlength=50 value=new_item_titulo}}
                         <div class="color-error-40" id="titulo-error"></div>
                     </div>
 
                     <div class="flex flex-col w100 mt2">
-                        <label class="form-group__label">Áreas</label>
+                        <label class="form-group__label" for="new_item_area">Áreas</label>
                         <div class="form-group__wrapper form-group__wrapper--select">
-                            <select class="form-group__input form-group__input--select j-validate w95" name="area" id="area">
+                            <select class="form-group__input form-group__input--select w95" name="area" id="new_item_area">
                                 <option value="" selected="selected">---</option>
                                 {{#each areas as |area|}}
                                     <option value="{{area.id}}" selected={{if (equalstr area.id model.area.id) "selected"}}>{{area.name}}</option>
@@ -25,7 +26,7 @@
                 </div>
                 <div class="flex flex-col mt2">
                     <label class="form-group__label">Descrição</label>
-                    {{textarea class="form-group__input" value=model.descricao placeholder='Descrição do item' rows="5"}}
+                    {{input class="form-group__input" maxlength=350 value=new_item_descricao}}
                 </div>
 
                 <h4 class="modal__subtitle mt3">Arquivos</h4>
@@ -122,6 +123,8 @@
                     {{if errorMsg 'alert--is-show'}} m-left--sm" id="error_form">{{errorMsg}}</p>
                 </div>
             </div>
+
+            <div style="display: none;">{{afterRenderInformation}}</div>
         </section>
     </div>
 </form>

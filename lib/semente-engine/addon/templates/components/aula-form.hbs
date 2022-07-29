@@ -84,7 +84,7 @@
                         </li>
                     </ul>
                 {{else}}
-                    <label class="btn btn--add-turma {{unless thumbnail 'animated fadeInLeftShort faster'}}">
+                    <label class="btn btn--add-turma add-capa {{unless thumbnail 'animated fadeInLeftShort faster'}}">
                         <input style="display: none;"
                                 accept="image/png,image/jpeg"
                                 id="file-selector-thumb"
@@ -102,10 +102,10 @@
             
             <div class="flex flex-col col-md-12 mt1">
                 <label class="form-group__label" for="">Competências</label>
-                <div class="flex flex-row flex-wrap">
+                <div class="flex flex-row flex-wrap novos-cards">
                     {{#each competencias as |competencia|}}
-                        <ul>
-                        <li class="mr3">
+                        <ul class="novos-cards__nova-aula">
+                        <li class="mr3 novos-cards__nova-aula--competencias">
                         <div class="checkbox">
                             <input class="j-validate-aplicador-child checkbox__input" 
                             type="checkbox"

@@ -98,6 +98,7 @@
   &__icon {
     font-weight: bold;
     opacity: .65;
+    margin-right: 0.5rem;
 
     &:first-child {
       margin-right: $distance--xs;
@@ -570,7 +571,13 @@
       border-color: transparent;
     }
 
+    &.add-capa
+      {
+        margin: 1rem 0;
+      }
   }
+
+ 
 
 }
 

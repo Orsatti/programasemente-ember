@@ -130,11 +130,6 @@
                 id="gen_masculino" value="masculino" name="genero" type="radio" onchange={{ action 'refreshGenero' }}>
               <label class="radio__label" for="gen_masculino">Masculino</label>
             </div>
-            {{!-- <div class="radio radio--sm">
-              <input class="radio__input" checked={{if (equalstr pessoa.genero "outro" ) "checked" }} id="gen_outro"
-                value="" name="genero" type="radio" onchange={{ action 'refreshGenero' }}>
-              <label class="radio__label" for="gen_outro">Prefiro não informar</label>
-            </div> --}}
           </div>
         </div>
       </form>
@@ -156,27 +151,39 @@
     <div class="col-xs-12">
       <section class="flow-sm">
         <header class="flex flex-row items-baseline">
-          <h3 class="title-3">Anos aplicados</h3>
+          <h3 class="title-3">Turmas aplicadas</h3>
         </header>
 
         <form class="flex flow-md" autocomplete="off">
-          {{#each segmentos as |seg| }}
-            <div class="col-xs-12 col-lg-2 flow-sm">
-              <h5 class="title-aux">{{seg.titulo}}</h5>
-              {{#each seg.plataformaAnos as |platAno|}}
-              <ul>
-                <li>
-                  <div class="checkbox">
-                    <input class="j-validate-aplicador-child checkbox__input" checked={{if (isinarray platAno
-                      pessoa.plataformaAnos) "checked" '' }} id="plat_ano{{platAno.id}}" onchange={{action
-                  (action "selectAno") }} type="checkbox">
-                    <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
-                  </div>
-                </li>
-              </ul>
-              {{/each}}
+           {{#each segmentos as |segmento| }}
+            <div class="col-md-2">
+                <h4 class="title-segmento">{{segmento.titulo}}</h4>
+                {{#each plataformaAnos as |plataformaAno|}}
+                {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
+                    <div class="flex-col">
+                    <h4 class="title-platano mt0"><b>·</b> {{plataformaAno.name}}</h4>
+                    <ul id="platTurmas-list-{{plataformaAno.id}}">
+                        {{#each plataformaTurmas as |plataformaTurma|}}
+                        {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
+                        <ul>
+                            <li>
+                            <div class="checkbox">
+                                <input class="j-validate-aplicador-child checkbox__input" 
+                                type="checkbox"
+                                id="plat_turma{{plataformaTurma.id}}"
+                                onchange={{action (action "addPAPT" plataformaTurma.id) value='target.checked' }}>
+                                <label class="checkbox__label" for="plat_turma{{plataformaTurma.id}}">{{plataformaTurma.name}}</label>
+                            </div>
+                            </li>
+                        </ul>
+                        {{/if}}
+                        {{/each}}
+                    </ul>
+                    </div>
+                {{/if}}
+                {{/each}}
             </div>
-          {{/each}}
+        {{/each}}
         </form>
 
       </section> 

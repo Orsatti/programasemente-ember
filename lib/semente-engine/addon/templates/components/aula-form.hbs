@@ -71,11 +71,11 @@
             <div class="flex flex-col col-md-12 mt1">
                 <label class="form-group__label" for="">Thumbnail</label>
                 {{#if thumbnail}}
-                    <ul id="aulaCapa" class="list list--striped {{if thumbnail 'animated fadeInLeftShort faster'}}">
+                    <ul id="aulaCapa" class=" {{if thumbnail 'animated fadeInLeftShort faster'}}">
                         <li>
-                            <div class="flex flex-row items-center justify-between gap-sm">
-                                <div class="flow-xxs flex flex-col">
-                                    <img src="{{aula.thumbnail}}" alt="{{aula.thumbnail}}">
+                            <div class="">
+                                <div class="">
+                                    <img class="aula-capa" src="{{aula.thumbnail}}" alt="{{aula.thumbnail}}">
                                 </div>
                                 <button class="btn btn--text color-error-40" type="button" {{action "removeThumbnail"}}>
                                     <span class="btn__label">Remover</span>

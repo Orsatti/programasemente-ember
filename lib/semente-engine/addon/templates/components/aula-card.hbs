@@ -8,7 +8,7 @@
       <div class="titulo-aula">
         <div class="flow-xxs">
           {{#if aula.unidade}}
-          <span class="title-aux">
+          <span class="media__title title-2">
             {{aula.unidade.titulo}}
           </span>
           {{else}}
@@ -17,7 +17,7 @@
         </div>
       </div>
       {{#if (equalstr pessoa.role 'admin')}}
-        <div style="z-index: 11;">
+        <div class="editar-aula">
           {{#link-to 'aulas.editaula' aula.id class="btn btn--ghost btn--xxs"}}
             <span class="btn__label">Editar</span>
           {{/link-to}}
@@ -45,8 +45,8 @@
         <span>Ainda não há materiais</span>
       </div>
       {{else}}
-      {{#link-to 'aulas.content' aula.id class="btn-materiais-aula-box"}}
-        <h2 class="btn-materiais-aula-text">Ver materiais</h2>
+      {{#link-to 'aulas.content' aula.id class="btn-right-bottom"}}
+        <h2 class="btn btn--xxs animated fadeInLeftShort faster d100">Ver materiais</h2>
       {{/link-to}}
       {{/if}}
     </div>

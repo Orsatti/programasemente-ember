@@ -2,8 +2,8 @@
 {{#if (or (equalstr situacao selectedSituacao) (equalstr selectedSituacao ""))}}
 <div class="media {{if (not aula.hasContent) 'media--card media--card--is-disabled' 'media--card media--card--fundo'}}">
   <div class="degrade"></div>
-  <img class="" id="thumbnail-aula-card{{aula.id}}" src="{{aula.thumbnail}}" alt="{{aula.titulo}}"/>
-  <div class="media__body flow-md self-stretch">
+  <img class="media--card--imagem-aula" id="thumbnail-aula-card{{aula.id}}" src="{{aula.thumbnail}}" alt="{{aula.titulo}}"/>
+  <div class="media__body flow-md self-stretch media--card--infos-card">
     <div class="flex flex-row justify-between">
       <div class="titulo-aula">
         <div class="flow-xxs">

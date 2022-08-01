@@ -1,17 +1,15 @@
 <main class="main certificado__print-canvas">
-    <div id="certificado" class="certificado certificado__print-cert">
+    <div id="certificado" class=" certificado__print-cert">
         <div class="area-certificado">
             <div class="area-certificado__infos">
-                <div class="area-certificado__infos--codigo">
-                    <p><b>{{codigo}}</b></p>
-                </div>
                 <div class="area-certificado__infos--logo">
                     <img src="/assets/img/certificado/certificado-eja_05.png" alt="">
                 </div>
                 <div class="area-certificado__infos--texto">
-                    <p>Declaramos que o(a) aluno(a) <b>{{pessoa.name}}</b> cumpriu com a carga horária de <b>40h</b>, correpondente ao percurso <b>{{percurso}}</b>.</p>
+                    <p>Declaramos que o(a) aluno(a) <b>{{certificado.pessoa}}</b> cumpriu com a carga horária de <b>{{certificado.horas}}h</b>
+                    , correpondente ao percurso <b>{{certificado.segmento}} - {{certificado.plataformaAno}}</b>.</p>
                 </div>
-                <div class="area-certificado__infos--data">São Paulo, {{dateFormat matricula.dataUltimoProgresso}}.</div>
+                <div class="area-certificado__infos--data">São Paulo, {{dateFormat certificado.dataEmissao}}.</div>
                 <div class="area-certificado__infos--assinatura">
                     <img src="/assets/img/certificado/certificado-eja_11.png" alt="">
                 </div>

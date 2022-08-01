@@ -39,16 +39,16 @@
                     {{/each}}
                 </div>
                 <div class="flex flex-row justify-content-between m-top--sm btn-right">
-                    {{#unless haveSegmentos}}
+                    {{!-- {{#unless haveSegmentos}}
                         {{#link-to 'gerdata.informations.deleteinst' instituicao.id}}
                             <button class="btn" style="background-color: #b62020; margin-right:1rem;">
                                 <span>Excluir</span>
                             </button>
                         {{/link-to}}
-                    {{/unless}}
+                    {{/unless}} --}}
                     <div class="flex flex-col justify-content-end">
                         <div class="color-error-40 " id="form-inst-error"></div>
-                        <button class="btn" type="submit">{{buttonLabel}}</button>
+                        <button class="btn" type="submit" id="btnSubmit">{{buttonLabel}}</button>
                     </div>
                 </div>
             </div>

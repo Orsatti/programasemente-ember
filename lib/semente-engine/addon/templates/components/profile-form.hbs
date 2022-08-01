@@ -127,33 +127,39 @@
 
 {{#if pessoa.isAplicador}}
 <section class="blink animated fadeIn fast flow-md">
-    <h4 class="title-4">Você aplica em quais séries?</h4>
+    <h4 class="title-4">Você aplica em quais turmas?</h4>
     <span id="error_aplicador" class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
     <div class="row">
 
-        {{#each segmentos as |seg| }}
-
-        <div class="col-xs-12 col-lg-2 flow-sm">
-            <h5 class="title-aux">{{seg.titulo}}</h5>
-            {{#each seg.plataformaAnos as |platAno|}}
-            {{#if (isinarray platAno pessoa.instituicao.plataformaAnos)}}
-            <ul>
-                <li>
-                    <div class="checkbox">
-                        <input class="j-validate-aplicador-child checkbox__input" checked={{if (isinarray platAno
-                            pessoa.plataformaAnos) "checked" '' }} id="plat_ano{{platAno.id}}" onchange={{action
-                            (action "selectAno" platAno) value='target.checked' }} type="checkbox">
-                        <label class="checkbox__label" for="plat_ano{{platAno.id}}">{{platAno.name}}</label>
+        {{#each segmentos as |segmento| }}
+            <div class="col-md-2">
+                <h4 class="title-segmento">{{segmento.titulo}}</h4>
+                {{#each plataformaAnos as |plataformaAno|}}
+                {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
+                    <div class="flex-col">
+                    <h4 class="title-platano mt0"><b>·</b> {{plataformaAno.name}}</h4>
+                    <ul id="platTurmas-list-{{plataformaAno.id}}">
+                        {{#each plataformaTurmas as |plataformaTurma|}}
+                        {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
+                        <ul>
+                            <li>
+                            <div class="checkbox">
+                                <input class="j-validate-aplicador-child checkbox__input" 
+                                type="checkbox"
+                                id="plat_turma{{plataformaTurma.id}}"
+                                onchange={{action (action "addPAPT" plataformaTurma.id) value='target.checked' }}>
+                                <label class="checkbox__label" for="plat_turma{{plataformaTurma.id}}">{{plataformaTurma.name}}</label>
+                            </div>
+                            </li>
+                        </ul>
+                        {{/if}}
+                        {{/each}}
+                    </ul>
                     </div>
-                </li>
-            </ul>
-            {{/if}}
-            {{/each}}
-
-        </div>
-
+                {{/if}}
+                {{/each}}
+            </div>
         {{/each}}
-
     </div>
 </section>
 {{/if}}

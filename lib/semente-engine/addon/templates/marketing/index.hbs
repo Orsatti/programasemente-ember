@@ -12,7 +12,7 @@
           </picture>
           <span class="media__body flex flex-row self-stretch">
             <span class="media__title title-3" id="pasta{{pasta.id}}">{{pasta.name}}</span>
-            <span id="icon-edit{{pasta.id}}" class="btn_icon_edit icon-edit" onclick={{action 'edit' pasta}} style="display: block;"></span>
+            <span id="icon-edit{{pasta.id}}" class="media__title--edit btn_icon_edit icon-edit" onclick={{action 'edit' pasta}} style="display: block;"></span>
             <div class="flex flex-col justify-around">
               <span id="icon-x{{pasta.id}}" class="btn_icon_edit icon-x" onclick={{action 'cancelEdit' pasta}} style="display: none;"></span>
               <span id="icon-save{{pasta.id}}" class="btn_icon_edit icon-save" onclick={{action 'saveEdit' pasta}} style="display: none;"></span>
@@ -25,7 +25,7 @@
     <li>
       <button class="media media--card p--lg" onclick={{action 'create'}}>
         <picture class="media__picture w-auto">
-          <span class="btn__icon icon-plus"></span>
+          <span class="btn__icon icon-plus media__picture--add"></span>
         </picture>
         <span class="media__body flow-md self-stretch">
           <span class="media__title title-3">Nova Pasta</span>

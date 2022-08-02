@@ -27,6 +27,10 @@
       width: 6rem;
     }
 
+    &--add{
+      line-height: 2;
+    }
+
   }
 
   &__thumb {
@@ -83,6 +87,10 @@
       color: #fff;
       z-index: 9;
     }
+
+    &--edit{
+      margin-top: 0.4rem
+    }
   }
 
   // Modifiers
@@ -131,7 +139,7 @@
 
     &--infos-card{
       justify-content: end;
-      margin-bottom: 1rem;
+      margin-bottom: 3rem;
     }
 
   }

@@ -20,14 +20,14 @@
   </div>
 {{else}}
   <div class="media media--middle">
-    <a class="global-nav__link" href="{{conteudo.arquivoUrl}}" target="_blank" rel="nofollow noopener noreferrer">
+    <a class="global-nav__link" href="{{conteudo.arquivoUrl}}" target="_blank" rel="nofollow noopener noreferrer" onclick={{action 'checkTarefa'}}>
       <picture class="media__picture" id="conteudo-{{conteudo.id}}" style="cursor: pointer;">
         <img class="media__thumb" id="file-{{conteudo.id}}" src={{thumbnail}} alt="{{conteudo.titulo}}">
       </picture>
     </a>
     <div class="media__body flow-md">
       <a class="media__title title-4" href="{{conteudo.arquivoUrl}}" target="_blank" rel="nofollow noopener noreferrer" 
-        id="conteudo-{{conteudo.id}}" style="cursor: pointer;">{{conteudo.titulo}}
+        id="conteudo-{{conteudo.id}}" style="cursor: pointer;" onclick={{action 'checkTarefa'}}>{{conteudo.titulo}}
       </a>
       {{#if haveDescription}}
         <span>{{conteudo.descricao}}</span>

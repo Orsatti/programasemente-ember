@@ -74,22 +74,19 @@
                     <div class="color-error-40" id="gender-error"></div>
                 </div>
 
-                {{#if (equalstr activeProfile "aluno")}}
-                    <div class="col-md-4 animated fadeInLeftShort faster d100">
-                        {{!-- {{validated-input label="Nascimento" propertyName="nascimentoPlataforma" changeset=changeset}} --}}
-                        <div class="form-group w100">
-                            <label class="form-group__label" for="new_user_birth">Nascimento</label>
-                            <input class="form-group__input j-validate-aluno" id="new_user_birth" maxlength="10"
-                                name="date" onkeyup="var v = this.value;
-                            if (v.match(/^\d{2}$/) !== null) {
-                                this.value = v + '/';
-                            } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-                                this.value = v + '/';
-                            }" type="date" value={{new_user_birth}} data-type="text" data-context="nascimento">
-                        </div>
-                        <div class="color-error-40" id="nascimento-error"></div>
+                <div class="col-md-4">
+                    <div class="form-group w100">
+                        <label class="form-group__label" for="new_user_birth">Nascimento</label>
+                        <input class="form-group__input j-validate-aluno" id="new_user_birth" maxlength="10"
+                            name="date" onkeyup="var v = this.value;
+                        if (v.match(/^\d{2}$/) !== null) {
+                            this.value = v + '/';
+                        } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+                            this.value = v + '/';
+                        }" type="date" value={{new_user_birth}} data-type="text" data-context="nascimento">
                     </div>
-                {{/if}}
+                    <div class="color-error-40" id="nascimento-error"></div>
+                </div>
             </div>
 
             <div class="flex flex-row mt3">

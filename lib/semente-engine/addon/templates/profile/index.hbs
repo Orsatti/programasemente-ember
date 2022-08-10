@@ -188,12 +188,16 @@
 
       </section> 
     </div>
+    <div style="display: none;">{{afterRenderInformation}}</div>
   {{/if}}
 
-  {{#if pessoa.hasDirtyAttributes}}
+  {{!-- {{#if pessoa.hasDirtyAttributes}}
     <button class="btn btn--ghost btn--xxs self-start" type="button" {{action 'saveChanges' }}>
       Salvar alterações
     </button>
-  {{/if}}
+  {{/if}} --}}
+  <div class="flex flex-col justify-content-end mt2">
+      <button class="btn" type="button" {{action 'saveChanges' }}>Salvar alterações</button>
+  </div>
 </div>
 <div style="display: none;">{{shouldReview}}</div>

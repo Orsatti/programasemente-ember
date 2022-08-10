@@ -7,13 +7,7 @@
     <div class="flex flex-row justify-between">
       <div class="titulo-aula">
         <div class="flow-xxs">
-          {{#if aula.unidade}}
-          <span class="media__title title-2">
-            {{aula.unidade.titulo}}
-          </span>
-          {{else}}
           <span class="media__title title-2">{{aula.titulo}}</span>
-          {{/if}}
         </div>
       </div>
       {{#if (equalstr pessoa.role 'admin')}}

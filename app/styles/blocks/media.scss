@@ -92,7 +92,7 @@
     }
 
     &--edit{
-      margin-top: 0.4rem
+      margin-top: 0.1rem
     }
   }
 
@@ -101,12 +101,42 @@
     align-items: center;
   }
 
+  &__botao-mkt{
+    padding: 1rem;
+    position: relative;
+    min-height: 6rem;
+
+
+    &--texto{
+      position: absolute;
+      width: 70%;
+      margin: 2rem 4.5rem 0;
+    }
+
+    &__picture{
+
+      &--add{
+        line-height: 1.5;
+      }
+    }
+  }
+
+  &__card--mkt {
+    border-radius: 4px;
+    box-shadow: $shadow-1, $shadow-3;
+    min-height: 100%;
+    padding: $distance--sm;
+    width: 22rem;
+    position: absolute;
+
+  }
+
   &--card {
     border-radius: 4px;
     box-shadow: $shadow-1, $shadow-3;
     min-height: 100%;
     padding: $distance--sm;
-    width: 100%;
+
 
     &:focus-within {
       outline: $focus-line-width solid $focus-line-color;

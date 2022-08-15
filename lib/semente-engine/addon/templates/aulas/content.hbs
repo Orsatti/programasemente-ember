@@ -189,7 +189,8 @@ livros = livros
         <li>
           {{content-conteudo-card conteudo=conteudo
           selectedAgrupamento=selectedAgrupamento
-          toggleModal=(action "toggleModal")}}
+          toggleModal=(action "toggleModal")
+          checkTarefa=(action "refreshTarefa")}}
         </li>
         {{/each}}
 

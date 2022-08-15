@@ -7,13 +7,7 @@
     <div class="flex flex-row justify-between">
       <div class="titulo-aula">
         <div class="flow-xxs">
-          {{#if aula.unidade}}
-          <span class="media__title title-2">
-            {{aula.unidade.titulo}}
-          </span>
-          {{else}}
           <span class="media__title title-2">{{aula.titulo}}</span>
-          {{/if}}
         </div>
       </div>
       {{#if (equalstr pessoa.role 'admin')}}
@@ -33,10 +27,12 @@
         <span class="habilidades etiquetas">{{competencia.sigla}}</span>
       {{/each}}
     </div>
-    {{#if (equalstr situacao "Aplicada")}}
-      <span class="descricao-aula">Aplicada em: <span class="fw--4">{{UltimaAplicacao.dataAplicacaoFormatShort}}</span></span>
-    {{else}}
-      <span class="descricao-aula">{{situacao}}</span>
+    {{#if (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'instrutor'))}}
+      {{#if (equalstr situacao "Aplicada")}}
+        <span class="descricao-aula">Aplicada em: <span class="fw--4">{{UltimaAplicacao.dataAplicacaoFormatShort}}</span></span>
+      {{else}}
+        <span class="descricao-aula">{{situacao}}</span>
+      {{/if}} 
     {{/if}} 
     <div class="btn-materiais-aula">
       {{#if (not aula.hasContent)}}

@@ -109,8 +109,10 @@
                         <div class="checkbox">
                             <input class="j-validate-aplicador-child checkbox__input" 
                             type="checkbox"
+                            name="competencia"
                             id="competencia_{{competencia.id}}"
-                            onchange={{action (action "addCompetencia" competencia.id) value='target.checked' }}>
+                            onchange={{action (action "addCompetencia" competencia.id) value='target.checked' }}
+                            >
                             <label class="checkbox__label" for="competencia_{{competencia.id}}">{{competencia.name}}</label>
                         </div>
                         </li>

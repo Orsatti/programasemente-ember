@@ -36,38 +36,6 @@
                 <div class="color-error-40" id="descricao-error"></div>
             </div>
 
-            {{!-- <div class="flex flex-row mt2">
-                <div class="flex flex-col col-md-6">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="new_aula_startdate">Data Início</label>
-                        <input class="form-group__input j-validate-aluno" id="stardate" maxlength="10"
-                            name="date" onkeyup="var v = this.value;
-                        if (v.match(/^\d{2}$/) !== null) {
-                            this.value = v + '/';
-                        } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-                            this.value = v + '/';
-                        }" type="date"
-                        data-type="text" value={{new_aula_startdate}} data-context="dataInicioPrevista">
-                    </div>
-                    <div class="color-error-40" id="stardate-error"></div>
-                </div>
-
-                <div class="flex flex-col col-md-6">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="new_aula_enddate">Data Fim</label>
-                        <input class="form-group__input j-validate-aluno" id="enddate" maxlength="10"
-                            name="date" onkeyup="var v = this.value;
-                        if (v.match(/^\d{2}$/) !== null) {
-                            this.value = v + '/';
-                        } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-                            this.value = v + '/';
-                        }" type="date" 
-                        data-type="text" value={{new_aula_enddate}} data-context="dataFimPrevista">
-                    </div>
-                    <div class="color-error-40" id="enddate-error"></div>
-                </div>
-            </div> --}}
-
             <div class="flex flex-col col-md-12 mt1">
                 <label class="form-group__label" for="">Thumbnail</label>
                 {{#if thumbnail}}
@@ -109,11 +77,9 @@
                         <div class="checkbox">
                             <input class="j-validate-aplicador-child checkbox__input" 
                             type="checkbox"
-                            name="competencia"
-                            id="competencia_{{competencia.id}}"
-                            onchange={{action (action "addCompetencia" competencia.id) value='target.checked' }}
-                            >
-                            <label class="checkbox__label" for="competencia_{{competencia.id}}">{{competencia.name}}</label>
+                            id="competencia{{competencia.id}}"
+                            onchange={{action (action "addCompetencia" competencia.id) value='target.checked'}}>
+                            <label class="checkbox__label" for="competencia{{competencia.id}}">{{competencia.name}}</label>
                         </div>
                         </li>
                         </ul>

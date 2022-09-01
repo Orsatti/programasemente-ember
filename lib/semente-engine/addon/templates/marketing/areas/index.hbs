@@ -22,16 +22,21 @@
 <section class="sections__section flow-xl mt2">
   <ul class="animated fadeInLeftShort faster d100 l-card-list">
     {{#each model.areas as |area idx|}}
-      <li>
-        <button class="media media--card p--lg" {{action "goToMarketings" area.id}}>
-          <picture class="media__picture w-auto">
-            <span class="media__thumb" title="{{area.name}}">{{component (strconcat "icon-" area.image) class="p--sm"}}</span>
-          </picture>
-          <span class="media__body flow-md self-stretch">
-            <span class="media__title title-3">{{area.name}}</span>
-          </span>
-        </button>
-      </li>
+      {{#if (and (equalstr model.pasta.idx '2') (or (or (or (equalstr area.idx '2')(equalstr area.idx '3'))(equalstr area.idx '4'))(equalstr area.idx '7')))}}
+      {{else}}
+        <li>
+          <div class="media__botao-mkt">
+          <button class="media media__card--mkt p--lg" {{action "goToMarketings" area.id}}>
+            <picture class="media__picture w-auto">
+              <span class="media__thumb" title="{{area.name}}">{{component (strconcat "icon-" area.image) class="p--sm"}}</span>
+            </picture>
+            <span class="media__body flow-md self-stretch">
+              <span class="media__title title-4">{{area.name}}</span>
+            </span>
+          </button>
+          </div>
+        </li>
+      {{/if}}
     {{/each}}
   </ul>
 </section>

@@ -128,7 +128,7 @@
     padding: $distance--sm;
     width: 22rem;
     position: absolute;
-
+    z-index: 99;
   }
 
   &--card {

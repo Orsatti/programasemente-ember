@@ -28,6 +28,7 @@ export default DS.Model.extend({
     return dataformatada;
   }),
   pessoa: DS.belongsTo('pessoa', { async: true }),
+  pessoaId: DS.attr(),
   turma: DS.belongsTo('plataforma-turma', { async: true }),
   aula: DS.belongsTo('aula', { async: true }),
 });

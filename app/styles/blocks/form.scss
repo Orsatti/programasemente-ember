@@ -16,13 +16,13 @@
   &__notificacao{
 
       &--container{
-        position: absolute;
+        position: fixed;
         bottom: 0;
         width: 100%;
         height: auto;
         min-height: 1rem;
         background-color: #72a234;
-        z-index: 9;
+        z-index: 11;
        // padding: 1rem;
         box-shadow: 1em 1em 1em 11px #020202;
       }

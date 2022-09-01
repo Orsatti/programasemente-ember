@@ -116,4 +116,5 @@ export default DS.Model.extend({
   ejaAcessoMedio: DS.attr(),
   isEja: DS.attr(),
   certificados: DS.hasMany('certificado', { async:true }),
+  pessoaNotifications: DS.hasMany('pessoa-notification', { async:true }),
 });

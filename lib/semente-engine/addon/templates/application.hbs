@@ -1,30 +1,7 @@
 <div style="display: none;">{{oneInst}}</div>
-<div class="form__notificacao--container">
-  <table class="form__notificacao--conteudo">
-<tr width="100%">
-    <td width="10%"><p class="title-4">Notificação</p></td>
-    <td width="40%">
-      <ul>
-        <li>Texto 1</li>
-        <li>Texto 2</li>
-      </ul>
-    </td>
-    <td width="40%">
-       <ul>
-        <li>Texto 1</li>
-        <li>Texto 2</li>
-      </ul>
-    </td>
-    <td width="10%">
-      <h2 class="btn btn--xxs animated fadeInLeftShort faster d100">OK</h2>
-    </td>
-  </tr>
-  </table>
-</div>
 <aside class="help" id="help">
   <h2 class="sr-only">Pedir ajuda ou enviar dúvida, sugestão ou reportar problema</h2>
-  <button id="help__trigger" class="help__trigger btn btn--icon btn--md icon-help-circle"
-    {{action "toggleHelp"}}></button>
+  <button id="help__trigger" class="help__trigger btn btn--icon btn--md icon-help-circle" {{action "toggleHelp"}}></button>
 
   <div id="help__container" class="help__container">
     <button id="help__close" class="help__close btn-close icon-x" {{action "toggleHelp"}}></button>
@@ -79,17 +56,13 @@
 </aside>
 
 <header class="header" id="header_layout">
-
   {{programa-semente-logo class="header__logo"}}
   {{userLastAccess}}
-
   <div class="header__overlayer"></div>
-
   <nav class="header__nav global-nav">
     <button class="global-nav__trigger icon-menu"></button>
 
     <ul id="global-nav-menu" class="global-nav__list">
-
       <button class="global-nav__close icon-x"></button>
 
       <!-- percursos header -->
@@ -113,11 +86,6 @@
         {{/if}}
       {{/if}}
 
-
-
-
-
-
       {{!-- <!-- lib header -->
       <li class="global-nav__item counter" id="header-biblioteca" style="display:none;"
         {{action 'goToBiblioteca' on="click"}}>
@@ -125,10 +93,8 @@
             class="counter__bubble">0</span></a>
       </li> --}}
 
-
-
       <!--  administration header -->
-{{!--
+      {{!--
       {{#if (equalstr role 'admin')}}
         <li class="global-nav__item" id="header-conteudos" {{action 'goToConteudos' on="click"}}>
           <a class="global-nav__link"><span>Conteúdos</span></a>
@@ -184,11 +150,9 @@
         </li>
       {{/if}}
         
-        
       <li class="global-nav__item global-nav--mob-only" style="margin-top: auto;">
         <a href="#" class="global-nav__link header-indicadores" {{action 'invalidateSession'}}>
           <span>Fazer Logout</span></a></li>
-      <!-- /MOBILE -->
 
       {{#if acessoS}}
         <li class="global-nav__item global-nav__submenu-holder hide-on--xs visible-on--lg">
@@ -199,7 +163,6 @@
       {{/if}}
 
       <li class="global-nav__item global-nav__submenu-holder hide-on--sm visible-on--lg">
-
         <a class="global-nav__link j-thumb" href="#">
           <span class="global-nav__avatar-holder">
             <img class="j-application-avatar" src={{uri_avatar}}>
@@ -230,27 +193,20 @@
               <a href="#" class="submenu__link" {{action 'invalidateSession'}}>
                 <span>Fazer Logout</span></a></li>
           </ul>
-
         </div>
-
       </li>
-
     </ul>
-
   </nav>
 
   <!-- MUDANÇA DE SENHA -->
   <aside id="change_pass_modal" class="modal">
-
     <div class="modal__content modal__content--sm">
-
       <header class="modal__header">
         <button id="change_pass_close" class="modal__close btn-close icon-x" type="submit"></button>
         <h1 class="modal__title">Alterar senha</h1>
       </header>
 
       <div class="modal__body">
-
         <div class="form-group form-group--full-width form-group--aired-v">
           <label class="form-group__label" for="pass">Senha atual</label>
           <input class="form-group__input" type="password" id="pass" value="">
@@ -263,7 +219,6 @@
 
         <div class="form-group form-group--full-width">
           <label class="form-group__label" for="pass_new_copy">Confirme a nova senha</label>
-          <!-- melhorar classes do form... -->
           <div class="form-group__container form-group">
             <span id="msg-new-pass-success" class="form__msg form__msg--bellow form__msg--success"><span
                 class="form__msg-icon icon-check"></span>Par
@@ -278,38 +233,28 @@
         {{#if error_forgot}}
           <div class="alert alert--warning alert--has-icon">
             <span class="alert__icon icon-alert-triangle"></span>
-            <p>
-              {{{error_forgot}}}
-            </p>
+            <p>{{{error_forgot}}}</p>
           </div>
         {{/if}}
-
       </div>
 
       <footer class="modal__footer">
         <button class="btn" type="submit" {{action 'changePw'}}>Atualizar senha</button>
       </footer>
-
     </div>
-
     <div class="modal__overlayer"></div>
-
   </aside>
 
   <!-- MUDANÇA DE AVATAR -->
   <aside id="change_image_modal" class="modal">
-
     <div class="modal__content modal__content--md">
-
       <header class="modal__header">
         <button id="change_image_close" class="modal__close btn-close icon-x" type="submit"></button>
         <h1 class="modal__title">Alterar imagem do perfil</h1>
       </header>
 
       <div class="modal__body">
-
         <div class="flow-sm">
-
           <p>Para facilitar, nós recortaremos a imagem para você. Sugerimos que escolha uma foto onde só haja você.</p>
 
           <div class="image-change">
@@ -317,7 +262,6 @@
               <div class="avatar__img avatar__img--as-bg" id="avatar-modale"
                 style="background-image: url('{{uri_avatar}}');"></div>
             </div>
-
             <label class="image-change__cta btn">Buscar imagem
               <input onchange={{action "buscarArquivoAvatar"}} type="file" id="arquivoAvatar" style="display: none;"
                accept="image/png,image/jpeg" name="file">
@@ -328,19 +272,15 @@
             <p style="margin-top: 20px" id="nomeArquivo" type="text" class="form-control"
               readonly><strong>{{selected_file_avatar}}</strong></p>
           {{/if}}
-
         </div>
-
       </div>
-
 
       <footer class="modal__footer">
         {{#if avatar_loading}}
           <button class="btn btn--ghost btn--xxs" type="submit" id="botaEnviarAvatar" disabled="disabled"><i
               class="fa fa-spinner fa-pulse fa-2x"></i></button>
         {{else if selected_file_avatar}}
-          <button class="btn btn--ghost btn--xxs" type="submit" id="botaEnviarAvatar"
-            {{action 'sendAvatar'}}>Salvar</button>
+          <button class="btn btn--ghost btn--xxs" type="submit" id="botaEnviarAvatar" {{action 'sendAvatar'}}>Salvar</button>
         {{else}}
           <button class="btn btn--ghost btn--xxs" type="submit" id="botaEnviarAvatar" disabled="disabled">Salvar</button>
         {{/if}}
@@ -349,33 +289,28 @@
 
     <div class="modal__overlayer"></div>
     <div style="display: none;">{{avatar}}</div>
-
   </aside>
-
 </header>
 
 <div id="content-main" class="content-main">
   {{#if role}}
     <main class="main">
-    <!-- if an institution is selected, then the output is released. otherwise the intitution select is created -->
       {{outlet}}
     </main>
   {{else}}
     <aside id="select_inst_modal" class="modal modal--is-show">
-
       <form class="modal__content modal__content--md" autocomplete="off" aria-autocomplete="none">
         <header class="modal__header">
           <h3 class="modal__title">Selecione uma instituição</h3>
         </header>
         {{input class="form-group__input"
-      aria-describedby="basic-addon1"
-      id="searchValue"
-      key-up="instSearch"
-      type="text"
-      autocomplete="off"
-      aria-autocomplete="none"}}
+            aria-describedby="basic-addon1"
+            id="searchValue"
+            key-up="instSearch"
+            type="text"
+            autocomplete="off"
+            aria-autocomplete="none"}}
 
-        {{!-- <div class="modal__body"> --}}
         <ul id="searchDisplay" class="select-inst" style="display:none;">
           {{#each filteredInsts as |inst|}}
             <li>
@@ -391,17 +326,12 @@
             <li>
               <a class="select-inst__link" href="#" {{action 'selectPessoa' pessoa.id on='click'}}>
                 {{pessoa.instituicao_name}}
-                <!--  {{addone idx}} -  -->
               </a>
             </li>
           {{/each}}
         </ul>
-
-        {{!--
-      </div> --}}
       </form>
       <div class="modal__overlayer bg--students"></div>
-
     </aside>
   {{/if}}
 </div>
@@ -410,13 +340,7 @@
 <div id="snackbarConnection" class="alert alert--xs alert--has-icon alert--no-interaction alert--warning">
   <span class="alert__icon icon-alert-triangle icon--lg"></span>
   <p>Sem conexão com a Internet</p>
-  {{!-- <div>
-    <p>Detectamos que no momento vocês está <strong>sem conexão com a Internet</strong>.</p>
-    <p class="m-top--sm">Assim que esta mensagem desaparecer, significará que sua conexão com a Internet voltou.</p>
-  </div> --}}
 </div>
 
-
-<!-- user help -->
 <div style="display: none;">{{InstituicaoId}}</div>
 <div style="display: none;">{{InstituicaoName}}</div>

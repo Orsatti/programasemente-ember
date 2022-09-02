@@ -186,42 +186,55 @@
 
 }
 
-.notification{
-  position: fixed;
-  padding: 17px 17px 8px 17px;
-  bottom: 3px;
-  width: 76%;
-  height: auto;
-  min-height: 4rem;
-  z-index: 11;
-  background: linear-gradient(to right, #1E2E32 , #678689);
-  border-radius: 3px;
+.base-notificacao{
 
-  h1{
-    color: white;
-    font-size: 15px;
-    font-weight: 500;
-    margin-bottom: 5px;
+  position: fixed;
+  height: 5rem;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  z-index: 11;
+  /* display: inline-block; */
+
+  .notification{
+    position: relative;
+    padding: 17px 17px 8px 17px;
+    width: 76%;
+    height: auto;
+    margin: auto auto 0;
+    min-height: 4rem;
+    z-index: 11;
+    background: linear-gradient(to right, #1E2E32 , #678689);
+    border-radius: 3px;
+
+    h1{
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
   }
-}
-.notification-animation-enter{
-  animation:animatebottomenter 0.8s
-}
-@keyframes animatebottomenter{
-  from{bottom:-300px;opacity:0} 
-  to{bottom:0;opacity:1}
-}
-.notification-animation-close{
-  animation:animatebottomclose 0.8s
-}
-@keyframes animatebottomclose{
-  from{bottom:0;opacity:1}
-  to{bottom:-300px;opacity:0} 
-}
-.notification-icon{
-  color: white;
-  margin-right: 20px;
-}
-.notification-itens{
-  align-self: center;
+  .notification-animation-enter{
+    animation:animatebottomenter 0.8s
+  }
+  @keyframes animatebottomenter{
+    from{bottom:-300px;opacity:0} 
+    to{bottom:0;opacity:1}
+  }
+  .notification-animation-close{
+    animation:animatebottomclose 0.8s
+  }
+  @keyframes animatebottomclose{
+    from{bottom:0;opacity:1}
+    to{bottom:-300px;opacity:0} 
+  }
+  .notification-icon{
+    color: white;
+    margin-right: 20px;
+  }
+  .notification-itens{
+    align-self: center;
+  }
+
 }

@@ -135,10 +135,9 @@
 </section>
 {{outlet}}
 
-
-<div class="base-notificacao">
 {{notifications}}
 {{#if hasNotification}}
+<div class="base-notificacao">
   <div class="notification notification-animation-enter" id="notificationCard">
       <button class="btn-close icon-x" type="submit" {{action 'closeNotifications'}}></button>
     <div class="flex flex-row justify-content-around">
@@ -150,8 +149,9 @@
       </div>
     </div>
   </div>
-{{/if}}
 </div>
+{{/if}}
+
 <!--<aside id="termo_modal" class="modal">
   <div class="modal__overlayer"></div>
   <div class="modal__content">

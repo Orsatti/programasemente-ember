@@ -187,7 +187,6 @@
 }
 
 .base-notificacao{
-
   position: fixed;
   height: 5rem;
   width: 100%;
@@ -195,7 +194,6 @@
   left: 0;
   display: flex;
   z-index: 11;
-  /* display: inline-block; */
 
   .notification{
     position: relative;
@@ -236,5 +234,94 @@
   .notification-itens{
     align-self: center;
   }
+}
 
+.notification-icon-menu{
+  margin-right: 5px;
+  font-size: medium;
+}
+.notification-counter {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 0.05rem 0.2rem 0.08rem 0.23rem;
+  border-radius: 50%;
+  background: red;
+  color: white;
+  font-size: 0.75rem;
+}
+
+.notification-plan{
+  &__main {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 326;
+  }
+  
+  &__container {
+    display: flex;
+    flex-direction: column;
+    div::-webkit-scrollbar {
+      width: 1px; 
+    }
+  }
+
+  &--space {
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  &--is-open {
+    background-color: white;
+    border-radius: 5px 0 0 0;
+    height: 92vh;
+    padding: 1rem 1rem 0 1rem;
+    position: fixed;
+    right: 0;
+    top: 4rem;
+    width: 33vw;
+  }
+
+  &__scroll{
+    overflow-y: auto;
+    padding-bottom: 0.8rem;
+    
+  }
+
+  &__title {
+    font-size: $font-size--xl;
+    font-weight: 500;
+  }
+
+  &__subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+  }
+
+  &__card{
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: rgb(0 0 0 / 9%) 0px 3px 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.notification-card-date{
+  font-weight: 300;
+  margin-bottom: 8px;
+}
+.notification-card-title{
+  font-size: larger;
+  font-weight: 600;
+  margin-bottom: 6px
+}
+.notification-card-text{
+  font-weight: 400;
 }

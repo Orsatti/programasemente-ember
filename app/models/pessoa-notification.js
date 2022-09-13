@@ -4,4 +4,5 @@ export default DS.Model.extend({
     pessoa: DS.belongsTo('pessoa', { async: true }),
     notification: DS.belongsTo('notification', { async: true }),
     viewed: DS.attr(),
+    view: DS.attr(),
 });

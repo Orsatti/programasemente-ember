@@ -142,9 +142,9 @@
             <span>Meus certificados</span></a></li>
       {{/if}}
 
-      <li class="global-nav__item global-nav--mob-only">
+      {{!-- <li class="global-nav__item global-nav--mob-only">
         <a href="#" class="global-nav__link header-indicadores" {{action 'goToCalendario'}}>
-          <span>Meu calendario</span></a></li>
+          <span>Meu calendario</span></a></li> --}}
 
       {{#if acessoS}}
         <li class="global-nav__item global-nav--mob-only">
@@ -157,6 +157,13 @@
       <li class="global-nav__item global-nav--mob-only" style="margin-top: auto;">
         <a href="#" class="global-nav__link header-indicadores" {{action 'invalidateSession'}}>
           <span>Fazer Logout</span></a></li>
+
+      <li class="global-nav__item global-nav__submenu-holder hide-on--xs visible-on--lg">
+          <a class="global-nav__link j-apps" {{action 'openNotificationMenu'}}>
+            <span class="notification-icon-menu icon-calendar"></span>
+            <span class="notification-counter" id="notification-counter" style="display: none;">{{counter}}</span>
+          </a>
+      </li>
 
       {{#if acessoS}}
         <li class="global-nav__item global-nav__submenu-holder hide-on--xs visible-on--lg">
@@ -193,9 +200,9 @@
                   <span>Meus certificados</span></a></li>
             {{/if}}
 
-            <li class="submenu__item">
+            {{!-- <li class="submenu__item">
               <a href="#" class="submenu__link" {{action 'goToCalendario'}}>
-                <span>Meu calendario</span></a></li>
+                <span>Meu calendario</span></a></li> --}}
             <li class="submenu__item">
               <a href="#" class="submenu__link" {{action 'invalidateSession'}}>
                 <span>Fazer Logout</span></a></li>
@@ -351,3 +358,57 @@
 
 <div style="display: none;">{{InstituicaoId}}</div>
 <div style="display: none;">{{InstituicaoName}}</div>
+
+{{#if notificationMenu}}
+  <div style="display: none;">{{notifications}}</div>
+  <aside id="notification-container" class="notification-plan__main animated fadeInRight faster">
+    <div  class="notification-plan__container notification-plan--space" {{action 'closeNotificationMenu'}}></div>
+    <div  class="notification-plan__container notification-plan--is-open">
+      <div class="flex flex-row justify-content-around mb1">
+        <a href="#" class="icon icon-x mt0 mr3" {{action 'closeNotificationMenu'}}></a>
+        <span class="notification-plan__title">Notificações</span> 
+      </div>
+      <div class="notification-plan__scroll">
+        <div class="flex flex-col justify-content-start mt1">
+          <span class="notification-plan__subtitle">Recentes</span>
+          <hr size="1" width="99%" color="#d6d6d6">
+          {{#if hasNewNotification}}
+            {{#each newNotifications as |notification|}}
+              <div class="flex flex-col justify-content-start notification-plan__card">
+                <span class="notification-card-date">{{dateFormat notification.start}}</span>
+                <span class="notification-card-title">{{notification.title}}</span>
+                <span class="notification-card-text">{{notification.text}}</span>
+              </div>
+            {{/each}}
+          {{else}}
+            <div class="flex flex-row justify-content-center mt4">
+              <span class="notification-plan__subtitle">Nenhuma notificação</span>
+            </div>
+          {{/if}}
+        </div>
+        <div class="flex flex-col justify-content-start mt3">
+          <span class="notification-plan__subtitle">Outras</span>
+          <hr size="1" width="99%" color="#e0e0e0">
+          {{#if hasOldNotification}}
+              {{#each oldNotifications as |pessoaNotification|}}
+                <div class="flex flex-col justify-content-start notification-plan__card">
+                  <div class="flex flex-row justify-content-between">
+                    <span class="notification-card-date">{{dateFormat pessoaNotification.notification.start}}</span>
+                    <span class="notification-card-date">Visto: {{dateFormat pessoaNotification.view}}</span>
+                  </div>
+                  <span class="notification-card-title">{{pessoaNotification.notification.title}}</span>
+                  <span class="notification-card-text">{{pessoaNotification.notification.text}}</span>
+                </div>
+              {{/each}}
+          {{else}}
+            <div class="flex flex-row justify-content-center mt4">
+              <span class="notification-plan__subtitle">Nenhuma notificação</span>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </aside>    
+{{/if}}
+
+

@@ -1,21 +1,16 @@
 .calendar {
-    $this: &;
-
-    width: 100%;
-
-    &--list {
-
-        > * {
-            align-items: flex-end;
-            display: flex;
-            flex-direction: row;
-        }
-
-        #{$this}__date {
-            flex-basis: 100px;
-            margin-right: $distance--lg;
-        }
-
+    th{
+        text-align: center;
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 600;
+        border: 2px solid darkgrey;
     }
-
+    td{
+        text-align: center;
+        padding: 23px;
+        font-size: 17px;
+        font-weight: 500;
+        border: 1px solid darkgrey;
+    }
 }

@@ -236,15 +236,17 @@
   }
 }
 
+
 .notification-icon-menu{
   margin-right: 5px;
   font-size: medium;
 }
+
 .notification-counter {
   position: absolute;
   top: 14px;
   right: 14px;
-  padding: 0.05rem 0.2rem 0.08rem 0.23rem;
+  padding: 0.05rem 0.18rem 0.1rem 0.23rem;
   border-radius: 50%;
   background: red;
   color: white;
@@ -291,7 +293,7 @@
 
   &__scroll{
     overflow-y: auto;
-    padding-bottom: 0.8rem;
+    padding-bottom: 2rem;
     
   }
 

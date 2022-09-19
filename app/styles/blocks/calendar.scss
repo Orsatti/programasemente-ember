@@ -35,10 +35,20 @@
 .event-card-title{
     font-size: larger;
     font-weight: 600;
+    margin-bottom: 6px;
+}
+.event-card-text{
+    font-weight: 500;
     margin-bottom: 6px
 }
 .event-card-text{
     font-weight: 500;
+    margin-bottom: 6px;
+}
+.event-card-link{
+    font-weight: 300;
+    color: darkgreen;
+    font-size: 15px;
 }
 .selected-date{
     border: 1px solid #00d438!important;

@@ -22,8 +22,7 @@
 <section class="sections__section flow-xl mt2">
   <ul class="animated fadeInLeftShort faster d100 l-card-list">
     {{#each model.areas as |area idx|}}
-      {{#if (and (equalstr model.pasta.idx '2') (or (or (or (equalstr area.idx '2')(equalstr area.idx '3'))(equalstr area.idx '4'))(equalstr area.idx '7')))}}
-      {{else}}
+      {{#unless (and (equalstr model.pasta.id '2') (or (or (or (equalstr area.idx '2')(equalstr area.idx '3'))(equalstr area.idx '4'))(equalstr area.idx '7')))}}
         <li>
           <div class="media__botao-mkt">
           <button class="media media__card--mkt p--lg" {{action "goToMarketings" area.id}}>
@@ -36,7 +35,7 @@
           </button>
           </div>
         </li>
-      {{/if}}
+      {{/unless}}
     {{/each}}
   </ul>
 </section>

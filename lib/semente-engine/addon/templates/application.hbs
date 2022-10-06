@@ -33,10 +33,9 @@
         <button class="help__cta btn self-end btn--text-remove" id="help_logout" {{action 'logout' }}>Sair</button>
         <button class="help__cta btn self-start" id="help__cta" {{action 'supportMailer' }} disabled={{if allowSendMessage
           false true}}>Enviar</button>
-        
       </div>
      
-    {{#unless (or (equalstr role 'aluno'))}}
+    {{!-- {{#unless (or (equalstr role 'aluno'))}}
       <div class="help__guide">
         <p class="bg-blue-navy-50 flow-h-xxs p-bottom--md p-top--sm radius--sm ta-c">
           <span class="color-blue-navy-10 fs--xxs tt-u">Baixe nosso</span>
@@ -45,7 +44,7 @@
           </a>
         </p>
       </div>
-    {{/unless}}
+    {{/unless}} --}}
 
     </div>
     <div class="help__success">

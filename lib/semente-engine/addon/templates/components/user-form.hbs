@@ -106,6 +106,16 @@
                         </div>
                     </div>
                 {{/if}}
+
+                {{#if csEnabled}}
+                    <div class="col-md-4">
+                        <div class="checkbox w100">
+                            <input class="checkbox__input" 
+                                checked={{new_user_acessoCs}} id="new_user_acessoCs" type="checkbox">
+                            <label class="checkbox__label" for="new_user_acessoCs">Acesso à CoreSkills</label>
+                        </div>
+                    </div>
+                {{/if}}
             </div>
 
             {{#if (equalstr activeProfile "instrutor")}}

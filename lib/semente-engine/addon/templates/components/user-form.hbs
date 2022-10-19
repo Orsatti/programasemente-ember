@@ -17,7 +17,7 @@
                                 <option value="marketing">Marketing</option>
                                 <option value="coordenador">Coordenador</option>
                                 <option value="gestor">Gestor</option>
-                                {{#if (or (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.role 'recursosHumanos'))}}
+                                {{#if (equalstr pessoaLogged.role 'admin')}}
                                     <option value="recursosHumanos">Recursos Humanos</option>
                                 {{/if}}
                                 {{#if (and (or (equalstr instituicao.name "Minimo")(equalstr instituicao.name "Semente")) 

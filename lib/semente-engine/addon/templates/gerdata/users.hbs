@@ -178,7 +178,9 @@
                                 </div>
                             </th>
                             <th class="table__role" scope="col">Perfil</th>
-                            <th class="table__enabled" scope="col">Hab<span class="hide-on--xs">ilitado</span></th>
+                            <th class="table__enabled" scope="col">Portal</th>
+                            <th class="table__enabled" scope="col">Plataforma S</th>
+                            <th class="table__enabled" scope="col">CoreSkills</th>
                             <th class="table__actions" scope="col">Ações</th>
                         </tr>
                     </thead>
@@ -201,12 +203,18 @@
                             <td class="ta-c">
                                 <span class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
                             </td>
-                            <td class="table__actions">
-                                {{#link-to 'gerdata.users.deleteuser' pessoa.id}}
-                                    <button class="btn btn--text btn--xxs" >Remover</button>
-                                {{/link-to}}
+                            <td class="ta-c">
+                                <span class="icon--lg {{if pessoa.acessoPlataformaS 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+                            </td>
+                            <td class="ta-c">
+                                <span class="icon--lg {{if pessoa.acessoCs 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+                            </td>
+                            <td class="flex flex-col">
                                 {{#link-to 'gerdata.users.edituser' pessoa.id}}
                                     <button class="btn btn--ghost btn--xxs">Editar</button>
+                                {{/link-to}}
+                                {{#link-to 'gerdata.users.deleteuser' pessoa.id}}
+                                    <button class="btn btn--text btn--xxxs" >Remover</button>
                                 {{/link-to}}
                             </td>
                         </tr>

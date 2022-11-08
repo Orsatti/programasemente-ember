@@ -98,38 +98,21 @@
   // SPECIFIC TABLES COLUMNS WIDTHS
   &--users {
     #{$this}__name {
-      width: 45%;
+      width: 35%;
     }
 
     #{$this}__role {
-      width: 15%;
+      text-align: center;
+      width: 12%;
     }
 
     #{$this}__enabled {
       text-align: center;
-      width: 15%;
+      width: 14%;
     }
 
     #{$this}__actions {
-      display: flex;
-      flex-direction: column-reverse;
-      overflow: visible;
-      position: relative;
       text-align: center;
-
-      > * + * {
-        margin-top: $distance--xs;
-      }
-
-      @include media('>md') {
-        display: table-cell;
-
-        > * + * {
-          margin-top: 0;
-        }
-
-      }
-
     }
 
   }

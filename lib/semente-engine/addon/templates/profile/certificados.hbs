@@ -47,56 +47,58 @@
     {{#if hasAnyCertificadoS}}
         <h3 class="col-xs-12 title-2">- Plataforma S</h3>
         {{#each certificados as |certificado| }}
-            {{#if (equalstr certificado.sistema "2")}}
-                <main class="main certificado__print-canvas">
-                    <div class="certificado certificado__print-cert">
-                        <div class="certificado__detalhe-esq-top">
-                            <div class="certificado__detalhe-esq-top--int-branco">
-                                <div class="certificado__detalhe-esq-top--int-laranja">
-                                    <div class="certificado__detalhe-esq-top--int-branco-int">
-                                        <div class="certificado__detalhe-esq-top--int-laranja-int">
-                                            <div class="certificado__detalhe-esq-top--int-branco-int2"></div>
+            {{#if (equalstr "22" certificado.plataformaAno)}}
+                {{#if (equalstr certificado.sistema "2")}}
+                    <main class="main certificado__print-canvas">
+                        <div class="certificado certificado__print-cert">
+                            <div class="certificado__detalhe-esq-top">
+                                <div class="certificado__detalhe-esq-top--int-branco">
+                                    <div class="certificado__detalhe-esq-top--int-laranja">
+                                        <div class="certificado__detalhe-esq-top--int-branco-int">
+                                            <div class="certificado__detalhe-esq-top--int-laranja-int">
+                                                <div class="certificado__detalhe-esq-top--int-branco-int2"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="certificado__logo"><img src="/assets/img/logo.png" alt="">
-                            <div class="certificado__percurso">
-                                <h3>Certificado de conclusão do 1º Módulo formativo do <b style="text-transform: capitalize;">{{certificado.segmento}} - {{certificado.plataformaAno}}</b></h3>
+                            <div class="certificado__logo"><img src="/assets/img/logo.png" alt="">
+                                <div class="certificado__percurso">
+                                    <h3>Certificado de conclusão do 1º Módulo formativo do <b style="text-transform: capitalize;">{{certificado.segmento}} - {{certificado.plataformaAno}}</b></h3>
+                                </div>
+                                <span class="certificado__carga-horaria">Carga horária de <strong>{{certificado.horas}}h</strong></span>
                             </div>
-                            <span class="certificado__carga-horaria">Carga horária de <strong>{{certificado.horas}}h</strong></span>
-                        </div>
-                        <div class="certificado__nome">
-                            <h3>{{certificado.pessoa}}</h3>
-                            <div class="certificado__nome--linha"></div>
-                        </div>
-                        <div class="certificado__data">
-                            <h3>{{dateFormat certificado.dataEmissao}}</h3>
-                            <div class="certificado__nome--linha"></div>
-                            <p>Data de conclusão</p>
-                        </div>
-                        <div class="certificado__assinatura">
-                        <img src="/assets/img/assinatura.png" alt="">
-                            <div class="certificado__nome--linha"></div>
-                            <p>Prof. Eduardo Calbucci</p>
-                        </div>
-                        <div class="certificado__detalhe-dir-top">
-                            <div class="certificado__borda-dir-topo"></div>
-                            <div class="certificado__borda-dir-topo-baixo"></div>
-                        </div>
-                        <div class="certificado__detalhe-esq-botom">
-                            <div class="certificado__borda-esq-topo"></div>
-                            <div class="certificado__borda-esq-topo-baixo"></div>
-                        </div>
-                        <div class="certificado__logo"></div>
-                        <div class="certificado__detalhe-dir-botom">
-                            <div class="certificado__detalhe-esq-top">
-                                <div class="certificado__detalhe-esq-top--int-branco"></div>
+                            <div class="certificado__nome">
+                                <h3>{{certificado.pessoa}}</h3>
+                                <div class="certificado__nome--linha"></div>
+                            </div>
+                            <div class="certificado__data">
+                                <h3>{{dateFormat certificado.dataEmissao}}</h3>
+                                <div class="certificado__nome--linha"></div>
+                                <p>Data de conclusão</p>
+                            </div>
+                            <div class="certificado__assinatura">
+                            <img src="/assets/img/assinatura.png" alt="">
+                                <div class="certificado__nome--linha"></div>
+                                <p>Prof. Eduardo Calbucci</p>
+                            </div>
+                            <div class="certificado__detalhe-dir-top">
+                                <div class="certificado__borda-dir-topo"></div>
+                                <div class="certificado__borda-dir-topo-baixo"></div>
+                            </div>
+                            <div class="certificado__detalhe-esq-botom">
+                                <div class="certificado__borda-esq-topo"></div>
+                                <div class="certificado__borda-esq-topo-baixo"></div>
+                            </div>
+                            <div class="certificado__logo"></div>
+                            <div class="certificado__detalhe-dir-botom">
+                                <div class="certificado__detalhe-esq-top">
+                                    <div class="certificado__detalhe-esq-top--int-branco"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </main>
+                    </main>
+                {{/if}}
             {{/if}}
         {{/each}}
     {{/if}}

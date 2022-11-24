@@ -35,16 +35,6 @@
           false true}}>Enviar</button>
       </div>
      
-    {{!-- {{#unless (or (equalstr role 'aluno'))}}
-      <div class="help__guide">
-        <p class="bg-blue-navy-50 flow-h-xxs p-bottom--md p-top--sm radius--sm ta-c">
-          <span class="color-blue-navy-10 fs--xxs tt-u">Baixe nosso</span>
-          <a class="btn btn--link color-lemon-10" href={{unless (equalstr role 'responsavel') "https://spasementemedio.blob.core.windows.net/plataforma/Guia%20Plataforma%202021-v2.pdf" "https://spasementemedio.blob.core.windows.net/plataforma/Guia%20Plataforma%202021%20-%20Respons%C3%A1veis.pdf"}} target="_blank" rel="nofollow noopener noreferrer">
-          <span class="btn__label">guia da plataforma</span>
-          </a>
-        </p>
-      </div>
-    {{/unless}} --}}
 
     </div>
     <div class="help__success">
@@ -64,7 +54,6 @@
     <ul id="global-nav-menu" class="global-nav__list">
       <button class="global-nav__close icon-x"></button>
 
-      <!-- percursos header -->
       {{#if hasModulo}}
         {{#if (equalstr role 'aluno')}}
           <li class="global-nav__item" id="header-modulos">
@@ -85,44 +74,6 @@
         {{/if}}
       {{/if}}
 
-      {{!-- <!-- lib header -->
-      <li class="global-nav__item counter" id="header-biblioteca" style="display:none;"
-        {{action 'goToBiblioteca' on="click"}}>
-        <a class="global-nav__link"><span>Biblioteca</span><span id="j-libraryNotificationNumber"
-            class="counter__bubble">0</span></a>
-      </li> --}}
-
-      <!--  administration header -->
-      {{!--
-      {{#if (equalstr role 'admin')}}
-        <li class="global-nav__item" id="header-conteudos" {{action 'goToConteudos' on="click"}}>
-          <a class="global-nav__link"><span>Conteúdos</span></a>
-        </li>
-        <li class="global-nav__item" id="header-gersistema" {{action 'goToAdministracao' on="click"}}>
-          <a class="global-nav__link"><span>Administração</span></a>
-        </li>
-        <li class="global-nav__item" id="header-indicadores" {{action 'goToAcompanhamento' on="click"}}>
-          <a class="global-nav__link"><span>Acompanhamento</span></a>
-        </li>
-      {{else}}
-      {{/if}}
-
-      {{#if (or (equalstr role 'marketing') (equalstr role 'admin'))}}
-        <li class="global-nav__item" id="header-marketing" {{action 'goToMarketing' on="click"}}>
-          <a class="global-nav__link"><span>Marketing</span></a>
-        </li>
-      {{/if}} --}}
-
-
-      <!-- MOBILE -->
-      <!-- Em mobile, esses links não ficam dentro de um submenu e por isso tiveram que ser duplicados. -->
-      <!-- Eles aparecem como irmãos a "Meus cursos", "Administração" etc. -->
-
-            
-      {{!-- <li class="global-nav__item global-nav--mob-only" {{action 'testHide'}}>
-        <a href="#" class="global-nav__link header-indicadores" id="change_image_trigger">
-          <span>Alterar imagem do perfil</span></a></li> --}}
-
       <li class="global-nav__item global-nav--mob-only" {{action 'testHide'}}>
         <a href="#" class="global-nav__link header-indicadores" id="change_image_trigger">
           <span>Alterar imagem do perfil</span></a></li>
@@ -136,9 +87,11 @@
           <span>Meu perfil</span></a></li>
 
       {{#if (equalstr role 'aluno')}}
+      {{#if isEja}}
         <li class="global-nav__item global-nav--mob-only" {{action 'goToCertificados'}}>
           <a href="#" class="global-nav__link header-indicadores">
             <span>Meus certificados</span></a></li>
+      {{/if}}
       {{/if}}
 
       <li class="global-nav__item global-nav--mob-only">
@@ -194,9 +147,11 @@
                 <span>Meu perfil</span></a></li>
 
             {{#if (equalstr role 'aluno')}}
+            {{#if isEja}}
               <li class="submenu__item">
                 <a href="#" class="submenu__link" {{action 'goToCertificados'}}>
                   <span>Meus certificados</span></a></li>
+            {{/if}}
             {{/if}}
 
             <li class="submenu__item">

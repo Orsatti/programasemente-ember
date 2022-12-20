@@ -47,7 +47,7 @@
     {{#if hasAnyCertificadoS}}
         <h3 class="col-xs-12 title-2">- Plataforma S</h3>
         {{#each certificados as |certificado| }}
-            {{#if (equalstr "Adultos" certificado.plataformaAno)}}
+            {{#if (or (equalstr "Adultos" certificado.segmento) (equalstr "EJA" certificado.segmento))}}
                 {{#if (equalstr certificado.sistema "2")}}
                     <main class="main certificado__print-canvas">
                         <div class="certificado certificado__print-cert">

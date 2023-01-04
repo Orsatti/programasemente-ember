@@ -17,6 +17,9 @@
                         {{plataformaTurma.name}}
                       </p>
                       <span id="icon-edit{{plataformaTurma.id}}" class="btn_icon_edit icon-edit" onclick={{action 'edit' plataformaTurma}} style="display: block;"></span>
+                      {{#if (equalstr plataformaTurma.numAlunos "0")}}
+                        <span id="icon-delete{{plataformaTurma.id}}" class="btn_icon_edit icon-trash-2" onclick={{action 'delete' plataformaTurma}} style="display: block;"></span>
+                      {{/if}}
                       <span id="icon-x{{plataformaTurma.id}}" class="btn_icon_edit icon-x" onclick={{action 'cancelEdit' plataformaTurma}} style="display: none;"></span>
                       <span id="icon-save{{plataformaTurma.id}}" class="btn_icon_edit icon-save" onclick={{action 'saveEdit' plataformaTurma}} style="display: none;"></span>
                     </li>
@@ -35,3 +38,16 @@
     {{/each}}
   </div>
 </section>
+
+<aside id="deleteModal" class="modal">
+  <div class="modal__overlayer"></div>
+  <div class="modal__content">
+    <div class="d-flex flex-row w-100 justify-content-between">
+      <h2 class="modal__title color-leaf-40">Deseja confirmar o deleção?</h2>
+    </div>
+    <div class="modal__footer">
+      <button id='cancel-delete' class="btn btn-primary" type="button" onclick={{action "cancelDelete"}}>Não</button>
+      <button id='confirm-delete' class="btn btn-primary" type="button" onclick={{action "confirmDelete"}}>Sim</button>
+    </div>
+  </div>
+</aside>

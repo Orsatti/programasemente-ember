@@ -163,6 +163,13 @@ livros = livros
               <span class="hide-on--xs">Conteúdos complementares</span>
             </button>
           </li>
+          <li>
+            <button class="tabs__tab {{if (equalstr selectedAgrupamento " Comunicados") "tabs__tab--is-active" }}"
+              type="button" {{action "refreshSelectedAgrupamento" "Comunicados" }}>
+              <span class="hide-on--sm">Comunicados</span>
+              <span class="hide-on--xs">Comunicados</span>
+            </button>
+          </li>
           {{#if aula.atividade}}
           <li>
             <button class="tabs__tab {{if (equalstr selectedAgrupamento " Ead") "tabs__tab--is-active" }}" type="button"

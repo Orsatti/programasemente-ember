@@ -15,7 +15,7 @@
   <!-- administration view -->
   {{#unless instView}}
       <header class="main__header main__header--has-side-info">
-        <h1 class="main__title animated fadeInLeftShort faster">Acompanhamento</h1>
+        <h1 class="main__title animated fadeInLeftShort faster">Visão Geral</h1>
       </header>
 
       <section class="sections__section animated fadeInLeftShort faster d500">
@@ -86,15 +86,13 @@
 
       <div class="flex flex-row m-top--md">
         <!-- institutions selected name -->
-        {{#if inst_selected.name}}
-          <h1 class="main__title animated fadeInLeftShort faster d250">{{inst_selected.name}}</h1>
-        {{else}}
-          <h1 class="main__title" style="color: transparent">|</h1>
-        {{/if}}
+         <header class="main__header main__header--has-side-info">
+        <h1 class="main__title animated fadeInLeftShort faster">Visão Geral</h1>
+      </header>
       </div>
 
     </header>
-
+ 
     {{#if inst_selected.name}}
       <section class="sections__section flow-xl">
             {{outlet}}

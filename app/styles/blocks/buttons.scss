@@ -470,6 +470,11 @@
       letter-spacing: $letter-spacing--xl;
       padding: $button-padding--xxs;
     }
+    &--xxxs {
+      font-size: .67rem;
+      letter-spacing: $letter-spacing--xl;
+      padding: .75em .5em;
+    }
   }
 
   @if $btn--xs {

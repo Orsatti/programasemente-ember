@@ -163,6 +163,13 @@ livros = livros
               <span class="hide-on--xs">Conteúdos complementares</span>
             </button>
           </li>
+          <li>
+            <button class="tabs__tab {{if (equalstr selectedAgrupamento " Comunicados") "tabs__tab--is-active" }}"
+              type="button" {{action "refreshSelectedAgrupamento" "Comunicados" }}>
+              <span class="hide-on--sm">Comunicados</span>
+              <span class="hide-on--xs">Comunicados</span>
+            </button>
+          </li>
           {{#if aula.atividade}}
           <li>
             <button class="tabs__tab {{if (equalstr selectedAgrupamento " Ead") "tabs__tab--is-active" }}" type="button"
@@ -178,8 +185,8 @@ livros = livros
       selectedAgrupamento "Complementar") (equalstr conteudos.length '0')))}}
       <div class="empty animated fadeIn">
         <div class="animated d250 fadeInUpShort faster flex-1 ta-c">
-          <span class="empty__icon icon-frown-o icon--xl"></span>
-          <p class="m-top--xs">Ainda não há conteúdos aqui</p>
+          {{!-- <span class="empty__icon icon-frown-o icon--xl"></span> --}}
+          <p class="m-top--xs">Essa aula não contempla material complementar.</p>
         </div>
       </div>
       {{/if}}

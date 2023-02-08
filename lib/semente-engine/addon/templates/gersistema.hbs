@@ -3,12 +3,14 @@
 <div class="institutions flow-md">
   <header class="main__header main__header--has-side-info">
     <h1 class="main__title animated fadeInLeftShort faster">Administração</h1>
-    {{#link-to 'gersistema.createinst'}}
-    <button class="btn btn--xxs animated fadeInLeftShort faster d100">
-      <span class="btn__icon icon-plus"></span>
-      <span class="btn__label">Nova Instituição</span>
-    </button>
-    {{/link-to}}
+    {{#if (equalstr pessoaLogged.role "admin")}}
+      {{#link-to 'gersistema.createinst'}}
+      <button class="btn btn--xxs animated fadeInLeftShort faster d100">
+        <span class="btn__icon icon-plus"></span>
+        <span class="btn__label">Nova Instituição</span>
+      </button>
+      {{/link-to}}
+    {{/if}}
   </header>
 
   <section class="sections__section animated fadeInLeftShort faster d100">
@@ -31,11 +33,19 @@
   <ul id="matchDisplay" class="list list--striped animated fadeInLeftShort faster d750" style="display:none;">
     {{#each matchInsts as |inst|}}
     <li class="l-devil-albatross">
-      {{#link-to 'gerdata.informations' inst.id}}
-      <a class="title-3 btn btn--link color-blue-navy-60">
-        <span class="btn__label">{{inst.name}}</span>
-      </a>
-      {{/link-to}}
+      {{#if (equalstr pessoaLogged.role "admin")}}
+        {{#link-to 'gerdata.informations' inst.id}}
+          <a class="title-3 btn btn--link color-blue-navy-60">
+            <span class="btn__label">{{inst.name}}</span>
+          </a>
+        {{/link-to}}
+      {{else}}
+        {{#link-to 'gerdata.users' inst.id}}
+          <a class="title-3 btn btn--link color-blue-navy-60">
+            <span class="btn__label">{{inst.name}}</span>
+          </a>
+        {{/link-to}}
+      {{/if}}
       <span class="switch switch--institutions flex-none m-left--auto m-right--auto">
         <input class="switch__checkbox" id="activeInstId{{inst.id}}" type="checkbox" disabled="disabled" checked={{inst.enabled}}>
         <label class="switch__label" for="activeInstId{{inst.id}}">
@@ -50,10 +60,19 @@
   <ul id="modelInstList" class="list list--striped animated fadeInLeftShort faster d100">
     {{#each model.instituicoes as |inst|}}
     <li class="l-devil-albatross">
-      {{#link-to 'gerdata.informations' inst.id}}
-      <a class="title-3 btn btn--link color-blue-navy-60">
-        <span class="btn__label">{{inst.name}}</span></a>
+      {{#if (equalstr pessoaLogged.role "admin")}}
+        {{#link-to 'gerdata.informations' inst.id}}
+          <a class="title-3 btn btn--link color-blue-navy-60">
+            <span class="btn__label">{{inst.name}}</span>
+          </a>
         {{/link-to}}
+      {{else}}
+        {{#link-to 'gerdata.users' inst.id}}
+          <a class="title-3 btn btn--link color-blue-navy-60">
+            <span class="btn__label">{{inst.name}}</span>
+          </a>
+        {{/link-to}}
+      {{/if}}
       <span class=" switch switch--institutions flex-none m-left--auto m-right--auto">
         <input class="switch__checkbox" id="activeInstId{{inst.id}}" type="checkbox" disabled="disabled" checked={{inst.enabled}}>
         <label class="switch__label" for="activeInstId{{inst.id}}">

@@ -123,13 +123,13 @@
           {{/link-to}}
         {{/if}}
 
-        {{#if (equalstr pessoa.role 'admin')}}
+        {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
           {{#link-to 'gersistema' class="tabs__tab"}}
             <span>Administração</span>
           {{/link-to}}
         {{/if}}
 
-        {{#if (or (or (equalstr pessoa.role 'secretaria') (equalstr pessoa.role 'gestor')) (equalstr pessoa.role 'recursosHumanos'))}}
+        {{#if (or (or (equalstr pessoa.role 'secretaria') (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (equalstr pessoa.role 'recursosHumanos'))}}
           {{#link-to 'gerdata.users' pessoa.instituicao.id class="tabs__tab"}}
             <span>Administração</span>
           {{/link-to}}

@@ -1,4 +1,4 @@
- {{gerdata-header role=role informations=false instituicao=model.instituicao}}
+ {{gerdata-header pessoa=pessoaLogged informations=false instituicao=model.instituicao}}
  
 <section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
   <div class="row">
@@ -23,7 +23,7 @@
     </div>
     {{/each}}
   </div>
-  {{#if (equalstr role 'admin')}}
+  {{#if (equalstr pessoaLogged.role 'admin')}}
     <footer class="modal__footer">
       <button class="btn" type="submit" id="btnSubmit" {{action 'saveCourses' }}>Salvar</button>
     </footer>

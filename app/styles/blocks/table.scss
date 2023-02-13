@@ -117,6 +117,10 @@
 
   }
 
+  &--mt{
+    margin-top: 25px;
+  }
+
   &--mass-enroll {
     #{$this}__enroller {
       width: 8%;

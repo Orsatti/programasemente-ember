@@ -13,6 +13,14 @@
     }
   }
 
+  a{
+
+    &__picture {
+      
+    }
+
+  }
+
   &__picture {
     display: flex;
     flex: 0 0 auto;
@@ -29,6 +37,11 @@
 
     &--add{
       line-height: 2;
+    }
+
+    &--biblioteca{
+      margin: auto 2rem auto auto;
+      width: 15%;
     }
 
   }

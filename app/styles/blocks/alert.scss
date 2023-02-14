@@ -289,6 +289,7 @@
     right: 0;
     top: 4rem;
     width: 33vw;
+    box-shadow: 0 4px 5px 0 rgb(0 0 0 / 2%), 0 6px 20px 0 rgb(0 0 0 / 15%);
   }
 
   &__scroll{
@@ -322,8 +323,9 @@
 .notification-card-title{
   font-size: larger;
   font-weight: 600;
-  margin-bottom: 6px
+  margin-bottom: 5px;
 }
 .notification-card-text{
   font-weight: 400;
+  margin-top: 2px;
 }

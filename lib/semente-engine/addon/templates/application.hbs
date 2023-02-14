@@ -332,6 +332,9 @@
                 <span class="notification-card-date">{{dateFormat notification.start}}</span>
                 <span class="notification-card-title">{{notification.title}}</span>
                 <span class="notification-card-text">{{notification.text}}</span>
+                <span class="notification-card-text">
+                  <a href="{{notification.link}}" target="_blank">{{notification.link}}</a>
+                </span>
               </div>
             {{/each}}
           {{else}}
@@ -352,6 +355,9 @@
                   </div>
                   <span class="notification-card-title">{{pessoaNotification.notification.title}}</span>
                   <span class="notification-card-text">{{pessoaNotification.notification.text}}</span>
+                  <span class="notification-card-text">
+                    <a href="{{pessoaNotification.notification.link}}" target="_blank">{{pessoaNotification.notification.link}}</a>
+                  </span>
                 </div>
               {{/each}}
           {{else}}

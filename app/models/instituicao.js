@@ -43,4 +43,5 @@ export default DS.Model.extend({
     sEnabled: DS.attr(),
     csEnabled: DS.attr(),
     calendario: DS.belongsTo('calendario', {async: true}),
+    vendaDireta: DS.attr(),
 });

@@ -98,15 +98,17 @@
           {{/link-to}}
         {{/unless}}
 
-        {{#unless (equalstr livro '#')}}
-          {{#each livro as |l|}}
-            <li>
-              <a class="tabs__tab" href="{{l.url}}" target="_blank" rel="nofollow noopener noreferrer">
-                <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil
-              'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
-              </a>
-            </li>
-          {{/each}}
+        {{#unless instituicao.vendaDireta}}
+          {{#unless (equalstr livro '#')}}
+            {{#each livro as |l|}}
+              <li>
+                <a class="tabs__tab" href="{{l.url}}" target="_blank" rel="nofollow noopener noreferrer">
+                  <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil
+                'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
+                </a>
+              </li>
+            {{/each}}
+          {{/unless}}
         {{/unless}}
 
         {{#unless (or (or (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel')) (equalstr pessoa.role

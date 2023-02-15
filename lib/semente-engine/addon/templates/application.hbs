@@ -59,13 +59,15 @@
           <li class="global-nav__item" id="header-modulos">
             {{#link-to 'modulos.modlist' ModuloIdx class="global-nav__link"}}<span>Aulas EAD</span>{{/link-to}}
           </li>
-          {{#if urlLivro}}
-            <li class="global-nav__item">
-              <a class="global-nav__link" href="{{urlLivro}}" target="_blank" rel="nofollow noopener noreferrer">
-                <span>Livro</span>
-              </a>
-            </li>
-          {{/if}}
+          {{#unless hasVendaDireta}}
+            {{#if urlLivro}}
+              <li class="global-nav__item">
+                <a class="global-nav__link" href="{{urlLivro}}" target="_blank" rel="nofollow noopener noreferrer">
+                  <span>Livro</span>
+                </a>
+              </li>
+            {{/if}}
+          {{/unless}}
           {{#unless isEja}}
             <li class="global-nav__item" id="header-modulos">
                 {{#link-to 'aulas.bibliotecaindex' class="global-nav__link"}}<span>Biblioteca</span>{{/link-to}}
@@ -370,5 +372,3 @@
     </div>
   </aside>    
 {{/if}}
-
-

@@ -40,6 +40,20 @@
                     {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id) classe="segmento"}}
                     {{/each}}
                 </div>
+                {{#unless changeset.id}}
+                    <h4 class="modal__subtitle">Gestão calendário</h4>
+                    <div class="flex flex-row justify-start m-top--sm">
+                        <select class="j-validate-aluno form-group__input form-group__input--select"
+                            id="new_inst_calendario" name="calendario"
+                            data-type="select" data-required="true" data-context="calendario">
+                            <option selected="selected" value="">---</option>
+                            {{#each calendarios as |calendario|}}
+                                <option value="{{calendario.id}}">{{calendario.nome}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                {{/unless}}
+
                 <div class="flex flex-row justify-content-between m-top--sm btn-right">
                     {{!-- {{#unless haveSegmentos}}
                         {{#link-to 'gerdata.informations.deleteinst' instituicao.id}}

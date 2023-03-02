@@ -90,7 +90,7 @@
             </div>
 
             <div class="flex flex-row mt3">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="checkbox w100">
                         <input class="checkbox__input" checked={{new_user_enabled}} id="new_user_enabled" type="checkbox">
                         <label class="checkbox__label" for="new_user_enabled">Habilitado</label>
@@ -98,23 +98,33 @@
                 </div>
 
                 {{#if sEnabled}}
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="checkbox w100">
                             <input class="checkbox__input" 
                                 checked={{new_user_acessoPlataformaS}} id="new_user_acessoPlataformaS" type="checkbox">
-                            <label class="checkbox__label" for="new_user_acessoPlataformaS">Acesso à Plataforma S</label>
+                            <label class="checkbox__label" for="new_user_acessoPlataformaS">Plataforma S</label>
                         </div>
                     </div>
                 {{/if}}
 
                 {{#if csEnabled}}
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="checkbox w100">
                             <input class="checkbox__input" 
                                 checked={{new_user_acessoCs}} id="new_user_acessoCs" type="checkbox">
-                            <label class="checkbox__label" for="new_user_acessoCs">Acesso à CoreSkills</label>
+                            <label class="checkbox__label" for="new_user_acessoCs">Academia de Professores</label>
                         </div>
                     </div>
+
+                    {{#if (equalstr pessoaLogged.role 'admin')}}
+                        <div class="col-md-3">
+                            <div class="checkbox w100">
+                                <input class="checkbox__input" 
+                                    checked={{new_user_comprouAp}} id="new_user_comprouAp" type="checkbox">
+                                <label class="checkbox__label" for="new_user_comprouAp">Comprou AP</label>
+                            </div>
+                        </div>
+                    {{/if}}
                 {{/if}}
             </div>
 

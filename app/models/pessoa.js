@@ -111,6 +111,7 @@ export default DS.Model.extend({
   senha: DS.attr(),
   acessoPlataformaS: DS.attr(),
   acessoCs: DS.attr(),
+  comprouAp: DS.attr(),
   nameLower: Ember.computed('name', function(){
     return this.get('name').toLowerCase();
   }),

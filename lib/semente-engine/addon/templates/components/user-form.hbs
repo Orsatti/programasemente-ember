@@ -115,18 +115,16 @@
                             <label class="checkbox__label" for="new_user_acessoCs">Academia de Professores</label>
                         </div>
                     </div>
+                {{/if}}
 
-                    {{#if (equalstr pessoaLogged.role 'admin')}}
-                        <div class="col-md-3">
-                            <div class="checkbox w100">
-                                <input class="checkbox__input" 
-                                    checked={{new_user_comprouAp}} id="new_user_comprouAp" type="checkbox">
-                                <label class="checkbox__label" for="new_user_comprouAp">Comprou AP</label>
-                            </div>
+                {{#if isEdit}}
+                    <div class="col-md-3">
+                        <div class="checkbox w100">
+                            <input class="checkbox__input" 
+                                checked={{new_user_reenviaremail}} id="new_user_reenviaremail" type="checkbox">
+                            <label class="checkbox__label" for="new_user_reenviaremail">Reenviar email?</label>
                         </div>
-                    {{else}}
-                         <input checked={{new_user_comprouAp}} id="new_user_comprouAp" type="checkbox" class="d--none">
-                    {{/if}}
+                    </div>
                 {{/if}}
             </div>
 

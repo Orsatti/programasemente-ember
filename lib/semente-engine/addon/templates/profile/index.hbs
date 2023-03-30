@@ -157,7 +157,7 @@
         <form class="flex flow-md" autocomplete="off">
            {{#each segmentos as |segmento| }}
             {{#if (notequalstr segmento.titulo 'Adultos')}}
-              <div class="col-md-2">
+              <div class="col-md-2" style="margin-top: 0px;">
                   <h4 class="title-segmento">{{segmento.titulo}}</h4>
                   {{#each plataformaAnos as |plataformaAno|}}
                   {{#if (equalstr segmento.id plataformaAno.segmento.id)}}

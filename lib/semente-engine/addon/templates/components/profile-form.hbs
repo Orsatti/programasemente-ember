@@ -135,7 +135,7 @@
             {{#if (notequalstr segmento.titulo 'Adultos')}}
                 <div class="col-md-2">
                     <h4 class="title-segmento">{{segmento.titulo}}</h4>
-                    {{#each plataformaAnos as |plataformaAno|}}
+                    {{#each platAnos as |plataformaAno|}}
                     {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
                         <div class="flex-col">
                         <h4 class="title-platano mt0"><b>·</b> {{plataformaAno.name}}</h4>
@@ -286,11 +286,9 @@
                                     value='target.value' }} data-type="select" data-required="true">
                                     <option value="" disabled selected>---</option>
                                     {{#each platAnos as |pa|}}
-                                        {{#if (notequalstr pa.idx "20")}}
                                         <option value="{{pa.id}}" selected={{if (equalstr pa.id
                                             pessoa.plataformaAnos.firstObject.id) "selected" }}>
                                             {{pa.name}}</option>
-                                        {{/if}}
                                     {{/each}}
                                 </select>
                             </div>

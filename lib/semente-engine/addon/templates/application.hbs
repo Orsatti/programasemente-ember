@@ -100,6 +100,14 @@
         <a href="#" class="global-nav__link header-indicadores" {{action 'goToCalendario'}}>
           <span>Meu calendário</span></a></li>
 
+      {{#if acessoFp}}
+        <li class="global-nav__item global-nav--mob-only">
+          <a href="https://ap.programasemente.com.br" class="global-nav__link header-indicadores" target="_blank">
+            <span>Academia de Professores</span>
+          </a>
+        </li>
+      {{/if}}
+
       {{#if acessoS}}
         <li class="global-nav__item global-nav--mob-only">
           <a href="https://s.programasemente.com.br" class="global-nav__link header-indicadores" target="_blank">
@@ -119,10 +127,18 @@
           </a>
       </li>
 
+      {{#if acessoFp}}
+        <li class="global-nav__item global-nav__submenu-holder hide-on--xs visible-on--lg">
+            <a class="global-nav__link j-apps" href="https://ap.programasemente.com.br" target="_blank">
+              <span class="title-aux">Academia de Professores</span>
+            </a>
+        </li>
+      {{/if}}
+
       {{#if acessoS}}
         <li class="global-nav__item global-nav__submenu-holder hide-on--xs visible-on--lg">
             <a class="global-nav__link j-apps" href="https://s.programasemente.com.br" target="_blank">
-              <span class="m-left--sm title-aux">Plataforma S</span>
+              <span class="title-aux">Plataforma S</span>
             </a>
         </li>
       {{/if}}

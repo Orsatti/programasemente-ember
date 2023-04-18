@@ -16,7 +16,7 @@
                   type="checkbox"
                   id="plat_ano{{plataformaAno.id}}_portal" 
                   checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '1') "checked" '' }} 
-                  onchange={{action (action "selectAno" plataformaAno '1') value='target.checked' }} 
+                  onchange={{action (action "openModal" plataformaAno '1') value='target.checked' }} 
                 >
                 <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_portal">Portal</label>
               </div>
@@ -31,7 +31,7 @@
                   type="checkbox"
                   id="plat_ano{{plataformaAno.id}}_s" 
                   checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '2') "checked" '' }}
-                  onchange={{action (action "selectAno" plataformaAno '2') value='target.checked' }} 
+                  onchange={{action (action "openModal" plataformaAno '2') value='target.checked' }} 
                 >
                 <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_s">S</label>
               </div>
@@ -44,7 +44,7 @@
                 type="checkbox"
                 id="plat_ano{{plataformaAno.id}}_ap" 
                 checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '3') "checked" '' }}
-                onchange={{action (action "selectAno" plataformaAno '3') value='target.checked' }} 
+                onchange={{action (action "openModal" plataformaAno '3') value='target.checked' }} 
               >
               <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_ap">AP</label>
             </div>
@@ -61,3 +61,20 @@
     </footer>
   {{/if}} --}}
 </section>
+
+<aside id="confirm_modal" class="modal modal--is-show" style="display:none;">
+    <div class="modal__overlayer"></div>
+    <div class="modal__content m-top--md">
+        <header class="modal__header">
+            <button class="modal__close btn-close icon-x" onclick={{action 'closeModal' 'true'}}></button>
+            <h3 class="modal__title">Confirmar edição de ano</h3>
+        </header>
+
+        <div class="modal__body">
+          <div class="flex flex-row justify-content-end mt2">
+              <button class="btn" onclick={{action 'selectAno'}}>Confirmar</button>
+              <button class="btn" onclick={{action 'closeModal' 'true'}} style="background-color: #b62020; margin-left:1rem;">Cancelar</button>
+          </div>
+        </div>
+    </div>
+</aside>

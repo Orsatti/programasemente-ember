@@ -102,7 +102,7 @@
           {{#each livro as |l|}}
             {{#unless (and instituicao.vendaDireta (equalstr pessoa.role 'aluno'))}}
               <li>
-                <a class="tabs__tab" href="{{l.url}}" target="_blank" rel="nofollow noopener noreferrer">
+                <a class="tabs__tab" href="{{l.url}}#toolbar=0" target="_blank" rel="nofollow noopener noreferrer">
                   <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil 'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
                 </a>
               </li>

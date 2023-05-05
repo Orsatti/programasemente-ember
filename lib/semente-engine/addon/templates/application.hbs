@@ -61,10 +61,11 @@
           </li>
           {{#unless hasVendaDireta}}
             {{#if urlLivro}}
-              <li class="global-nav__item">
-                <a class="global-nav__link" href="{{urlLivro}}" target="_blank" rel="nofollow noopener noreferrer">
+              <li class="global-nav__item" {{action "openPdfViewer" urlLivro}}>
+                <span class="global-nav__link">Livro</span>
+                {{!-- <a class="global-nav__link" href="{{urlLivro}}" target="_blank" rel="nofollow noopener noreferrer">
                   <span>Livro</span>
-                </a>
+                </a> --}}
               </li>
             {{/if}}
           {{/unless}}

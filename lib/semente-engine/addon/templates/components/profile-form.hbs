@@ -56,14 +56,15 @@
 
                         </div>
                         {{input class="j-validate form-group__input"
-                        id="celular"
-                        name="celular"
-                        value=pessoa.telefone
-                        data-required="true"
-                        data-type="celular"
-                        key-down=(action 'maskcel')
-                        focus-out=(action 'checkcel')
-                        data-context="personal"
+                            id="celular"
+                            name="celular"
+                            value=pessoa.telefone
+                            data-required="true"
+                            data-type="celular"
+                            key-down=(action 'maskcel')
+                            focus-out=(action 'checkcel')
+                            data-context="personal"
+                            maxlength="15"
                         }}
                     </div>
                     <span class="form__msg form__msg--bellow form__msg--error" aria-live="polite"></span>
@@ -131,33 +132,35 @@
     <div class="row">
 
         {{#each segmentos as |segmento| }}
-            <div class="col-md-2">
-                <h4 class="title-segmento">{{segmento.titulo}}</h4>
-                {{#each plataformaAnos as |plataformaAno|}}
-                {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
-                    <div class="flex-col">
-                    <h4 class="title-platano mt0"><b>·</b> {{plataformaAno.name}}</h4>
-                    <ul id="platTurmas-list-{{plataformaAno.id}}">
-                        {{#each plataformaTurmas as |plataformaTurma|}}
-                        {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
-                        <ul>
-                            <li>
-                            <div class="checkbox">
-                                <input class="j-validate-aplicador-child checkbox__input" 
-                                type="checkbox"
-                                id="plat_turma{{plataformaTurma.id}}"
-                                onchange={{action (action "addPAPT" plataformaTurma.id) value='target.checked' }}>
-                                <label class="checkbox__label" for="plat_turma{{plataformaTurma.id}}">{{plataformaTurma.name}}</label>
-                            </div>
-                            </li>
+            {{#if (notequalstr segmento.titulo 'Adultos')}}
+                <div class="col-md-2">
+                    <h4 class="title-segmento">{{segmento.titulo}}</h4>
+                    {{#each platAnos as |plataformaAno|}}
+                    {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
+                        <div class="flex-col">
+                        <h4 class="title-platano mt0"><b>·</b> {{plataformaAno.name}}</h4>
+                        <ul id="platTurmas-list-{{plataformaAno.id}}">
+                            {{#each plataformaTurmas as |plataformaTurma|}}
+                            {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
+                            <ul>
+                                <li>
+                                <div class="checkbox">
+                                    <input class="j-validate-aplicador-child checkbox__input" 
+                                    type="checkbox"
+                                    id="plat_turma{{plataformaTurma.id}}"
+                                    onchange={{action (action "addPAPT" plataformaTurma.id) value='target.checked' }}>
+                                    <label class="checkbox__label" for="plat_turma{{plataformaTurma.id}}">{{plataformaTurma.name}}</label>
+                                </div>
+                                </li>
+                            </ul>
+                            {{/if}}
+                            {{/each}}
                         </ul>
-                        {{/if}}
-                        {{/each}}
-                    </ul>
-                    </div>
-                {{/if}}
-                {{/each}}
-            </div>
+                        </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+            {{/if}}
         {{/each}}
     </div>
 </section>
@@ -199,10 +202,6 @@
 
         {{#if (equalstr pessoa.role "aluno") }}
 
-        {{!-- <div class="row">
-            <label for="name">Senha</label>
-            <button type="button" class="btn btn--md">Alterar senha</button>
-        </div> --}}
         <div class="flow-md">
             <div class="row">
 
@@ -287,11 +286,9 @@
                                     value='target.value' }} data-type="select" data-required="true">
                                     <option value="" disabled selected>---</option>
                                     {{#each platAnos as |pa|}}
-                                    {{!-- {{#if (isnotinarray pa plataformaAnosToHide)}} --}}
-                                    <option value="{{pa.id}}" selected={{if (equalstr pa.id
-                                        pessoa.plataformaAnos.firstObject.id) "selected" }}>
-                                        {{pa.name}}</option>
-                                    {{!-- {{/if}} --}}
+                                        <option value="{{pa.id}}" selected={{if (equalstr pa.id
+                                            pessoa.plataformaAnos.firstObject.id) "selected" }}>
+                                            {{pa.name}}</option>
                                     {{/each}}
                                 </select>
                             </div>
@@ -310,11 +307,11 @@
                                     data-type="select" data-required="true">
                                     <option value="" disabled selected>---</option>
                                     {{#each pessoa.instituicao.plataformaTurmas as |pt|}}
-                                    {{#if (equalstr pt.plataformaAno.id pessoa.plataformaAnos.firstObject.id)}}
-                                    <option value="{{pt.id}}" selected={{if (equalstr pt.id
-                                        pessoa.plataformaTurmas.firstObject.id) "selected" }}>
-                                        {{pt.name}}</option>
-                                    {{/if}}
+                                        {{#if (equalstr pt.plataformaAno.id pessoa.plataformaAnos.firstObject.id)}}
+                                            <option value="{{pt.id}}" selected={{if (equalstr pt.id
+                                                pessoa.plataformaTurmas.firstObject.id) "selected" }}>
+                                                {{pt.name}}</option>
+                                        {{/if}}
                                     {{/each}}
                                 </select>
                             </div>
@@ -423,5 +420,6 @@
         </div>
         {{/if}}
 
+        <div style="display: none;">{{afterRenderInformation}}</div>
     </div>
 </div>

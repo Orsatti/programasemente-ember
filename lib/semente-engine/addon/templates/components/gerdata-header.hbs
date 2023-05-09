@@ -1,5 +1,5 @@
 <div class="flex flex-row m-top--md">
-    {{#if (equalstr role 'admin')}}
+    {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id '9')))}}
       <div class="mt1">
         {{#link-to 'gersistema'}}
           <button class="main__back btn btn--link color-blue-navy-60 animated fadeInLeftShort faster"
@@ -21,32 +21,32 @@
 
 <section class="sections__section flow-xl">
   <div class="tabs animated fadeInLeftShort faster d250">
-    {{#if (equalstr role "admin")}}
-    {{#link-to 'gerdata.informations' instituicao.id }}
-    <button class="report__tab tabs__tab">
-      <span>Informações</span>
-    </button>
-    {{/link-to}}
-    {{#link-to 'gerdata.years' instituicao.id }}
-    <button class="report__tab tabs__tab {{if years 'tabs__tab--is-active'}}">
-      <span>Anos</span>
-    </button>
-    {{/link-to}}
+    {{#if (equalstr pessoa.role 'admin')}}
+      {{#link-to 'gerdata.informations' instituicao.id }}
+        <button class="report__tab tabs__tab">
+          <span>Informações</span>
+        </button>
+      {{/link-to}}
+      {{#link-to 'gerdata.years' instituicao.id }}
+        <button class="report__tab tabs__tab {{if years 'tabs__tab--is-active'}}">
+          <span>Anos</span>
+        </button>
+      {{/link-to}}
     {{/if}}
     {{#link-to 'gerdata.classes' instituicao.id }}
-    <button class="report__tab tabs__tab {{if classes 'tabs__tab--is-active'}}">
-      <span>Turmas</span>
-    </button>
+      <button class="report__tab tabs__tab {{if classes 'tabs__tab--is-active'}}">
+        <span>Turmas</span>
+      </button>
     {{/link-to}}
     {{#link-to 'gerdata.users' instituicao.id }}
-    <button class="report__tab tabs__tab {{if users 'tabs__tab--is-active'}}">
-      <span>Usuários</span>
-    </button>
+      <button class="report__tab tabs__tab {{if users 'tabs__tab--is-active'}}">
+        <span>Usuários</span>
+      </button>
     {{/link-to}}
     {{#link-to 'gerdata.codes' instituicao.id }}
-    <button class="report__tab tabs__tab {{if codes 'tabs__tab--is-active'}}">
-      <span>Códigos</span>
-    </button>
+      <button class="report__tab tabs__tab {{if codes 'tabs__tab--is-active'}}">
+        <span>Códigos</span>
+      </button>
     {{/link-to}}
   </div>
 

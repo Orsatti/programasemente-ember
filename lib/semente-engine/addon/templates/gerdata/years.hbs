@@ -1,4 +1,4 @@
- {{gerdata-header role=role informations=false instituicao=model.instituicao}}
+ {{gerdata-header pessoa=pessoaLogged informations=false instituicao=model.instituicao}}
  
 <section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
   <div class="row">
@@ -7,25 +7,74 @@
       <h4 class="title-segmento"><b>{{segmento.titulo}}</b></h4>
       {{#each (orderby segmento.plataformaAnos 'idx') as |plataformaAno|}}
       <ul>
+        <h5 class="title-platano">• {{plataformaAno.name}}</h5>
         <li>
-          <div class="checkbox">
-            <input class="j-validate-aplicador-child checkbox__input" 
-              type="checkbox"
-              id="plat_ano{{plataformaAno.id}}" 
-              checked={{if (isinarray plataformaAno instituicao.plataformaAnos) "checked" '' }} 
-              onchange={{action (action "selectAno" plataformaAno) value='target.checked' }} 
-            >
-            <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}">{{plataformaAno.name}}</label>
-          </div>
+          {{#if (notequalstr segmento.idx '6')}}
+            {{#if (notequalstr plataformaAno.idx '17')}}
+              <div class="checkbox">
+                <input class="j-validate-aplicador-child checkbox__input" 
+                  type="checkbox"
+                  id="plat_ano{{plataformaAno.id}}_portal" 
+                  checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '1') "checked" '' }} 
+                  onchange={{action (action "openModal" plataformaAno '1') value='target.checked' }} 
+                >
+                <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_portal">Portal</label>
+              </div>
+            {{/if}}
+          {{/if}}
+
+          {{#if (and (notequalstr segmento.idx '1')(notequalstr segmento.idx '2'))}}
+            {{#if (and (equalstr segmento.idx '5')(notequalstr plataformaAno.idx '17'))}}
+            {{else}}
+              <div class="checkbox">
+                <input class="j-validate-aplicador-child checkbox__input" 
+                  type="checkbox"
+                  id="plat_ano{{plataformaAno.id}}_s" 
+                  checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '2') "checked" '' }}
+                  onchange={{action (action "openModal" plataformaAno '2') value='target.checked' }} 
+                >
+                <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_s">S</label>
+              </div>
+            {{/if}}
+          {{/if}}
+
+          {{#if (equalstr segmento.idx '6')}}
+            <div class="checkbox">
+              <input class="j-validate-aplicador-child checkbox__input" 
+                type="checkbox"
+                id="plat_ano{{plataformaAno.id}}_ap" 
+                checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '3') "checked" '' }}
+                onchange={{action (action "openModal" plataformaAno '3') value='target.checked' }} 
+              >
+              <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_ap">AP</label>
+            </div>
+          {{/if}}
         </li>
       </ul>
       {{/each}}
     </div>
     {{/each}}
   </div>
-  {{#if (equalstr role 'admin')}}
+  {{!-- {{#if (equalstr pessoaLogged.role 'admin')}}
     <footer class="modal__footer">
       <button class="btn" type="submit" id="btnSubmit" {{action 'saveCourses' }}>Salvar</button>
     </footer>
-  {{/if}}
+  {{/if}} --}}
 </section>
+
+<aside id="confirm_modal" class="modal modal--is-show" style="display:none;">
+    <div class="modal__overlayer"></div>
+    <div class="modal__content m-top--md">
+        <header class="modal__header">
+            <button class="modal__close btn-close icon-x" onclick={{action 'closeModal' 'true'}}></button>
+            <h3 class="modal__title">Confirmar edição de ano</h3>
+        </header>
+
+        <div class="modal__body">
+          <div class="flex flex-row justify-content-end mt2">
+              <button class="btn" onclick={{action 'selectAno'}}>Confirmar</button>
+              <button class="btn" onclick={{action 'closeModal' 'true'}} style="background-color: #b62020; margin-left:1rem;">Cancelar</button>
+          </div>
+        </div>
+    </div>
+</aside>

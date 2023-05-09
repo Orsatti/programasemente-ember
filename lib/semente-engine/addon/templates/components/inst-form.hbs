@@ -17,6 +17,7 @@
                 <div class="flex flex-row justify-between">
                     {{switch-input label="Status" propertyName="enabled" changeset=changeset classe="enabled"}}
                     {{switch-input label="É escola?" propertyName="isEscola" changeset=changeset classe="isEscola"}}
+                    {{switch-input label="Venda Direta" propertyName="vendaDireta" changeset=changeset classe="vendaDireta"}}
                     {{switch-input label="Termo Aceite" propertyName="statusTermoAceite" changeset=changeset classe="statusTermoAceite"}}
                     {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkSPlus" classe="sEnabled"}}
                     {{switch-input label="S Plus" propertyName="sPlusEnabled" changeset=changeset classe="sPlusEnabled"}}
@@ -39,6 +40,20 @@
                     {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id) classe="segmento"}}
                     {{/each}}
                 </div>
+                {{#unless changeset.id}}
+                    <h4 class="modal__subtitle">Gestão calendário</h4>
+                    <div class="flex flex-row justify-start m-top--sm">
+                        <select class="j-validate-aluno form-group__input form-group__input--select"
+                            id="new_inst_calendario" name="calendario"
+                            data-type="select" data-required="true" data-context="calendario">
+                            <option selected="selected" value="">---</option>
+                            {{#each calendarios as |calendario|}}
+                                <option value="{{calendario.id}}">{{calendario.nome}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                {{/unless}}
+
                 <div class="flex flex-row justify-content-between m-top--sm btn-right">
                     {{!-- {{#unless haveSegmentos}}
                         {{#link-to 'gerdata.informations.deleteinst' instituicao.id}}

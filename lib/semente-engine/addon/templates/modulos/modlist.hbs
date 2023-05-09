@@ -95,33 +95,3 @@
 </section>
 
 {{notifications}}
-{{!-- {{#if hasNotification}}
-  <div class="base-notificacao">
-    <div class="notification notification-animation-enter" id="notificationCard">
-        <button class="btn-close icon-x" type="submit" {{action 'closeNotifications'}}></button>
-      <div class="flex flex-row justify-content-around">
-        <div class="notification-icon icon--xl icon-calendar"></div>
-        <div class="flex flex-col w90 notification-itens">
-          {{#each notifications as |notification|}}
-            <h1>{{dateFormat notification.start}} - {{notification.text}}</h1>
-          {{/each}}
-        </div>
-      </div>
-    </div>
-  </div>
-{{/if}} --}}
-
-{{!-- <aside id="termo_modal" class="modal">
-  <div class="modal__overlayer"></div>
-  <div class="modal__content">
-    <div class="modal__header">
-      <button class="modal__close btn-close icon-x" type="submit" {{action 'cancelTermo' }}></button>
-      <h2 class="modal__title color-leaf-40">Política de privacidade</h2>
-    </div>
-    {{politica-privacidade class="privacy"}}
-    <div class="modal__footer">
-      <button class="btn btn-primary" type="submit" {{action 'aceitarTermo' }}>Aceitar</button>
-    </div>
-  </div>
-</aside>
-{{termoAceito}} --}}

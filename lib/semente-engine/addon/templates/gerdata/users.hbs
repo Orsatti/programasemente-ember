@@ -1,4 +1,4 @@
-{{gerdata-header role=role informations=false instituicao=instituicao}}
+{{gerdata-header pessoa=pessoaLogged informations=false instituicao=instituicao}}
 
 <section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
     <div class="flex flex-row items-center justify-end">
@@ -16,7 +16,10 @@
             <button class="btn btn--xxs" type="submit" {{action 'baixarTemplateAtivos' }}>
                 Usuários Ativos
             </button>
-            {{#if (and (equalstr role 'admin') (equalstr pessoaLogged.id '4881'))}}
+            {{#if (and (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.id '4881'))}}
+                <button class="btn btn--xxs" type="submit" {{action 'sendEmail' }}>
+                    Enviar Email
+                </button>
                 <button class="btn btn--xxs" type="submit" style="background-color: #b62020" {{action 'allUsersDisabled' }}>
                     Desativar Usuários
                 </button>
@@ -180,7 +183,7 @@
                             <th class="table__role" scope="col">Perfil</th>
                             <th class="table__enabled" scope="col">Portal</th>
                             <th class="table__enabled" scope="col">Plataforma S</th>
-                            <th class="table__enabled" scope="col">CoreSkills</th>
+                            <th class="table__enabled" scope="col">Academia de Professores</th>
                             <th class="table__actions" scope="col">Ações</th>
                         </tr>
                     </thead>

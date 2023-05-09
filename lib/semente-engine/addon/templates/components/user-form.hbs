@@ -90,7 +90,7 @@
             </div>
 
             <div class="flex flex-row mt3">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="checkbox w100">
                         <input class="checkbox__input" checked={{new_user_enabled}} id="new_user_enabled" type="checkbox">
                         <label class="checkbox__label" for="new_user_enabled">Habilitado</label>
@@ -98,21 +98,31 @@
                 </div>
 
                 {{#if sEnabled}}
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="checkbox w100">
                             <input class="checkbox__input" 
                                 checked={{new_user_acessoPlataformaS}} id="new_user_acessoPlataformaS" type="checkbox">
-                            <label class="checkbox__label" for="new_user_acessoPlataformaS">Acesso à Plataforma S</label>
+                            <label class="checkbox__label" for="new_user_acessoPlataformaS">Plataforma S</label>
                         </div>
                     </div>
                 {{/if}}
 
                 {{#if csEnabled}}
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="checkbox w100">
                             <input class="checkbox__input" 
                                 checked={{new_user_acessoCs}} id="new_user_acessoCs" type="checkbox">
-                            <label class="checkbox__label" for="new_user_acessoCs">Acesso à CoreSkills</label>
+                            <label class="checkbox__label" for="new_user_acessoCs">Academia de Professores</label>
+                        </div>
+                    </div>
+                {{/if}}
+
+                {{#if isEdit}}
+                    <div class="col-md-3">
+                        <div class="checkbox w100">
+                            <input class="checkbox__input" 
+                                checked={{new_user_reenviaremail}} id="new_user_reenviaremail" type="checkbox">
+                            <label class="checkbox__label" for="new_user_reenviaremail">Reenviar login e senha?</label>
                         </div>
                     </div>
                 {{/if}}
@@ -137,33 +147,35 @@
                             {{#if aplicadorError}}<span id="error_aplicador" class="color-error-30 fs--xs">{{errorMsgAplicador}}</span>{{/if}}
                             <div class="flex flex-row mt1">
                             {{#each segmentos as |segmento| }}
-                                <div class="col-md-2">
-                                    <h4 class="title-segmento">{{segmento.titulo}}</h4>
-                                    {{#each plataformaAnos as |plataformaAno|}}
-                                    {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
-                                        <div class="flex-col">
-                                        <h4 class="title-platano mt0"><b>·</b> {{plataformaAno.name}}</h4>
-                                        <ul id="platTurmas-list-{{plataformaAno.id}}">
-                                            {{#each plataformaTurmas as |plataformaTurma|}}
-                                            {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
-                                            <ul>
-                                                <li>
-                                                <div class="checkbox">
-                                                    <input class="j-validate-aplicador-child checkbox__input" 
-                                                    type="checkbox"
-                                                    id="plat_turma{{plataformaTurma.id}}"
-                                                    onchange={{action (action "addPAPT" plataformaTurma.id) value='target.checked' }}>
-                                                    <label class="checkbox__label" for="plat_turma{{plataformaTurma.id}}">{{plataformaTurma.name}}</label>
-                                                </div>
-                                                </li>
+                                {{#if (notequalstr segmento.titulo 'Adultos')}}
+                                    <div class="col-md-2">
+                                        <h4 class="title-segmento">{{segmento.titulo}}</h4>
+                                        {{#each plataformaAnos as |plataformaAno|}}
+                                        {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
+                                            <div class="flex-col">
+                                            <h4 class="title-platano mt0"><b>·</b> {{plataformaAno.name}}</h4>
+                                            <ul id="platTurmas-list-{{plataformaAno.id}}">
+                                                {{#each plataformaTurmas as |plataformaTurma|}}
+                                                {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
+                                                <ul>
+                                                    <li>
+                                                    <div class="checkbox">
+                                                        <input class="j-validate-aplicador-child checkbox__input" 
+                                                        type="checkbox"
+                                                        id="plat_turma{{plataformaTurma.id}}"
+                                                        onchange={{action (action "addPAPT" plataformaTurma.id) value='target.checked' }}>
+                                                        <label class="checkbox__label" for="plat_turma{{plataformaTurma.id}}">{{plataformaTurma.name}}</label>
+                                                    </div>
+                                                    </li>
+                                                </ul>
+                                                {{/if}}
+                                                {{/each}}
                                             </ul>
-                                            {{/if}}
-                                            {{/each}}
-                                        </ul>
-                                        </div>
-                                    {{/if}}
-                                    {{/each}}
-                                </div>
+                                            </div>
+                                        {{/if}}
+                                        {{/each}}
+                                    </div>
+                                {{/if}}
                             {{/each}}
                             </div>
                         </div>
@@ -206,14 +218,19 @@
                                             data-type="select" data-required="true" data-context="turma">
                                             <option selected="selected" value="">---</option>
                                             {{#each plataformaTurmas as |pt|}}
-                                                {{#if (equalstr selectedPlataformaAno '')}}
+                                                {{!-- {{#if (equalstr selectedPlataformaAno '')}}
                                                     <option value="{{pt.id}}">{{pt.name}}</option>
-                                                {{else}}
+                                                {{else}} --}}
                                                     {{#if (equalstr pt.plataformaAno.id selectedPlataformaAno.id)}}
                                                         <option value="{{pt.id}}">{{pt.name}}</option>
                                                     {{/if}}
-                                                {{/if}} 
+                                                {{!-- {{/if}}  --}}
                                             {{/each}}
+
+                                            {{!-- QUANDO AP TIVER TURMA --}}
+                                            {{!-- {{#if (and (and csEnabled (equalstr 'Adultos' selectedPlataformaAno.name)) (notequalstr instituicao.name "Semente"))}}
+                                                <option value="{{apTurma.id}}">{{apTurma.name}}</option>
+                                            {{/if}} --}}
                                         </select>
                                     </div>
                                 </div>

@@ -111,11 +111,13 @@ export default DS.Model.extend({
   senha: DS.attr(),
   acessoPlataformaS: DS.attr(),
   acessoCs: DS.attr(),
+  comprouAp: DS.attr(),
   nameLower: Ember.computed('name', function(){
     return this.get('name').toLowerCase();
   }),
   ejaAcessoMedio: DS.attr(),
   isEja: DS.attr(),
+  mustSendWelcomeEmail: DS.attr(),
   certificados: DS.hasMany('certificado', { async:true }),
   pessoaNotifications: DS.hasMany('pessoa-notification', { async:true }),
 });

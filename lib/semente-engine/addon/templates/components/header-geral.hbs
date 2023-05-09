@@ -100,12 +100,11 @@
 
         {{#unless (equalstr livro '#')}}
           {{#each livro as |l|}}
-            <li>
-              <a class="tabs__tab" href="{{l.url}}" target="_blank" rel="nofollow noopener noreferrer">
-                <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil
-              'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
-              </a>
-            </li>
+            {{#unless (and instituicao.vendaDireta (equalstr pessoa.role 'aluno'))}}
+              <li class="tabs__tab" {{action "openPdfViewer" l}}>
+                <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil 'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
+              </li>
+            {{/unless}}
           {{/each}}
         {{/unless}}
 
@@ -123,13 +122,13 @@
           {{/link-to}}
         {{/if}}
 
-        {{#if (equalstr pessoa.role 'admin')}}
+        {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
           {{#link-to 'gersistema' class="tabs__tab"}}
             <span>Administração</span>
           {{/link-to}}
         {{/if}}
 
-        {{#if (or (or (equalstr pessoa.role 'secretaria') (equalstr pessoa.role 'gestor')) (equalstr pessoa.role 'recursosHumanos'))}}
+        {{#if (or (or (equalstr pessoa.role 'secretaria') (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (equalstr pessoa.role 'recursosHumanos'))}}
           {{#link-to 'gerdata.users' pessoa.instituicao.id class="tabs__tab"}}
             <span>Administração</span>
           {{/link-to}}

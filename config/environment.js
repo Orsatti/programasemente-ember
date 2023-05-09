@@ -3,6 +3,7 @@
 
 module.exports = function(environment) {
   let ENV = {
+    adobeApiKey: "40373f2f316448baa8c58aee78276225",
     modulePrefix: 'semente-web-app',
     environment,
     rootURL: '/',
@@ -30,9 +31,10 @@ module.exports = function(environment) {
   }
 
   if (environment === 'development') {
+    ENV.adobeApiKey = "f04da9781afa4ebf871f5e4566d9bbe9",
     ENV.rootURL = '/';
     ENV.APP.DOMAIN = "porto.com";
-    ENV.APP.host = 'http://localhost:64568';
+    ENV.APP.host = 'https://localhost:44300';
     // ENV.APP.host = 'https://p21.minimo.com.br';
     // ENV.APP.host = 'https://sementeapi.minimo.com.br';
    //  ENV.APP.host = 'http://sementeapidev.minimo.com.br'; 

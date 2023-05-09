@@ -59,13 +59,16 @@
           <li class="global-nav__item" id="header-modulos">
             {{#link-to 'modulos.modlist' ModuloIdx class="global-nav__link"}}<span>Aulas EAD</span>{{/link-to}}
           </li>
-          {{#if urlLivro}}
-            <li class="global-nav__item">
-              <a class="global-nav__link" href="{{urlLivro}}" target="_blank" rel="nofollow noopener noreferrer">
-                <span>Livro</span>
-              </a>
-            </li>
-          {{/if}}
+          {{#unless hasVendaDireta}}
+            {{#if urlLivro}}
+              <li class="global-nav__item" {{action "openPdfViewer" urlLivro}}>
+                <span class="global-nav__link">Livro</span>
+                {{!-- <a class="global-nav__link" href="{{urlLivro}}" target="_blank" rel="nofollow noopener noreferrer">
+                  <span>Livro</span>
+                </a> --}}
+              </li>
+            {{/if}}
+          {{/unless}}
           {{#unless isEja}}
             <li class="global-nav__item" id="header-modulos">
                 {{#link-to 'aulas.bibliotecaindex' class="global-nav__link"}}<span>Biblioteca</span>{{/link-to}}
@@ -98,6 +101,14 @@
         <a href="#" class="global-nav__link header-indicadores" {{action 'goToCalendario'}}>
           <span>Meu calendário</span></a></li>
 
+      {{#if acessoFp}}
+        <li class="global-nav__item global-nav--mob-only">
+          <a href="https://ap.programasemente.com.br" class="global-nav__link header-indicadores" target="_blank">
+            <span>Academia de Professores</span>
+          </a>
+        </li>
+      {{/if}}
+
       {{#if acessoS}}
         <li class="global-nav__item global-nav--mob-only">
           <a href="https://s.programasemente.com.br" class="global-nav__link header-indicadores" target="_blank">
@@ -117,10 +128,18 @@
           </a>
       </li>
 
+      {{#if acessoFp}}
+        <li class="global-nav__item global-nav__submenu-holder hide-on--xs visible-on--lg">
+            <a class="global-nav__link j-apps" href="https://ap.programasemente.com.br" target="_blank">
+              <span class="title-aux">Academia de Professores</span>
+            </a>
+        </li>
+      {{/if}}
+
       {{#if acessoS}}
         <li class="global-nav__item global-nav__submenu-holder hide-on--xs visible-on--lg">
             <a class="global-nav__link j-apps" href="https://s.programasemente.com.br" target="_blank">
-              <span class="m-left--sm title-aux">Plataforma S</span>
+              <span class="title-aux">Plataforma S</span>
             </a>
         </li>
       {{/if}}
@@ -332,6 +351,9 @@
                 <span class="notification-card-date">{{dateFormat notification.start}}</span>
                 <span class="notification-card-title">{{notification.title}}</span>
                 <span class="notification-card-text">{{notification.text}}</span>
+                <span class="notification-card-text">
+                  <a href="{{notification.link}}" target="_blank">{{notification.link}}</a>
+                </span>
               </div>
             {{/each}}
           {{else}}
@@ -352,6 +374,9 @@
                   </div>
                   <span class="notification-card-title">{{pessoaNotification.notification.title}}</span>
                   <span class="notification-card-text">{{pessoaNotification.notification.text}}</span>
+                  <span class="notification-card-text">
+                    <a href="{{pessoaNotification.notification.link}}" target="_blank">{{pessoaNotification.notification.link}}</a>
+                  </span>
                 </div>
               {{/each}}
           {{else}}
@@ -364,5 +389,3 @@
     </div>
   </aside>    
 {{/if}}
-
-

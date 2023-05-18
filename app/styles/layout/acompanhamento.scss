@@ -1,36 +1,50 @@
 .box-area{
     width: 100%;
     height: auto;
-    border: 1rem solid #fff;
-    border-radius: 30px;
-    -webkit-box-shadow: inset 0 0 8px 4px #a9a9a973;
-    box-shadow: inset 0 0 8px 4px #a9a9a973;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    padding: 1rem;
+    padding: 1.5rem;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 
 
     @include media('<sm') {
         display: inline-block;
-
         
- }
-
-    &__item2{
-        border-left: 1px solid #a9a9a9;
-        padding: 0 2rem;
-        border-right: 1px solid #a9a9a9;
-        margin: 0 3rem;
-        display: block;
-
-        @include media('<sm') {
-            margin: 3rem 0;
-            border: none;
-            padding: 0;
-     }   
     }
 
-    
+    &__divisor{
+        width: 1px;
+        background-color: #a9a9a9;
+    }
+
+    &__item1{
+        width: 25%;
+    }
+
+    // &__item1{
+    //     padding: 0 2rem;
+
+    //     @include media('<sm') {
+    //         margin: 3rem 0;
+    //         border: none;
+    //         padding: 0;
+    //     }   
+    // }
+
+    // &__item2{
+    //     border-left: 1px solid #a9a9a9;
+    //     padding: 0 2rem;
+    //     display: block;
+
+    //     @include media('<sm') {
+    //         margin: 3rem 0;
+    //         border: none;
+    //         padding: 0;
+    //     }   
+    // }
+
 
     &__title-4{
         margin-bottom: 1rem;
@@ -115,13 +129,20 @@
     font-size: 0.8rem;
     display: inline-block;
     background-color: #607180;
-    width: 20px;
+    width: 15px;
+    height: 15px;
     border-radius: 23px;
     margin: auto;
     text-align: center;
     color: white;
     margin: auto 0.5rem;
     cursor: pointer;
+}
+
+.btn-detalhes-text{
+    position: absolute;
+    left: 12px;
+    bottom: 5px;
 }
 
 .tooltip {
@@ -137,7 +158,7 @@
     background-color: #fff;
     color: #000;
     /* text-align: center; */
-    border-radius: 6px;
+    border-radius: 5px;
     padding: 5px 0.5rem;
     font-size: 0.8rem;
     -webkit-box-shadow: inset 0 0 8px 4px #a9a9a973;

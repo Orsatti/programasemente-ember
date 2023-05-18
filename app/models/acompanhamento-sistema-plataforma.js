@@ -1,9 +1,10 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-    acompanhamentoPessoasPlataforma: DS.hasMany('acompanhamento-pessoa-plataforma', { async: true }),
-    acompanhamentoSistemasPlataforma: DS.hasMany('acompanhamento-sistema-plataforma', { async: true }),
+    sistema: DS.belongsTo('sistema', { async: true }),
     nrAlunos: DS.attr(),
+    nrProfessoresAplicadores: DS.attr(),
+    nrProfessoresNaoAplicadores: DS.attr(),
     nrProfessores: DS.attr(),
     nrSecretarias: DS.attr(),
     nrMarketings: DS.attr(),

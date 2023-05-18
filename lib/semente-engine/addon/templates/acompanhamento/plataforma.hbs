@@ -1,0 +1,292 @@
+<div class="flex flex-row m-top--md">
+    {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id '9')))}}
+      <div class="mt1">
+        {{#link-to 'geracompanhamento'}}
+          <button class="main__back btn btn--link color-blue-navy-60 animated fadeInLeftShort faster"
+            id="back-person-specific_old" type="button">
+            <span class="icon-arrow-left"></span>
+            <span class="btn__label">voltar</span>
+          </button>
+        {{/link-to}}
+      </div>
+      <h1 class="main__title animated fadeInLeftShort faster d100 m-left--lg m-top--xxs m-bottom--xs">
+        {{instituicao.name}}
+      </h1>
+    {{else}}
+      <h1 class="main__title animated fadeInLeftShort faster d100 m-top--xxs m-bottom--xs">
+        {{instituicao.name}}
+      </h1>
+    {{/if}}
+</div>
+
+<section class="sections__section flow-xl mb-5">
+  <div class="tabs animated fadeInLeftShort faster d250">
+    {{#each segmentos as |segmento|}}
+        <button class="report__tab tabs__tab {{if (equalstr segmento.idx selectedSegmento.idx) 'tabs__tab--is-active'}}" {{action 'refreshSelectedSegmento' segmento}}>
+          <span>{{segmento.titulo}}</span>
+        </button>
+    {{/each}}
+  </div>
+</section>
+
+<section class="flow-xl">
+    <div class="box-area">
+        <div class="box-area__item1">
+            <h2 class="box-area__title-4">Contratados</h2>
+            <p>Alunos: <span>{{model.nrAlunos}}</span></p>
+            <p>Professores: <span>{{model.nrProfessores}}</span></p>
+            <p>Secretaria: <span>{{model.nrSecretarias}}</span></p>
+            <p>Marketing: <span>{{model.nrMarketings}}</span></p>
+            <p>Cooredenadores: <span>{{model.nrCooredenadores}}</span></p>
+            <p>Gestores: <span>{{model.nrGestores}}</span></p>
+        </div>
+
+
+        {{#each acompanhamentoSistemas as |sistema|}}
+            <div class="box-area__divisor"></div>
+            <div class="box-area__item1">
+                <h2 class="box-area__title-4">{{sistema.sistema.name}}</h2>
+                <p>Alunos: <span>{{sistema.nrAlunos}}</span></p>
+                <p>Professores: <span>{{sistema.nrProfessores}}<span class="tooltip">
+                        <span class="btn-detalhes"><span class="btn-detalhes-text">+</span></span>
+                        <span class="tooltiptext">
+                            <p>Aplicadores: <span>{{sistema.nrProfessoresAplicadores}}</span></p>
+                            <p>Não Aplicadores: <span>{{sistema.nrProfessoresNaoAplicadores}}</span></p>
+                        </span>
+                    </span></span>
+                </p>
+                <p>Secretaria: <span>{{sistema.nrSecretarias}}</span></p>
+                <p>Marketing: <span>{{sistema.nrMarketings}}</span></p>
+                <p>Cooredenadores: <span>{{sistema.nrCooredenadores}}</span></p>
+                <p>Gestores: <span>{{sistema.nrGestores}}</span></p>
+            </div>
+        {{/each}}
+
+        {{!-- {{#unless (or (equalstr selectedSegmento.idx '1') (equalstr selectedSegmento.idx '2'))}}
+            <div class="box-area__divisor"></div>
+            <div class="box-area__item2">
+                <h2 class="box-area__title-4">Plataforma S</h2>
+                <p>Alunos: <span>2</span> <span class="tooltip">
+                        <span class="btn-detalhes">i</span>
+                        <span class="tooltiptext">
+                            <p><b>Estado</b> </p>
+                            <p> Não iniciados: <span>2</span></p>
+                            <p>Em andamento: <span>2</span></p>
+                            <p> Em andamento: <span>2</span> </p>
+                            <p> Concluídos: <span>2</span></p>
+                        </span>
+                    </span>
+                </p>
+                <p>Professores Aplicadores: <span>2</span></p>
+                <p>Professores não Aplicadores: <span>2</span></p>
+                <p>Cooredenadores: <span>2</span></p>
+                <p>Secretátia: <span>2</span></p>
+                <p>Gestores: <span>2</span></p>
+                <p>Marketing: <span>2</span></p>
+            </div>
+        {{/unless}} --}}
+
+    </div>
+    {{!-- <nav>
+        <ul class="tabs box-menu">
+            {{#each segmentos as |seg|}}
+            {{#if (equalstr seg.titulo 'Adultos')}}
+            {{#if (or (equalstr role 'admin') (equalstr role 'recursosHumanos'))}}
+            <li>
+                <button type="button"
+                    class=" tabs__tab box-menu__acompanhamento {{if (equalstr parentController.selectedSegmentoLocal.titulo seg.titulo) 'box-menu__acompanhamento--is-active'}}"
+                    {{action 'refreshSelectedSegmento' seg}}>
+                    <span>{{seg.titulo}}</span>
+                </button>
+            </li>
+            {{/if}}
+            {{else}}
+            <li>
+                <button type="button"
+                    class="tabs__tab box-menu__acompanhamento {{if (equalstr parentController.selectedSegmentoLocal.titulo seg.titulo) 'box-menu__acompanhamento--is-active'}}"
+                    {{action 'refreshSelectedSegmento' seg}}>
+                    <span>{{seg.titulo}}</span>
+                </button>
+            </li>
+            {{/if}}
+            {{/each}}
+            {{#if haveEad}}
+            <li>
+                <button type="button" class="tabs__tab box-menu__acompanhamento" {{action 'goToEad' }}>
+                    <span>EAD</span>
+                </button>
+            </li>
+            {{/if}}
+        </ul>
+    </nav> --}}
+    <div class="l-dots-between">
+        <header class="l-dots-between__side">
+            <form autocomplete="off" class="flex flex-col flow-md box-area">
+                <div class="form-group">
+                    <label class="form-group__label">Busca</label>
+                    <div class="form-group__wrapper form-group__wrapper--search">
+                        {{input class="form-group__input"
+                        type="text"
+                        id="pesquisaperfil"
+                        placeholder="Pesquisar Perfil"
+                        value=this.search}}
+                    </div>
+                    <a class="form__aux-link" onclick={{action 'eraseText' }}>Limpar busca</a>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-group__label" for="situation">Perfis</label>
+                    <div class="form-group__wrapper form-group__wrapper--select">
+                        <select class="form-group__input" id="situation" onchange={{action 'refreshSelectedFilteredRole'
+                            value='target.value' }}>
+                            <option value="aluno">Aluno</option>
+                            {{#unless (equalstr pessoa.role 'instrutor')}}
+                                <option value="instrutor">Professor</option>
+                            {{/unless}}
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-group__label" for="situation">Anos</label>
+
+                    <div class="form-group__wrapper form-group__wrapper--select">
+                        <select class="form-group__input" id="situation" onchange={{action 'refreshSelectedAno'
+                            value='target.value' }}>
+                            <option selected="selected" value="">Todos</option>
+                            {{#each plataformaAnos as |pa|}}
+                            <option selected={{if (equalstr pa.id selectedPlataformaAno.id) "selected" }}
+                                value={{pa.id}}>{{pa.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+
+                {{#if (equalstr selectedFilteredRole "aluno")}}
+                {{#if platAnoFiltered}}
+                <div class="form-group">
+                    <label class="form-group__label">Turma</label>
+                    <div class="form-group__wrapper form-group__wrapper--select">
+                        <select class="form-group__input" id="situation" onchange={{action 'refreshSelectedTurma'
+                            value='target.value' }}>
+                            <option selected="selected" value="">Todas</option>
+                            {{#each plataformaTurmas as |pt|}}
+                            <option value={{pt.id}} selected={{if (equalstr pt.id selectedPlataformaTurma.id) "selected"
+                                }}>
+                                {{pt.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                {{/if}}
+                {{/if}}
+            </form>
+        </header>
+        <section class="l-dots-between__content flow-md box-area">
+            {{#if (equalstr selectedFilteredRole 'instrutor')}}
+            <table class="table table--striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th class="ta-c">Videos assistidos</th>
+                        {{!-- <th class="ta-c">Arquivos utilizados</th> --}}
+                        <th class="ta-c">Acessos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#if (equalstr professores.length "0")}}
+                        <p>Nenhum professor encontrado</p>
+                    {{else}}
+                        {{#each professores as |p|}}
+                        {{#if (containStr subStr = this.search mainStr = p.name)}}
+                        <tr>
+                            <td>
+                                <div class="flex flex-col flow-sm">
+                                    <span class="title-5 capitalized">{{p.name}}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="flex flex-col flow-sm">
+                                    <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
+                                        <span class="ws-i">Tempo preparado:</span>
+                                        <span class="strong">{{p.nrVideosPreparacao}}</span>
+                                    </span>
+                                    <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
+                                        <span class="ws-i">Tempo assistido:</span>
+                                        <span class="strong">{{p.nrVideos}}</span>
+                                    </span>
+                                </div>
+                            </td>
+                            {{!-- <td class="ta-c">
+                                <span class="fs--xxs tt-u">22</span>
+                            </td> --}}
+                            <td class="p-h--xs">
+                                <div class="flex flex-col flow-sm">
+                                    <span
+                                        class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u acomp-ultimos-acessos"
+                                        style="border-bottom: 1px solid #000;">
+                                        <span class="ws-i">Último</span>
+                                        <span class="strong">{{p.lastAccess}}</span>
+                                    </span>
+
+                                    <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
+                                        <span class="ws-i">Total</span>
+                                        <span class="strong">{{p.acessos}}</span>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/if}}
+                        {{/each}}
+                    {{/if}}
+                </tbody>
+            </table>
+            {{else}}
+            <table class="table table--striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th class="ta-c">Videos assistidos</th>
+                        <th class="ta-c">Acessos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#if (equalstr alunos.length "0")}}
+                        <p>Nenhum aluno encontrado</p>
+                    {{else}}
+                        {{#each alunos as |a|}}
+                        {{#if (containStr subStr = this.search mainStr = a.name)}}
+                        <tr>
+                            <td>
+                                <span class="title-4 capitalized">{{a.name}}</span>
+                            </td>
+                            <td class="ta-c">
+                                <span class="fs--xxs tt-u">{{a.nrVideos}}</span>
+                            </td>
+                            <td class="p-h--xs">
+                                <div class="flex flex-col flow-sm">
+                                    <span
+                                        class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u acomp-ultimos-acessos"
+                                        style="border-bottom: 1px solid #000;">
+                                        <span class="ws-i">Último</span>
+                                        <span class="strong">{{a.lastAccess}}</span>
+                                    </span>
+
+                                    <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
+                                        <span class="ws-i">Total</span>
+                                        <span class="strong">{{a.acessos}}</span>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                        {{/if}}
+                        {{/each}}
+                    {{/if}}
+                </tbody>
+            </table>
+            {{/if}}
+        </section>
+    </div>
+</section>

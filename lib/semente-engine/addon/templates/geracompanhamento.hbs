@@ -25,11 +25,9 @@
   <ul id="matchDisplay" class="list list--striped animated fadeInLeftShort faster d750" style="display:none;">
     {{#each matchInsts as |inst|}}
     <li class="l-devil-albatross">
-      {{#link-to 'acompanhamento.plataforma' inst.id}}
-        <a class="title-3 btn btn--link color-blue-navy-60">
+        <a class="title-3 btn btn--link color-blue-navy-60" onclick={{action 'selectInst' inst.id}}>
           <span class="btn__label">{{inst.name}}</span>
         </a>
-      {{/link-to}}
       <span class="switch switch--institutions flex-none m-left--auto m-right--auto">
       </span>
     </li>
@@ -39,11 +37,9 @@
   <ul id="modelInstList" class="list list--striped animated fadeInLeftShort faster d100">
     {{#each model.instituicoes as |inst|}}
     <li class="l-devil-albatross">
-      {{#link-to 'acompanhamento.plataforma' inst.id}}
-        <a class="title-3 btn btn--link color-blue-navy-60">
+        <a class="title-3 btn btn--link color-blue-navy-60" onclick={{action 'selectInst' inst.id}}>
           <span class="btn__label">{{inst.name}}</span>
         </a>
-      {{/link-to}}
       <span class=" switch switch--institutions flex-none m-left--auto m-right--auto">
       </span>
     </li>

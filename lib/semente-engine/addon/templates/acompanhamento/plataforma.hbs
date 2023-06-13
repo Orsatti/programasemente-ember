@@ -333,7 +333,7 @@
                         </thead>
                         <tbody>
                             {{#if (equalstr model.professoresFiltered "0")}}
-                                <p>Nenhum professor encontrado</p>
+                                <p class="n-encontrado">Nenhum professor encontrado</p>
                             {{else}}
                                 {{#each acompanhamentoPessoas as |p|}}
                                 {{#if (and (equalstr p.role 'instrutor')(containStr subStr = this.search mainStr = p.name))}}
@@ -390,7 +390,7 @@
                         </thead>
                         <tbody>
                             {{#if (equalstr model.alunosFiltered "0")}}
-                                <p>Nenhum aluno encontrado</p>
+                                <p class="n-encontrado">Nenhum aluno encontrado</p>
                             {{else}}
                                 {{#each acompanhamentoPessoas as |a|}}
                                 {{#if (and (equalstr a.role 'aluno')(containStr subStr = this.search mainStr = a.name))}}

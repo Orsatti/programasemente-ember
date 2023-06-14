@@ -73,15 +73,16 @@
     }
 
     &::before {
-      background-blend-mode: soft-light, normal;
-      background-image: url(../assets/img/fundo8.jpg), linear-gradient(30deg, var(--dark), var(--light));
+      background-blend-mode: soft-light,normal;
+      background-image: url(../assets/img/fundo8.png);
+      background-image: url(../assets/img/fundo8.png);
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       bottom: 0;
-      content: '';
+      content: "";
       left: 0;
-      opacity: .35;
+      /* opacity: .35; */
       position: absolute;
       right: 0;
       top: 0;

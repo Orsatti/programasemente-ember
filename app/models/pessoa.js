@@ -6,6 +6,7 @@ import { memberAction } from 'ember-api-actions';
 export default DS.Model.extend({
   name: DS.attr(),
   role: DS.attr(),
+  function: DS.attr(),
   email: DS.attr(),
   cpf: DS.attr(),
   userName: DS.attr(),

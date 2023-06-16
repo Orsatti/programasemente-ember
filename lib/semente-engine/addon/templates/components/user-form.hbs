@@ -29,6 +29,32 @@
                     </div>
                     <div class="color-error-40" id="role-error"></div>
                 </div>
+
+                {{#unless (equalstr activeProfile "aluno")}}
+                    <div class="col-md-4">
+                        <div class="form-group w100 mt1">
+                            <label class="form-group__label" for="new_user_function">Função</label>
+                            <div class="form-group__wrapper form-group__wrapper--select">
+                                <select class="form-group__input j-validate-basic" id="new_user_function"
+                                    data-type="select">
+                                    <option value="">Selecione...</option>
+                                    <option value="Coordenador Pedagógico">Coordenador Pedagógico</option>
+                                    <option value="Diretor administrativo">Diretor administrativo</option>
+                                    <option value="Diretor financeiro">Diretor financeiro</option>
+                                    <option value="Diretor geral">Diretor geral</option>
+                                    <option value="Diretor pedagógico">Diretor pedagógico</option>
+                                    <option value="Mantenedor">Mantenedor</option>
+                                    <option value="Marketing">Marketing</option>
+                                    <option value="Professor">Professor</option>
+                                    <option value="RH">RH</option>
+                                    <option value="Secretaria">Secretaria</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="color-error-40" id="function-error"></div>
+                    </div>
+                {{/unless}}
             </div>
 
             <div class="flex flex-row">

@@ -384,7 +384,7 @@
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th class="ta-c">Videos assistidos</th>
+                                <th class="ta-c">Tarefas Ralizadas</th>
                                 <th class="ta-c">Acessos</th>
                             </tr>
                         </thead>
@@ -395,11 +395,13 @@
                                 {{#each acompanhamentoPessoas as |a|}}
                                 {{#if (and (equalstr a.role 'aluno')(containStr subStr = this.search mainStr = a.name))}}
                                 <tr>
-                                    <td>
+                                    <td class="flex flex-col flow-sm">
                                         <span class="title-4 capitalized">{{a.name}}</span>
+                                        <span class="fs--xxs tt-u">{{a.userName}}</span>
                                     </td>
                                     <td class="ta-c">
-                                        <span class="fs--xxs tt-u">{{a.nrVideos}}</span>
+                                        {{!-- <span class="fs--xxs tt-u"></span> --}}
+                                        {{a.nrTarefasAlunos}} / {{#if (equalstr selectedSegmento.idx '5')}}18{{else}}12{{/if}}
                                     </td>
                                     <td class="p-h--xs">
                                         <div class="flex flex-col flow-sm">

@@ -23,7 +23,7 @@
             {{/if}}
           {{/if}}
 
-          {{#if (and (notequalstr segmento.idx '1')(notequalstr segmento.idx '2'))}}
+          {{#if (and (and (notequalstr segmento.idx '1')(notequalstr segmento.idx '2')) acessoS)}}
             {{#if (and (equalstr segmento.idx '5')(notequalstr plataformaAno.idx '17'))}}
             {{else}}
               <div class="checkbox">
@@ -38,7 +38,7 @@
             {{/if}}
           {{/if}}
 
-          {{#if (equalstr segmento.idx '6')}}
+          {{#if (and (equalstr segmento.idx '6') acessoAp)}}
             <div class="checkbox">
               <input class="j-validate-aplicador-child checkbox__input" 
                 type="checkbox"

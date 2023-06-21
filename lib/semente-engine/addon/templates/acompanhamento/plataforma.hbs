@@ -10,11 +10,11 @@
         {{/link-to}}
       </div>
       <h1 class="main__title animated fadeInLeftShort faster d100 m-left--lg m-top--xxs m-bottom--xs">
-        {{instituicao.name}}
+        {{model.instituicao.name}}
       </h1>
     {{else}}
       <h1 class="main__title animated fadeInLeftShort faster d100 m-top--xxs m-bottom--xs">
-        {{instituicao.name}}
+        {{model.instituicao.name}}
       </h1>
     {{/if}}
 </div>
@@ -33,12 +33,12 @@
     <div class="box-area">
         <div class="box-area__item1">
             <h2 class="box-area__title-4">Contratados</h2>
-            <p>Alunos: <span>{{model.nrAlunos}}</span></p>
-            <p>Professores: <span>{{model.nrProfessores}}</span></p>
-            <p>Secretaria: <span>{{model.nrSecretarias}}</span></p>
-            <p>Marketing: <span>{{model.nrMarketings}}</span></p>
-            <p>Cooredenadores: <span>{{model.nrCooredenadores}}</span></p>
-            <p>Gestores: <span>{{model.nrGestores}}</span></p>
+            <p>Alunos: <span>{{model.acompanhameto.nrAlunos}}</span></p>
+            <p>Professores: <span>{{model.acompanhameto.nrProfessores}}</span></p>
+            <p>Secretaria: <span>{{model.acompanhameto.nrSecretarias}}</span></p>
+            <p>Marketing: <span>{{model.acompanhameto.nrMarketings}}</span></p>
+            <p>Cooredenadores: <span>{{model.acompanhameto.nrCooredenadores}}</span></p>
+            <p>Gestores: <span>{{model.acompanhameto.nrGestores}}</span></p>
         </div>
 
         {{#each acompanhamentoSistemas as |sistema|}}
@@ -332,7 +332,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{#if (equalstr model.professoresFiltered "0")}}
+                            {{#if (equalstr model.acompanhameto.professoresFiltered "0")}}
                                 <p class="n-encontrado">Nenhum professor encontrado</p>
                             {{else}}
                                 {{#each acompanhamentoPessoas as |p|}}
@@ -351,7 +351,7 @@
                                             </span>
                                             <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
                                                 <span class="ws-i">Tempo assistido:</span>
-                                                <span class="strong">{{p.nrVideos}}</span>
+                                                <span class="strong">{{p.nrVideosAlunos}}</span>
                                             </span>
                                         </div>
                                     </td>
@@ -389,7 +389,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{#if (equalstr model.alunosFiltered "0")}}
+                            {{#if (equalstr model.acompanhameto.alunosFiltered "0")}}
                                 <p class="n-encontrado">Nenhum aluno encontrado</p>
                             {{else}}
                                 {{#each acompanhamentoPessoas as |a|}}

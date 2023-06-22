@@ -184,71 +184,78 @@
 
                         {{#if (equalstr selectedContent 'detalhado')}}
                             <div style="display:none;">{{pessoasDetalhado}}</div>
-                            <div class="container-scroll container-scroll--v">
-                                <div class="container-scroll__scroll" style="max-height: {{stylePerPageText}};">
-                                <table class="report-people__table table table--striped table--short table--fix-col">
-                                    <thead>
-                                    <tr>
-                                        <th>Aluno<span class="inline-block m-h--xs">/</span>Aulas</th>
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                        <th>4</th>
-                                        <th>5</th>
-                                        <th>6</th>
-                                        <th>7</th>
-                                        <th>8</th>
-                                        <th>9</th>
-                                        <th>10</th>
-                                        <th>11</th>
-                                        <th>12</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {{#each pessoasDetalhadoL as |pessoa|}}
-                                        <tr {{action 'selectPessoa' pessoa.id}}>
-                                        <td class="report-people__person flex flex-row items-center justify-start">
-                                            <span class="report-people__avatar avatar avatar--sm m-right--xs">
-                                            {{#if pessoa.uriAvatar}}
-                                            <img class="avatar__img" src={{pessoa.uriAvatar}} alt="{{pessoa.name}}">
-                                            {{else}}
-                                            <img class="avatar__img" src="/assets/img/avatar-default.svg" alt="{{pessoa.name}}">
-                                            {{/if}}
-                                            </span>
-                                            <span class="truncate capitalized">
-                                            {{pessoa.nameLower}}
-                                            </span>
-                                        </td>
-                                        {{#if (equalstr pessoa.progressoAtividades.length '0')}}
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                            <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
-                                        {{else}}
-                                            {{#each pessoa.progressoAtividades as |prog|}}
-                                            {{#if (equalstr prog.percentFixed '100')}}
-                                                <td class="color-success--dark bg-success-0"><span
-                                                    class="report-people__status">{{prog.percentFixed}}%</span></td>
-                                            {{else if (equalstr prog.percentFixed '0')}}
+                            <div class="flex flex-col mt-0">
+                                <div class="flex flex-row items-end justify-end mb-1">
+                                    {{#unless (equalstr totalPessoas '0')}}
+                                        {{acomp-page-numbers content=pessoasDetalhadoL currentPage=page class="pagination--sm pagination--right"}}
+                                    {{/unless}}
+                                </div>
+                                <div class="container-scroll container-scroll--v">
+                                    <div class="container-scroll__scroll" style="max-height: {{stylePerPageText}};">
+                                    <table class="report-people__table table table--striped table--short table--fix-col">
+                                        <thead>
+                                        <tr>
+                                            <th>Aluno<span class="inline-block m-h--xs">/</span>Aulas</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                            <th>5</th>
+                                            <th>6</th>
+                                            <th>7</th>
+                                            <th>8</th>
+                                            <th>9</th>
+                                            <th>10</th>
+                                            <th>11</th>
+                                            <th>12</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {{#each pessoasDetalhadoL as |pessoa|}}
+                                            <tr {{action 'selectPessoa' pessoa.id}}>
+                                            <td class="report-people__person flex flex-row items-center justify-start">
+                                                <span class="report-people__avatar avatar avatar--sm m-right--xs">
+                                                {{#if pessoa.uriAvatar}}
+                                                <img class="avatar__img" src={{pessoa.uriAvatar}} alt="{{pessoa.name}}">
+                                                {{else}}
+                                                <img class="avatar__img" src="/assets/img/avatar-default.svg" alt="{{pessoa.name}}">
+                                                {{/if}}
+                                                </span>
+                                                <span class="truncate capitalized">
+                                                {{pessoa.nameLower}}
+                                                </span>
+                                            </td>
+                                            {{#if (equalstr pessoa.progressoAtividades.length '0')}}
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
                                                 <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
                                             {{else}}
-                                                <td class="color-warning--dark bg-warning-0"><span
-                                                    class="report-people__status">{{prog.percentFixed}}%</span></td>
+                                                {{#each pessoa.progressoAtividades as |prog|}}
+                                                {{#if (equalstr prog.percentFixed '100')}}
+                                                    <td class="color-success--dark bg-success-0"><span
+                                                        class="report-people__status">{{prog.percentFixed}}%</span></td>
+                                                {{else if (equalstr prog.percentFixed '0')}}
+                                                    <td class="color-error--dark bg-error-0"><span class="report-people__status">-</span></td>
+                                                {{else}}
+                                                    <td class="color-warning--dark bg-warning-0"><span
+                                                        class="report-people__status">{{prog.percentFixed}}%</span></td>
+                                                {{/if}}
+                                                {{/each}}
                                             {{/if}}
-                                            {{/each}}
-                                        {{/if}}
-                                        </tr>
-                                    {{/each}}
-                                    </tbody>
-                                </table>
+                                            </tr>
+                                        {{/each}}
+                                        </tbody>
+                                    </table>
+                                    </div>
                                 </div>
                             </div>
                         {{/if}}
@@ -326,7 +333,8 @@
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th class="ta-c">Conteúdos Acessados</th>
+                                <th class="ta-c">Vídeos acessados</th>
+                                <th class="ta-c">Documentos acessados</th>
                                 <th class="ta-c">Acessos</th>
                             </tr>
                         </thead>
@@ -346,12 +354,32 @@
                                     <td>
                                         <div class="flex flex-col flow-sm">
                                             <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
-                                                <span class="ws-i">Conteúdos Alunos:</span>
-                                                <span class="strong">{{p.nrConteudoAluno}} / {{p.nrConteudoAlunoTotal}}</span>
+                                                <span class="ws-i">De professor:</span>
+                                                <span class="strong">{{p.nrConteudoVideoAluno}} / {{p.nrConteudoVideoAlunoTotal}}</span>
                                             </span>
                                             <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
-                                                <span class="ws-i">Conteúdos Professores:</span>
-                                                <span class="strong">{{p.nrConteudoProfessor}} / {{p.nrConteudoProfessorTotal}}</span>
+                                                <span class="ws-i">De Aluno:</span>
+                                                <span class="strong">{{p.nrConteudoVideoProfessor}} / {{p.nrConteudoVideoProfessorTotal}}</span>
+                                            </span>
+                                            <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
+                                                <span class="ws-i">Outros:</span>
+                                                <span class="strong">{{p.nrConteudoVideoOutro}} / {{p.nrConteudoVideoOutroTotal}}</span>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="flex flex-col flow-sm">
+                                            <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
+                                                <span class="ws-i">De professor:</span>
+                                                <span class="strong">{{p.nrConteudoDocumentoAluno}} / {{p.nrConteudoDocumentoAlunoTotal}}</span>
+                                            </span>
+                                            <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
+                                                <span class="ws-i">De Aluno:</span>
+                                                <span class="strong">{{p.nrConteudoDocumentoProfessor}} / {{p.nrConteudoDocumentoProfessorTotal}}</span>
+                                            </span>
+                                            <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
+                                                <span class="ws-i">Outros:</span>
+                                                <span class="strong">{{p.nrConteudoDocumentoOutro}} / {{p.nrConteudoDocumentoOutroTotal}}</span>
                                             </span>
                                         </div>
                                     </td>

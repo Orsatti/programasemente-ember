@@ -1,35 +1,23 @@
-<div class="flex flex-row m-top--md">
+<div class="flex flex-row m-top--md mb-2">
     {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id '9')))}}
-      <div class="mt1">
-        {{#link-to 'geracompanhamento'}}
-          <button class="main__back btn btn--link color-blue-navy-60 animated fadeInLeftShort faster"
+        <div class="mt1">
+            <button class="main__back btn btn--link color-blue-navy-60 animated fadeInLeftShort faster" onclick={{action 'goToGerAcompanhamento' }}
             id="back-person-specific_old" type="button">
             <span class="icon-arrow-left"></span>
             <span class="btn__label">voltar</span>
-          </button>
-        {{/link-to}}
-      </div>
+            </button>
+        </div>
       <h1 class="main__title animated fadeInLeftShort faster d100 m-left--lg m-top--xxs m-bottom--xs">
-        {{model.instituicao.name}}
+        Visão Geral - {{model.instituicao.name}}
       </h1>
     {{else}}
       <h1 class="main__title animated fadeInLeftShort faster d100 m-top--xxs m-bottom--xs">
-        {{model.instituicao.name}}
+        Visão Geral
       </h1>
     {{/if}}
 </div>
 
-<section class="sections__section flow-xl mb-5">
-  <div class="tabs animated fadeInLeftShort faster d250">
-    {{#each segmentos as |segmento|}}
-        <button class="report__tab tabs__tab {{if (equalstr segmento.idx selectedSegmento.idx) 'tabs__tab--is-active'}}" {{action 'refreshSelectedSegmento' segmento}}>
-          <span>{{segmento.titulo}}</span>
-        </button>
-    {{/each}}
-  </div>
-</section>
-
-<section class="flow-xl">
+<section class="flow-xl mb-3">
     <div class="box-area">
         <div class="box-area__item1">
             <h2 class="box-area__title-4">Contratados</h2>
@@ -61,7 +49,19 @@
             </div>
         {{/each}}
     </div>
+</section>
 
+<section class="sections__section flow-xl mb-3">
+  <div class="tabs animated fadeInLeftShort faster d250">
+    {{#each segmentos as |segmento|}}
+        <button class="report__tab tabs__tab {{if (equalstr segmento.idx selectedSegmento.idx) 'tabs__tab--is-active'}}" {{action 'refreshSelectedSegmento' segmento}}>
+          <span>{{segmento.titulo}}</span>
+        </button>
+    {{/each}}
+  </div>
+</section>
+
+<section class="flow-xl">
     {{#unless isAdulto}}
         {{#if isMedio}}
             <div class="l-dots-between">

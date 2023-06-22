@@ -326,8 +326,7 @@
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th class="ta-c">Videos assistidos</th>
-                                {{!-- <th class="ta-c">Arquivos utilizados</th> --}}
+                                <th class="ta-c">Conteúdos Acessados</th>
                                 <th class="ta-c">Acessos</th>
                             </tr>
                         </thead>
@@ -341,23 +340,21 @@
                                     <td>
                                         <div class="flex flex-col flow-sm">
                                             <span class="title-5 capitalized">{{p.name}}</span>
+                                            <span class="fs--xxs tt-u">{{a.userName}}</span>
                                         </div>
                                     </td>
                                     <td>
                                         <div class="flex flex-col flow-sm">
                                             <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
-                                                <span class="ws-i">Tempo preparado:</span>
-                                                <span class="strong">{{p.nrVideosPreparacao}}</span>
+                                                <span class="ws-i">Conteúdos Alunos:</span>
+                                                <span class="strong">{{p.nrConteudoAluno}} / {{p.nrConteudoAlunoTotal}}</span>
                                             </span>
                                             <span class="flex flex-row flow-h-xxs items-center justify-between fs--xxs tt-u">
-                                                <span class="ws-i">Tempo assistido:</span>
-                                                <span class="strong">{{p.nrVideosAlunos}}</span>
+                                                <span class="ws-i">Conteúdos Professores:</span>
+                                                <span class="strong">{{p.nrConteudoProfessor}} / {{p.nrConteudoProfessorTotal}}</span>
                                             </span>
                                         </div>
                                     </td>
-                                    {{!-- <td class="ta-c">
-                                        <span class="fs--xxs tt-u">22</span>
-                                    </td> --}}
                                     <td class="p-h--xs">
                                         <div class="flex flex-col flow-sm">
                                             <span
@@ -400,7 +397,6 @@
                                         <span class="fs--xxs tt-u">{{a.userName}}</span>
                                     </td>
                                     <td class="ta-c">
-                                        {{!-- <span class="fs--xxs tt-u"></span> --}}
                                         {{a.nrTarefasAlunos}} / {{#if (equalstr selectedSegmento.idx '5')}}18{{else}}12{{/if}}
                                     </td>
                                     <td class="p-h--xs">

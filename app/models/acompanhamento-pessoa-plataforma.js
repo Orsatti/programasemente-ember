@@ -15,4 +15,8 @@ export default DS.Model.extend({
     lastAccess: Ember.computed('ultimoacesso', function() {
         return moment(this.get('ultimoacesso'), 'X').format('DD/MM/YYYY');
     }),
+    nrConteudoAluno: DS.attr(),
+    nrConteudoProfessor: DS.attr(),
+    nrConteudoAlunoTotal: DS.attr(),
+    nrConteudoProfessorTotal: DS.attr(),
 });

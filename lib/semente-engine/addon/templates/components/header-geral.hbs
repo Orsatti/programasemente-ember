@@ -22,7 +22,8 @@
             </button>
           {{/if}}
         </div>
-        <div class="l-user-header__role">
+        <div class="flex flex-row  l-user-header__role">
+          <span>{{pessoa.name}} - </span>
           {{#if (equalstr pessoa.role 'aluno')}}
             <span>{{pessoa.plataformaAnos.firstObject.segmento.titulo}} -
               {{pessoa.plataformaAnos.firstObject.name}}</span>

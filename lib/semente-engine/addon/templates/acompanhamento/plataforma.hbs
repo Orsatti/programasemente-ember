@@ -185,6 +185,9 @@
                         {{#if (equalstr selectedContent 'detalhado')}}
                             <div style="display:none;">{{pessoasDetalhado}}</div>
                             <div class="flex flex-col mt-0">
+                                <div class="flex flex-row items-end justify-end mb-2">
+                                    <button id="btn-download" class="btn btn--ghost" {{action 'downloadFile'}}>Baixar relatório em Excel</button>
+                                </div>
                                 <div class="flex flex-row items-end justify-end mb-1">
                                     {{#unless (equalstr totalPessoas '0')}}
                                         {{acomp-page-numbers content=pessoasDetalhadoL currentPage=page class="pagination--sm pagination--right"}}
@@ -348,7 +351,7 @@
                                     <td>
                                         <div class="flex flex-col flow-sm">
                                             <span class="title-5 capitalized">{{p.name}}</span>
-                                            <span class="fs--xxs tt-u">{{a.userName}}</span>
+                                            <span class="fs--xxs tt-u">{{p.userName}}</span>
                                         </div>
                                     </td>
                                     <td>
@@ -454,3 +457,7 @@
         {{/if}}
     {{/unless}}
 </section>
+
+<div id="downloading" class="alert  alert--has-icon alert--no-interaction">
+  <p>O relatório está sendo gerado e seu download iniciará em breve.</p>
+</div>

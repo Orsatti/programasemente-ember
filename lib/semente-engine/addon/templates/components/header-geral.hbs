@@ -12,8 +12,10 @@
     <section>
       <h1 class="scr-only">Informações do usuário</h1>
       <div class="flow-xxs">
+        <div class="l-user-header__role">
+          {{instituicao.name}}
+        </div>
         <div class="flex flex-row flex-wrap items-baseline gap-xs flow-xs">
-          {{!-- <span class="title-1">{{firstnameoremailpart pessoa.name}}</span> --}}
           {{#if (equalstr parentController.role 'aluno')}}
             <button class="btn btn--link m-top--auto color-white">
               <span class="btn__label" {{action 'invalidateSession' }}>Não é você? Faça logout</span>
@@ -38,8 +40,9 @@
 
             {{#if isAplicador}}
               <span>Professor{{#if (equalstr pessoa.genero 'feminino')}}a{{/if}} aplicador{{#if (equalstr pessoa.genero
-            'feminino')}}a{{/if}} </span> {{#if (isbigger parentController.segmentosObjects.length "1")}} <span>dos
-                  segmentos</span>
+            'feminino')}}a{{/if}} </span> 
+              {{!-- {{#if (isbigger parentController.segmentosObjects.length "1")}} 
+                <span>dos segmentos</span>
                 {{#each parentController.segmentosObjects as |seg index|}}
                   {{#if (equalstr index (sub parentController.segmentosObjects.length 1))}}
                     <span>e</span> <!-- último -->
@@ -49,13 +52,15 @@
                     <span class="fs-i">{{seg.titulo}}</span>
                   {{/if}}
                 {{/each}}
-              {{else}} do {{#each parentController.segmentosObjects as |seg|}} <span class="fs-i">{{seg.titulo}}</span>
-                {{/each}} {{/if}}
+              {{else}} 
+                do 
+                {{#each parentController.segmentosObjects as |seg|}} <span class="fs-i">{{seg.titulo}}</span>
+                {{/each}}
+              {{/if}} --}}
             {{else}}
               <span>Professor{{#if (equalstr pessoa.genero 'feminino')}}a{{/if}} não aplicador{{#if (equalstr
               pessoa.genero 'feminino')}}a{{/if}} </span>
             {{/if}}
-
           {{else}}
             {{#if parentController}}
               {{parentController.role}}

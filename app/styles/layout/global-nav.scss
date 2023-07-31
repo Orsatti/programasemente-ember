@@ -79,6 +79,8 @@
 
         }
 
+       
+
 
         &[class*='mob-only'] {
 
@@ -89,6 +91,38 @@
         }
 
     }
+
+    &__btn{ 
+
+        color: #fff;
+        cursor: pointer;
+        display: block!important;
+        width: 10rem;
+
+
+       
+        &--academia{
+            background-color: #59228a;
+        }
+
+        &--plataforma-s{
+            background-color: #5a5a5a;
+        }
+
+        & img{
+            height: auto;
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            display: block;
+        }
+
+        a{
+            height: 4rem;
+        }
+    }
+
+    
 
     &__link {
         @include title-aux($size: .85rem);

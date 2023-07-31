@@ -8,6 +8,6 @@ export default DS.Model.extend({
     nrProfessores: DS.attr(),
     nrSecretarias: DS.attr(),
     nrMarketings: DS.attr(),
-    nrCooredenadores: DS.attr(),
+    nrCoordenadores: DS.attr(),
     nrGestores: DS.attr(),
 });

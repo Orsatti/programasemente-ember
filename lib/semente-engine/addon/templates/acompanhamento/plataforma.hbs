@@ -25,7 +25,7 @@
             <p>Professores: <span>{{model.acompanhameto.nrProfessores}}</span></p>
             <p>Secretaria: <span>{{model.acompanhameto.nrSecretarias}}</span></p>
             <p>Marketing: <span>{{model.acompanhameto.nrMarketings}}</span></p>
-            <p>Cooredenadores: <span>{{model.acompanhameto.nrCooredenadores}}</span></p>
+            <p>Cooredenadores: <span>{{model.acompanhameto.nrCoordenadores}}</span></p>
             <p>Gestores: <span>{{model.acompanhameto.nrGestores}}</span></p>
         </div>
 
@@ -44,7 +44,7 @@
                 </p>
                 <p>Secretaria: <span>{{sistema.nrSecretarias}}</span></p>
                 <p>Marketing: <span>{{sistema.nrMarketings}}</span></p>
-                <p>Cooredenadores: <span>{{sistema.nrCooredenadores}}</span></p>
+                <p>Cooredenadores: <span>{{sistema.nrCoordenadores}}</span></p>
                 <p>Gestores: <span>{{sistema.nrGestores}}</span></p>
             </div>
         {{/each}}
@@ -297,7 +297,6 @@
 
                         <div class="form-group">
                             <label class="form-group__label" for="situation">Anos</label>
-
                             <div class="form-group__wrapper form-group__wrapper--select">
                                 <select class="form-group__input" id="situation" onchange={{action 'refreshSelectedAno'
                                     value='target.value' }}>
@@ -328,6 +327,33 @@
                         </div>
                         {{/if}}
                         {{/if}}
+
+                        <div class="form-group">
+                            <label class="form-group__label" for="situation">Período</label>
+                            
+                            <div class="flex flex-row justify-content-between w100">
+                                <label class="form-group__label mt-2" for="situation">Data início:</label>
+                                <input class="form-group__wrapper form-group__wrapper--select" id="start-date" maxlength="10" onchange={{action 'refreshSelectedStartDate' value='target.value' }}
+                                    name="date" onkeyup="var v = this.value;
+                                if (v.match(/^\d{2}$/) !== null) {
+                                    this.value = v + '/';
+                                } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+                                    this.value = v + '/';
+                                }" type="date" value={{start-date}} data-type="text">
+                            </div>
+
+                            <div class="flex flex-row justify-content-between w100 mt-2">
+                                <label class="form-group__label mt-2" for="situation">Data fim:</label>
+                                <input class="form-group__wrapper form-group__wrapper--select" id="end-date" maxlength="10" onchange={{action 'refreshSelectedEndDate' value='target.value' }}
+                                    name="date" onkeyup="var v = this.value;
+                                if (v.match(/^\d{2}$/) !== null) {
+                                    this.value = v + '/';
+                                } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
+                                    this.value = v + '/';
+                                }" type="date" value={{end-date}} data-type="text">
+                            </div>
+                        </div>
+
                     </form>
                 </header>
                 <section class="l-dots-between__content flow-md box-area">

@@ -8,5 +8,6 @@ export default DS.Model.extend({
     plataformaConteudos: DS.hasMany('plataforma-conteudo', { async: true }),
     atividades: DS.hasMany('atividade', { async: true }),
     aulas: DS.hasMany('aulas', { async: true }),
+    descricao: DS.attr(),
     // plataformaAnoModulos: DS.hasMany('plataforma-conteudo', { async: true }),
 });

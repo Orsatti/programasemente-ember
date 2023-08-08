@@ -48,7 +48,7 @@
                             data-type="select" data-required="true" data-context="calendario">
                             <option selected="selected" value="">---</option>
                             {{#each calendarios as |calendario|}}
-                                <option value="{{calendario.id}}">{{calendario.nome}}</option>
+                                <option value="{{calendario.id}}">{{calendario.ano}} - {{calendario.descricao}}</option>
                             {{/each}}
                         </select>
                     </div>

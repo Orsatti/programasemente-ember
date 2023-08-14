@@ -17,6 +17,18 @@
         flex-shrink: 0;
     }
 
+    &__acompanhamento{
+        border-bottom: none;
+
+        &--is-active {
+            background-color: #8bc63f63 !important;
+            border: none;
+            cursor: pointer;
+        }
+   
+     
+    }
+
     &__tab {
         border-bottom: 3px solid transparent;
         cursor: pointer;
@@ -33,6 +45,7 @@
         &--is-active {
             border-bottom: 3px solid $global-nav-active-bg-color;
             cursor: unset;
+            
 
             > * { opacity: 1; }
 
@@ -40,6 +53,18 @@
 
         &:hover:not([class*='--is-active']) {
             background-color: $gray-10;
+            
+        }
+
+        &--acompanhamento{
+            margin: 1rem;
+            box-shadow:inset rgba(0,0,0,.1) 1px 1px 4px 4px;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            background-color: #fff;
+
+           
+            
         }
 
     }
@@ -69,7 +94,7 @@
         }
 
         #{$this}__tab {
-            background-color: transparentize($blue-navy-70, .6);
+            background-color: #8BC63F99;
             border: 0 solid transparent;
             border-radius: $radius--md;
             color: $white;
@@ -89,6 +114,7 @@
             &--is-active {
                 background-color: $white;
                 border-bottom: 0 solid transparent;
+               
                 color: $blue-navy-70;
                 cursor: unset;
             }

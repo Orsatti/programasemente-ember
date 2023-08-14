@@ -52,9 +52,9 @@
 </section>
 
 <section class="sections__section flow-xl mb-3">
-  <div class="tabs animated fadeInLeftShort faster d250">
+  <div class="tabs tabs__acompanhamento animated fadeInLeftShort faster d250">
     {{#each segmentos as |segmento|}}
-        <button class="report__tab tabs__tab {{if (equalstr segmento.idx selectedSegmento.idx) 'tabs__tab--is-active'}}" {{action 'refreshSelectedSegmento' segmento}}>
+        <button class="btn btn--as-filter tabs__tab--acompanhamento  tabs__acompanhamento {{if (equalstr segmento.idx selectedSegmento.idx) 'tabs__acompanhamento--is-active'}}" {{action 'refreshSelectedSegmento' segmento}}>
           <span>{{segmento.titulo}}</span>
         </button>
     {{/each}}
@@ -64,7 +64,7 @@
 <section class="flow-xl">
     {{#unless isAdulto}}
         {{#if isMedio}}
-            <div class="l-dots-between">
+            <div class="l-dots-between l-dots-between__acompanhamento">
                     <header class="l-dots-between__side">
                         <form autocomplete="off" class="flex flex-col flow-md box-area">
                             <div class="two-col-wrap">
@@ -265,7 +265,7 @@
                     </section>
             </div>
         {{else}}
-            <div class="l-dots-between">
+            <div class="l-dots-between l-dots-between__acompanhamento">
                 <header class="l-dots-between__side">
                     <form autocomplete="off" class="flex flex-col flow-md box-area">
                         <div class="form-group">

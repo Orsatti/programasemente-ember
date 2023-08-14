@@ -58,4 +58,8 @@
     #{$this}__content { order: 0; }
   }
 
+  &__acompanhamento::before {
+    display: none;
+  }
+
 }

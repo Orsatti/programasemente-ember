@@ -1,5 +1,6 @@
 <!-- Header geral -->
 <header class="l-user-header l-user-header--themed l-user-header--{{if (equalstr pessoa.role 'instrutor') parentController.role pessoa.role}} flex items-start gap-lg">
+  
   <picture class="l-user-header__avatar avatar avatar--lg flex justify-center" {{action 'toggleAvatarModal' }}>
     {{#if pessoa.uriAvatar}}
       <img class="avatar__img" src={{pessoa.uriAvatar}} alt="{{pessoa.name}}">
@@ -8,6 +9,7 @@
     {{/if}}
     <div class="avatar__placeholder icon-edit icon--xl"></div>
   </picture>
+   
   <div class="flex-1 flow-md overflow-hidden">
     <section>
       <h1 class="scr-only">Informações do usuário</h1>
@@ -20,7 +22,12 @@
             </button>
           {{/if}}
         </div>
-        <div class="l-user-header__role">
+       <h1 class="main__title animated fadeInLeftShort faster d100 m-top--xxs m-bottom--xs">
+        {{instituicao.name}}
+      </h1>
+        <span class="title-aux"> userName -  perfil</span>
+       
+      <!--  <div class="l-user-header__role">
           {{#if (equalstr pessoa.role 'aluno')}}
             <span>{{pessoa.plataformaAnos.firstObject.segmento.titulo}} -
               {{pessoa.plataformaAnos.firstObject.name}}</span>
@@ -63,7 +70,7 @@
               {{pessoa.role}}
             {{/if}}
           {{/if}}
-        </div>
+        </div>-->
    </div>
     </section>
     <nav>

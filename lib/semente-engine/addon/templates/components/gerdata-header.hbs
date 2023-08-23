@@ -1,23 +1,19 @@
-<div class="flex flex-row m-top--md">
-    {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id '9')))}}
-      <div class="mt1">
-        {{#link-to 'gersistema'}}
-          <button class="main__back btn btn--link color-blue-navy-60 animated fadeInLeftShort faster"
-            id="back-person-specific_old" type="button">
-            <span class="icon-arrow-left"></span>
-            <span class="btn__label">voltar</span>
-          </button>
-        {{/link-to}}
-      </div>
-      <h1 class="main__title animated fadeInLeftShort faster d100 m-left--lg m-top--xxs m-bottom--xs">
-        Administração - {{instituicao.name}}
-      </h1>
-    {{else}}
-      <h1 class="main__title animated fadeInLeftShort faster d100 m-top--xxs m-bottom--xs">
-        Administração
-      </h1>
-    {{/if}}
-</div>
+{{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id '9')))}}
+  <div class="flex flex-row m-top--md">
+    <div class="mt1">
+      {{#link-to 'gersistema'}}
+        <button class="main__back btn btn--link color-blue-navy-60 animated fadeInLeftShort faster"
+          id="back-person-specific_old" type="button">
+          <span class="icon-arrow-left"></span>
+          <span class="btn__label">voltar</span>
+        </button>
+      {{/link-to}}
+    </div>
+    <h1 class="main__title animated fadeInLeftShort faster d100 m-left--lg m-top--xxs m-bottom--xs">
+      Administração - {{instituicao.name}}
+    </h1>
+  </div>
+{{/if}}
 
 <section class="sections__section flow-xl">
   <div class="tabs animated fadeInLeftShort faster d250">

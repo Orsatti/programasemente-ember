@@ -16,7 +16,15 @@
         {{#each acompanhamentoSistemas.acompanhamentoSistemasPlataforma as |sistema|}}
             <div class="box-area__divisor"></div>
             <div class="box-area__item1">
-                <h2 class="box-area__title-4">{{sistema.sistema.name}}</h2>
+                {{#if (equalstr sistema.sistema.name 'CoreSkills')}}
+                    <h2 class="box-area__title-4">Academia de professores</h2>
+                {{else}}
+                    {{#if (equalstr sistema.sistema.name 'Programa.Semente')}}
+                        <h2 class="box-area__title-4">Portal</h2>
+                    {{else}}
+                        <h2 class="box-area__title-4">{{sistema.sistema.name}}</h2>
+                    {{/if}}
+                {{/if}}
                 <p>Alunos: <span>{{sistema.nrAlunos}}</span></p>
                 <p>Professores: <span>{{sistema.nrProfessores}}<span class="tooltip">
                         <span class="btn-detalhes"><span class="btn-detalhes-text">+</span></span>

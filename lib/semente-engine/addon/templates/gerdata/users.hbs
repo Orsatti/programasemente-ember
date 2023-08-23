@@ -1,6 +1,41 @@
 {{gerdata-header pessoa=pessoaLogged informations=false instituicao=instituicao}}
 
-<section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
+<div style="display: none;">{{acompanhamentoSistemas}}</div>
+<section class="flow-xl mb-3 m-top--sm">
+    <div class="box-area">
+        <div class="box-area__item1">
+            <h2 class="box-area__title-4">Contratados</h2>
+            <p>Alunos: <span>{{acompanhamentoSistemas.nrAlunos}}</span></p>
+            <p>Professores: <span>{{acompanhamentoSistemas.nrProfessores}}</span></p>
+            <p>Secretaria: <span>{{acompanhamentoSistemas.nrSecretarias}}</span></p>
+            <p>Marketing: <span>{{acompanhamentoSistemas.nrMarketings}}</span></p>
+            <p>Coordenadores: <span>{{acompanhamentoSistemas.nrCoordenadores}}</span></p>
+            <p>Gestores: <span>{{acompanhamentoSistemas.nrGestores}}</span></p>
+        </div>
+
+        {{#each acompanhamentoSistemas.acompanhamentoSistemasPlataforma as |sistema|}}
+            <div class="box-area__divisor"></div>
+            <div class="box-area__item1">
+                <h2 class="box-area__title-4">{{sistema.sistema.name}}</h2>
+                <p>Alunos: <span>{{sistema.nrAlunos}}</span></p>
+                <p>Professores: <span>{{sistema.nrProfessores}}<span class="tooltip">
+                        <span class="btn-detalhes"><span class="btn-detalhes-text">+</span></span>
+                        <span class="tooltiptext">
+                            <p>Aplicadores: <span>{{sistema.nrProfessoresAplicadores}}</span></p>
+                            <p>Não Aplicadores: <span>{{sistema.nrProfessoresNaoAplicadores}}</span></p>
+                        </span>
+                    </span></span>
+                </p>
+                <p>Secretaria: <span>{{sistema.nrSecretarias}}</span></p>
+                <p>Marketing: <span>{{sistema.nrMarketings}}</span></p>
+                <p>Coordenadores: <span>{{sistema.nrCoordenadores}}</span></p>
+                <p>Gestores: <span>{{sistema.nrGestores}}</span></p>
+            </div>
+        {{/each}}
+    </div>
+</section>
+
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--md">
     <div class="flex flex-row items-center justify-end">
         <div class="institutions__btn-group">
             {{#link-to 'gerdata.users.createuser' instituicao.id}}

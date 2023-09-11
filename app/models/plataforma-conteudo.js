@@ -21,4 +21,5 @@ export default DS.Model.extend({
     indicacao: DS.attr(),
     indicacaoUrl: DS.attr(),
     indicacaoDescricao: DS.attr(),
+    plataformaAnos: DS.hasMany('plataforma-ano', {async: true}),
 });

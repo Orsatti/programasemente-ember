@@ -213,9 +213,9 @@
                                     <div class="row">
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="form-group">
-                                        <label class="form-group__label" for="tema-{{conteudo.id}}">Tema</label>
+                                        <label class="form-group__label" for="tema">Tema</label>
                                         <div class="form-group__wrapper form-group__wrapper--select">
-                                            <select class="form-group__input" name="tema" id="tema-{{conteudo.id}}"
+                                            <select class="form-group__input" name="tema" id="tema"
                                             onchange={{action 'refreshSelectedTema' value='target.value'}}>
                                             <option value="">---</option>
                                             {{#each a.temas as |t|}}
@@ -288,6 +288,28 @@
                     value={{pub.id}} />
             <label class="checkbox__label" for="pub-{{pub.id}}">{{pub.nameFormat}}</label>
             </div>
+
+            {{#if (and (and isBiblioteca isAluno) (equalstr pub.name 'aluno'))}}
+            <div class="col mt-1 mb-2 platano-box">
+                <h3 class="mb-1">Escolha os anos:</h3>
+                <p class="mb-1">Se nenhum ano específico for selecionado, o conteúdo será automaticamente adicionado para todos os anos.</p>
+                <div class="row ml-1">
+                {{#each segmentos as |segmento|}}
+                    {{#each segmento.plataformaAnos as |platAno|}}
+                        <div class="checkbox platano-box_size">
+                            <input  class="checkbox__input j-publico"
+                                    id="platAno-{{platAno.id}}"
+                                    checked={{if (containInListID platAno.id conteudo.plataformaAnos) "checked"}}
+                                    onchange={{action 'platAnoChanged' value='target.value'}}
+                                    type="checkbox"
+                                    value={{platAno.id}} />
+                            <label class="checkbox__label " for="platAno-{{platAno.id}}">{{platAno.name}}</label>
+                        </div>
+                    {{/each}}
+                {{/each}}
+                </div>
+            </div>
+            {{/if}}
         {{/each}}
         </div>
     </div>
@@ -397,3 +419,5 @@
     </div>
 </div>
 {{/if}}
+
+<div style="display: none;">{{afterRender}}</div>

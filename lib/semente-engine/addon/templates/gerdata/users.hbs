@@ -236,6 +236,16 @@
                             <td class="table__name">
                                 <p><strong class="title-4 capitalized">{{pessoa.nameLower}}</strong></p>
                                 <p class='color-green-40 truncate'>{{pessoa.userName}}</p>
+                            {{#if pessoa.instituicao.instituicaoFilhas}}
+                                <p class="table__inst">{{pessoa.instituicao.name}}</p>
+                            {{/if}}
+                            {{#if (equalstr pessoa.role 'aluno')}}
+                             <div class="table__school-info">
+                                <p>{{pessoa.plataformaAnos.firstObject.segmento.titulo}}</p>
+                                <p>{{pessoa.plataformaAnos.firstObject.name}}</p>
+                                <p>{{pessoa.plataformaTurmas.firstObject.name}}</p>
+                             </div>
+                             {{/if}}
                             </td>
                             <td class="table__role">
                                 {{#if (equalstr pessoa.role 'instrutor')}}

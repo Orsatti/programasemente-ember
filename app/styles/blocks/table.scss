@@ -95,10 +95,35 @@
     }
   }
 
+  &__school-info {
+    display: flex;
+    color: $gray-70;
+    font-size: $font-size--xs;
+
+
+    >p {
+      
+      &:not(:last-child):after {
+        content: "-";
+        display: inline-block;
+        padding: 0 0.4rem 0 0.4rem;
+        
+      }
+    }
+
+  }
+
   // SPECIFIC TABLES COLUMNS WIDTHS
   &--users {
     #{$this}__name {
       width: 35%;
+    }
+
+    #{$this}__inst {
+      text-align: center;
+      width: 12%;
+      font-size: $font-size--xs;
+      color: $gray-50;
     }
 
     #{$this}__role {
@@ -117,7 +142,7 @@
 
   }
 
-  &--mt{
+  &--mt {
     margin-top: 25px;
   }
 
@@ -233,7 +258,7 @@
     td {
       position: relative;
 
-      > * {
+      >* {
         position: relative;
         z-index: 2;
       }

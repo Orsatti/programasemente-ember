@@ -10,46 +10,18 @@ module.exports = function(environment) {
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
-        // Here you can enable experimental features on an ember canary build
-        // e.g. 'with-controller': true
         'ds-improved-ajax': true
       },
       EXTEND_PROTOTYPES: {
-        // Prevent Ember Data from overriding Date.parse.
         Date: false
       }
     },
 
     APP: {
-      host: 'https://sementeapi.minimo.com.br',
-      // host:  'http://sementeapidev.minimo.com.br',
-      // host:  'https://sementeapi.minimo.com.br',
-      // host:  'https://p21.minimo.com.br',
+      host: 'https://semente-api.azurewebsites.net',
+      // host: 'https://sementeapi.minimo.com.br',
       namespace: 'api/v0',
-      // when it is created
     }
-  }
-
-  if (environment === 'development') {
-    ENV.adobeApiKey = "f04da9781afa4ebf871f5e4566d9bbe9",
-    ENV.rootURL = '/';
-    ENV.APP.DOMAIN = "porto.com";
-    ENV.APP.host = 'https://localhost:44300';
-    // ENV.APP.host = 'https://p21.minimo.com.br';
-    // ENV.APP.host = 'https://sementeapi.minimo.com.br';
-   //  ENV.APP.host = 'http://sementeapidev.minimo.com.br'; 
-  }
-
-  if (environment === 'test') {
-    ENV.locationType = 'none';
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
-    ENV.APP.rootElement = '#ember-testing';
-  }
-
-  if (environment === 'production') {
-    ENV.APP.DOMAIN = "programasemente.com.br";
-    ENV.APP.host = 'https://sementeapi.minimo.com.br';
   }
 
   ENV['ember-simple-auth'] = {
@@ -57,9 +29,27 @@ module.exports = function(environment) {
     crossOriginWhitelist: ['*'],
   }
 
+  if (environment === 'production') {
+    ENV.APP.DOMAIN = "programasemente.com.br";
+    ENV.APP.host = 'https://semente-api.azurewebsites.net';
+    // ENV.APP.host = 'https://sementeapi.minimo.com.br';
+  }
+
+  if (environment === 'development') {
+    ENV.adobeApiKey = "f04da9781afa4ebf871f5e4566d9bbe9",
+    ENV.rootURL = '/';
+    ENV.APP.DOMAIN = "porto.com";
+    ENV.APP.host = 'https://localhost:44300';
+    // ENV.APP.host = 'https://semente-api.azurewebsites.net';
+    // ENV.APP.host = 'https://sementeapi.minimo.com.br';
+    //  ENV.APP.host = 'http://sementeapidev.minimo.com.br';
+  }
+
   ENV['ember-simple-auth-token'] = {
-    serverTokenEndpoint: 'https://sementeapi.minimo.com.br/api/v0/auth/login',
-    serverTokenRefreshEndpoint: 'https://sementeapi.minimo.com.br/api/v0/RefreshTokens',
+    serverTokenEndpoint: 'https://semente-api.azurewebsites.net/api/v0/auth/login',
+    serverTokenRefreshEndpoint: 'https://semente-api.azurewebsites.net/api/v0/RefreshTokens',
+    // serverTokenEndpoint: 'https://sementeapi.minimo.com.br/api/v0/auth/login',
+    // serverTokenRefreshEndpoint: 'https://sementeapi.minimo.com.br/api/v0/RefreshTokens',
     identificationField: 'username',
     passwordField: 'password',
     tokenPropertyName: 'token',

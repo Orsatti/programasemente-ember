@@ -15,12 +15,15 @@
                     </div>
                 </div>
                 <div class="flex flex-row justify-between">
-                    {{switch-input label="Status" propertyName="enabled" changeset=changeset classe="enabled"}}
                     {{switch-input label="É escola?" propertyName="isEscola" changeset=changeset classe="isEscola"}}
                     {{switch-input label="Venda Direta" propertyName="vendaDireta" changeset=changeset classe="vendaDireta"}}
                     {{switch-input label="Termo Aceite" propertyName="statusTermoAceite" changeset=changeset classe="statusTermoAceite"}}
-                    {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkSPlus" classe="sEnabled"}}
+                </div>
+                <div class="flex flex-row justify-between">
+                    {{switch-input label="Status" propertyName="enabled" changeset=changeset classe="enabled"}}
+                    {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkS" classe="sEnabled"}}
                     {{switch-input label="S Plus" propertyName="sPlusEnabled" changeset=changeset classe="sPlusEnabled"}}
+                    {{switch-input label="Essencial" propertyName="essencialEnabled" changeset=changeset classe="essencialEnabled"}}
                     {{switch-input label="Academia de Prof." propertyName="csEnabled" changeset=changeset classe="csEnabled"}}
                 </div>
                 <h4 class="modal__subtitle">Gestão de usuários</h4>

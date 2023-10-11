@@ -16,7 +16,7 @@
                   type="checkbox"
                   id="plat_ano{{plataformaAno.id}}_portal" 
                   checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '1') "checked" '' }} 
-                  onchange={{action (action "openModal" plataformaAno '1') value='target.checked' }} 
+                  onchange={{action (action "openModal" plataformaAno '1' 'false') value='target.checked' }} 
                 >
                 <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_portal">Portal</label>
               </div>
@@ -30,11 +30,23 @@
                 <input class="j-validate-aplicador-child checkbox__input" 
                   type="checkbox"
                   id="plat_ano{{plataformaAno.id}}_s" 
-                  checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '2') "checked" '' }}
-                  onchange={{action (action "openModal" plataformaAno '2') value='target.checked' }} 
+                  checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '2' 'false') "checked" '' }}
+                  onchange={{action (action "openModal" plataformaAno '2' 'false') value='target.checked' }} 
                 >
                 <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_s">S</label>
               </div>
+
+              {{#if (and (or (equalstr segmento.idx '3') (equalstr segmento.idx '4')) acessoEssencial)}}
+                <div class="checkbox">
+                  <input class="j-validate-aplicador-child checkbox__input" 
+                    type="checkbox"
+                    id="plat_ano{{plataformaAno.id}}_essencial" 
+                    checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '2' 'true') "checked" '' }}
+                    onchange={{action (action "openModal" plataformaAno '2''true') value='target.checked' }} 
+                  >
+                  <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_essencial">Essencial</label>
+                </div>
+              {{/if}}
             {{/if}}
           {{/if}}
 
@@ -44,7 +56,7 @@
                 type="checkbox"
                 id="plat_ano{{plataformaAno.id}}_ap" 
                 checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '3') "checked" '' }}
-                onchange={{action (action "openModal" plataformaAno '3') value='target.checked' }} 
+                onchange={{action (action "openModal" plataformaAno '3' 'false') value='target.checked' }} 
               >
               <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_ap">AP</label>
             </div>
@@ -55,11 +67,6 @@
     </div>
     {{/each}}
   </div>
-  {{!-- {{#if (equalstr pessoaLogged.role 'admin')}}
-    <footer class="modal__footer">
-      <button class="btn" type="submit" id="btnSubmit" {{action 'saveCourses' }}>Salvar</button>
-    </footer>
-  {{/if}} --}}
 </section>
 
 <aside id="confirm_modal" class="modal modal--is-show" style="display:none;">

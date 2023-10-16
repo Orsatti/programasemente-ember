@@ -18,13 +18,13 @@
                     {{switch-input label="É escola?" propertyName="isEscola" changeset=changeset classe="isEscola"}}
                     {{switch-input label="Venda Direta" propertyName="vendaDireta" changeset=changeset classe="vendaDireta"}}
                     {{switch-input label="Termo Aceite" propertyName="statusTermoAceite" changeset=changeset classe="statusTermoAceite"}}
+                    {{switch-input label="Status" propertyName="enabled" changeset=changeset classe="enabled" class="mr2"}}
                 </div>
                 <div class="flex flex-row justify-between">
-                    {{switch-input label="Status" propertyName="enabled" changeset=changeset classe="enabled"}}
                     {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkS" classe="sEnabled"}}
                     {{switch-input label="S Plus" propertyName="sPlusEnabled" changeset=changeset classe="sPlusEnabled"}}
                     {{switch-input label="Essencial" propertyName="essencialEnabled" changeset=changeset classe="essencialEnabled"}}
-                    {{switch-input label="Academia de Prof." propertyName="csEnabled" changeset=changeset classe="csEnabled"}}
+                    {{switch-input label="Academia de Prof." propertyName="csEnabled" changeset=changeset classe="csEnabled" class="mr2"}}
                 </div>
                 <h4 class="modal__subtitle">Gestão de usuários</h4>
                 <div class="flex flex-row justify-between">
@@ -45,7 +45,7 @@
                 </div>
                 {{#unless changeset.id}}
                     <h4 class="modal__subtitle">Gestão calendário</h4>
-                    <div class="flex flex-row justify-start m-top--sm">
+                    <div class="flex flex-row justify-start m-top--sm mr2">
                         <select class="j-validate-aluno form-group__input form-group__input--select"
                             id="new_inst_calendario" name="calendario"
                             data-type="select" data-required="true" data-context="calendario">

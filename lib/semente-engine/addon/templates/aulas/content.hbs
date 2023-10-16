@@ -156,6 +156,7 @@ livros = livros
               <span class="hide-on--xs">Conteúdos básicos</span>
             </button>
           </li>
+
           <li>
             <button class="tabs__tab {{if (equalstr selectedAgrupamento " Complementar") "tabs__tab--is-active" }}"
               type="button" {{action "refreshSelectedAgrupamento" "Complementar" }}>
@@ -163,13 +164,7 @@ livros = livros
               <span class="hide-on--xs">Conteúdos complementares</span>
             </button>
           </li>
-          <li>
-            <button class="tabs__tab {{if (equalstr selectedAgrupamento " Comunicados") "tabs__tab--is-active" }}"
-              type="button" {{action "refreshSelectedAgrupamento" "Comunicados" }}>
-              <span class="hide-on--sm">Comunicados</span>
-              <span class="hide-on--xs">Comunicados</span>
-            </button>
-          </li>
+
           {{#if aula.atividade}}
           <li>
             <button class="tabs__tab {{if (equalstr selectedAgrupamento " Ead") "tabs__tab--is-active" }}" type="button"
@@ -178,40 +173,55 @@ livros = livros
             </button>
           </li>
           {{/if}}
+
+          {{#if hasEssencial}}
+          <li>
+            <button class="tabs__tab {{if (equalstr selectedAgrupamento " Essencial") "tabs__tab--is-active" }}" type="button"
+              {{action "refreshSelectedAgrupamento" "Essencial" }}>
+              <span class="hide-on--sm">Essencial</span>
+              <span class="hide-on--xs">Conteúdos essencial</span>
+            </button>
+          </li>
+          {{/if}}
+
+          <li>
+            <button class="tabs__tab {{if (equalstr selectedAgrupamento " Comunicados") "tabs__tab--is-active" }}"
+              type="button" {{action "refreshSelectedAgrupamento" "Comunicados" }}>
+              <span class="hide-on--sm">Comunicados</span>
+              <span class="hide-on--xs">Comunicados</span>
+            </button>
+          </li>
         </ul>
       </section>
 
-      {{#if (or (and (equalstr selectedAgrupamento "Básico") (equalstr conteudos.length '0')) (and (equalstr
-      selectedAgrupamento "Complementar") (equalstr conteudos.length '0')))}}
-      <div class="empty animated fadeIn">
-        <div class="animated d250 fadeInUpShort faster flex-1 ta-c">
-          {{!-- <span class="empty__icon icon-frown-o icon--xl"></span> --}}
-          <p class="m-top--xs">Essa aula não contempla material complementar.</p>
-        </div>
-      </div>
-      {{/if}}
-
-      <ul class="list list--striped">
-        {{#each conteudos as |conteudo|}}
-        <li>
-          {{content-conteudo-card conteudo=conteudo
-          selectedAgrupamento=selectedAgrupamento
-          pessoa=pessoa
-          toggleModal=(action "toggleModal")
-          checkTarefa=(action "refreshTarefa")}}
-        </li>
-        {{/each}}
-
-        {{#if (equalstr selectedAgrupamento "Ead")}}
-        {{#each aula.atividade.secoes as |secao|}}
-        <li>
-          {{secao-card secao=secao
-          toggleModalEad=(action "toggleModalEad")}}
-        </li>
-        {{/each}}
+      {{#if (equalstr selectedAgrupamento "Ead")}}
+          {{#each aula.atividade.secoes as |secao|}}
+            <li>{{secao-card secao=secao toggleModalEad=(action "toggleModalEad")}}</li>
+          {{/each}}
+      {{else}}
+        {{#if (equalstr conteudos.length '0')}}
+          <div class="empty animated fadeIn">
+            <div class="animated d250 fadeInUpShort faster flex-1 ta-c">
+              {{#if (equalstr selectedAgrupamento "Comunicados")}}
+              <p class="m-top--xs">Essa aula não contempla comunicados.</p>
+              {{else}}
+                <p class="m-top--xs">Essa aula não contempla material {{selectedAgrupamento}}.</p>
+              {{/if}}
+            </div>
+          </div>
+        {{else}}
+          <ul class="list list--striped">
+            {{#each conteudos as |conteudo|}}
+              <li>{{content-conteudo-card conteudo=conteudo
+                selectedAgrupamento=selectedAgrupamento
+                pessoa=pessoa
+                toggleModal=(action "toggleModal")
+                checkTarefa=(action "refreshTarefa")}}
+              </li>
+            {{/each}}
+          </ul>
         {{/if}}
-
-      </ul>
+      {{/if}}
 
       {{#if (equalstr role 'instrutor')}}
       <aside class="suggestions">

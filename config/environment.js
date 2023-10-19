@@ -3,7 +3,8 @@
 
 module.exports = function(environment) {
   let ENV = {
-    adobeApiKey: "40373f2f316448baa8c58aee78276225",
+    adobeApiKey: "03bbcac81d1a42679a353e4db5029d84",
+    // adobeApiKey: "40373f2f316448baa8c58aee78276225",
     modulePrefix: 'semente-web-app',
     environment,
     rootURL: '/',

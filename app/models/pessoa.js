@@ -16,7 +16,7 @@ export default DS.Model.extend({
   nascimento: DS.attr(),
   nascimentoPlataforma: DS.attr(),
   dataNascimento:  Ember.computed('nascimento', function() {
-    return moment(this.get('nascimento')).format('DD/MM/YYYY');
+    return moment(this.get('nascimento')).format('YYYY');
   }),
   ano: DS.attr(),
   password: DS.attr(),
@@ -121,4 +121,5 @@ export default DS.Model.extend({
   mustSendWelcomeEmail: DS.attr(),
   certificados: DS.hasMany('certificado', { async:true }),
   pessoaNotifications: DS.hasMany('pessoa-notification', { async:true }),
+  disciplinaMinistrada: DS.attr(),
 });

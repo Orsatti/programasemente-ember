@@ -4,7 +4,7 @@
             <div style="display: none;">{{startInformation}}</div>
             <div class="flex flex-row">
                 <div class="col-md-4">
-                    <div class="form-group w100 mt1">
+                    <div class="form-group w95 mt1">
                         <label class="form-group__label" for="new_user_role">Perfil</label>
                         <div class="form-group__wrapper form-group__wrapper--select">
                             <select class="form-group__input j-validate-basic" id="new_user_role"
@@ -32,7 +32,7 @@
 
                 {{#unless (equalstr activeProfile "aluno")}}
                     <div class="col-md-4">
-                        <div class="form-group w100 mt1">
+                        <div class="form-group w95 mt1">
                             <label class="form-group__label" for="new_user_function">Função</label>
                             <div class="form-group__wrapper form-group__wrapper--select">
                                 <select class="form-group__input j-validate-basic" id="new_user_function"
@@ -86,7 +86,7 @@
 
             <div class="flex flex-row">
                 <div class="col-md-4">
-                    <div class="form-group w100">
+                    <div class="form-group w95">
                         <label class="form-group__label" for="new_user_gender">Sexo</label>
                         <div class="form-group__wrapper form-group__wrapper--select">
                             <select class="form-group__input j-validate-aluno" id="new_user_gender" data-type="select"
@@ -101,15 +101,10 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group w100">
-                        <label class="form-group__label" for="new_user_birth">Nascimento</label>
-                        <input class="form-group__input j-validate-aluno" id="new_user_birth" maxlength="10"
-                            name="date" onkeyup="var v = this.value;
-                        if (v.match(/^\d{2}$/) !== null) {
-                            this.value = v + '/';
-                        } else if (v.match(/^\d{2}\/\d{2}$/) !== null) {
-                            this.value = v + '/';
-                        }" type="date" value={{new_user_birth}} data-type="text" data-context="nascimento">
+                    <div class="form-group w95">
+                        <label class="form-group__label" for="new_user_birth">Ano de nascimento</label>
+                        <input class="form-group__input j-validate-aluno" id="new_user_birth" maxlength="4" min="1900" max="{{anoAtual}}"
+                            type="number" value={{new_user_birth}} data-type="text" data-context="nascimento">
                     </div>
                     <div class="color-error-40" id="nascimento-error"></div>
                 </div>
@@ -159,7 +154,7 @@
                     <h4 class="modal__subtitle">Você é professor aplicador?</h4>
                     <div class="flex flex-row mt1">
                         <div class="col-md-6">
-                            <div class="checkbox w100">
+                            <div class="checkbox w95">
                                 <input class="checkbox__input" id="new_user_aplicador" type="checkbox"
                                     checked={{new_user_aplicador}} onchange={{action 'checkaplicador' }}>
                                 <label class="checkbox__label" for="new_user_aplicador">Sim, eu sou professor aplicador do Programa Semente.</label>
@@ -168,7 +163,14 @@
                     </div>
 
                     {{#if isAplicador}}
-                        <div class="flex flex-col animated fadeInLeftShort faster d100 mt1">
+                        <div class="flex flex-row mt1">
+                            <div class="col-md-6">
+                                {{validated-input label="Disciplina ministrada" propertyName="disciplinaMinistrada" changeset=changeset}}
+                                <div class="color-error-40" id="disciplina-error"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col animated fadeInLeftShort faster d100 mt3">
                             <h4 class="title-4">Você aplica em quais turmas?</h4>
                             {{#if aplicadorError}}<span id="error_aplicador" class="color-error-30 fs--xs">{{errorMsgAplicador}}</span>{{/if}}
                             <div class="flex flex-row mt1">
@@ -214,21 +216,23 @@
                     <h4 class="modal__subtitle">Em qual ano e turma deve ser inscrito?</h4>
                     <div class="flex flex-row mt2">
                         <div class="col-md-4">
-                            <div class="form-group w100">
-                                <label class="form-group__label" for="new_user_ano">Ano</label>
-                                <div class="form-group__wrapper form-group__wrapper--select">
-                                    <select class="j-validate-aluno form-group__input form-group__input--select"
-                                        id="new_user_ano" name="ano" 
-                                        onchange={{action 'refreshPlataformaTurmas' value='target.value' }} 
-                                        data-type="select" data-required="true" data-type="select"
-                                        data-context="ano">
-                                        <option selected="selected" value="">---</option>
-                                        {{#each (orderby plataformaAnos 'idx') as |pa|}}
-                                            <option value="{{pa.id}}">
-                                                {{pa.segmento.titulo}} - {{pa.name}}
-                                            </option>
-                                        {{/each}}
-                                    </select>
+                            <div class="form-group__container">
+                                <div class="form-group w95">
+                                    <label class="form-group__label" for="new_user_ano">Ano</label>
+                                    <div class="form-group__wrapper form-group__wrapper--select">
+                                        <select class="j-validate-aluno form-group__input form-group__input--select"
+                                            id="new_user_ano" name="ano" 
+                                            onchange={{action 'refreshPlataformaTurmas' value='target.value' }} 
+                                            data-type="select" data-required="true" data-type="select"
+                                            data-context="ano">
+                                            <option selected="selected" value="">---</option>
+                                            {{#each (orderby plataformaAnos 'idx') as |pa|}}
+                                                <option value="{{pa.id}}">
+                                                    {{pa.segmento.titulo}} - {{pa.name}}
+                                                </option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="color-error-40" id="aluno-ano-error"></div>
                             </div>
@@ -236,7 +240,7 @@
 
                         <div class="col-md-4">
                             <div class="form-group__container">
-                                <div class="form-group w100">
+                                <div class="form-group w95">
                                     <label class="form-group__label" for="new_user_turma">Turma</label>
                                     <div class="form-group__wrapper form-group__wrapper--select">
                                         <select class="j-validate-aluno form-group__input form-group__input--select"

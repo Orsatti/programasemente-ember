@@ -13,9 +13,12 @@
                 {{#each plataformaTurmas as |plataformaTurma|}}
                   {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
                     <li class="row">
-                      <p class="title-platturma capitalized" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">
+                      <div class="flex-col">
+                      <p class="title-platturma capitalized mb-0" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">
                         {{plataformaTurma.name}}
                       </p>
+                      <p class="title-platturma pt-0">(id: {{plataformaTurma.id}})</p>
+                      </div>
                       <span id="icon-edit{{plataformaTurma.id}}" class="btn_icon_edit icon-edit" onclick={{action 'edit' plataformaTurma}} style="display: block;"></span>
                       {{#if (equalstr plataformaTurma.numAlunos "0")}}
                         <span id="icon-delete{{plataformaTurma.id}}" class="btn_icon_edit icon-trash-2" onclick={{action 'delete' plataformaTurma}} style="display: block;"></span>

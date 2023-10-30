@@ -81,14 +81,43 @@
     flex-direction: row;
     margin: $distance--md 0;
   
-  
-    &__header-history {
+    &-loader-container {
+
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-color: transparentize($black, .10);
+      z-index: 100;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: $shadow-1;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      flex-flow: column;
+
+      &> img {
+        width: 80px;
+        height: 80px;
+      }
+
+     }
+
+     &-loader-message {
+      color: $white;
+      padding: 1rem;
+     }
+
+
+    &__header {
 
       //border: solid red 1px;
       width: auto;
       height: 10px;
       padding: 1rem 0 1.6rem 0;
-      margin: 0 0 1rem 0;
+      margin: 1rem 0 1rem 0;
       border-bottom: solid $gray-30 1px;
 
       &> span {

@@ -1,6 +1,10 @@
 <aside id="lote_user_modal" class="modal modal--is-show">
     <div class="modal__overlayer"></div>
     <div class="modal__content modal__content--lg mt4">
+        <div class="institutions__mass-enroll-loader-container animated" id="spinner-importar-lote">
+            <img src="/assets/img/lote-loader.gif" id="img-lote">
+            <span class="institutions__mass-enroll-loader-message">Processando...</span>
+        </div>
         <div class="modal__header">
             {{#link-to 'gerdata.users' model.instituicao.id}}
                 <button class="modal__close btn-close icon-x"></button>
@@ -34,9 +38,9 @@
                         </button>
                     {{/if}}
 
-                    <div>
+                    {{!-- <div>
                         <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="display: none" id="spinner-importar-lote"></i>
-                    </div>
+                    </div> --}}
                 </div>
 
                 {{#if preProcessamento}}
@@ -74,7 +78,7 @@
             {{else}}
 
             {{#if historyLote}}
-            <div class="institutions__mass-enroll__header-history">
+            <div class="institutions__mass-enroll__header">
                 <span>Histórico de cargas realizadas</span>
             </div>
                 <table class="table table--striped table--mass-enroll">
@@ -116,10 +120,13 @@
                 {{/if}}
 
                 {{#if preProcessamento}}
+                    <div class="institutions__mass-enroll__header">
+                    <span>Diagnóstico do pré-processamento</span>
+                    </div>
                     <table class="table table--striped table--mass-enroll table--mt">
                         <thead class="thead-dark">
                             <tr>
-                                <th class="table__file" scope="col">Erro na planilha</th>
+                                <th class="table__file" scope="col">Erros na planilha</th>
                                 <th class="table__users" scope="col">Linha</th>
                             </tr>
                         </thead>
@@ -127,13 +134,17 @@
                         {{#each preProcessamentoData as |lista|}}
                             {{#if (equalstr lista.type "Planilha")}}
                                 <tr>
-                                    <td class="table__file">{{lista.erro}}</td>
-                                    <td class="table__users">{{lista.linha}}</td>
+                                    <td class="table__file {{if (equalstr lista.erro 'Nenhum erro foi identificado') 'bg-success-10 color-success-50' 'bg-error-10 color-error-40'}}">{{lista.erro}}</td>
+                                    <td class="table__users {{if (equalstr lista.linha '0') 'bg-success-10 color-success-50' 'bg-error-10 color-error-40'}}">{{lista.linha}}</td>
                                 </tr>
                             {{/if}}
                         {{/each}}
                         </tbody>
                     </table>
+                    
+                    <div class="institutions__mass-enroll__header">
+                        <span>Prévia de alunos e turmas nesta carga</span>
+                    </div>
                     <table class="table table--striped table--mass-enroll table--mt">
                         <thead class="thead-dark">
                             <tr>
@@ -156,6 +167,9 @@
                         {{/each}}
                         </tbody>
                     </table>
+                    <div class="institutions__mass-enroll__header">
+                        <span>Prévia detalhada da carga</span>
+                    </div>
                     <table class="table table--striped table--mass-enroll table--mt">
                         <thead class="thead-dark">
                             <tr>
@@ -179,7 +193,7 @@
                         </tbody>
                     </table>
                     <div class="flex flex-col justify-content-end mt2">
-                        <button class="btn" type="submit" {{action 'importarLote' }}>Importar</button>
+                        <button class="btn" type="submit" {{action 'importarLote' }}>Se estiver tudo certo, clique aqui para importar</button>
                     </div>
                 {{/if}}
             {{/if}}

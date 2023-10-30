@@ -80,6 +80,27 @@
     display: flex;
     flex-direction: row;
     margin: $distance--md 0;
+  
+  
+    &__header-history {
+
+      //border: solid red 1px;
+      width: auto;
+      height: 10px;
+      padding: 1rem 0 1.6rem 0;
+      margin: 0 0 1rem 0;
+      border-bottom: solid $gray-30 1px;
+
+      &> span {
+        font-size: $font-size--md;
+        font-weight: 700;
+        color: $green-70;
+      }
+
+
+    }
+  
+  
   }
 
   &__steps {

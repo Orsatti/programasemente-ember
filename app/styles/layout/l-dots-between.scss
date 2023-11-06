@@ -50,6 +50,44 @@
     order: 2;
   }
 
+  &__livros{
+    width: 100%;
+    position: relative;
+    margin-right: 1rem;
+    display: inline-block;
+    text-align: right;
+
+    &--botao{
+
+      & span{
+        background-color: #8bc63f;
+        border-radius: 4px;
+    color: #fff;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .03em;
+    margin-right: 0.5rem;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+
+
+   & :hover{
+      background-color: #1a2a2d;
+      border-radius: 4px;
+      }
+       
+    }
+    }
+  }
+
+  &__ano{
+  //  width: 50%;
+    display: inline-block !important;
+    position: absolute;
+    left: 0;
+    top: 1rem;
+  }
+
   // Usar essa classe para páginas
   // que precisam da coluna de apoio
   // após o conteúdo principal.

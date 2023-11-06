@@ -109,7 +109,7 @@
           {{/link-to}}
         {{/if}}
 
-        {{#unless (equalstr livro '#')}}
+     <!--   {{#unless (equalstr livro '#')}}
           {{#each livro as |l|}}
             {{#unless (and instituicao.vendaDireta (equalstr pessoa.role 'aluno'))}}
               <li class="tabs__tab" {{action "openPdfViewer" l}}>
@@ -117,7 +117,7 @@
               </li>
             {{/unless}}
           {{/each}}
-        {{/unless}}
+        {{/unless}} -->
 
         {{#unless (or (or (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel')) (equalstr pessoa.role
         'instrutor')) (equalstr pessoa.role 'secretaria'))}}

@@ -4,13 +4,13 @@
   $l-dots-between-gap: $distance--xs;
   $l-dots-between-gap--lg: $distance--lg;
   $l-dots-between-dot-color: $green-30;
-  $l-dots-between-dot-size: .14rem;
+  $l-dots-between-dot-size: 0.14rem;
 
   display: flex;
   flex-direction: column;
   gap: clamp(#{$l-dots-between-gap}, 2vw, #{$l-dots-between-gap--lg});
 
-  @include media('>md') {
+  @include media(">md") {
     flex-direction: row;
   }
 
@@ -18,18 +18,20 @@
     margin-bottom: $distance--md;
     margin-top: $distance--md;
 
-    @include media('>md') {
+    @include media(">md") {
       margin: 0 $distance--md;
     }
-
   }
 
   &::before {
-    background-image: radial-gradient($l-dots-between-dot-color $l-dots-between-dot-size, transparent $l-dots-between-dot-size);
+    background-image: radial-gradient(
+      $l-dots-between-dot-color $l-dots-between-dot-size,
+      transparent $l-dots-between-dot-size
+    );
     background-position: top center;
     background-repeat: repeat-y;
     background-size: 1rem 1rem;
-    content: '';
+    content: "";
     flex: 0 0 auto;
     order: 1;
     width: $distance--md;
@@ -39,10 +41,9 @@
     flex: 0 0 25%;
     order: 0;
 
-    @include media('>sm') {
+    @include media(">sm") {
       flex: 0 0 20%;
     }
-
   }
 
   &__content {
@@ -50,54 +51,73 @@
     order: 2;
   }
 
-  &__livros{
+  &__livros {
     width: 100%;
     position: relative;
     margin-right: 1rem;
     display: inline-block;
     text-align: right;
 
-    &--botao{
+    &--botao {
+      display: inline-block;
+      cursor: pointer;
 
-      & span{
+      :hover {
+        background-color: $blue-navy-70;
+        color: $white;
+      }
+
+      &--is-active {
+        background-color: $white;
+        border-bottom: 0 solid transparent;
+
+        color: $blue-navy-70;
+        cursor: unset;
+      }
+
+      & span {
         background-color: #8bc63f;
         border-radius: 4px;
-    color: #fff;
-    font-size: .75rem;
-    font-weight: 700;
-    letter-spacing: .03em;
-    margin-right: 0.5rem;
-    padding: 0.5rem 1rem;
-    text-transform: uppercase;
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        margin-right: 0.5rem;
+        padding: 0.5rem 1rem;
+        text-transform: uppercase;
 
-
-   & :hover{
-      background-color: #1a2a2d;
-      border-radius: 4px;
+        & :hover {
+          background-color: #1a2a2d;
+          border-radius: 4px;
+        }
       }
-       
-    }
+
+      @include media('<sm') {
+        margin-top: 4rem;
+      }
     }
   }
 
-  &__ano{
-  //  width: 50%;
+  &__ano {
+    //  width: 50%;
     display: inline-block !important;
     position: absolute;
     left: 0;
-    top: 1rem;
   }
 
   // Usar essa classe para páginas
   // que precisam da coluna de apoio
   // após o conteúdo principal.
   &--is-flipped {
-    #{$this}__side { order: 2; }
-    #{$this}__content { order: 0; }
+    #{$this}__side {
+      order: 2;
+    }
+    #{$this}__content {
+      order: 0;
+    }
   }
 
   &__acompanhamento::before {
     display: none;
   }
-
 }

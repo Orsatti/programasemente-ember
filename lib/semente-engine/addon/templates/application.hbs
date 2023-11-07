@@ -1,4 +1,17 @@
 <div style="display: none;">{{oneInst}}</div>
+
+<aside id="warn__container" class="warn__container">
+    
+  <div class="warn__wrapper animated fadeInDown d250 slow">
+    
+      <div class="icon icon-alert-triangle icon--xxl"></div>
+      {{!-- <span class="warn__title">Aviso de manutenção programada:</span> --}}
+      <span class="warn__span-sizeAdjust">No dia <span class="warn__text-emphasize">25/11/2023</span> entre 10h e 20h, nossos sistemas ficarão intermitentemente fora do ar ou instáveis, devido a uma manutenção. Agradecemos a compreensão.</span>
+    
+      <a class="warn__close-btn" {{action "closeWarn"}}>Entendi!</a>
+  </div>
+</aside>
+
 <aside class="help" id="help">
   <h2 class="sr-only">Pedir ajuda ou enviar dúvida, sugestão ou reportar problema</h2>
   <button id="help__trigger" class="help__trigger btn btn--icon btn--md icon-help-circle" {{action "toggleHelp"}}></button>

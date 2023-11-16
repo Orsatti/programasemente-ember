@@ -15,7 +15,6 @@
       <h1 class="scr-only">Informações do usuário</h1>
       <div class="flow-xxs">
         <div class="flex flex-row flex-wrap items-baseline gap-xs flow-xs">
-          {{!-- <span class="title-1">{{firstnameoremailpart pessoa.name}}</span> --}}
           {{#if (equalstr parentController.role 'aluno')}}
             <button class="btn btn--link m-top--auto color-white">
               <span class="btn__label" {{action 'invalidateSession' }}>Não é você? Faça logout</span>
@@ -26,51 +25,6 @@
         {{instituicao.name}}
       </h1>
         <span class="title-aux"> {{pessoa.name}} -  {{pessoa.role}}</span>
-       
-      <!--  <div class="l-user-header__role">
-          {{#if (equalstr pessoa.role 'aluno')}}
-            <span>{{pessoa.plataformaAnos.firstObject.segmento.titulo}} -
-              {{pessoa.plataformaAnos.firstObject.name}}</span>
-          {{else if (equalstr pessoa.role 'coordenador')}}
-            <span>Coordenador{{#if (equalstr pessoa.genero 'feminino')}}a{{/if}}</span>
-          {{else if (equalstr pessoa.role 'secretaria')}}
-            <span>Secretaria</span>
-          {{else if (equalstr pessoa.role 'gestor')}}
-            <span>Gestor{{#if (equalstr pessoa.genero 'feminino')}}a{{/if}}</span>
-          {{else if (equalstr pessoa.role 'recursosHumanos')}}
-            <span>Recursos Humanos</span>
-          {{else if (equalstr pessoa.role 'admin')}}
-            <span>Administrador</span>
-          {{else if (equalstr parentController.role 'instrutor')}}
-
-            {{#if isAplicador}}
-              <span>Professor{{#if (equalstr pessoa.genero 'feminino')}}a{{/if}} aplicador{{#if (equalstr pessoa.genero
-            'feminino')}}a{{/if}} </span> {{#if (isbigger parentController.segmentosObjects.length "1")}} <span>dos
-                  segmentos</span>
-                {{#each parentController.segmentosObjects as |seg index|}}
-                  {{#if (equalstr index (sub parentController.segmentosObjects.length 1))}}
-                    <span>e</span> <!-- último -->
-                  {{else if (isbigger index 0)}}
-                    <span class="m-left--none">,</span> {{/if}}
-                  {{#if seg.titulo}}
-                    <span class="fs-i">{{seg.titulo}}</span>
-                  {{/if}}
-                {{/each}}
-              {{else}} do {{#each parentController.segmentosObjects as |seg|}} <span class="fs-i">{{seg.titulo}}</span>
-                {{/each}} {{/if}}
-            {{else}}
-              <span>Professor{{#if (equalstr pessoa.genero 'feminino')}}a{{/if}} não aplicador{{#if (equalstr
-              pessoa.genero 'feminino')}}a{{/if}} </span>
-            {{/if}}
-
-          {{else}}
-            {{#if parentController}}
-              {{parentController.role}}
-            {{else}}
-              {{pessoa.role}}
-            {{/if}}
-          {{/if}}
-        </div>-->
    </div>
     </section>
     <nav>
@@ -109,19 +63,8 @@
           {{/link-to}}
         {{/if}}
 
-        {{#unless (equalstr livro '#')}}
-          {{#each livro as |l|}}
-            {{#unless (and instituicao.vendaDireta (equalstr pessoa.role 'aluno'))}}
-              <li class="tabs__tab" {{action "openPdfViewer" l}}>
-                <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil 'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
-              </li>
-            {{/unless}}
-          {{/each}}
-        {{/unless}}
-
         {{#unless (or (or (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel')) (equalstr pessoa.role
         'instrutor')) (equalstr pessoa.role 'secretaria'))}}
-        {{!-- 'instrutor') (equalstr pessoa.isAplicador "0") )) (equalstr pessoa.role 'secretaria'))}} --}}
           {{#link-to 'marketing.index' class="tabs__tab" id="tabMkt"}}
             <span>Marketing</span>
           {{/link-to}}

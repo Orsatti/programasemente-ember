@@ -172,7 +172,11 @@
 				rever_quiz 'Rever o quiz' 'Rever o video'}}</button>
 			<button class="transition__cta btn btn--md animated fadeIn d2750" {{action 'goBack' next_atividade_id
 				next_ativsec_id 'atividade' }}>Voltar para o percurso</button>
-				<button class="transition__cta btn btn--md animated fadeIn d2750">Ver seu certificado</button>
+			
+			{{#if isEja}}
+				{{#link-to 'modulos.certificado' ModuloIdx class="transition__cta btn btn--md animated fadeIn d2750"}}Ver seu certificado{{/link-to}}
+				{{!-- <button class="transition__cta btn btn--md animated fadeIn d2750">Ver seu certificado</button> --}}
+			{{/if}}
 			{{!-- <p class="transition__countdown animated fadeIn d2750">Voltará automaticamente em {{countdown}}
 				segundos.</p> --}}
 		</div>

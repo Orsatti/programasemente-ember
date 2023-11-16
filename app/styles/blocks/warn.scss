@@ -1,0 +1,111 @@
+.warn {
+  $this: &;
+
+
+  &__container {
+    color: $black;
+    height: auto;
+    position: relative;
+    display: none;
+    width: 100%;
+    z-index: 9999;
+    background-color: $warning-30;
+    justify-content: center;
+
+
+    @include media('<lg') {
+      height: 15vh;
+    }
+
+    @include media('<sm') {
+      height: auto;
+    }
+
+  }
+
+  &__wrapper {
+    padding: 1rem 2rem 1rem 2rem;
+    width: 72%;
+    display: flex;
+    gap: 120px;
+    align-content: center;
+    align-items: center;
+      
+
+    @include media('<lg') {
+      padding: 2rem;
+      width: 100%;
+      gap: 15px;
+    }
+
+    @include media('<sm') {
+      padding: 1.8rem;
+      flex-flow: column;
+    }
+
+
+    &>  span {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+      line-height: 1.4rem;
+
+      @include media('<sm') {
+        text-align: center;
+      }
+         
+    }
+  }
+
+  &__title {
+    font-weight: 800 !important;
+    font-size: 1.2rem !important;
+    width: 15%;
+    text-align: center;
+    
+  
+  }
+
+  &__span-sizeAdjust {
+    width: auto;
+
+    @include media('<lg') {
+      width: 75%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+  }
+
+  &__text-emphasize {
+    font-weight: 500;
+    background-color: $warning-50;
+    color: $white;
+    padding: 0.2rem;
+  }
+
+  &__close-btn {
+    position: relative;
+    font-weight: 600;
+    text-decoration: underline !important;
+    cursor: pointer;
+    height: auto;
+    display: flex;
+    justify-self: flex-end;
+    width: auto;
+    text-align: center;   
+    line-height: 1.2rem; 
+
+    @include media('<sm') {
+      font-size: 1.2rem;
+    }
+
+
+    
+    &:hover {
+      color: $green-70;
+    }
+
+  }
+
+  }

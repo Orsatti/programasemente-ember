@@ -1,6 +1,8 @@
 {{gerdata-header pessoa=pessoaLogged informations=false instituicao=instituicao}}
 
 <div style="display: none;">{{acompanhamentoSistemas}}</div>
+
+{{#if (equalstr pessoaLogged.role 'admin')}}
 <section class="flow-xl mb-3 m-top--sm">
     <div class="box-area">
         <div class="box-area__item1">
@@ -42,6 +44,7 @@
         {{/each}}
     </div>
 </section>
+{{/if}}
 
 <section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--md">
     <div class="flex flex-row items-center justify-end">

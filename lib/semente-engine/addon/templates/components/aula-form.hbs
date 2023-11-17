@@ -10,6 +10,14 @@
                 </div>
 
                 <div class="flex flex-col col-md-6">
+                    <label class="form-group__label" for="">Descrição</label>
+                    {{input class="form-group__input" id="descricaoAula" maxlength=350 value=new_aula_descricao}}
+                    <div class="color-error-40" id="descricao-error"></div>
+                </div>
+            </div>
+
+            <div class="flex flex-row col-md-12 mt-4">
+                <div class="flex flex-col col-md-6">
                     <label class="form-group__label" for="">Esta aula é ativa em quais calendários?</label>
                     <div class="flex flex-row flex-wrap">
                         {{#each calendarios as |calendario|}}
@@ -28,15 +36,21 @@
                     </div>
                     <div class="color-error-40" id="calendario-error"></div>
                 </div>
+
+                <div class="flex flex-col col-md-6">
+                    <label class="form-group__label" for="">Esta aula é Essencial?</label>
+                    <div class="checkbox">
+                        <input class="j-validate-aplicador-child checkbox__input" 
+                        type="checkbox"
+                        id="check-essencial"
+                        checked={{if aula.isEssencial "checked"}}>
+                        <label class="checkbox__label" for="check-essencial"></label>
+                    </div>
+                </div>
             </div>
 
-            <div class="flex flex-col col-md-12 mt1">
-                <label class="form-group__label" for="">Descrição</label>
-                {{input class="form-group__input" id="descricaoAula" maxlength=350 value=new_aula_descricao}}
-                <div class="color-error-40" id="descricao-error"></div>
-            </div>
 
-            <div class="flex flex-col col-md-12 mt1">
+            <div class="flex flex-col col-md-12 mt-4">
                 <label class="form-group__label" for="">Thumbnail</label>
                 {{#if thumbnail}}
                     <ul id="aulaCapa" class=" {{if thumbnail 'animated fadeInLeftShort faster'}}">
@@ -68,7 +82,7 @@
                 <div class="color-error-40" id="thumb-error"></div>
             </div>
             
-            <div class="flex flex-col col-md-12 mt1">
+            <div class="flex flex-col col-md-12 mt-4">
                 <label class="form-group__label" for="">Competências</label>
                 <div class="flex flex-row flex-wrap novos-cards">
                     {{#each competencias as |competencia|}}
@@ -88,7 +102,7 @@
                 <div class="color-error-40" id="competencia-error"></div>
             </div>
         
-            <div class="flex flex-col justify-content-end mt2">
+            <div class="flex flex-col justify-content-end mt-5">
                 <div class="color-error-40" id="form-user-error"></div>
                 <button class="btn" type="submit">{{buttonLabel}}</button>
             </div>

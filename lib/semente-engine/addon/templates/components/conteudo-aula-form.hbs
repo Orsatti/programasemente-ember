@@ -118,6 +118,16 @@
             </div>
         </div>
 
+         {{#if hasEssencial}}
+            <div class="checkbox">
+                <input  class="checkbox__input j-publico"
+                        id="checkbox-essencial"
+                        onchange={{action 'essencialChanged'}}
+                        type="checkbox"/>
+                <label class="checkbox__label mt-5" for="checkbox-essencial">Essencial</label>
+            </div>
+        {{/if}}
+
         <div class="col-xs-12 col-lg-2">
             <div class="form-group">
                 <label class="form-group__label" for="aula">Aula</label>
@@ -132,7 +142,9 @@
                                         {{#if selectedAno}}
                                             {{#if (equalstr ano.id selectedAno.id)}}
                                                 {{#each ano.aulas as |aula|}}
-                                                    <option value="{{aula.id}}">{{aula.titulo}}</option>
+                                                    {{#if (equalstr aula.isEssencial selectedEssencial)}}
+                                                            <option value="{{aula.id}}">{{aula.titulo}}</option>
+                                                    {{/if}}
                                                 {{/each}}
                                             {{/if}}
                                         {{/if}}

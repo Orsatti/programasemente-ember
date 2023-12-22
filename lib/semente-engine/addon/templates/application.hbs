@@ -32,8 +32,11 @@
           {{/each}}
         </div>
       </div>
-      <p class="title-3">Envie uma mensagem para nós</p>
-      <p>Pode ser <strong>sugestão</strong>, <strong>reportar um erro</strong> ou até<strong> um elogio</strong>.</p>
+      <p class="title-3 color-blue-navy-40">Precisa de ajuda?</p>
+
+      <p>Acesse nossa <a class="color-green-70 fw--4" style="text-decoration:underline" href="https://sementeeducao.zendesk.com/" target="_blank">central de ajuda</a></p>
+      <p class="title-4 color-blue-navy-40">ou</p>
+      <p>envie uma mensagem para nós:</p>
       <div class="form-group">
         <label class="form-group__label" for="helpEmail">Por qual e-mail gostaria de ser contatado?</label>
         <input type="text" maxlength="80" class="form-group__input" id="helpEmail" rows="6" form="formHelp" onfocus={{action 'supportMailFocus'}} onkeyup={{action 'checkEmailForm'}} wrap required>

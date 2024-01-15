@@ -10,13 +10,6 @@
           <span class="media__title title-2">{{aula.titulo}}</span>
         </div>
       </div>
-      {{#if (equalstr pessoa.role 'admin')}}
-        <div class="editar-aula">
-          {{#link-to 'aulas.editaula' aula.id class="btn btn__claro btn--xxs"}}
-            <span class="btn__label">Editar</span>
-          {{/link-to}}
-        </div>
-      {{/if}}
     </div>
     <div class="descricao-aula">
       <p class="media__title--nova-descricao-aula">{{aula.descricao}}</p>
@@ -27,6 +20,25 @@
         <span class="habilidades etiquetas">{{competencia.sigla}}</span>
       {{/each}}
     </div>
+    <div class="btn-materiais-aula">
+      {{#if (not aula.hasContent)}}
+      <div class="btn-materiais-aula__btn--disabled novo-btn-materiais-aula">
+        <span class="icon-lock m-right--xs"></span>
+        <span>Ainda não há materiais</span>
+      </div>
+      {{else}}
+      {{#link-to 'aulas.content' aula.id}}
+        <h2 class="btn btn--xxs animated fadeInLeftShort faster d100">Ver materiais</h2>
+      {{/link-to}}
+      {{/if}}
+    </div>
+        {{#if (equalstr pessoa.role 'admin')}}
+        <div class="editar-aula">
+          {{#link-to 'aulas.editaula' aula.id class="btn btn__claro btn--xxs"}}
+            <span class="btn__label">Editar</span>
+          {{/link-to}}
+        </div>
+      {{/if}}
     {{#if (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'instrutor'))}}
       {{#if (equalstr situacao "Aplicada")}}
         <span class="descricao-aula">Aplicada em: <span class="fw--4">{{UltimaAplicacao.dataAplicacaoFormatShort}}</span></span>
@@ -34,19 +46,7 @@
         <span class="descricao-aula">{{situacao}}</span>
       {{/if}} 
     {{/if}} 
-    <div class="btn-materiais-aula">
-      {{#if (not aula.hasContent)}}
-      <div class="btn btn-materiais-aula__btn--disabled btn--ghost btn--xxs novo-btn-materiais-aula">
-        <span class="icon-lock m-right--xs"></span>
-        <span>Ainda não há materiais</span>
-      </div>
-      {{else}}
-      {{#link-to 'aulas.content' aula.id class="btn-right-bottom"}}
-        <h2 class="btn btn--xxs animated fadeInLeftShort faster d100">Ver materiais</h2>
-      {{/link-to}}
-      {{/if}}
-    </div>
-  </div>
+ </div>
 
 </div>
 {{/if}}

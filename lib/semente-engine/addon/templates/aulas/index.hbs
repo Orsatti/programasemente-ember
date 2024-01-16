@@ -117,7 +117,10 @@
           {{#each livros as |l|}}
             {{#unless (and pessoa.instituicao.vendaDireta (equalstr pessoa.role 'aluno'))}}
               <li class=" l-dots-between__livros--botao" {{action "openPdfViewer" l}}>
-                <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil 'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
+                <div>
+                  <span class="icon-paperclip m-right--xxs"></span>
+                  <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil 'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
+                </div>
               </li>
             {{/unless}}
           {{/each}}

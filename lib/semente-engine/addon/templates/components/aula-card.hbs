@@ -3,7 +3,7 @@
 <div class="media {{if (not aula.hasContent) 'media--card media--card--is-disabled' 'media--card media--card--fundo'}}">
   <div class="degrade"></div>
   <img class="media--card--imagem-aula" id="thumbnail-aula-card{{aula.id}}" src="{{aula.thumbnail}}" alt="{{aula.titulo}}"/>
-  <div class="flex flex-col justify-content-between h100">
+  <div class="flex flex-col justify-content-between h100 w100">
     <div class="flex flex-row justify-content-end w100">
       {{#if aula.isEssencial}}
         <p class="etiqueta-superior">ESSENCIAL</p>

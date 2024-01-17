@@ -44,7 +44,7 @@
       <form autocomplete="off" class="flex flex-col flow-md">
         {{#unless (equalstr pessoa.role 'aluno')}}
           <div class="two-col-wrap">
-            {{#each selectedSegmento.plataformaAnos as |plat_ano|}}
+            {{#each plataformaAnos as |plat_ano|}}
                 <button class="btn btn--as-filter {{if (equalstr selectedAno.name plat_ano.name) 'btn--is-active'}}" {{action 'refreshSelectedAno' plat_ano}} type="button">
                   <span class="btn__label" style="font-size:.875em;">{{plat_ano.name}}</span>
                 </button>

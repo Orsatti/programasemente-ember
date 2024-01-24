@@ -44,7 +44,7 @@
       <form autocomplete="off" class="flex flex-col flow-md">
         {{#unless (equalstr pessoa.role 'aluno')}}
           <div class="two-col-wrap">
-            {{#each selectedSegmento.plataformaAnos as |plat_ano|}}
+            {{#each plataformaAnos as |plat_ano|}}
                 <button class="btn btn--as-filter {{if (equalstr selectedAno.name plat_ano.name) 'btn--is-active'}}" {{action 'refreshSelectedAno' plat_ano}} type="button">
                   <span class="btn__label" style="font-size:.875em;">{{plat_ano.name}}</span>
                 </button>
@@ -89,6 +89,19 @@
             </select>
           </div>
         </div>
+
+        {{#if (equalstr pessoa.role 'admin')}}
+          <div class="form-group">
+            <label class="form-group__label">Calendário</label>
+            <div class="form-group__wrapper form-group__wrapper--select">
+              <select class="form-group__input" id="calendario" onchange={{action 'refreshSelectedCalendario' value='target.value'}}>
+                {{#each calendarios as |calendario|}}
+                  <option value="{{calendario.id}}">{{calendario.nome}}</option>
+                {{/each}}
+              </select>
+            </div>
+        </div>
+        {{/if}}
       </form>
     </aside>
 
@@ -104,7 +117,10 @@
           {{#each livros as |l|}}
             {{#unless (and pessoa.instituicao.vendaDireta (equalstr pessoa.role 'aluno'))}}
               <li class=" l-dots-between__livros--botao" {{action "openPdfViewer" l}}>
-                <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil 'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
+                <div>
+                  <span class="icon-paperclip m-right--xxs"></span>
+                  <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil 'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
+                </div>
               </li>
             {{/unless}}
           {{/each}}

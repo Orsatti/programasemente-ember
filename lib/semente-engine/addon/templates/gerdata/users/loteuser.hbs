@@ -17,36 +17,62 @@
                 <p>Por meio dos botões abaixo, baixe o arquivo de carga, preencha-o, busque-o em seu computador e
                     realize o pré-processamento.</p>
 
-                <div class="institutions__mass-enroll institutions__btn-group flow-h-sm">
+                <div class="institutions__mass-enroll institutions__btn-group flow-h-xs">
+                    <span class="institutions__mass-enroll-step"></span>
                     <button class="btn btn-primary btn__claro" type="submit" {{action 'baixarTemplate' }}>
                         Baixar template
                     </button>
                     <span>
                         <img src="/assets/img/seta-lado.png" alt="">
                     </span>
+                    <span class="institutions__mass-enroll-step"></span>
                     <label class="btn label_get_lote" for="get_lote">Buscar arquivo</label>
-                    <input id="get_lote" multiple="false" onchange={{action "buscarArquivo" }} 
+                    <input id="get_lote" multiple="false" onchange={{action "buscarArquivo"}} 
                         accept="text/csv" type="file" style="display: none;" />
-
+                      <span>
+                        <img src="/assets/img/seta-lado.png" alt="">
+                    </span>
+                    
+                    <span class="institutions__mass-enroll-step"></span>
                     {{#if (equalstr selected_file '')}}
                         <button class="btn btn-primary btn--disabled" type="submit" disabled>
-                            Pré processar
+                            Validar arquivo
                         </button>
                     {{else}}
                         <button class="btn btn-primary" type="submit" {{action 'preImportarLote' }}>
-                            Pré processar
+                            Validar arquivo
                         </button>
                     {{/if}}
-
-                    {{!-- <div>
-                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="display: none" id="spinner-importar-lote"></i>
-                    </div> --}}
+                    <span>
+                        <img src="/assets/img/seta-lado.png" alt="">
+                    </span>
+                    
+                    <span class="institutions__mass-enroll-step"></span>
+                    {{#if preProcessamento}}
+                    <div class="flex flex-col justify-content-end">
+                        <button class="btn" type="submit" {{action 'importarLote' }}>Processar</button>
+                    </div>
+                    {{else}}
+                    <div class="flex flex-col justify-content-end">
+                        <button class="btn" type="submit" {{action 'importarLote' }} disabled>Processar</button>
+                    </div>
+                    {{/if}}
                 </div>
+            {{#if selected_file}}
+                <div class="institutions__attached-file alert alert--sm alert--has-icon alert--is-show">
+                    <span class="alert__icon icon-paperclip"></span>
+                    <span class="institutions__attached-label">Arquivo selecionado: </span>
+                    <strong>{{selected_file}}</strong>
+                </div>
+            {{/if}}
 
                 {{#if preProcessamento}}
-                    <p>Após o pré-processamento do arquivo, certifique-se de que as turmas possuem os números corretos de alunos.</p>
-                    <p>Se sim, clique no botão <b>Importar</b> localizado no final da página.</p>
-                    <p>Se não, arrume o arquivo e realize o pré-processamento novamente.</p>
+                    <div class="institutions__mass-enroll-instructions flow-xs">
+                        <h2>Atenção:</h2>
+                        <p>Abaixo está o diagóstico do arquivo.</p>
+                        <p>Verifique se há erros e corrija-os conforme as orientações dadas.</p>
+                        <p>Caso não tenham sido encontrados erros, clique em "Processar", no passo 4 acima.</p>
+                    </div>
                 {{/if}}
 
                 {{!-- <div class="t-center instrucoes">
@@ -61,13 +87,7 @@
             </div>
 
             <div class="inside-scroll__scroll">
-            {{#if selected_file}}
-                <div class="institutions__attached-file alert alert--sm alert--has-icon">
-                    <span class="alert__icon icon-paperclip"></span>
-                    <span class="institutions__attached-label">Arquivo selecionado: </span>
-                    <strong>{{selected_file}}</strong>
-                </div>
-            {{/if}}
+
             {{#if error_lote}}
                 <p>1- {{error_lote}}</p>
             {{/if}}
@@ -192,9 +212,6 @@
                         {{/each}}
                         </tbody>
                     </table>
-                    <div class="flex flex-col justify-content-end mt2">
-                        <button class="btn" type="submit" {{action 'importarLote' }}>Se estiver tudo certo, clique aqui para importar</button>
-                    </div>
                 {{/if}}
             {{/if}}
             </div>

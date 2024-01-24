@@ -80,6 +80,45 @@
     display: flex;
     flex-direction: row;
     margin: $distance--md 0;
+    counter-reset: section;
+
+    &-step {
+      //border: solid 2px red;
+      
+      width: 28px;
+      height: 28px;
+      position: relative;
+      display: inline-block;
+      border-radius: 50px;
+      color: $white;
+      padding: 4px;
+      font-size: 1rem;
+      background-color: $blue-navy-60;
+      font-weight: 600;
+      text-align: center;
+      
+      &::before {
+        counter-increment: section;
+        content: counter(section);
+        width: 100%;
+        height: 100%;
+        
+      }
+     
+    }
+
+    &-instructions {
+      //border: solid red 2px;
+      padding: 1.2rem;
+      //width: max-content;
+      display: flex;
+      flex-direction: column;
+      background-color: $warning-30;
+      margin-top: 1rem;
+      font-size: $font-size--sm;
+      box-shadow: rgb(0 0 0 / 15%) 0px 3px 10px;
+    }
+
   
     &-loader-container {
 

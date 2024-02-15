@@ -148,4 +148,23 @@
 
     }
 
+    &--users {
+        width: 9rem;
+
+        #{$this}__head {
+            transform: translate( calc((-#{$switch-head}) - 465%), -50%);
+        }
+
+        #{$this}__inner::before {
+            content: 'habilitados';
+            left: 8%;
+        }
+
+        #{$this}__inner::after {
+            content: 'desabilitados';
+            transform: translate(54%, -50%);
+        }
+
+    }
+
 }

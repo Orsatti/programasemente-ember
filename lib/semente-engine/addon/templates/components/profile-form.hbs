@@ -259,14 +259,10 @@
                                     onchange={{action 'refreshSelectedGenero' value='target.value' }} data-type="select"
                                     data-required="true">
                                     <option value="" disabled selected>---</option>
-                                    <option value="masculino" selected={{if (equalstr pessoa.genero "masculino"
-                                        ) "selected" }}>
-                                        Masculino</option>
-                                    <option value="feminino" selected={{if (equalstr pessoa.genero "feminino"
-                                        ) "selected" }}>
-                                        Feminino
-                                    </option>
-                                    {{!-- <option value="nao_quis_dizer">Prefiro não dizer</option> --}}
+                                    <option value="masculino" selected={{if (equalstr pessoa.genero "masculino") "selected" }}>Masculino</option>
+                                    <option value="feminino" selected={{if (equalstr pessoa.genero "feminino") "selected" }}>Feminino</option>
+                                    <option value="não informar" selected={{if (equalstr pessoa.genero "não informar") "selected"}}>Não informar</option>
+
                                 </select>
                             </div>
                         </div>
@@ -376,12 +372,9 @@
                                     onchange={{action 'refreshSelectedGenero' value='target.value' }} data-type="nome"
                                     data-required="true">
                                     <option value="" disabled selected>---</option>
-                                    <option value="masculino" selected={{if (equalstr pessoa.genero "masculino"
-                                        ) "selected" }}>Masculino</option>
-                                    <option value="feminino" selected={{if (equalstr pessoa.genero "feminino"
-                                        ) "selected" }}>
-                                        Feminino</option>
-                                    {{!-- <option value="">Prefiro não dizer</option> --}}
+                                    <option value="masculino" selected={{if (equalstr pessoa.genero "masculino") "selected" }}>Masculino</option>
+                                    <option value="feminino" selected={{if (equalstr pessoa.genero "feminino") "selected" }}>Feminino</option>
+                                    <option value="não informar" selected={{if (equalstr pessoa.genero "não informar") "selected"}}>Não informar</option>
                                 </select>
                             </div>
                         </div>

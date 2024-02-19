@@ -129,6 +129,11 @@
                 id="gen_masculino" value="masculino" name="genero" type="radio" onchange={{ action 'refreshGenero' }}>
               <label class="radio__label" for="gen_masculino">Masculino</label>
             </div>
+            <div class="radio radio--sm">
+              <input class="radio__input" checked={{if (equalstr pessoa.genero "não informar" ) "checked" }}
+                id="gen_não informar" value="não informar" name="genero" type="radio" onchange={{ action 'refreshGenero' }}>
+              <label class="radio__label" for="gen_não informar">Não informar</label>
+            </div>
           </div>
         </div>
       </form>

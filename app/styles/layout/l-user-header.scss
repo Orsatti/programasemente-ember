@@ -13,11 +13,23 @@
   position: relative;
   justify-content: center;
 
+  @include media('<=lg') {
+    justify-content: space-between;
+    padding: 1.8rem;
+  }
+
+
   &__wrapper {
     width: 80%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+
+    @include media('<=lg') {
+      justify-content: space-between;
+      width: 100%;
+    }
+
 
   }
 
@@ -28,6 +40,7 @@
     height: 100%;
     position: relative;
     max-width: 200px;
+    min-width: 150px;
     height: auto;
     margin-right: 4rem;
 
@@ -41,9 +54,11 @@
     >ul {
       width: 100%;
       display: flex;
-      gap: 2.2rem;
+      gap: 1.8rem;
       align-items: center;
     }
+
+
 
     &-item {
       color: #808080;
@@ -53,6 +68,10 @@
       font-weight: 500;
       line-height: 16px;
       //border: solid red 2px;
+
+      @include media('<=lg') {
+        font-size: 14px;
+      }
 
 
       &--is-active {
@@ -64,9 +83,19 @@
 
       &--isCalendar {
         font-size: 28px;
+
+        @include media('<=lg') {
+          font-size: 18px;
+          margin-right: 2rem;
+        }
+  
       }
 
 
+    }
+
+    @include media('<=lg') {
+      display: none;
     }
 
 
@@ -78,6 +107,10 @@
     flex-wrap: nowrap;
     gap: 1.8rem;
     align-items: center;
+
+    @include media('<=lg') {
+      gap: 1rem;
+    }
 
     &-avatar {
       max-width: 32px;

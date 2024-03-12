@@ -75,7 +75,7 @@
     margin-top: $distance--xxs;
 
     &:hover {
-     color: $leaf-50;
+     color: $default-green;
     }
 
   }
@@ -177,13 +177,13 @@
     // Douglas
     &__link {
       font-size: 1rem;
-      color: $leaf-50;
+      color: $default-green;
       cursor: pointer;
       font-size: 0.8rem;
       text-decoration-line: underline;
 
       &:hover{
-        color:$leaf-30;
+        color:$default-green;
       }
     }
 
@@ -292,7 +292,7 @@
       &::after {
         $size: $distance--md;
         align-items: center;
-        color: $green-60;
+        color: $default-green;
         content: "";
         display: inline-flex;
         font-family: "icomoon";
@@ -309,7 +309,7 @@
 
       &--is-validated {
         #{$this}__input {
-          background-color: $green-0;
+          background-color: $default-green;
         }
 
         &::after {

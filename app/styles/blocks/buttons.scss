@@ -122,7 +122,7 @@
   &--add-list-item {
     align-self: stretch;
     background-color: transparent;
-    border: ($button-border-width * 2) dotted $green-10;
+    border: ($button-border-width * 2) dotted $default-green;
     box-shadow: none;
     color: $clickables-bg-color;
     display: flex;
@@ -133,7 +133,7 @@
 
     &:hover:not([disabled]) ,
     &:hover:not([disabled=true]) {
-      background-color: $green-0;
+      background-color: $default-green;
       color: $clickables-bg-color-hover;
     }
 
@@ -549,7 +549,7 @@
   &--add-turma {
     align-self: stretch;
     background-color: transparent;
-    border: ($button-border-width * 2) dotted $green-10;
+    border: ($button-border-width * 2) dotted $default-green;
     box-shadow: none;
     color: $clickables-bg-color;
     display: flex;
@@ -560,7 +560,7 @@
 
     &:hover:not([disabled]) ,
     &:hover:not([disabled=true]) {
-      background-color: $green-0;
+      background-color: $default-green;
       color: $clickables-bg-color-hover;
     }
 

@@ -2,7 +2,7 @@
 .l-user-header {
   $this: &;
 
-  
+
   display: flex;
   padding: 1.8rem 20rem 1.8rem 20rem;
   max-height: 6.25rem;
@@ -12,13 +12,13 @@
   top: 0;
   position: relative;
   justify-content: center;
-  
+
   &__wrapper {
     width: 80%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    
+    justify-content: space-evenly;
+
   }
 
 
@@ -29,29 +29,91 @@
     position: relative;
     max-width: 200px;
     height: auto;
-    
+    margin-right: 4rem;
+
   }
-  
+
   &__nav {
     height: 100%;
     display: flex;
-    border: solid red 2px;
     align-items: center;
-    font-size: 16px;
 
-    > ul {
+    >ul {
       width: 100%;
       display: flex;
       gap: 2.2rem;
+      align-items: center;
     }
-        
+
+    &-item {
+      color: #808080;
+      text-align: center;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 16px;
+      //border: solid red 2px;
+
+
+      &--is-active {
+        background-color: $default-green;
+        padding: 0.8rem;
+        border-radius: 10px;
+        color: #fff
+      }
+
+      &--isCalendar {
+        font-size: 28px;
+      }
+
+
+    }
+
 
   }
+
+  &__avatarWrapper {
+    //border: solid 2px red;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 1.8rem;
+    align-items: center;
+
+    &-avatar {
+      max-width: 32px;
+      height: auto;
+    }
+
+    &-nameWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: right;
+    }
+
+
+    &-name {
+
+      text-align: right;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 12px;
+    }
+
+    &-role {
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 12px;
+    }
+  }
+
 
 
 
   .no-flexbox-gap & {
-    > *:first-child:not(:only-child) {
+    >*:first-child:not(:only-child) {
       margin-bottom: $distance--md;
 
       @include media('>md') {
@@ -64,24 +126,24 @@
 
 
   @include media('>md') {
-  
+
     padding-left: $distance--xl;
     padding-right: $distance--xl;
   }
 
   @include media('>lg') {
-  
+
     padding-left: $distance--xxl;
     padding-right: $distance--xxl;
   }
 
   @include media('>xl') {
-    
+
     padding-left: $distance--xxxl;
     padding-right: $distance--xxxl;
   }
 
-  
+
   // Elements
   &__role {
     display: flex;
@@ -91,7 +153,7 @@
     opacity: 0.85;
     text-transform: uppercase;
 
-    > * + * {
+    >*+* {
       margin-left: $distance--xxs;
     }
 

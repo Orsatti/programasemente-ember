@@ -463,7 +463,7 @@
 //------------------------------------
 //    #LINE
 //------------------------------------
-@mixin line($color: $green-10, $height: .075em, $width: 4rem, $line: 'under') {
+@mixin line($color: $default-green, $height: .075em, $width: 4rem, $line: 'under') {
     position: relative;
 
     &::after {

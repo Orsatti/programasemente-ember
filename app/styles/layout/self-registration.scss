@@ -7,7 +7,7 @@
   &__title {
     $v-padding: .75em;
 
-    border-left: 4px solid transparentize($color: $green-10, $amount: .5);
+    border-left: 4px solid transparentize($color: $default-green, $amount: .5);
     margin-left: $distance--xs;
     padding-bottom: $v-padding;
     padding-left: $distance--sm;
@@ -30,7 +30,7 @@
     display: none;
 
     @include media('>md') {
-      background-color: $green-0;
+      background-color: $default-green;
       border-radius: 50%;
       bottom: 0;
       display: block;

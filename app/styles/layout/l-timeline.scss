@@ -39,14 +39,14 @@
         width: 100vw;
         height: 100%;
         content: '';
-        background-color: $green-60;
-        background-image: linear-gradient(-115deg, transparentize($green-10, .6) 0%, transparentize($leaf-70, .2) 50%), url("/assets/img/fundo8.png");
+        background-color: $default-green;
+        background-image: linear-gradient(-115deg, transparentize($default-green, .6) 0%, transparentize($default-green, .2) 50%), url("/assets/img/fundo8.png");
         background-position: cover;
         background-size: cover;
         background-attachment: fixed;
 
         @include media('<sm') {
-          background-image: linear-gradient(-115deg, transparentize($green-10, .9) 0%, transparentize($leaf-60, .2) 80%);
+          background-image: linear-gradient(-115deg, transparentize($default-green, .9) 0%, transparentize($default-green, .2) 80%);
           background-position: scroll;
           background-size: 100vh;
           background-attachment: initial;

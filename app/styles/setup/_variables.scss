@@ -18,6 +18,7 @@ $sanitize: false;
 $white: hsla(148, 15%, 100%, 1) !default;
 $black: hsla(148, 20%, 4%, 1) !default;
 
+$default-green: #A3C94B;
 
 $colors: (
 ("blue-navy-0",  $blue-navy-0),
@@ -29,23 +30,6 @@ $colors: (
 ("blue-navy-60", $blue-navy-60),
 ("blue-navy-70", $blue-navy-70),
 
-("green-0",  $green-0),
-("green-10", $green-10),
-("green-20", $green-20),
-("green-30", $green-30),
-("green-40", $green-40),
-("green-50", $green-50),
-("green-60", $green-60),
-("green-70", $green-70),
-
-("leaf-0",  $leaf-0),
-("leaf-10", $leaf-10),
-("leaf-20", $leaf-20),
-("leaf-30", $leaf-30),
-("leaf-40", $leaf-40),
-("leaf-50", $leaf-50),
-("leaf-60", $leaf-60),
-("leaf-70", $leaf-70),
 
 ("lemon-0",  $lemon-0),
 ("lemon-10", $lemon-10),

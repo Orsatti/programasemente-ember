@@ -5,14 +5,14 @@
   flex-direction: column;
   align-items: center;
   padding: $distance--sm;
-  border-color: transparentize($leaf-20, 0.8);
+  border-color: transparentize($default-green, 0.8);
 
   
 
   > legend {
     padding: $distance--xs;
     text-transform: uppercase;
-    color: $leaf-50;
+    color: $default-green;
     font-weight: 400;
   }
 
@@ -46,7 +46,7 @@
 
   &::after {
     content: '';
-    border-bottom: solid 1px transparentize($leaf-20, 0.5);
+    border-bottom: solid 1px transparentize($default-green, 0.5);
     width: 100%;
     display: flex;
     justify-self: center;
@@ -102,7 +102,7 @@
     &:checked::after {
       content: '✔';
       color: $white;
-      background-color: $leaf-30;
+      background-color: $default-green;
       position: absolute;
       display: flex;  
       width: 1.2rem;
@@ -118,7 +118,7 @@
 
 
     &:focus {
-      border: 2px solid $leaf-50;
+      border: 2px solid $default-green;
     }
 
   }

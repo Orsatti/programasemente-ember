@@ -168,8 +168,8 @@ td {
     outline: 0 solid transparent;
 
     &::before {
-        background-color: transparentize($green-40, .9);
-        border-bottom: 2px dotted $green-40;
+        background-color: transparentize($default-green, .9);
+        border-bottom: 2px dotted $default-green;
         content: '';
         left: 0;
         opacity: 0;

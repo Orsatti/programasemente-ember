@@ -1,34 +1,24 @@
 <!-- Header geral -->
-<header class="l-user-header l-user-header--themed l-user-header--{{if (equalstr pessoa.role 'instrutor') parentController.role pessoa.role}} flex items-start gap-lg">
-  
-  <picture class="l-user-header__avatar avatar avatar--lg flex justify-center" {{action 'toggleAvatarModal' }}>
+<header class="l-user-header lflex items-start gap-lg">
+
+
+<div class="l-user-header__wrapper">
+    <div class="l-user-header__logo">
+      <img src="/assets/img/ps-logo-primario.png" alt="Plataforma Semente">
+    </div>
+
+
+  {{!-- <picture class="l-user-header__avatar avatar avatar--lg flex justify-center" {{action 'toggleAvatarModal' }}>
     {{#if pessoa.uriAvatar}}
       <img class="avatar__img" src={{pessoa.uriAvatar}} alt="{{pessoa.name}}">
     {{else}}
       <img class="avatar__img" src="/assets/img/avatar-default.svg" alt="{{pessoa.name}}">
     {{/if}}
     <div class="avatar__placeholder icon-edit icon--xl"></div>
-  </picture>
-   
-  <div class="flex-1 flow-md overflow-hidden">
-    <section>
-      <h1 class="scr-only">Informações do usuário</h1>
-      <div class="flow-xxs">
-        <div class="flex flex-row flex-wrap items-baseline gap-xs flow-xs">
-          {{#if (equalstr parentController.role 'aluno')}}
-            <button class="btn btn--link m-top--auto color-white">
-              <span class="btn__label" {{action 'invalidateSession' }}>Não é você? Faça logout</span>
-            </button>
-          {{/if}}
-        </div>
-       <h1 class="main__title animated fadeInLeftShort faster d100 m-top--xxs m-bottom--xs">
-        {{instituicao.name}}
-      </h1>
-        <span class="title-aux"> {{pessoa.name}} -  {{pessoa.role}}</span>
-   </div>
-    </section>
-    <nav>
-      <ul class="tabs tabs--full-background">
+  </picture> --}}
+  
+     <nav class="l-user-header__nav">
+      <ul>
         <li>
           {{#unless (or (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '0')) (equalstr pessoa.role 'secretaria'))}}
             {{#if isAlunoMedio}}
@@ -89,5 +79,7 @@
         {{/if}}
       </ul>
     </nav>
-  </div>
+  
+</div> 
+
 </header>

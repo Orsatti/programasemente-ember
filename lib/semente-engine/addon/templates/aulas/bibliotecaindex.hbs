@@ -4,77 +4,79 @@
   thisRoute=thisRoute
   }}
 
-<div class="flow-xl">
-  <div class="l-dots-between">
-    <header class="l-dots-between__side">
-      <form class="flex flex-col flow-md" autocomplete="off" aria-autocomplete="none">
-        <div class="two-col-wrap">
-          {{#each tipos as |tipo|}}
-           <!-- <button class="btn btn--as-filter {{if (equalstr selectedTipo tipo) 'btn--is-active'}}" {{action 'refreshSelectedTipo' tipo}} type="button">
-              <span class="btn__label">{{tipo}}</span>
-            </button> -->
-          {{/each}}
-        </div>
-        <div class="form-group">
-          <label class="form-group__label" for="search">Busca</label>
-          {{input class="form-group__input" id="search" type="text" value=search key-up=(action 'filterCards') key-down=(action 'animateCardList')}}
-          <a class="form__aux-link" onclick={{action 'eraseText'}}>Limpar busca</a>
-        </div>
-        <div class="form-group">
-          <label class="form-group__label" for="tema">Tema</label>
-          <div class="form-group__wrapper form-group__wrapper--select">
-            <select class="form-group__input" name="tema" id="tema" onchange={{action 'refreshSelectedTema' value='target.value'}}>
-              <option selected="selected" value="Todos">Todos</option>
-              {{#each temas as |tema|}}
-                  <option value="{{tema}}">{{tema}}</option>
-              {{/each}}
-            </select>
+
+<main class="main">
+  <div class="flow-xl">
+    <div class="l-dots-between">
+      <header class="l-dots-between__side">
+        <form class="flex flex-col flow-md" autocomplete="off" aria-autocomplete="none">
+          <div class="two-col-wrap">
+            {{#each tipos as |tipo|}}
+            <!-- <button class="btn btn--as-filter {{if (equalstr selectedTipo tipo) 'btn--is-active'}}" {{action 'refreshSelectedTipo' tipo}} type="button">
+                <span class="btn__label">{{tipo}}</span>
+              </button> -->
+            {{/each}}
           </div>
-        </div>
+          <div class="form-group">
+            <label class="form-group__label" for="search">Busca</label>
+            {{input class="form-group__input" id="search" type="text" value=search key-up=(action 'filterCards') key-down=(action 'animateCardList')}}
+            <a class="form__aux-link" onclick={{action 'eraseText'}}>Limpar busca</a>
+          </div>
+          <div class="form-group">
+            <label class="form-group__label" for="tema">Tema</label>
+            <div class="form-group__wrapper form-group__wrapper--select">
+              <select class="form-group__input" name="tema" id="tema" onchange={{action 'refreshSelectedTema' value='target.value'}}>
+                <option selected="selected" value="Todos">Todos</option>
+                {{#each temas as |tema|}}
+                    <option value="{{tema}}">{{tema}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
 
 
-        {{#if (or (equalstr this.parentController.toggleRole 'aluno') (equalstr this.parentController.toggleRole 'responsavel'))}}
-        {{else}}
-          <div class="flex flex-col flow-xs">
-            <h3 class="title-aux">Público</h3>
-              {{#each publicos as |pub|}}
-                <div class="checkbox">
-                  <input class="checkbox__input" id="{{pub.name}}-content" type="checkbox" checked={{if (containInListID pub.id selectedPublicos) "checked"}} value={{pub.id}} onchange={{action 'refreshSelectedPublicos' value='target.value'}}>
-                  <label class="checkbox__label" for="{{pub.name}}-content">{{pub.nameFormat}}</label>
-                </div>
-              {{/each}}
+          {{#if (or (equalstr this.parentController.toggleRole 'aluno') (equalstr this.parentController.toggleRole 'responsavel'))}}
+          {{else}}
+            <div class="flex flex-col flow-xs">
+              <h3 class="title-aux">Público</h3>
+                {{#each publicos as |pub|}}
+                  <div class="checkbox">
+                    <input class="checkbox__input" id="{{pub.name}}-content" type="checkbox" checked={{if (containInListID pub.id selectedPublicos) "checked"}} value={{pub.id}} onchange={{action 'refreshSelectedPublicos' value='target.value'}}>
+                    <label class="checkbox__label" for="{{pub.name}}-content">{{pub.nameFormat}}</label>
+                  </div>
+                {{/each}}
+            </div>
+          {{/if}}
+
+        </form>
+      </header>
+
+      <section class="l-dots-between__content flow-md">
+        <hgroup>
+          <h3 class="sr-only">Lista de conteúdos</h3>
+          <h4 class="title-4"><span class="fw--3">Tema:</span> {{selectedTema}}</h4>
+        </hgroup>
+
+        <ul id="card-list-{{selectedDependente.id}}" class="list list--striped flow-md animated slow {{if noCards 'd--none'}}">
+          {{#each conteudosList as |conteudo|}}
+            <li>
+              {{plataforma-biblioteca-card conteudo=conteudo toggleModal=(action 'toggleModal')}}
+            </li>
+          {{/each}}
+        </ul>
+
+        {{#if noCards}}
+          <div class="empty animated fadeIn">
+          <div class="animated d250 fadeInUpShort faster flex-1 ta-c">
+            <span class="empty__icon icon-frown-o icon--xl"></span>
+            <p class="m-top--xs">Não encontramos nenhum conteúdo com os filtros selecionados</p>
+          </div>
           </div>
         {{/if}}
-
-      </form>
-    </header>
-
-    <section class="l-dots-between__content flow-md">
-      <hgroup>
-        <h3 class="sr-only">Lista de conteúdos</h3>
-        <h4 class="title-4"><span class="fw--3">Tema:</span> {{selectedTema}}</h4>
-      </hgroup>
-
-      <ul id="card-list-{{selectedDependente.id}}" class="list list--striped flow-md animated slow {{if noCards 'd--none'}}">
-        {{#each conteudosList as |conteudo|}}
-          <li>
-            {{plataforma-biblioteca-card conteudo=conteudo toggleModal=(action 'toggleModal')}}
-          </li>
-        {{/each}}
-      </ul>
-
-      {{#if noCards}}
-        <div class="empty animated fadeIn">
-         <div class="animated d250 fadeInUpShort faster flex-1 ta-c">
-          <span class="empty__icon icon-frown-o icon--xl"></span>
-          <p class="m-top--xs">Não encontramos nenhum conteúdo com os filtros selecionados</p>
-         </div>
-        </div>
-      {{/if}}
-    </section>
+      </section>
+    </div>
   </div>
-</div>
-
+</main>
 
 <!-- Modal de visualizar o conteudo -->
 <aside id="content-modal" class="modal modal--is-content animated fadeIn faster">

@@ -79,7 +79,7 @@ html {
 
 .texto-login-ie{
     color: #707070;
-    font-family: filson-pro;
+    font-family: poppins;
 }
 
 .logos{
@@ -96,7 +96,7 @@ html {
         grid-auto-columns: 1rem;
         background-color: #f2ffe1;
         color: #707070;
-        font-family: filson-pro;
+        font-family: poppins;
         font-weight: 500;
         border-radius: 50px;
         padding: 0.5rem 0.75rem;
@@ -124,7 +124,7 @@ html {
 
 .login {
     $this: &;
-    font-family: filson-pro;
+    font-family: poppins;
     align-items: center;
     cursor: initial;
     display: flex;
@@ -283,7 +283,7 @@ html {
         color: #707070;
         margin-bottom: 0;
         font-size: 0.7em;
-        font-family: filson-pro;
+        font-family: poppins;
         color: #707070;
         text-transform: none;
         margin-bottom: 2px;
@@ -315,7 +315,7 @@ html {
         grid-auto-columns: 1rem;
         background-color: #f2ffe1;
         color: #8bc63f;
-        font-family: filson-pro;
+        font-family: poppins;
         font-weight: 500;
         border: none;
         padding: 1.2rem;
@@ -349,7 +349,7 @@ html {
         color: #cbcbcb;
         box-shadow: 0 0.5rem 1rem 0 #eaedf0;
         border: none;
-        font-family: filson-pro;
+        font-family: poppins;
         text-transform: capitalize;
         padding: 1rem;
         font-weight: normal;

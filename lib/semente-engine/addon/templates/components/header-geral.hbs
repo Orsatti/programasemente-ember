@@ -92,6 +92,29 @@
         <span class="l-user-header__avatarWrapper-name">{{uppertext (firstnameoremailpart pessoa.name)}}</span>
         <span class="l-user-header__avatarWrapper-role">{{pessoa.role}}</span>
       </div>
+      <div class="l-user-header__avatarWrapper__menuMobile">
+        <ul>
+          <a href="#" id="change_image_trigger" class="">
+            <li>
+              <span>Alterar imagem do perfil</span>
+            </li>
+          </a>
+          
+          <a href="#" id="change_pass_trigger" class="">
+            <li>
+              <span>Alterar senha</span>
+            </li>
+          </a>
+
+          {{#link-to 'profile.index' pessoa.id}}
+            <li>
+              <span>Meu perfil</span>
+            </li>
+          {{/link-to}}
+          
+        </ul>
+
+      </div>
     </div>
   
 </div> 

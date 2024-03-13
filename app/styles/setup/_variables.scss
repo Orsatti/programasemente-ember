@@ -19,6 +19,7 @@ $white: hsla(148, 15%, 100%, 1) !default;
 $black: hsla(148, 20%, 4%, 1) !default;
 
 $default-green: #A3C94B;
+$fafafa: #fafafa;
 
 $colors: (
 ("blue-navy-0",  $blue-navy-0),
@@ -298,6 +299,8 @@ $radii: (
     (lg, $radius--lg),
     (cp, $radius--capsule)
  );
+
+ $radius-plataforma-semente: 0px 20px;
 
 
 

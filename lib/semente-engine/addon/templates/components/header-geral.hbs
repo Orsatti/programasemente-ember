@@ -91,7 +91,6 @@
       <div class="l-user-header__avatarWrapper-nameWrapper" {{action 'menuTogle'}}>
         <span class="l-user-header__avatarWrapper-name">{{uppertext (firstnameoremailpart pessoa.name)}}</span>
         <span class="l-user-header__avatarWrapper-role">{{pessoa.role}}</span>
-      </div>
       {{#if submenuOpen}}
         <div class="l-user-header__avatarWrapper__menuMobile animated {{if submenuOpen 'fadeIn' ''}}">
           <ul>
@@ -139,6 +138,7 @@
 
         </div>
       {{/if}}
+      </div>
     </div>
   
 </div> 

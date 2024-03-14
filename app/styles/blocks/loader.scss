@@ -1,13 +1,51 @@
+// .loader-old {
+
+//   $tree-width: 64px;
+
+//   align-items: center;
+//   background-color: $fafafa;
+//   // background-image: linear-gradient(-30deg,
+//   //   transparentize($blue-navy-70, .2),
+//   //   transparentize($blue-navy-60, .2) 65%,
+//   //   transparentize($blue-navy-30, .2) 96%);
+//   display: flex;
+//   justify-content: center;
+//   height: 100vh;
+//   left: 0;
+//   position: fixed;
+//   top: 0;
+//   width: 100vw;
+//   z-index: 999999;
+
+//   &__circle {
+//     $multiplier: 2;
+
+//     align-items: center;
+//     background-color: $white;
+//     border-radius: $radius--capsule;
+//     box-shadow: $shadow-5, $shadow-h-r-5;
+//     display: flex;
+//     flex-direction: row;
+//     height: $tree-width * $multiplier;
+//     justify-content: center;
+//     width: $tree-width * $multiplier;
+//   }
+
+
+//   img {
+//     transform: translateX(-2px);
+//     width: 50%;
+//   }
+
+// }
+
+
 .loader {
 
-  $tree-width: 64px;
+  $tree-width: 172px;
 
   align-items: center;
-  background-color: transparentize($blue-navy-60, .2);
-  background-image: linear-gradient(-30deg,
-    transparentize($blue-navy-70, .2),
-    transparentize($blue-navy-60, .2) 65%,
-    transparentize($blue-navy-30, .2) 96%);
+  // background-color: $default-overlayer-color;
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -16,25 +54,50 @@
   top: 0;
   width: 100vw;
   z-index: 999999;
-
-  &__circle {
-    $multiplier: 2;
-
-    align-items: center;
-    background-color: $white;
-    border-radius: $radius--capsule;
-    box-shadow: $shadow-5, $shadow-h-r-5;
-    display: flex;
-    flex-direction: row;
-    height: $tree-width * $multiplier;
-    justify-content: center;
-    width: $tree-width * $multiplier;
+  letter-spacing: 0.1;
+  flex-direction: column;
+  font-size: $font-size--sm;
+  background-color: #ffffff45;
+  
+  &--adulto{
+    background-color: #3FA5C340;
+  }
+  &--medio{
+    background-color: #00a67a40;
+  }
+  &--fundamental{
+    background-color: #F2973340;
+  }
+  &--setorpublico{
+    background-color: #28346F40;
+  }
+  &--infantil{
+    background-color: #8771AB40;
+  }
+  &--modlist{
+    background-color: #ffffffc7;
   }
 
+  &--text{
+    color: black;
+    font-weight: 400;
+  }
 
-  img {
-    transform: translateX(-2px);
-    width: 50%;
+  &__circle {
+    //$multiplier: 1.75;
+
+    //animation: rotation 10s var(--ease-in-out-quad) 2s infinite;
+    align-items: center;
+    //background-color: $gray-0;
+    // border-radius: $radius--xl $radius--md;
+    // box-shadow: $shadow-5, $shadow-h-r-5;
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    justify-content: center;
+    padding: $distance--md;
+    width: 150px;
   }
 
 }
+

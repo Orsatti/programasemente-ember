@@ -8,10 +8,12 @@
   max-height: 6.25rem;
   height: 100%;
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.05);
-  z-index: 999 !important;
+  z-index: 800;
   top: 0;
   position: relative;
   justify-content: center;
+  background-color: #fff;
+  
 
   @include media('<=lg') {
     justify-content: space-between;
@@ -24,6 +26,7 @@
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    
 
     @include media('<=lg') {
       justify-content: space-between;
@@ -107,6 +110,8 @@
     flex-wrap: nowrap;
     gap: 1.8rem;
     position: relative;
+    z-index: 1000;
+
 
     @include media('<=lg') {
       gap: 1rem;
@@ -141,23 +146,40 @@
       line-height: 12px;
     }
 
+    
+      
+    &-chevron {
+      position: absolute;
+      top: 0;
+      right: -22%;
+      transition: all ease-in-out 0.3s;
+      
+      &-is--rotated {
+        transform: rotate(90deg);
+      }
+    }
+
 
     &__menuMobile {
       position: absolute;
       width: 183px;
-      transform: translate(-14%, -10%);
+      transform: translate(-10%, -10%);
       top: 0;
       left: 0;
       display: flex;
-      height: 14rem;
-      padding: 0.5rem 0.5rem 1rem 1rem;
+      padding: 1rem;
       border-radius: $radius-plataforma-semente;
       background-color: $fafafa;
       z-index: -1;
       box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.05);
+      justify-content: center;
+      max-height: 0;
+      transition: max-height 0.3s ease-out;
+
       
       
-      >ul {
+      
+      &-content {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -166,7 +188,8 @@
         min-width: 100%;
         flex-wrap: wrap;
         position: relative;
-                
+        opacity: 0;
+                        
         
         &:first-child {
           margin-top: 4rem;
@@ -178,7 +201,7 @@
         
       }
 
-      li {
+      &-subitem {
 
         font-size: 12px;
         width: 100%;
@@ -192,6 +215,7 @@
         height: auto;
         flex-wrap: wrap;
         justify-content: center;
+                
        
 
         > span {
@@ -199,8 +223,7 @@
           min-width: 100%;
           width: 100%;
           text-align: left;
-          
-                   
+                            
           
 
         }
@@ -208,22 +231,22 @@
         &:hover {
 
           color: #fff;
-          
-          &::after {
+  
+          &::before {
             content: '';
-            width: 110%;
+            width: 120%;
             height: 90%;
             display: block;
             position: absolute;
             background-color: $default-green;
             color: #fff;
             top: 0;
-            z-index: -1;
             padding: 0.5rem;
             left: 0;
             bottom: 0;
             right: 0;
-            transform: translate(-10%, -15%)
+            transform: translate(-12%, -15%);
+            z-index: -2;
           }
           
 

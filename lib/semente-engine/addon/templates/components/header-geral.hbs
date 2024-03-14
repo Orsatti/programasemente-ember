@@ -86,27 +86,30 @@
           <img class="avatar__img" src="/assets/img/empty-avatar.png" alt="{{pessoa.name}}">
         {{/if}}
         <div class="avatar__placeholder icon-edit icon--xl"></div>
-        
       </picture>
       <div class="l-user-header__avatarWrapper-nameWrapper" {{action 'menuTogle'}}>
         <span class="l-user-header__avatarWrapper-name">{{uppertext (firstnameoremailpart pessoa.name)}}</span>
         <span class="l-user-header__avatarWrapper-role">{{pessoa.role}}</span>
+        <span class="l-user-header__avatarWrapper-chevron">
+          <img src="/assets/img/chevron-black.png" alt="Expandir/Retrair menu">
+        </span>
+      </div>
       {{#if submenuOpen}}
-        <div class="l-user-header__avatarWrapper__menuMobile animated {{if submenuOpen 'fadeIn' ''}}">
-          <ul>
-            <a href="#" id="change_image_trigger" class="">
+        <div id="subMenu" class="l-user-header__avatarWrapper__menuMobile">
+          <ul id="content" class="l-user-header__avatarWrapper__menuMobile-content">
+            <a href="#" id="change_image_trigger" class="l-user-header__avatarWrapper__menuMobile-subitem">
               <li>
                 <span>Alterar imagem do perfil</span>
               </li>
             </a>
             
-            <a href="#" id="change_pass_trigger" class="">
+            <a href="#" id="change_pass_trigger" class="l-user-header__avatarWrapper__menuMobile-subitem">
               <li>
                 <span>Alterar senha</span>
               </li>
             </a>
 
-            {{#link-to 'profile.index' pessoa.id}}
+            {{#link-to 'profile.index' pessoa.id class="l-user-header__avatarWrapper__menuMobile-subitem"}}
               <li>
                 <span>Meu perfil</span>
               </li>
@@ -114,7 +117,7 @@
 
             {{#if (equalstr role 'aluno')}}
               {{#if isEja}}
-                {{#link-to 'profile.certificados' pessoa.id}}
+                {{#link-to 'profile.certificados' pessoa.id class="l-user-header__avatarWrapper__menuMobile-subitem"}}
                   <li class="">
                     <span>Meus certificados</span>
                   </li>
@@ -122,13 +125,13 @@
               {{/if}}
             {{/if}}
 
-            {{#link-to 'profile.calendario' pessoa.id}}
+            {{#link-to 'profile.calendario' pessoa.id class="l-user-header__avatarWrapper__menuMobile-subitem"}}
               <li class="">
                 <span>Meu calendário</span>
               </li>
             {{/link-to}}
 
-          <a>
+          <a class="l-user-header__avatarWrapper__menuMobile-subitem">
             <li class="" {{action 'invalidateSession'}}>
               <span>Fazer Logout</span>
             </li>
@@ -138,7 +141,6 @@
 
         </div>
       {{/if}}
-      </div>
     </div>
   
 </div> 

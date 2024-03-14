@@ -13,6 +13,7 @@
   position: relative;
   justify-content: center;
   background-color: #fff;
+  flex-direction: column;
   
 
   @include media('<=lg') {
@@ -31,6 +32,13 @@
     @include media('<=lg') {
       justify-content: space-between;
       width: 100%;
+      padding: 0 4rem 0 4rem;
+    }
+
+    @include media('<=sm') {
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 0.5rem 0 0.5rem;
     }
 
 
@@ -47,6 +55,13 @@
     height: auto;
     margin-right: 4rem;
 
+    @include media('<=sm') {
+      max-width: 120px;
+      min-width: 0;
+      
+    }
+
+
   }
 
   &__nav {
@@ -59,6 +74,10 @@
       display: flex;
       gap: 1.8rem;
       align-items: center;
+
+      @media (max-width:1300px) {
+        gap: 1.2rem;
+      }
     }
 
 
@@ -86,10 +105,10 @@
 
       &--isCalendar {
         font-size: 28px;
+        margin-right: 2rem;
 
         @include media('<=lg') {
           font-size: 18px;
-          margin-right: 2rem;
         }
 
       }
@@ -120,6 +139,8 @@
     &-avatar {
       max-width: 32px;
       height: auto;
+
+      
     }
 
     &-nameWrapper {
@@ -137,6 +158,10 @@
       font-style: normal;
       font-weight: 500;
       line-height: 12px;
+
+      @include media('<=sm') {
+       font-size: 12px;
+      }
     }
 
     &-role {
@@ -176,7 +201,10 @@
       max-height: 0;
       transition: max-height 0.3s ease-out;
 
-      
+      @include media('<=sm') {
+       left: 0;
+       transform: translateX(-20%);
+      }
       
       
       &-content {
@@ -257,6 +285,71 @@
       }
     }
 
+  }
+
+  &__optionsMobile {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    background-color: $default-green;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem;
+    flex-direction: row;
+    display: none;
+
+    @include media('<lg') {
+      display: flex;
+    }
+
+
+    
+
+    > span {
+      margin-right: 0.5rem;
+    }
+
+    
+    
+  
+    &-nav {
+      display: none;
+      background-color: $fafafa;
+      position: absolute;
+      top:100%;
+      left: 0;
+      height: auto;
+      box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.05);
+      padding: 1rem;
+      width: 100%;
+      z-index: 999;
+      
+
+      
+    @include media('<lg') {
+      display: flex;
+    }
+
+
+      > ul {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 100%;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+        color:$default-green;
+        //font-size: 14px;
+
+        .l-user-header__nav-item--isCalendar {
+          margin: auto !important;
+        }
+
+       }
+    }
+    
   }
 
 

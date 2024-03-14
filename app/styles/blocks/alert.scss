@@ -270,6 +270,8 @@
     div::-webkit-scrollbar {
       width: 1px; 
     }
+
+  
   }
 
   &--space {
@@ -290,7 +292,10 @@
     top: 100px;
     width: 33vw;
     box-shadow: 0 4px 5px 0 rgb(0 0 0 / 2%), 0 6px 20px 0 rgb(0 0 0 / 15%);
-    
+    @include media('<lg') {
+      width: 100vw;
+      
+    }
 
   }
 

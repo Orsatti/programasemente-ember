@@ -6,7 +6,6 @@
     <div class="l-user-header__logo">
       <img src="/assets/img/ps-logo-primario.png" alt="Plataforma Semente">
     </div>
-
   
      <nav class="l-user-header__nav">
       <ul>
@@ -144,8 +143,82 @@
     </div>
   
 </div> 
-
 </header>
+<!-- Menu mobile -->
+<div class="l-user-header__optionsMobile" {{action 'optionsTogle'}}>
+  <span>Menu</span><img src="/assets/img/chevron-white.png" alt="">
+  {{#if optionsOpen}}
+  <nav class="l-user-header__optionsMobile-nav animated fadeIn">
+      <ul>
+        <li class="l-user-header__optionsMobile-nav-item">
+          {{#unless (or (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '0')) (equalstr pessoa.role 'secretaria'))}}
+            {{#if isAlunoMedio}}
+              {{else}}
+              {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
+                {{#link-to 'aulas.index'  id="aulas-header-mob"}}
+                  <span>Aulas</span>
+                {{/link-to}}
+              {{/unless}}
+            {{/if}}
+          {{/unless}}
+        </li>
+        <li class="l-user-header__optionsMobile-nav-item">
+          {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
+            {{#unless (or isAlunoMedio isEja)}}  
+              {{#link-to 'aulas.bibliotecaindex' }}
+                <span>Biblioteca</span>
+              {{/link-to}}
+            {{/unless}}
+          {{/unless}}
+        </li>
+
+        {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
+          {{#link-to 'geracompanhamento' class="l-user-header__optionsMobile-nav-item"}}
+            <span>Acompanhamento</span>
+          {{/link-to}}
+        {{/if}}
+
+        {{#if (or (or (or (equalstr pessoa.role 'instrutor') (equalstr pessoa.role 'coordenador')) (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '1')))}}
+          {{#link-to 'acompanhamento.plataforma' pessoa.instituicao.id class="l-user-header__optionsMobile-nav-item"}}
+            <span>Acompanhamento</span>
+          {{/link-to}}
+        {{/if}}
+
+        {{#unless (or (or (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel')) (equalstr pessoa.role
+        'instrutor')) (equalstr pessoa.role 'secretaria'))}}
+          {{#link-to 'marketing.index'  id="tabMkt-mob" class="l-user-header__optionsMobile-nav-item"}}
+            <span>Marketing</span>
+          {{/link-to}}
+        {{/unless}}
+
+        {{#if (equalstr pessoa.role 'admin')}}
+          {{#link-to 'conteudos.index'  id="tabContents-mob" class="l-user-header__optionsMobile-nav-item"}}
+            <span>Conteúdos</span>
+          {{/link-to}}
+        {{/if}}
+
+        {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
+          {{#link-to 'gersistema' class="l-user-header__optionsMobile-nav-item"}}
+            <span>Administração</span>
+          {{/link-to}}
+        {{/if}}
+
+        {{#if (or (or (equalstr pessoa.role 'secretaria') (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (equalstr pessoa.role 'recursosHumanos'))}}
+          {{#link-to 'gerdata.users' pessoa.instituicao.id class="l-user-header__optionsMobile-nav-item"}}
+            <span>Administração</span>
+          {{/link-to}}
+        {{/if}}
+
+        <li class="l-user-header__optionsMobile-nav-item">
+          <a class="" {{action 'openNotificationMenu'}}>
+            <span class="notification-icon-menu icon-calendar l-user-header__nav-item--isCalendar"></span>
+            <span class="notification-counter" id="notification-counter" style="display: none;">{{counter}}</span>
+          </a>
+        </li>
+      </ul>
+  </nav>
+  {{/if}}
+</div>
 
 {{#if notificationMenu}}
   <div style="display: none;">{{notifications}}</div>

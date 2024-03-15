@@ -31,6 +31,13 @@ $colors: (
 ("blue-navy-60", $blue-navy-60),
 ("blue-navy-70", $blue-navy-70),
 
+("newgreen-0",  $newgreen-0),
+("newgreen-10", $newgreen-10),
+("newgreen-20", $newgreen-20),
+("newgreen-30", $newgreen-30),
+("newgreen-40", $newgreen-40),
+
+
 
 ("lemon-0",  $lemon-0),
 ("lemon-10", $lemon-10),
@@ -407,7 +414,7 @@ $scrollbar-track-shadow: inset 0 0 6px $scrollbar-track-shadow-color;
 $z-index: (
     'loader': 800,
     'alert': 750,
-    'modal': 700,
+    'modal': 900,
     'menu': 600,
     'offcanvas': 500,
     'overlayer': 400,
@@ -456,7 +463,7 @@ $font-base:  "poppins", sans-serif;
 $font-title: "poppins", sans-serif;
 
 $focus-line-width: 2px;
-$focus-line-color: $leaf-20;
+$focus-line-color: $newgreen-10;
 
 $header-height: 3rem;
 $header-v-padding: .5rem;
@@ -492,8 +499,8 @@ $capsule-on-hover-color: color-contrast($capsule-on-hover-bg-color, $white, $blu
 $capsule-on-hover-radius: $radius;
 
 // CLICKABLES
-$clickables-bg-color: $leaf-40;
-$clickables-bg-color-hover: $leaf-60;
+$clickables-bg-color: $newgreen-20;
+$clickables-bg-color-hover: $newgreen-10;
 $clickables-color: color-contrast($clickables-bg-color, $white, $blue-navy-70);
 $clickables-color-hover: $clickables-color;
 
@@ -531,8 +538,8 @@ $transition-bg-color: $blue-navy-60;
 
 // BUTTONS
 $btn--leaf: true;
-$btn--leaf-bg-color: $leaf-50;
-$btn--leaf-bg-color-hover: $leaf-70;
+$btn--leaf-bg-color: $newgreen-30;
+$btn--leaf-bg-color-hover: $newgreen-40;
 $btn--leaf-color: color-contrast($btn--leaf-bg-color, $white, $blue-navy-70);
 $btn--leaf-color-hover: $btn--leaf-color;
 

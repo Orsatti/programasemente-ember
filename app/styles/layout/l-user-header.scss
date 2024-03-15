@@ -333,6 +333,15 @@
     }
 
 
+    &-item--is-active {
+      
+      border-bottom: solid 2px $default-green;
+      font-weight: 600;
+      color: $default-green;
+      
+    }
+
+
       > ul {
         display: flex;
         flex-direction: column;
@@ -341,7 +350,7 @@
         align-items: center;
         gap: 1rem;
         text-align: center;
-        color:$default-green;
+        color:#808080;
         //font-size: 14px;
 
         .l-user-header__nav-item--isCalendar {

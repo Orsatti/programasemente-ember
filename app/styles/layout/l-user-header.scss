@@ -101,7 +101,12 @@
         background-color: $default-green;
         padding: 0.8rem;
         border-radius: 10px;
-        color: #fff
+        color: #fff;
+        border-bottom: none;
+        
+        .tabs__tab--is-active {
+          border: none;
+        }
       }
 
       &--isCalendar {
@@ -338,6 +343,10 @@
       border-bottom: solid 2px $default-green;
       font-weight: 600;
       color: $default-green;
+
+      .tabs__tab--is-active {
+        border: none;
+      }
       
     }
 

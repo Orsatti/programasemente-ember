@@ -37,6 +37,11 @@ module.exports = function(environment) {
     // ENV.APP.host = 'https://sementeapi.minimo.com.br';
   }
 
+  if (environment === 'homolog') {
+    ENV.APP.DOMAIN = "programasemente.com.br";
+    ENV.APP.host = 'https://sementedev-api.azurewebsites.net';
+  }
+
   if (environment === 'development') {
     ENV.adobeApiKey = "f04da9781afa4ebf871f5e4566d9bbe9",
     ENV.rootURL = '/';

@@ -1,279 +1,398 @@
-<!-- Header geral -->
-<header id="header_layout" class="l-user-header">
+{{#if isAlunoMedio}}
 
+ <header class="header" id="header_layout">
+  {{!-- {{programa-semente-logo class="header__logo"}} --}}
+   <img class="l-user-header__logo--medio" src="/assets/img/ps-logo-primario.png" alt="Plataforma Semente">
+  {{userLastAccess}}
+  <div class="header__overlayer"></div>
+  <nav class="header__nav global-nav">
+    <button class="global-nav__trigger icon-menu"></button>
 
-<div class="l-user-header__wrapper">
-    <div class="l-user-header__logo">
-      <img src="/assets/img/ps-logo-primario.png" alt="Plataforma Semente">
-    </div>
-  
-     <nav class="l-user-header__nav">
-      <ul>
-        <li class="l-user-header__nav-item {{if (equalstr route 'aulas') 'l-user-header__nav-item--is-active' ''}}">
-          {{#unless (or (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '0')) (equalstr pessoa.role 'secretaria'))}}
-            {{#if isAlunoMedio}}
-              {{else}}
-              {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
-                {{#link-to 'aulas.index'  id="aulas-header"}}
-                  <span>Aulas</span>
-                {{/link-to}}
-              {{/unless}}
+    <ul id="global-nav-menu" class="global-nav__list">
+      <button class="global-nav__close icon-x"></button>
+
+      
+        
+          <li class="global-nav__item" id="header-modulos">
+            {{#link-to 'modulos.modlist' modulo.id class="global-nav__link"}}<span>Aulas EAD</span>{{/link-to}}
+          </li>
+          {{#unless instituicao.vendaDireta}}
+            {{#if livro}}
+              <li class="global-nav__item" {{action "openPdfViewer" livro.url}}>
+                <span class="global-nav__link">Livro</span>
+
+              </li>
             {{/if}}
           {{/unless}}
-        </li>
-        <li class="l-user-header__nav-item {{if (equalstr route 'biblioteca') 'l-user-header__nav-item--is-active' ''}}">
-          {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
-            {{#unless (or isAlunoMedio isEja)}}  
-              {{#link-to 'aulas.bibliotecaindex' }}
-                <span>Biblioteca</span>
-              {{/link-to}}
-            {{/unless}}
-          {{/unless}}
-        </li>
-
-        {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
-          {{#link-to 'geracompanhamento' class=(concatenate "l-user-header__nav-item " (if (equalstr route 'acompanhamento') "l-user-header__nav-item--is-active"))}}
-            <span>Acompanhamento</span>
-          {{/link-to}}
-        {{/if}}
-
-        {{#if (or (or (or (equalstr pessoa.role 'instrutor') (equalstr pessoa.role 'coordenador')) (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '1')))}}
-          {{#link-to 'acompanhamento.plataforma' pessoa.instituicao.id class=(concatenate "l-user-header__nav-item " (if (equalstr route 'acompanhamento') "l-user-header__nav-item--is-active"))}}
-            <span>Acompanhamento</span>
-          {{/link-to}}
-        {{/if}}
-
-        {{#unless (or (or (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel')) (equalstr pessoa.role
-        'instrutor')) (equalstr pessoa.role 'secretaria'))}}
-         {{#link-to 'marketing.index' id="tabMkt" class=(concatenate "l-user-header__nav-item " (if (equalstr route 'marketing') "l-user-header__nav-item--is-active"))}}
-            <span>Marketing</span>
-          {{/link-to}}
-        {{/unless}}
-
-        {{#if (equalstr pessoa.role 'admin')}}
-          {{#link-to 'conteudos.index'  id="tabContents" class=(concatenate "l-user-header__nav-item " (if (equalstr route 'conteudos') "l-user-header__nav-item--is-active"))}}
-            <span>Conteúdos</span>
-          {{/link-to}}
-        {{/if}}
-
-        {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
-          {{#link-to 'gersistema' class=(concatenate "l-user-header__nav-item " (if (equalstr route 'administracao') "l-user-header__nav-item--is-active"))}}
-            <span>Administração</span>
-          {{/link-to}}
-        {{/if}}
-
-        {{#if (or (or (equalstr pessoa.role 'secretaria') (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (equalstr pessoa.role 'recursosHumanos'))}}
-          {{#link-to 'gerdata.users' pessoa.instituicao.id class=(concatenate "l-user-header__nav-item " (if (equalstr route 'marketing') "l-user-header__nav-item--is-active"))}}
-            <span>Administração</span>
-          {{/link-to}}
-        {{/if}}
-
-        <li class="l-user-header__nav-item">
-          <a class="" {{action 'openNotificationMenu'}}>
-            <span class="notification-icon-menu icon-calendar l-user-header__nav-item--isCalendar"></span>
-            <span class="notification-counter" id="notification-counter" style="display: none;">{{counter}}</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="l-user-header__avatarWrapper">
-      <picture class="l-user-header__avatarWrapper-avatar avatar flex justify-center" {{action 'toggleAvatarModal'}}>
-        {{#if pessoa.uriAvatar}}
-          <img class="avatar__img" src={{pessoa.uriAvatar}} alt="{{pessoa.name}}">
-        {{else}}
-          <img class="avatar__img" src="/assets/img/empty-avatar.png" alt="{{pessoa.name}}">
-        {{/if}}
-        <div class="avatar__placeholder icon-edit icon--xl"></div>
-      </picture>
-      <div class="l-user-header__avatarWrapper-nameWrapper" {{action 'menuTogle'}}>
-        <span class="l-user-header__avatarWrapper-name">{{uppertext (firstnameoremailpart pessoa.name)}}</span>
-        <span class="l-user-header__avatarWrapper-role">{{pessoa.role}}</span>
-        <span class="l-user-header__avatarWrapper-chevron">
-          <img src="/assets/img/chevron-black.png" alt="Expandir/Retrair menu">
-        </span>
-      </div>
-      {{#if submenuOpen}}
-        <div id="subMenu" class="l-user-header__avatarWrapper__menuMobile">
-          <ul id="content" class="l-user-header__avatarWrapper__menuMobile-content">
-            <a href="#" id="change_image_trigger" class="l-user-header__avatarWrapper__menuMobile-subitem">
-              <li>
-                <span>Alterar imagem do perfil</span>
-              </li>
-            </a>
-            
-            <a href="#" id="change_pass_trigger" class="l-user-header__avatarWrapper__menuMobile-subitem">
-              <li>
-                <span>Alterar senha</span>
-              </li>
-            </a>
-
-            {{#link-to 'profile.index' pessoa.id class="l-user-header__avatarWrapper__menuMobile-subitem"}}
-              <li>
-                <span>Meu perfil</span>
-              </li>
-            {{/link-to}}
-
-            {{#if (equalstr role 'aluno')}}
-              {{#if isEja}}
-                {{#link-to 'profile.certificados' pessoa.id class="l-user-header__avatarWrapper__menuMobile-subitem"}}
-                  <li class="">
-                    <span>Meus certificados</span>
-                  </li>
-                {{/link-to}}
-              {{/if}}
-            {{/if}}
-
-            {{#link-to 'profile.calendario' pessoa.id class="l-user-header__avatarWrapper__menuMobile-subitem"}}
-              <li class="">
-                <span>Meu calendário</span>
-              </li>
-            {{/link-to}}
-
-          <a class="l-user-header__avatarWrapper__menuMobile-subitem">
-            <li class="" {{action 'invalidateSession'}}>
-              <span>Fazer Logout</span>
+          {{#unless isEja}}
+            <li class="global-nav__item" id="header-modulos">
+                {{#link-to 'aulas.bibliotecaindex' class="global-nav__link"}}<span>Biblioteca</span>{{/link-to}}
             </li>
-          </a>
-            
-          </ul>
+          {{/unless}}
+        
+      
 
-        </div>
+      <li class="global-nav__item global-nav--mob-only" {{action 'testHide'}}>
+        <a href="#" class="global-nav__link header-indicadores" id="change_image_trigger">
+          <span>Alterar imagem do perfil</span></a></li>
+
+      <li class="global-nav__item global-nav--mob-only" {{action 'testHide'}}>
+        <a href="#" class="global-nav__link header-indicadores" id="change_pass_trigger">
+          <span>Alterar senha</span></a></li>
+
+      <li class="global-nav__item global-nav--mob-only" {{action 'goToProfile'}}>
+        <a href="#" class="global-nav__link header-indicadores">
+          <span>Meu perfil</span></a></li>
+
+      {{#if (equalstr pessoa.role 'aluno')}}
+      {{#if isEja}}
+        <li class="global-nav__item global-nav--mob-only" {{action 'goToCertificados'}}>
+          <a href="#" class="global-nav__link header-indicadores">
+            <span>Meus certificados</span></a></li>
       {{/if}}
-    </div>
-  
-</div> 
-</header>
-<!-- Menu mobile -->
-<div class="l-user-header__optionsMobile" {{action 'optionsTogle'}}>
-  <span>Menu</span><img src="/assets/img/chevron-white.png" alt="">
-  {{#if optionsOpen}}
-  <nav class="l-user-header__optionsMobile-nav animated fadeIn">
-      <ul>
-        <li class="l-user-header__optionsMobile-nav-item">
-          {{#unless (or (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '0')) (equalstr pessoa.role 'secretaria'))}}
-            {{#if isAlunoMedio}}
-              {{else}}
-              {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
-                {{#link-to 'aulas.index'  id="aulas-header-mob" class=(concatenate "" (if (equalstr route 'aulas') "l-user-header__optionsMobile-nav-item--is-active"))}}
-                  <span>Aulas</span>
-                {{/link-to}}
-              {{/unless}}
-            {{/if}}
-          {{/unless}}
-        </li>
-        <li class="l-user-header__optionsMobile-nav-item {{if (equalstr route 'biblioteca') 'l-user-header__optionsMobile-nav-item--is-active' ''}}">
-          {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
-            {{#unless (or isAlunoMedio isEja)}}  
-              {{#link-to 'aulas.bibliotecaindex' }}
-                <span>Biblioteca</span>
-              {{/link-to}}
-            {{/unless}}
-          {{/unless}}
-        </li>
+      {{/if}}
 
-        {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
-          {{#link-to 'geracompanhamento' class=(concatenate "" (if (equalstr route 'acompanhamento') "l-user-header__optionsMobile-nav-item--is-active"))}}
-            <span>Acompanhamento</span>
-          {{/link-to}}
-        {{/if}}
+      <li class="global-nav__item global-nav--mob-only">
+        <a href="#" class="global-nav__link header-indicadores" {{action 'goToCalendario'}}>
+          <span>Meu calendário</span></a></li>
 
-        {{#if (or (or (or (equalstr pessoa.role 'instrutor') (equalstr pessoa.role 'coordenador')) (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '1')))}}
-          {{#link-to 'acompanhamento.plataforma' pessoa.instituicao.id class=(concatenate "" (if (equalstr route 'acompanhamento') "l-user-header__optionsMobile-nav-item--is-active"))}}
-            <span>Acompanhamento</span>
-          {{/link-to}}
-        {{/if}}
+     
+        
+      <li class="global-nav__item global-nav--mob-only" style="margin-top: auto;">
+        <a href="#" class="global-nav__link header-indicadores" {{action 'invalidateSession'}}>
+          <span>Fazer Logout</span></a></li>
 
-        {{#unless (or (or (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel')) (equalstr pessoa.role
-        'instrutor')) (equalstr pessoa.role 'secretaria'))}}
-          {{#link-to 'marketing.index'  id="tabMkt-mob" class=(concatenate "" (if (equalstr route 'marketing') "l-user-header__optionsMobile-nav-item--is-active"))}}
-            <span>Marketing</span>
-          {{/link-to}}
-        {{/unless}}
-
-        {{#if (equalstr pessoa.role 'admin')}}
-          {{#link-to 'conteudos.index'  id="tabContents-mob" class=(concatenate "" (if (equalstr route 'conteudos') "l-user-header__optionsMobile-nav-item--is-active"))}}
-            <span>Conteúdos</span>
-          {{/link-to}}
-        {{/if}}
-
-        {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
-          {{#link-to 'gersistema' class=(concatenate "" (if (equalstr route 'administracao') "l-user-header__optionsMobile-nav-item--is-active"))}}
-            <span>Administração</span>
-          {{/link-to}}
-        {{/if}}
-
-        {{#if (or (or (equalstr pessoa.role 'secretaria') (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (equalstr pessoa.role 'recursosHumanos'))}}
-          {{#link-to 'gerdata.users' pessoa.instituicao.id class=(concatenate "" (if (equalstr route 'administracao') "l-user-header__optionsMobile-nav-item--is-active"))}}
-            <span>Administração</span>
-          {{/link-to}}
-        {{/if}}
-
-        <li class="l-user-header__optionsMobile-nav-item">
-          <a class="" {{action 'openNotificationMenu'}}>
-            <span class="notification-icon-menu icon-calendar l-user-header__nav-item--isCalendar"></span>
+      <li class="global-nav__item global-nav__submenu-holder hide-on--xs visible-on--lg">
+          <a class="global-nav__link j-apps" {{action 'openNotificationMenu'}}>
+            <span class="notification-icon-menu icon-calendar"></span>
             <span class="notification-counter" id="notification-counter" style="display: none;">{{counter}}</span>
           </a>
-        </li>
-      </ul>
-  </nav>
-  {{/if}}
-</div>
+      </li>
 
-{{#if notificationMenu}}
-  <div style="display: none;">{{notifications}}</div>
-  <aside id="notification-container" class="notification-plan__main animated fadeInRight faster">
-    <div  class="notification-plan__container notification-plan--space" {{action 'closeNotificationMenu'}}></div>
-    <div  class="notification-plan__container notification-plan--is-open">
-      <div class="flex flex-row justify-content-around mb1">
-        <a href="#" class="icon icon-x mt0 mr3" {{action 'closeNotificationMenu'}}></a>
-        <span class="notification-plan__title">Notificações</span> 
-      </div>
-      <div class="notification-plan__scroll">
-        <div class="flex flex-col justify-content-start mt1">
-          <span class="notification-plan__subtitle">Recentes</span>
-          <hr size="1" width="99%" color="#d6d6d6">
-          {{#if hasNewNotification}}
-            {{#each newNotifications as |notification|}}
-              <div class="flex flex-col justify-content-start notification-plan__card">
-                <span class="notification-card-date">{{dateFormat notification.start}}</span>
-                <span class="notification-card-title">{{notification.title}}</span>
-                <span class="notification-card-text">{{notification.text}}</span>
-                <span class="notification-card-text">
-                  <a href="{{notification.link}}" target="_blank">{{notification.link}}</a>
-                </span>
-              </div>
-            {{/each}}
-          {{else}}
-            <div class="flex flex-row justify-content-center mt4">
-              <span class="notification-plan__subtitle">Nenhuma notificação</span>
-            </div>
-          {{/if}}
+
+
+      <li class="global-nav__item global-nav__submenu-holder hide-on--sm visible-on--lg">
+        <a class="global-nav__link j-thumb" href="#">
+          <span class="global-nav__avatar-holder">
+            <img class="j-application-avatar" src={{uri_avatar}}>
+          </span>
+          <span class="m-left--sm title-aux">{{firstnameoremailpart username}}</span>
+          <span class="icon-chevron-down hide-on--xs"></span>
+        </a>
+
+        <div class="global-nav__submenu submenu submenu--header submenu--user" id="thumbSubmenu">
+          <ul class="submenu__body">
+            <li class="submenu__item">
+              <a href="#" id="change_image_trigger" class="submenu__link">
+                <span>Alterar imagem do perfil</span></a></li>
+            <li class="submenu__item">
+              <a href="#" id="change_pass_trigger" class="submenu__link">
+                <span>Alterar senha</span></a></li>
+            <li class="submenu__item">
+              <a href="#" class="submenu__link" {{action 'goToProfile'}}>
+                <span>Meu perfil</span></a></li>
+
+            {{#if (equalstr pessoa.role 'aluno')}}
+            {{#if isEja}}
+              <li class="submenu__item">
+                <a href="#" class="submenu__link" {{action 'goToCertificados'}}>
+                  <span>Meus certificados</span></a></li>
+            {{/if}}
+            {{/if}}
+
+            <li class="submenu__item">
+              <a href="#" class="submenu__link" {{action 'goToCalendario'}}>
+                <span>Meu calendário</span></a></li>
+            <li class="submenu__item">
+              <a href="#" class="submenu__link" {{action 'invalidateSession'}}>
+                <span>Fazer Logout</span></a></li>
+          </ul>
         </div>
-        <div class="flex flex-col justify-content-start mt3">
-          <span class="notification-plan__subtitle">Outras</span>
-          <hr size="1" width="99%" color="#e0e0e0">
-          {{#if hasOldNotification}}
-              {{#each oldNotifications as |pessoaNotification|}}
+      </li>
+    </ul>
+  </nav>
+
+</header>
+
+{{else}}
+  <!-- Header geral -->
+  <header id="header_layout" class="l-user-header">
+
+
+  <div class="l-user-header__wrapper">
+      <div class="l-user-header__logo">
+        <img src="/assets/img/ps-logo-primario.png" alt="Plataforma Semente">
+      </div>
+    
+      <nav class="l-user-header__nav">
+        <ul>
+          <li class="l-user-header__nav-item {{if (equalstr route 'aulas') 'l-user-header__nav-item--is-active' ''}}">
+            {{#unless (or (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '0')) (equalstr pessoa.role 'secretaria'))}}
+              {{#if isAlunoMedio}}
+                {{else}}
+                {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
+                  {{#link-to 'aulas.index'  id="aulas-header"}}
+                    <span>Aulas</span>
+                  {{/link-to}}
+                {{/unless}}
+              {{/if}}
+            {{/unless}}
+          </li>
+          <li class="l-user-header__nav-item {{if (equalstr route 'biblioteca') 'l-user-header__nav-item--is-active' ''}}">
+            {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
+              {{#unless (or isAlunoMedio isEja)}}  
+                {{#link-to 'aulas.bibliotecaindex' }}
+                  <span>Biblioteca</span>
+                {{/link-to}}
+              {{/unless}}
+            {{/unless}}
+          </li>
+
+          {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
+            {{#link-to 'geracompanhamento' class=(concatenate "l-user-header__nav-item " (if (equalstr route 'acompanhamento') "l-user-header__nav-item--is-active"))}}
+              <span>Acompanhamento</span>
+            {{/link-to}}
+          {{/if}}
+
+          {{#if (or (or (or (equalstr pessoa.role 'instrutor') (equalstr pessoa.role 'coordenador')) (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '1')))}}
+            {{#link-to 'acompanhamento.plataforma' pessoa.instituicao.id class=(concatenate "l-user-header__nav-item " (if (equalstr route 'acompanhamento') "l-user-header__nav-item--is-active"))}}
+              <span>Acompanhamento</span>
+            {{/link-to}}
+          {{/if}}
+
+          {{#unless (or (or (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel')) (equalstr pessoa.role
+          'instrutor')) (equalstr pessoa.role 'secretaria'))}}
+          {{#link-to 'marketing.index' id="tabMkt" class=(concatenate "l-user-header__nav-item " (if (equalstr route 'marketing') "l-user-header__nav-item--is-active"))}}
+              <span>Marketing</span>
+            {{/link-to}}
+          {{/unless}}
+
+          {{#if (equalstr pessoa.role 'admin')}}
+            {{#link-to 'conteudos.index'  id="tabContents" class=(concatenate "l-user-header__nav-item " (if (equalstr route 'conteudos') "l-user-header__nav-item--is-active"))}}
+              <span>Conteúdos</span>
+            {{/link-to}}
+          {{/if}}
+
+          {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
+            {{#link-to 'gersistema' class=(concatenate "l-user-header__nav-item " (if (equalstr route 'administracao') "l-user-header__nav-item--is-active"))}}
+              <span>Administração</span>
+            {{/link-to}}
+          {{/if}}
+
+          {{#if (or (or (equalstr pessoa.role 'secretaria') (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (equalstr pessoa.role 'recursosHumanos'))}}
+            {{#link-to 'gerdata.users' pessoa.instituicao.id class=(concatenate "l-user-header__nav-item " (if (equalstr route 'marketing') "l-user-header__nav-item--is-active"))}}
+              <span>Administração</span>
+            {{/link-to}}
+          {{/if}}
+
+          <li class="l-user-header__nav-item">
+            <a class="" {{action 'openNotificationMenu'}}>
+              <span class="notification-icon-menu icon-calendar l-user-header__nav-item--isCalendar"></span>
+              <span class="notification-counter" id="notification-counter" style="display: none;">{{counter}}</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="l-user-header__avatarWrapper">
+        <picture class="l-user-header__avatarWrapper-avatar avatar flex justify-center" {{action 'toggleAvatarModal'}}>
+          {{#if pessoa.uriAvatar}}
+            <img class="avatar__img" src={{pessoa.uriAvatar}} alt="{{pessoa.name}}">
+          {{else}}
+            <img class="avatar__img" src="/assets/img/empty-avatar.png" alt="{{pessoa.name}}">
+          {{/if}}
+          <div class="avatar__placeholder icon-edit icon--xl"></div>
+        </picture>
+        <div class="l-user-header__avatarWrapper-nameWrapper" {{action 'menuTogle'}}>
+          <span class="l-user-header__avatarWrapper-name">{{uppertext (firstnameoremailpart pessoa.name)}}</span>
+          <span class="l-user-header__avatarWrapper-role">{{pessoa.role}}</span>
+          <span class="l-user-header__avatarWrapper-chevron">
+            <img src="/assets/img/chevron-black.png" alt="Expandir/Retrair menu">
+          </span>
+        </div>
+        {{#if submenuOpen}}
+          <div id="subMenu" class="l-user-header__avatarWrapper__menuMobile">
+            <ul id="content" class="l-user-header__avatarWrapper__menuMobile-content">
+              <a href="#" id="change_image_trigger" class="l-user-header__avatarWrapper__menuMobile-subitem">
+                <li>
+                  <span>Alterar imagem do perfil</span>
+                </li>
+              </a>
+              
+              <a href="#" id="change_pass_trigger" class="l-user-header__avatarWrapper__menuMobile-subitem">
+                <li>
+                  <span>Alterar senha</span>
+                </li>
+              </a>
+
+              {{#link-to 'profile.index' pessoa.id class="l-user-header__avatarWrapper__menuMobile-subitem"}}
+                <li>
+                  <span>Meu perfil</span>
+                </li>
+              {{/link-to}}
+
+              {{#if (equalstr role 'aluno')}}
+                {{#if isEja}}
+                  {{#link-to 'profile.certificados' pessoa.id class="l-user-header__avatarWrapper__menuMobile-subitem"}}
+                    <li class="">
+                      <span>Meus certificados</span>
+                    </li>
+                  {{/link-to}}
+                {{/if}}
+              {{/if}}
+
+              {{#link-to 'profile.calendario' pessoa.id class="l-user-header__avatarWrapper__menuMobile-subitem"}}
+                <li class="">
+                  <span>Meu calendário</span>
+                </li>
+              {{/link-to}}
+
+            <a class="l-user-header__avatarWrapper__menuMobile-subitem">
+              <li class="" {{action 'invalidateSession'}}>
+                <span>Fazer Logout</span>
+              </li>
+            </a>
+              
+            </ul>
+
+          </div>
+        {{/if}}
+      </div>
+    
+  </div> 
+  </header>
+  <!-- Menu mobile -->
+  <div class="l-user-header__optionsMobile" {{action 'optionsTogle'}}>
+    <span>Menu</span><img src="/assets/img/chevron-white.png" alt="">
+    {{#if optionsOpen}}
+    <nav class="l-user-header__optionsMobile-nav animated fadeIn">
+        <ul>
+          <li class="l-user-header__optionsMobile-nav-item">
+            {{#unless (or (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '0')) (equalstr pessoa.role 'secretaria'))}}
+              {{#if isAlunoMedio}}
+                {{else}}
+                {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
+                  {{#link-to 'aulas.index'  id="aulas-header-mob" class=(concatenate "" (if (equalstr route 'aulas') "l-user-header__optionsMobile-nav-item--is-active"))}}
+                    <span>Aulas</span>
+                  {{/link-to}}
+                {{/unless}}
+              {{/if}}
+            {{/unless}}
+          </li>
+          <li class="l-user-header__optionsMobile-nav-item {{if (equalstr route 'biblioteca') 'l-user-header__optionsMobile-nav-item--is-active' ''}}">
+            {{#unless (or (equalstr pessoa.role "marketing") (equalstr pessoa.role "secretaria"))}}
+              {{#unless (or isAlunoMedio isEja)}}  
+                {{#link-to 'aulas.bibliotecaindex' }}
+                  <span>Biblioteca</span>
+                {{/link-to}}
+              {{/unless}}
+            {{/unless}}
+          </li>
+
+          {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
+            {{#link-to 'geracompanhamento' class=(concatenate "" (if (equalstr route 'acompanhamento') "l-user-header__optionsMobile-nav-item--is-active"))}}
+              <span>Acompanhamento</span>
+            {{/link-to}}
+          {{/if}}
+
+          {{#if (or (or (or (equalstr pessoa.role 'instrutor') (equalstr pessoa.role 'coordenador')) (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '1')))}}
+            {{#link-to 'acompanhamento.plataforma' pessoa.instituicao.id class=(concatenate "" (if (equalstr route 'acompanhamento') "l-user-header__optionsMobile-nav-item--is-active"))}}
+              <span>Acompanhamento</span>
+            {{/link-to}}
+          {{/if}}
+
+          {{#unless (or (or (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel')) (equalstr pessoa.role
+          'instrutor')) (equalstr pessoa.role 'secretaria'))}}
+            {{#link-to 'marketing.index'  id="tabMkt-mob" class=(concatenate "" (if (equalstr route 'marketing') "l-user-header__optionsMobile-nav-item--is-active"))}}
+              <span>Marketing</span>
+            {{/link-to}}
+          {{/unless}}
+
+          {{#if (equalstr pessoa.role 'admin')}}
+            {{#link-to 'conteudos.index'  id="tabContents-mob" class=(concatenate "" (if (equalstr route 'conteudos') "l-user-header__optionsMobile-nav-item--is-active"))}}
+              <span>Conteúdos</span>
+            {{/link-to}}
+          {{/if}}
+
+          {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
+            {{#link-to 'gersistema' class=(concatenate "" (if (equalstr route 'administracao') "l-user-header__optionsMobile-nav-item--is-active"))}}
+              <span>Administração</span>
+            {{/link-to}}
+          {{/if}}
+
+          {{#if (or (or (equalstr pessoa.role 'secretaria') (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (equalstr pessoa.role 'recursosHumanos'))}}
+            {{#link-to 'gerdata.users' pessoa.instituicao.id class=(concatenate "" (if (equalstr route 'administracao') "l-user-header__optionsMobile-nav-item--is-active"))}}
+              <span>Administração</span>
+            {{/link-to}}
+          {{/if}}
+
+          <li class="l-user-header__optionsMobile-nav-item">
+            <a class="" {{action 'openNotificationMenu'}}>
+              <span class="notification-icon-menu icon-calendar l-user-header__nav-item--isCalendar"></span>
+              <span class="notification-counter" id="notification-counter" style="display: none;">{{counter}}</span>
+            </a>
+          </li>
+        </ul>
+    </nav>
+    {{/if}}
+  </div>
+
+{{/if}}
+
+  {{#if notificationMenu}}
+    <div style="display: none;">{{notifications}}</div>
+    <aside id="notification-container" class="notification-plan__main animated fadeInRight faster">
+      <div  class="notification-plan__container notification-plan--space" {{action 'closeNotificationMenu'}}></div>
+      <div  class="notification-plan__container notification-plan--is-open">
+        <div class="flex flex-row justify-content-around mb1">
+          <a href="#" class="icon icon-x mt0 mr3" {{action 'closeNotificationMenu'}}></a>
+          <span class="notification-plan__title">Notificações</span> 
+        </div>
+        <div class="notification-plan__scroll">
+          <div class="flex flex-col justify-content-start mt1">
+            <span class="notification-plan__subtitle">Recentes</span>
+            <hr size="1" width="99%" color="#d6d6d6">
+            {{#if hasNewNotification}}
+              {{#each newNotifications as |notification|}}
                 <div class="flex flex-col justify-content-start notification-plan__card">
-                  <div class="flex flex-row justify-content-between">
-                    <span class="notification-card-date">{{dateFormat pessoaNotification.notification.start}}</span>
-                    <span class="notification-card-date">Visto: {{dateFormat pessoaNotification.view}}</span>
-                  </div>
-                  <span class="notification-card-title">{{pessoaNotification.notification.title}}</span>
-                  <span class="notification-card-text">{{pessoaNotification.notification.text}}</span>
+                  <span class="notification-card-date">{{dateFormat notification.start}}</span>
+                  <span class="notification-card-title">{{notification.title}}</span>
+                  <span class="notification-card-text">{{notification.text}}</span>
                   <span class="notification-card-text">
-                    <a href="{{pessoaNotification.notification.link}}" target="_blank">{{pessoaNotification.notification.link}}</a>
+                    <a href="{{notification.link}}" target="_blank">{{notification.link}}</a>
                   </span>
                 </div>
               {{/each}}
-          {{else}}
-            <div class="flex flex-row justify-content-center mt4">
-              <span class="notification-plan__subtitle">Nenhuma notificação</span>
-            </div>
-          {{/if}}
+            {{else}}
+              <div class="flex flex-row justify-content-center mt4">
+                <span class="notification-plan__subtitle">Nenhuma notificação</span>
+              </div>
+            {{/if}}
+          </div>
+          <div class="flex flex-col justify-content-start mt3">
+            <span class="notification-plan__subtitle">Outras</span>
+            <hr size="1" width="99%" color="#e0e0e0">
+            {{#if hasOldNotification}}
+                {{#each oldNotifications as |pessoaNotification|}}
+                  <div class="flex flex-col justify-content-start notification-plan__card">
+                    <div class="flex flex-row justify-content-between">
+                      <span class="notification-card-date">{{dateFormat pessoaNotification.notification.start}}</span>
+                      <span class="notification-card-date">Visto: {{dateFormat pessoaNotification.view}}</span>
+                    </div>
+                    <span class="notification-card-title">{{pessoaNotification.notification.title}}</span>
+                    <span class="notification-card-text">{{pessoaNotification.notification.text}}</span>
+                    <span class="notification-card-text">
+                      <a href="{{pessoaNotification.notification.link}}" target="_blank">{{pessoaNotification.notification.link}}</a>
+                    </span>
+                  </div>
+                {{/each}}
+            {{else}}
+              <div class="flex flex-row justify-content-center mt4">
+                <span class="notification-plan__subtitle">Nenhuma notificação</span>
+              </div>
+            {{/if}}
+          </div>
         </div>
       </div>
-    </div>
-  </aside>    
-{{/if}}
+    </aside>    
+  {{/if}}

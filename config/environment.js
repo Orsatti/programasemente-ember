@@ -38,7 +38,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'homolog') {
-    ENV.APP.DOMAIN = "programasemente.com.br";
+    ENV.APP.DOMAIN = "sementeeducacao.com.br";
     ENV.APP.host = 'https://sementedev-api.azurewebsites.net';
   }
 

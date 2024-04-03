@@ -7,6 +7,23 @@ export default Ember.Controller.extend({
   rootURL: ENV.rootURL,
   envnmt: ENV.APP,
   session: Ember.inject.service('session'),
+ 
+ redirectPlataformaSemente: Ember.computed(function() {
+
+  if (this.envnmt.host.includes('localhost')) {
+    return false;
+  }
+
+  if (this.envnmt.host.includes('sementedev-api')) {
+    return window.location.href = 'https://homolog.sementeeducacao.com.br';
+  }
+  
+  if (this.envnmt.host.includes('semente-api')) {
+    return window.location.href = 'https://plataforma.sementeeducacao.com.br';
+  }
+  
+ }),
+ 
   mostraAviso: false,
   loginStep: 0,
   answers: [],
@@ -173,12 +190,13 @@ export default Ember.Controller.extend({
 
   init: function () {
     this._super();
-    var version = this.detectIE();
-      if (version === false) {
-     this.set('mostraAviso', false)
-    } else {
-      this.set('mostraAviso', true)
-    }
+    
+    // var version = this.detectIE();
+    //   if (version === false) {
+    //  this.set('mostraAviso', false)
+    // } else {
+    //   this.set('mostraAviso', true)
+    // }
 
     // Caps lock detection
     let that = this;

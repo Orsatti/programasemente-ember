@@ -1,299 +1,304 @@
-{{#if mostraAviso}}
+{{#unless redirectPlataformaSemente}}
 
-{{!-- Aqui vai o HTML+CSS da tela caso o usuário esteja acessando com IE --}}
-<div class="bg--students" style="display: flex; width: 100%; height: 100vh; justify-content: center; ">
-  <div class="aviso">
-    <div class="login__logo2021">
-      <img class="login__logo-centralizada" src="/assets/img/logo-semente--login2021.png" alt="">
+  {{#if mostraAviso}}
+
+  {{!-- Aqui vai o HTML+CSS da tela caso o usuário esteja acessando com IE --}}
+  <div class="bg--students" style="display: flex; width: 100%; height: 100vh; justify-content: center; ">
+    <div class="aviso">
+      <div class="login__logo2021">
+        <img class="login__logo-centralizada" src="/assets/img/logo-semente--login2021.png" alt="">
+      </div>
+      <p class="texto-login-ie">Infelizmente <b> o nosso sistema não suporta o navegador que você está utilizando.</b> Abaixo listamos <b> algumas opções
+        quesão suportadas.</b></p>
+        <ul>
+      <li class="logos">
+        <img class="logos__logo-navegador" src="/assets/img/ic-chrome--login2021.png" alt="">
+        <div class="logos__nome-navegador">Google Chrome</div>
+        <a href="https://www.google.com/chrome/" target="_blank" class="logos__btn-navegador btn login__btn btn--xs">download</a>
+      </li>
+      <li class="logos">
+        <img class="logos__logo-navegador" src="/assets/img/ic-firefox--login2021.png" alt="">
+        <div class="logos__nome-navegador">Mozilla Firefox</div>
+        <a href="https://www.mozilla.org/" target="_blank" class="logos__btn-navegador btn login__btn btn--xs">download</a>
+      </li>
+      <li class="logos">
+        <img class="logos__logo-navegador" src="/assets/img/ic-microsoft--login2021.png" alt="">
+        <div class="logos__nome-navegador">Microsoft Edge</div>
+        <a href="https://www.microsoft.com/edge/" target="_blank" class="logos__btn-navegador btn login__btn btn--xs">download</a>
+      </li>
+      </ul>
     </div>
-    <p class="texto-login-ie">Infelizmente <b> o nosso sistema não suporta o navegador que você está utilizando.</b> Abaixo listamos <b> algumas opções
-      quesão suportadas.</b></p>
-      <ul>
-    <li class="logos">
-      <img class="logos__logo-navegador" src="/assets/img/ic-chrome--login2021.png" alt="">
-      <div class="logos__nome-navegador">Google Chrome</div>
-      <a href="https://www.google.com/chrome/" target="_blank" class="logos__btn-navegador btn login__btn btn--xs">download</a>
-    </li>
-    <li class="logos">
-      <img class="logos__logo-navegador" src="/assets/img/ic-firefox--login2021.png" alt="">
-      <div class="logos__nome-navegador">Mozilla Firefox</div>
-      <a href="https://www.mozilla.org/" target="_blank" class="logos__btn-navegador btn login__btn btn--xs">download</a>
-    </li>
-    <li class="logos">
-      <img class="logos__logo-navegador" src="/assets/img/ic-microsoft--login2021.png" alt="">
-      <div class="logos__nome-navegador">Microsoft Edge</div>
-      <a href="https://www.microsoft.com/edge/" target="_blank" class="logos__btn-navegador btn login__btn btn--xs">download</a>
-    </li>
-    </ul>
   </div>
-</div>
+
+  {{else}}
+
+  
+  <!-- Top content -->
+  <form class="login bg--students" {{action 'authenticate' on='submit' }}>
+    <div class="login-fundo"></div>
+    <div class="login__box">
+      <h2 class="scr-only">Usuário ou CPF sem pontos e traço</h2>
+
+      
+      <div class="login__logo2021">
+        <img class="login__logo-centralizada" src="/assets/img/logo-semente--login2021.png" alt="">
+      </div>
+      <div class="login__form-group form-group">
+        <label class="form-group__label login__label" for="identification"><strong>Usuário</strong> ou <strong>CPF sem pontos e traço</strong></label>
+        <input class="login__input form-group__input" id='identification' autocomplete="username" value={{identification}}
+          autofocus="autofocus"> <!-- placeholder="e-mail" -->
+      </div>
+
+      <div class="login__form-group form-group">
+        <label class="form-group__label login__label" for="password">Senha</label>
+
+        <div class="form-group__container">
+          <span id="msg-caps-on" class="form__msg form__msg--error">
+            <span class="form__msg-icon icon-alert-triangle"></span>Caps Lock is on
+          </span>
+          <input class="login__input login__input-pass form-group__input pwd" id="password" autocomplete="password"
+            type="password" value={{password}}>
+          <button class="login__show-pass" type="button" {{action "passwordVisibility" }}>
+            <span class="icon-eye-off"></span>
+            <span class="icon-eye"></span>
+          </button>
+        </div>
+        {{#if errorMessage}}
+        <div class="alert alert--has-icon alert--error self-auto alert--is-show animated fadeIn">
+          <span class="alert__icon icon-x"></span>
+          <p style="max-width: fit-content;">{{{errorMessage}}}</p>
+        </div>
+        {{/if}}
+        <button class="login__forgot-pass" type="button" {{action 'forgotPass' 'password' }}>Esqueceu sua senha?</button>
+        <button class="login__forgot-pass" type="button" {{action 'forgotPass' 'username' }}>Esqueceu seu login?</button>
+
+
+      </div>
+      <!--    <div class="form-group">
+          <span class="checkbox">
+            <input class="checkbox__input" id="remember" checked="checked" name="remember" type="checkbox" value={{remember}}>
+            <label class="checkbox__label" for="remember">Salvar informações</label>
+          </span>
+        </div>-->
+
+
+      {{#if success_mail}}
+      <div class="login__alert alert alert--has-icon alert--success alert--xxs">
+        <span class="alert__icon icon-check"></span>
+        <p>{{{success_mail}}}</p>
+      </div>
+      {{/if}}
+
+      <button class="btn login__btn btn--xs login__cta p-h--lg" id="login_button" type="submit">Entrar</button>
+
+
+      <!-- Privacy directive -->
+      <a href="https://spasementemedio.blob.core.windows.net/plataforma/Pol%C3%ADtica%20de%20privacidade%20v1.pdf" class="btn login__btn divider login__privacidade m-top--lg flow-h-xs flex flex-row items-center" target="_blank" rel="nofollow noopener noreferrer">
+        <span class="login__span icon--lg icon-lock p--xxs"></span>
+        <span class="btn__label">Conheça nossa política de privacidade</span>
+      </a>
+
+      <!-- Cadastre-se -->
+    
+      <div class="m-top--lg login__cadastre">
+          <span>Ainda não é cadastrado?</span>
+        <a class="" href="#" {{action 'autoRegister' }} target="_blank" rel="nofollow noopener noreferrer">
+          <span class="btn__label"><b>Cadastre-se</b></span>
+        </a>
+      </div>
+
+    </div>
+  </form>
+
+  <aside id="forgot_modal" class="modal animated fast fadeIn">
+
+  
+    <div id="modal-content" class="modal__content modal__content--md modal__content--no-overflow">
+
+      <header class="modal__header">
+        <button class="modal__close btn-close icon-x" type="submit" {{action 'cancelForgot' }}></button>
+
+        <h3 class="modal__title">{{modalTitle}}</h3>
+      </header>
+      {{#if (equalstr modalType 'password')}}
+      <div class="flow-lg">
+        <div class="flow-md">
+          <div class="form-group form-group--full-width flow-xs">
+            <p>{{modalInfo}}</p>
+            <input class="form-group__input login__input" type="textbox" id="user_name" value={{user_email}}>
+            <!-- placeholder="Insira seu endereço de e-mail" -->
+          </div>
+          <div class="alert alert--has-icon alert--success alert--xxs animated fadeIn" id="success-forgot">
+            <p>{{{success_forgot}}}</p>
+          </div>
+        </div>
+
+        <div class="flow-sm animated" id="checkboxes_container">
+          <div class="checkbox" id="group-email" style="display: none;">
+            <input class="checkbox__input" id="forgot-email" checked="checked" name="forgot-email" type="checkbox">
+            <label class="checkbox__label" for="forgot-email">Enviar senha por email</label>
+          </div>
+          <div class="checkbox" id="group-sms" style="display: none;">
+            <input class="checkbox__input" id="forgot-sms" checked="checked" name="forgot-sms" type="checkbox">
+            <label class="checkbox__label" for="forgot-sms">Enviar senha por SMS</label>
+          </div>
+        </div>
+
+
+        <div class="alert alert--error alert--has-icon alert--xxs animated fadeIn" id="error-forgot">
+          <p>{{{error_forgot}}}</p>
+        </div>
+
+
+      </div>
+      <div class="modal__footer modal__footer--center">
+        <button id="btn-verify-user-name" class="btn login__cta login__btn" type="submit" {{action 'verifyUserName'
+          }}>Verificar usuário</button>
+        <button id="btn-send-password" class="btn" style="display:none;" type="submit" {{action 'sendPassword' }}>Enviar
+          senha</button>
+      </div>
+
+            
+      {{/if}}
+
+      {{#if (equalstr modalType 'username')}}
+        <div class="flow-lg">
+          <div class="flow-md">
+          
+                  
+              <div class="form-group form-group--full-width flow-xs">
+                <p>{{modalInfo}}</p>
+                
+                <div id="modal-login-recovery-container" class="modal__login-recovery-container modal__is-login-recovery__carousel--{{loginStep}}">
+                  
+                    <!-- Pergunta 0 -->
+                  <div id='q0' class="modal__is-login-recovery step--0 flow-xs animated d250 {{if (equalstr loginStep '0') 'fadeInRightShort'}}">
+                    <p>Você se lembra qual e-mail ou telefone está cadastrado em sua conta?</p>
+                    <button id="question1-alt1" class="btn btn--xs modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 'email' ''}}>Sim</button>
+                    <button id="question1-alt2" class="btn btn--xs modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 1 ''}}>Não</button>
+                  </div>
+
+                    <!-- Informe de e-mail -->
+                  <form id="email-cadastrado" {{action "resgataLoginPorEmail" on="submit"}}>
+                    <div id='qemail' class="modal__is-login-recovery  step--email animated d250 {{if (equalstr loginStep 'email') 'fadeInRightShort'}}">
+                      <p>Informe o e-mail ou telefone cadastrado</p>
+                      <input id="informe-email" class="w100 modal--is-registered-email" type="text" required onkeyup={{action 'maskPhoneOrEmail'}}>
+                      <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;" id="error-forgot">{{{error_forgot}}}</span>
+                      <button id="checaEmail" class="btn btn--xs m-top--xl modal--adjust-btn-on-mobile" type="submit" disabled="{{if busy "disabled" ""}}">{{if busy "Consultando" "Resgatar"}}</button>
+                      <button id="goToPerguntas" class="btn btn--xs m-top--sm modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 1}}>Resgatar de outra forma</button>
+                      <span class="alert alert--has-icon alert--success alert--xxs animated fadeIn m-top--md" id="success-forgot" style="display: none;">{{success_forgot}}</span>
+                    </div>
+                  </form>
+
+                
+                  
+                    <!-- Pergunta 1 -->
+                  <div id='q1' class="modal__is-login-recovery  step--1 flow-xs animated d250 {{if (equalstr loginStep '1') 'fadeInRightShort'}}">
+                    <p>Você é um aluno?</p>
+                    <button id="question1-alt1" class="btn btn--xs modal--adjust-btn-on-mobile" type="submit" value="Sim" {{action 'moveToNextQuestion' 3 'Sim'}}>Sim</button>
+                    <button id="question1-alt2" class="btn btn--xs modal--adjust-btn-on-mobile" type="submit" value = "Não" {{action 'moveToNextQuestion' 3 'Não'}}>Não</button>
+                  </div>
+                
+                  <!-- Pergunta 2 -->
+                  <div id='q2' class="modal__is-login-recovery step--2 animated d250 {{if (equalstr loginStep '2') 'fadeInRightShort'}}">
+                    <p>Informe sua data de nascimento</p>
+                    <input id="question2" class="w100" required type="date">
+                    <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;">{{errorMessageInput}}</span>
+                    <button id="question2-fwd" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 3}}>Avançar</button>
+                  </div>
+                
+                  <!-- Pergunta 3 -->
+                  <div id='q3' class="modal__is-login-recovery step--3 animated d250 {{if (equalstr loginStep '3') 'fadeInRightShort'}}">
+                    <p>Qual é o seu primeiro nome?</p>
+                    <input id="question3" class="w100" required type="text">
+                    <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;">{{errorMessageInput}}</span>
+                    <button id="question3-fwd" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 4}}>Avançar</button>
+                  </div>
+
+                  <!-- Pergunta 4 -->
+                  <div id='q4' class="modal__is-login-recovery step--4 animated d250 {{if (equalstr loginStep '4') 'fadeInRightShort'}}">
+                    <p>Qual é o seu último sobrenome?</p>
+                    <input id="question4" class="w100"  required type="text">
+                    <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;">{{errorMessageInput}}</span>
+                    <button id="question4-fwd" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 5}} disabled="{{if busy "disabled" ""}}">{{if busy "Consultando..." "Avançar"}}</button>
+                  </div>
+                
+                  <!-- Pergunta 5 -->
+                  <div id='q5' class="modal__is-login-recovery step--5 animated d250 {{if (equalstr loginStep '5') 'fadeInRightShort'}}">
+                    <div>
+                      <p>Em qual das cidades abaixo fica sua escola?</p>
+                    </div>
+                    <div class="modal__is-login-recovery--cities-list">
+                      <ul>
+                      {{#each citiesList as |city|}}
+                        <li>
+                          <button class="btn btn--xs m-top--sm modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 6 city}}>{{city}}</button>
+                        </li>
+                      {{/each}}
+                      </ul>
+                    </div>
+                  </div>
+
+                    <!-- Pergunta 6 -->
+                  <div id='q6' class="modal__is-login-recovery step--6 animated d250 {{if (equalstr loginStep '6') 'fadeInRightShort'}}">
+                    <p>Qual o nome de sua escola?</p>
+                    <input id="question6" class="w100" required type="text">
+                    
+                    <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="display:block;">{{errorMessageInput}}</span>
+                    <button id="question6-end" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="button" {{action 'moveToNextQuestion' 'resgate'}}>Resgatar login</button>
+                  </div>
+
+                  <!-- Fim do resgate por perguntas -->
+                  <div id='qf' class="modal__is-login-recovery step--resgate animated d250 {{if (equalstr loginStep 'resgate') 'fadeInRightShort'}}">
+                    
+                    {{#unless successResgate}}
+                    <p>Não encontramos um login que se adequa às respostas dadas.</p>
+                    <p>Por favor, entre em contato com <a class="color-leaf-40" href="mailto:relacionamento@sementeeducacao.com.br">relacionamento@sementeeducacao.com.br</a> e nos informe sue escola e seu nome no corpo do e-mail.</p>
+                    {{else}}
+                    <p>Seu login é:</p>
+                    <div class="flex">
+                      <p id="recovered-login" class="modal__is-login-recovery--login--was-found">
+                        <strong>{{retrievedUsername}}</strong>
+                      </p>
+                    </div>
+                      {{#if loginIsEmail}}
+                        <p>Seu login é um endereço de e-mail. Omitimos parte do endereço por questões de segurança.</p>
+                      {{/if}}
+                    {{/unless}}
+                  </div>
+
+                
+                </div>
+
+                
+                
+              
+              
+              </div>
+          
+          
+          </div>  
+
+    
+      
+      </div>  
+        
+        
+      {{/if}}
+
+
+
+    </div>
+
+
+    <div class="modal__overlayer"></div>
+  </aside>
+
+  {{/if}}
 
 {{else}}
 
-<!-- {{programa-semente-logo class="login__logo"}}-->
-<!--  <div class="login__logo2021">
-     <img class="login__logo-centralizada" src="/assets/img/logo-semente--login2021.png" alt="">
-   </div> -->
-<!-- Top content -->
-<form class="login bg--students" {{action 'authenticate' on='submit' }}>
-  <div class="login-fundo"></div>
-  <div class="login__box">
-    <h2 class="scr-only">Usuário ou CPF sem pontos e traço</h2>
+  {{redirectPlataformaSemente}}
 
-    <!-- {{programa-semente-logo class="login__logo"}}-->
-    <div class="login__logo2021">
-      <img class="login__logo-centralizada" src="/assets/img/logo-semente--login2021.png" alt="">
-    </div>
-    <div class="login__form-group form-group">
-      <label class="form-group__label login__label" for="identification"><strong>Usuário</strong> ou <strong>CPF sem pontos e traço</strong></label>
-      <input class="login__input form-group__input" id='identification' autocomplete="username" value={{identification}}
-        autofocus="autofocus"> <!-- placeholder="e-mail" -->
-    </div>
+{{/unless}}
 
-    <div class="login__form-group form-group">
-      <label class="form-group__label login__label" for="password">Senha</label>
-
-      <div class="form-group__container">
-        <span id="msg-caps-on" class="form__msg form__msg--error">
-          <span class="form__msg-icon icon-alert-triangle"></span>Caps Lock is on
-        </span>
-        <input class="login__input login__input-pass form-group__input pwd" id="password" autocomplete="password"
-          type="password" value={{password}}>
-        <button class="login__show-pass" type="button" {{action "passwordVisibility" }}>
-          <span class="icon-eye-off"></span>
-          <span class="icon-eye"></span>
-        </button>
-      </div>
-      {{#if errorMessage}}
-      <div class="alert alert--has-icon alert--error self-auto alert--is-show animated fadeIn">
-        <span class="alert__icon icon-x"></span>
-        <p style="max-width: fit-content;">{{{errorMessage}}}</p>
-      </div>
-      {{/if}}
-      <button class="login__forgot-pass" type="button" {{action 'forgotPass' 'password' }}>Esqueceu sua senha?</button>
-      <button class="login__forgot-pass" type="button" {{action 'forgotPass' 'username' }}>Esqueceu seu login?</button>
-
-
-    </div>
-    <!--    <div class="form-group">
-        <span class="checkbox">
-          <input class="checkbox__input" id="remember" checked="checked" name="remember" type="checkbox" value={{remember}}>
-          <label class="checkbox__label" for="remember">Salvar informações</label>
-        </span>
-      </div>-->
-
-
-    {{#if success_mail}}
-    <div class="login__alert alert alert--has-icon alert--success alert--xxs">
-      <span class="alert__icon icon-check"></span>
-      <p>{{{success_mail}}}</p>
-    </div>
-    {{/if}}
-
-    <button class="btn login__btn btn--xs login__cta p-h--lg" id="login_button" type="submit">Entrar</button>
-
-
-    <!-- Privacy directive -->
-    <a href="https://spasementemedio.blob.core.windows.net/plataforma/Pol%C3%ADtica%20de%20privacidade%20v1.pdf" class="btn login__btn divider login__privacidade m-top--lg flow-h-xs flex flex-row items-center" target="_blank" rel="nofollow noopener noreferrer">
-      <span class="login__span icon--lg icon-lock p--xxs"></span>
-      <span class="btn__label">Conheça nossa política de privacidade</span>
-    </a>
-
-    <!-- Cadastre-se -->
-    {{!-- <button class="login__forgot-pass" type="button" {{action 'autoRegister' }}>Cadastre-se</button> --}}
-    <div class="m-top--lg login__cadastre">
-      {{!-- <span class="color-blue-navy-30 icon--lg icon-lock p--xxs"></span> --}}
-      <span>Ainda não é cadastrado?</span>
-      <a class="" href="#" {{action 'autoRegister' }} target="_blank" rel="nofollow noopener noreferrer">
-        <span class="btn__label"><b>Cadastre-se</b></span>
-      </a>
-    </div>
-
-  </div>
-</form>
-
-<aside id="forgot_modal" class="modal animated fast fadeIn">
-
- 
-  <div id="modal-content" class="modal__content modal__content--md modal__content--no-overflow">
-
-    <header class="modal__header">
-      <button class="modal__close btn-close icon-x" type="submit" {{action 'cancelForgot' }}></button>
-
-      <h3 class="modal__title">{{modalTitle}}</h3>
-    </header>
-    {{#if (equalstr modalType 'password')}}
-    <div class="flow-lg">
-      <div class="flow-md">
-        <div class="form-group form-group--full-width flow-xs">
-          <p>{{modalInfo}}</p>
-          <input class="form-group__input login__input" type="textbox" id="user_name" value={{user_email}}>
-          <!-- placeholder="Insira seu endereço de e-mail" -->
-        </div>
-        <div class="alert alert--has-icon alert--success alert--xxs animated fadeIn" id="success-forgot">
-          <p>{{{success_forgot}}}</p>
-        </div>
-      </div>
-
-      <div class="flow-sm animated" id="checkboxes_container">
-        <div class="checkbox" id="group-email" style="display: none;">
-          <input class="checkbox__input" id="forgot-email" checked="checked" name="forgot-email" type="checkbox">
-          <label class="checkbox__label" for="forgot-email">Enviar senha por email</label>
-        </div>
-        <div class="checkbox" id="group-sms" style="display: none;">
-          <input class="checkbox__input" id="forgot-sms" checked="checked" name="forgot-sms" type="checkbox">
-          <label class="checkbox__label" for="forgot-sms">Enviar senha por SMS</label>
-        </div>
-      </div>
-
-
-      <div class="alert alert--error alert--has-icon alert--xxs animated fadeIn" id="error-forgot">
-        <p>{{{error_forgot}}}</p>
-      </div>
-
-
-    </div>
-    <div class="modal__footer modal__footer--center">
-      <button id="btn-verify-user-name" class="btn login__cta login__btn" type="submit" {{action 'verifyUserName'
-        }}>Verificar usuário</button>
-      <button id="btn-send-password" class="btn" style="display:none;" type="submit" {{action 'sendPassword' }}>Enviar
-        senha</button>
-    </div>
-
-          
-    {{/if}}
-
-    {{#if (equalstr modalType 'username')}}
-      <div class="flow-lg">
-        <div class="flow-md">
-        
-                
-            <div class="form-group form-group--full-width flow-xs">
-              <p>{{modalInfo}}</p>
-              
-              <div id="modal-login-recovery-container" class="modal__login-recovery-container modal__is-login-recovery__carousel--{{loginStep}}">
-                
-                  {{!-- Pergunta 0 --}}
-                <div id='q0' class="modal__is-login-recovery step--0 flow-xs animated d250 {{if (equalstr loginStep '0') 'fadeInRightShort'}}">
-                  <p>Você se lembra qual e-mail ou telefone está cadastrado em sua conta?</p>
-                  <button id="question1-alt1" class="btn btn--xs modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 'email' ''}}>Sim</button>
-                  <button id="question1-alt2" class="btn btn--xs modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 1 ''}}>Não</button>
-                </div>
-
-                  {{!-- Informe de e-mail --}}
-                <form id="email-cadastrado" {{action "resgataLoginPorEmail" on="submit"}}>
-                  <div id='qemail' class="modal__is-login-recovery  step--email animated d250 {{if (equalstr loginStep 'email') 'fadeInRightShort'}}">
-                    <p>Informe o e-mail ou telefone cadastrado</p>
-                    <input id="informe-email" class="w100 modal--is-registered-email" type="text" required onkeyup={{action 'maskPhoneOrEmail'}}>
-                    <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;" id="error-forgot">{{{error_forgot}}}</span>
-                    <button id="checaEmail" class="btn btn--xs m-top--xl modal--adjust-btn-on-mobile" type="submit" disabled="{{if busy "disabled" ""}}">{{if busy "Consultando" "Resgatar"}}</button>
-                    <button id="goToPerguntas" class="btn btn--xs m-top--sm modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 1}}>Resgatar de outra forma</button>
-                    <span class="alert alert--has-icon alert--success alert--xxs animated fadeIn m-top--md" id="success-forgot" style="display: none;">{{success_forgot}}</span>
-                  </div>
-                </form>
-
-              
-                
-                  {{!-- Pergunta 1 --}}
-                <div id='q1' class="modal__is-login-recovery  step--1 flow-xs animated d250 {{if (equalstr loginStep '1') 'fadeInRightShort'}}">
-                  <p>Você é um aluno?</p>
-                  <button id="question1-alt1" class="btn btn--xs modal--adjust-btn-on-mobile" type="submit" value="Sim" {{action 'moveToNextQuestion' 3 'Sim'}}>Sim</button>
-                  <button id="question1-alt2" class="btn btn--xs modal--adjust-btn-on-mobile" type="submit" value = "Não" {{action 'moveToNextQuestion' 3 'Não'}}>Não</button>
-                </div>
-              
-                {{!-- Pergunta 2 --}}
-                <div id='q2' class="modal__is-login-recovery step--2 animated d250 {{if (equalstr loginStep '2') 'fadeInRightShort'}}">
-                  <p>Informe sua data de nascimento</p>
-                  <input id="question2" class="w100" required type="date">
-                  <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;">{{errorMessageInput}}</span>
-                  <button id="question2-fwd" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 3}}>Avançar</button>
-                </div>
-              
-                {{!-- Pergunta 3 --}}
-                <div id='q3' class="modal__is-login-recovery step--3 animated d250 {{if (equalstr loginStep '3') 'fadeInRightShort'}}">
-                  <p>Qual é o seu primeiro nome?</p>
-                  <input id="question3" class="w100" required type="text">
-                  <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;">{{errorMessageInput}}</span>
-                  <button id="question3-fwd" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 4}}>Avançar</button>
-                </div>
-
-                 {{!-- Pergunta 4 --}}
-                <div id='q4' class="modal__is-login-recovery step--4 animated d250 {{if (equalstr loginStep '4') 'fadeInRightShort'}}">
-                  <p>Qual é o seu último sobrenome?</p>
-                  <input id="question4" class="w100"  required type="text">
-                  <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="opacity: 0; visibility: hidden; display:block;">{{errorMessageInput}}</span>
-                  <button id="question4-fwd" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 5}} disabled="{{if busy "disabled" ""}}">{{if busy "Consultando..." "Avançar"}}</button>
-                </div>
-              
-                 {{!-- Pergunta 5 --}}
-                <div id='q5' class="modal__is-login-recovery step--5 animated d250 {{if (equalstr loginStep '5') 'fadeInRightShort'}}">
-                  <div>
-                    <p>Em qual das cidades abaixo fica sua escola?</p>
-                  </div>
-                  <div class="modal__is-login-recovery--cities-list">
-                    <ul>
-                    {{#each citiesList as |city|}}
-                      <li>
-                        <button class="btn btn--xs m-top--sm modal--adjust-btn-on-mobile" type="submit" {{action 'moveToNextQuestion' 6 city}}>{{city}}</button>
-                      </li>
-                    {{/each}}
-                    </ul>
-                  </div>
-                </div>
-
-                   {{!-- Pergunta 6 --}}
-                <div id='q6' class="modal__is-login-recovery step--6 animated d250 {{if (equalstr loginStep '6') 'fadeInRightShort'}}">
-                  <p>Qual o nome de sua escola?</p>
-                  <input id="question6" class="w100" required type="text">
-                  
-                  <span class="animated color-error-20 fadeIn m-top--xs self-auto" style="display:block;">{{errorMessageInput}}</span>
-                  <button id="question6-end" class="btn btn--xs m-top--xxl modal--adjust-btn-on-mobile" type="button" {{action 'moveToNextQuestion' 'resgate'}}>Resgatar login</button>
-                </div>
-
-                       {{!-- Fim do resgate por perguntas --}}
-                <div id='qf' class="modal__is-login-recovery step--resgate animated d250 {{if (equalstr loginStep 'resgate') 'fadeInRightShort'}}">
-                  
-                  {{#unless successResgate}}
-                  <p>Não encontramos um login que se adequa às respostas dadas.</p>
-                  <p>Por favor, entre em contato com <a class="color-leaf-40" href="mailto:relacionamento@sementeeducacao.com.br">relacionamento@sementeeducacao.com.br</a> e nos informe sue escola e seu nome no corpo do e-mail.</p>
-                  {{else}}
-                  <p>Seu login é:</p>
-                  <div class="flex">
-                    <p id="recovered-login" class="modal__is-login-recovery--login--was-found">
-                      <strong>{{retrievedUsername}}</strong>
-                    </p>
-                  </div>
-                    {{#if loginIsEmail}}
-                      <p>Seu login é um endereço de e-mail. Omitimos parte do endereço por questões de segurança.</p>
-                    {{/if}}
-                  {{/unless}}
-                </div>
-
-              
-              </div>
-
-              
-              
-            
-            
-            </div>
-        
-        
-        </div>  
-
-  
-    
-    </div>  
-      
-      
-    {{/if}}
-
-
-
-  </div>
-
-
-  <div class="modal__overlayer"></div>
-</aside>
-
-{{/if}}

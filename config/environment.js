@@ -32,7 +32,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.DOMAIN = "programasemente.com.br";
+    ENV.APP.DOMAIN = "sementeeducacao.com.br";
     ENV.APP.host = 'https://semente-api.azurewebsites.net';
     // ENV.APP.host = 'https://sementeapi.minimo.com.br';
   }

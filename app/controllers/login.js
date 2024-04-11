@@ -9,6 +9,7 @@ export default Ember.Controller.extend({
   session: Ember.inject.service('session'),
  
  redirectPlataformaSemente: Ember.computed(function() {
+  document.cookie = 'ember_simple_auth-session' + '=; Domain=.programasemente.com.br; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
 
   if (this.envnmt.host.includes('localhost')) {
     return false;

@@ -1,12 +1,10 @@
-{{#unless redirectPlataformaSemente}}
-
   {{#if mostraAviso}}
 
   {{!-- Aqui vai o HTML+CSS da tela caso o usuário esteja acessando com IE --}}
   <div class="bg--students" style="display: flex; width: 100%; height: 100vh; justify-content: center; ">
     <div class="aviso">
       <div class="login__logo2021">
-        <img class="login__logo-centralizada" src="/assets/img/logo-semente--login2021.png" alt="">
+        <img class="login__logo-centralizada" src="/assets/img/ps-logo-primario.png" alt="">
       </div>
       <p class="texto-login-ie">Infelizmente <b> o nosso sistema não suporta o navegador que você está utilizando.</b> Abaixo listamos <b> algumas opções
         quesão suportadas.</b></p>
@@ -41,7 +39,7 @@
 
       
       <div class="login__logo2021">
-        <img class="login__logo-centralizada" src="/assets/img/logo-semente--login2021.png" alt="">
+        <img class="login__logo2021-plataforma-semente" src="/assets/img/pls-logo.svg" alt="">
       </div>
       <div class="login__form-group form-group">
         <label class="form-group__label login__label" for="identification"><strong>Usuário</strong> ou <strong>CPF sem pontos e traço</strong></label>
@@ -296,9 +294,4 @@
 
   {{/if}}
 
-{{else}}
-
-  {{redirectPlataformaSemente}}
-
-{{/unless}}
 

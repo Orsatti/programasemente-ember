@@ -1,12 +1,12 @@
 /* eslint-env node */
 // 'use strict';
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   let ENV = {
     adobeApiKey: "7394093839fe4f61a2a765cf77c2a8e8",
     //adobeApiKey: "ae3ff8c6c8214657b328029d60e02a44",
     // adobeApiKey: "03bbcac81d1a42679a353e4db5029d84",
-    
+
     modulePrefix: 'semente-web-app',
     environment,
     rootURL: '/',
@@ -49,8 +49,6 @@ module.exports = function(environment) {
     ENV.APP.DOMAIN = "porto.com";
     ENV.APP.host = 'https://localhost:44300';
     // ENV.APP.host = 'https://semente-api.azurewebsites.net';
-    // ENV.APP.host = 'https://sementeapi.minimo.com.br';
-    // ENV.APP.host = 'http://sementeapidev.minimo.com.br';
   }
 
   ENV['ember-simple-auth-token'] = {

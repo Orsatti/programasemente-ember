@@ -13,18 +13,18 @@
   position: relative;
   justify-content: center;
   background-color: #fff;
- // flex-direction: column;
+  width: 100%;
   
 
-  @include media('<=lg') {
-    justify-content: space-between;
-    padding: 1.8rem;
+  @include media('<xl') {
     
+    justify-content: space-around;
+    padding: 1.8rem;
   }
-
+  
 
   &__wrapper {
-    width: 80%;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: space-evenly;

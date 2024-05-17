@@ -18,14 +18,18 @@
         {{#each acompanhamentoSistemas.acompanhamentoSistemasPlataforma as |sistema|}}
             <div class="box-area__divisor"></div>
             <div class="box-area__item1">
-                {{#if (equalstr sistema.sistema.name 'CoreSkills')}}
+                {{#if (equalstr sistema.sistema.id '1')}}
                     <h2 class="box-area__title-4">Formação de professores</h2>
                 {{else}}
-                    {{#if (equalstr sistema.sistema.name 'Programa.Semente')}}
-                        <h2 class="box-area__title-4">Portal</h2>
-                    {{else}}
+                {{#if (equalstr sistema.sistema.id '2')}}
+                    <h2 class="box-area__title-4">Portal</h2>
+                {{else}}
+                {{#if (equalstr sistema.sistema.id '3')}}
+                    <h2 class="box-area__title-4">Plataforma Semente</h2>
+                {{else}}
                         <h2 class="box-area__title-4">{{sistema.sistema.name}}</h2>
-                    {{/if}}
+                {{/if}}
+                {{/if}}
                 {{/if}}
                 <p>Alunos: <span>{{sistema.nrAlunos}}</span></p>
                 <p>Professores: <span>{{sistema.nrProfessores}}<span class="tooltip">

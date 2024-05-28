@@ -1,6 +1,6 @@
 <aside id="lote_user_modal" class="modal modal--is-show">
     <div class="modal__overlayer"></div>
-    <div class="modal__content modal__content--lg mt-max">
+    <div class="modal__content modal__content--lg">
         <div class="institutions__mass-enroll-loader-container animated" id="spinner-importar-lote">
             <img src="/assets/img/lote-loader.gif" id="img-lote">
             <span class="institutions__mass-enroll-loader-message">Processando...</span>
@@ -141,26 +141,26 @@
 
                 {{#if preProcessamento}}
                     <div class="institutions__mass-enroll__header">
-                    <span>Diagnóstico do pré-processamento</span>
+                        <span>Diagnóstico do pré-processamento</span>
                     </div>
-                    <table class="table table--striped table--mass-enroll table--mt">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th class="table__file" scope="col">Erros na planilha</th>
-                                <th class="table__users" scope="col">Linha</th>
-                            </tr>
-                        </thead>
-                        <tbody class="gersistema-user-list-box">
-                        {{#each preProcessamentoData as |lista|}}
-                            {{#if (equalstr lista.type "Planilha")}}
+                    {{#if (isbigger errosPlanilha.length '0')}}
+                        <table class="table table--striped table--mass-enroll table--mt">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <td class="table__file {{if (equalstr lista.erro 'Nenhum erro foi identificado') 'bg-success-10 color-success-50' 'bg-error-10 color-error-40'}}">{{lista.erro}}</td>
-                                    <td class="table__users {{if (equalstr lista.linha '0') 'bg-success-10 color-success-50' 'bg-error-10 color-error-40'}}">{{lista.linha}}</td>
+                                    <th class="table__file" scope="col">Erro</th>
+                                    <th class="table__users" scope="col">Linha</th>
                                 </tr>
-                            {{/if}}
-                        {{/each}}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="gersistema-user-list-box">
+                            {{#each errosPlanilha as |erro|}}
+                                <tr>
+                                    <td class="table__file {{if (equalstr erro.erro 'Nenhum erro foi identificado') 'bg-success-10 color-success-50' 'bg-error-10 color-error-40'}}">{{erro.erro}}</td>
+                                    <td class="table__users {{if (equalstr erro.linha '0') 'bg-success-10 color-success-50' 'bg-error-10 color-error-40'}}">{{erro.linha}}</td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    {{/if}}
                     
                     <div class="institutions__mass-enroll__header">
                         <span>Prévia de alunos e turmas nesta carga</span>
@@ -169,45 +169,62 @@
                         <thead class="thead-dark">
                             <tr>
                                 <th class="table__file" scope="col">Instituição</th>
-                                <th class="table__import" scope="col">Ano</th>
-                                <th class="table__users" scope="col">Turma</th>
-                                <th class="table__users" scope="col">Alunos</th>
+                                <th class="table__users" scope="col">Contratados</th>
+                                <th class="table__users" scope="col">Cadastrados</th>
+                                <th class="table__users" scope="col">Planilha</th>
                             </tr>
                         </thead>
                         <tbody class="gersistema-user-list-box">
-                        {{#each preProcessamentoData as |lista|}}
-                            {{#if (equalstr lista.type "Turma")}}
-                                <tr>
-                                    <td class="table__file">{{lista.instituicao}}</td>
-                                    <td class="table__import">{{lista.plataformaAno}}</td>
-                                    <td class="table__users">{{lista.plataformaTurma}}</td>
-                                    <td class="table__users">{{lista.alunos}}</td>
-                                </tr>
-                            {{/if}}
-                        {{/each}}
-                        </tbody>
-                    </table>
-                    <div class="institutions__mass-enroll__header">
-                        <span>Prévia detalhada da carga</span>
-                    </div>
-                    <table class="table table--striped table--mass-enroll table--mt">
-                        <thead class="thead-dark">
+                        {{#each infosInstituicao as |inst|}}
                             <tr>
-                                <th class="table__file" scope="col">Nome</th>
-                                <th class="table__import" scope="col">Erro</th>
-                                <th class="table__users" scope="col">Perfil</th>
-                                <th class="table__users" scope="col">Linha</th>
+                                <td class="table__file">{{inst.instituicao}}</td>
+                                <td class="table__users">{{inst.maxAlunos}}</td>
+                                <td class="table__users">{{inst.alunosCadastrados}}</td>
+                                <td class="table__users">{{inst.alunosPlanilha}}</td>
                             </tr>
-                        </thead>
-                        <tbody class="gersistema-user-list-box">
-                        {{#each preProcessamentoData as |lista|}}
-                            {{#if (equalstr lista.type "Pessoa")}}
-                                <tr>
-                                    <td class="table__file">{{lista.nome}}</td>
-                                    <td class="table__import">{{lista.erro}}</td>
-                                    <td class="table__users">{{lista.perfil}}</td>
-                                    <td class="table__users">{{lista.linha}}</td>
-                                </tr>
+
+                            {{#if (isbigger inst.turmas.length '0')}}
+                                <table class="table table--striped table--mass-enroll table--mt">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th class="table__file" scope="col">Nome</th>
+                                            <th class="table__import" scope="col">Ano</th>
+                                            <th class="table__users" scope="col">Alunos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="gersistema-user-list-box">
+                                    {{#each inst.turmas as |turma|}}
+                                        <tr>
+                                            <td class="table__file">{{turma.plataformaTurma}}</td>
+                                            <td class="table__import">{{turma.plataformaAno}}</td>
+                                            <td class="table__users">{{turma.alunos}}</td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            {{/if}}
+
+                            {{#if (isbigger inst.pessoas.length '0')}}
+                                <table class="table table--striped table--mass-enroll table--mt">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th class="table__file" scope="col">Nome</th>
+                                            <th class="table__users" scope="col">Perfil</th>
+                                            <th class="table__import" scope="col">Erro</th>
+                                            <th class="table__users" scope="col">Linha</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="gersistema-user-list-box">
+                                    {{#each inst.pessoas as |pessoa|}}
+                                        <tr>
+                                            <td class="table__file">{{pessoa.nome}}</td>
+                                            <td class="table__users">{{pessoa.perfil}}</td>
+                                            <td class="table__import">{{pessoa.erro}}</td>
+                                            <td class="table__users">{{pessoa.linha}}</td>
+                                        </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
                             {{/if}}
                         {{/each}}
                         </tbody>

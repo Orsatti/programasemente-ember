@@ -48,7 +48,7 @@
                     </span>
                     
                     <span class="institutions__mass-enroll-step"></span>
-                    {{#if preProcessamento}}
+                    {{#if (and preProcessamento (equalstr errosPlanilha.length '0'))}}
                     <div class="flex flex-col justify-content-end">
                         <button class="btn" type="submit" {{action 'importarLote' }}>Processar</button>
                     </div>
@@ -140,10 +140,10 @@
                 {{/if}}
 
                 {{#if preProcessamento}}
-                    <div class="institutions__mass-enroll__header">
-                        <span>Diagnóstico do pré-processamento</span>
-                    </div>
                     {{#if (isbigger errosPlanilha.length '0')}}
+                        <div class="institutions__mass-enroll__header">
+                            <span>Diagnóstico do pré-processamento</span>
+                        </div>
                         <table class="table table--striped table--mass-enroll table--mt">
                             <thead class="thead-dark">
                                 <tr>

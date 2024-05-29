@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .form {
   $this: &;
 
@@ -174,6 +176,8 @@
       width: 40px;
     }
 
+    
+
     // Douglas
     &__link {
       font-size: 1rem;
@@ -236,8 +240,9 @@
         &::after {
           @include icon;
 
-          content: $icon-search;
-          font-size: $font-size--sm;
+          content: url(/assets/img/btn-buscar.png);
+          font-size: 0.8rem;
+          font-family: "Poppins", sans-serif;
           padding: .25rem .15rem .15rem;
           pointer-events: none;
           position: absolute;

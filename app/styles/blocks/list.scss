@@ -80,6 +80,20 @@
 
   }
 
+  &__etiqueta{
+    background-color: #B5B5B5;
+    font-size: .8rem;
+    color: #fff;
+    padding: .4rem;
+    width: 6rem;
+    display: block;
+    text-align: center;
+    line-height: 0.7rem;
+    height: 1.5rem;
+    position: absolute;
+    right: 11rem;
+  }
+
   &--striped {
 
     > li {
@@ -87,11 +101,11 @@
       padding: $distance--md $distance--xs;
 
       @include media('>sm') {
-        padding: $distance--md;
+        padding: 0.8rem;
       }
 
       &:nth-child(odd) {
-        background-color: $stripe-bg-color;
+        background-color: #F7FAF1;
       }
 
     }
@@ -110,6 +124,14 @@
 
     }
 
+  }
+
+  &__title-institutions{
+    font-size: 1.3rem;
+    text-transform:capitalize;
+    color: #808080 !important;
+    text-decoration: none !important;
+    font-weight: 600;
   }
 
 }

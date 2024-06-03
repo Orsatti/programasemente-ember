@@ -115,22 +115,22 @@
               <h2 class="title-4">{{selectedAno.name}}<span class="fs--xs fw--3 fs-i color-blue-navy-20"> ({{aulasFiltradas.length}}  {{if isBloco 'blocos' 'aulas'}})</span></h2>
             </div>
             
-            <a class="l-dots-between__livros--botao" href="https://sementeportal.blob.core.windows.net/plataforma/{{selectedAno.name}}/programacao.pdf" target="_blank">
-              <div>
-                <span class="icon-paperclip m-right--xxs"></span>
-                <span>Programação</span>
-              </div>
-            </a>
-            {{#each livros as |l|}}
-              {{#unless (and pessoa.instituicao.vendaDireta (equalstr pessoa.role 'aluno'))}}
+            {{#unless (and pessoa.instituicao.vendaDireta (equalstr pessoa.role 'aluno'))}}
+              <a class="l-dots-between__livros--botao" href="https://sementeportal.blob.core.windows.net/plataforma/{{selectedAno.name}}/programacao.pdf" target="_blank">
+                <div>
+                  <span class="icon-paperclip m-right--xxs"></span>
+                  <span>Programação</span>
+                </div>
+              </a>
+              {{#each livros as |l|}}
                 <li class=" l-dots-between__livros--botao" {{action "openPdfViewer" l}}>
                   <div>
                     <span class="icon-paperclip m-right--xxs"></span>
                     <span>Livro {{l.plataformaAno.name}} | {{#if (equalstr l.perfil 'instrutor')}}Professor{{else}}{{l.perfil}}{{/if}}</span>
                   </div>
                 </li>
-              {{/unless}}
-            {{/each}}
+              {{/each}}
+            {{/unless}}
           </div>
         </hgroup>
 

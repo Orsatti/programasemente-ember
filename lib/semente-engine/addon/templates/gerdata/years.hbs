@@ -9,58 +9,15 @@
       <ul>
         <h5 class="title-platano">• {{plataformaAno.name}}</h5>
         <li>
-          {{#if (notequalstr segmento.idx '6')}}
-            {{#if (notequalstr plataformaAno.idx '17')}}
-              <div class="checkbox">
-                <input class="j-validate-aplicador-child checkbox__input" 
-                  type="checkbox"
-                  id="plat_ano{{plataformaAno.id}}_portal" 
-                  checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '1') "checked" '' }} 
-                  onchange={{action (action "openModal" plataformaAno '1' 'false') value='target.checked' }} 
-                >
-                <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_portal">Portal</label>
-              </div>
-            {{/if}}
-          {{/if}}
-
-          {{#if (and (notequalstr segmento.idx '1') acessoS)}}
-            {{#if (and (equalstr segmento.idx '5')(notequalstr plataformaAno.idx '17'))}}
-            {{else}}
-              <div class="checkbox">
-                <input class="j-validate-aplicador-child checkbox__input" 
-                  type="checkbox"
-                  id="plat_ano{{plataformaAno.id}}_s" 
-                  checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '2' 'false') "checked" '' }}
-                  onchange={{action (action "openModal" plataformaAno '2' 'false') value='target.checked' }} 
-                >
-                <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_s">S</label>
-              </div>
-
-              {{#if (and (or (equalstr segmento.idx '3') (equalstr segmento.idx '4')) acessoEssencial)}}
-                <div class="checkbox">
-                  <input class="j-validate-aplicador-child checkbox__input" 
-                    type="checkbox"
-                    id="plat_ano{{plataformaAno.id}}_essencial" 
-                    checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '2' 'true') "checked" '' }}
-                    onchange={{action (action "openModal" plataformaAno '2''true') value='target.checked' }} 
-                  >
-                  <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_essencial">Essencial</label>
-                </div>
-              {{/if}}
-            {{/if}}
-          {{/if}}
-
-          {{#if (and (equalstr segmento.idx '6') acessoAp)}}
             <div class="checkbox">
               <input class="j-validate-aplicador-child checkbox__input" 
                 type="checkbox"
-                id="plat_ano{{plataformaAno.id}}_ap" 
-                checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '3') "checked" '' }}
-                onchange={{action (action "openModal" plataformaAno '3' 'false') value='target.checked' }} 
+                id="plat_ano{{plataformaAno.id}}" 
+                checked={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '1') "checked" '' }} 
+                onchange={{action (action "openModal" plataformaAno) value='target.checked' }} 
               >
-              <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}_ap">AP</label>
+              <label class="checkbox__label" for="plat_ano{{plataformaAno.id}}">Habilitado</label>
             </div>
-          {{/if}}
         </li>
       </ul>
       {{/each}}

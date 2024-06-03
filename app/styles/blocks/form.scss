@@ -256,6 +256,14 @@
           padding-right: $distance--xl;
         }
 
+        input{
+          background-color: #fff;
+          color:#808080;
+          border-bottom: 1px solid #CFCFCF;
+          width: 25rem;
+          font-size: 0.8rem;
+        }
+
       }
 
       &:not[class*='vertical'] {
@@ -291,6 +299,8 @@
 
     }
 
+    
+
     &__input-container {
       position: relative;
 
@@ -323,6 +333,40 @@
 
       }
 
+    }
+
+    &__tipo-instituicao{
+      font-size: 0.9rem;
+      width: 40%;
+      margin-top: 0.8rem;
+      color: #808080;
+      margin-left: 0rem;
+      p{
+        display: contents;
+      }
+
+      label{
+        width: 3rem;
+        display: inline-block;
+      }
+
+      input{
+        vertical-align: text-top;
+      }
+
+      @include media('<sm') {
+        width: 95% !important;
+       // margin-left: 0rem !important;
+      }
+
+      @include media('<md') {
+        width: 60%;
+        margin-left: 0rem !important;
+      }
+
+      @include media('<lg') {
+        margin-left: 2rem;
+      }
     }
 
   }

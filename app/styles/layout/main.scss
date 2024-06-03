@@ -119,6 +119,15 @@
     margin-bottom: $distance--xl;
   }
 
+  &__search-instituicao {
+    width: 40%;
+
+    @include media('<sm') {    width: 95%;
+      margin-top: 3rem;
+      width: 95%;
+    }
+  }
+
   &__title {
     @include title-1;
 

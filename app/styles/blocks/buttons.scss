@@ -95,6 +95,37 @@
     margin-left: $distance--xxs;
   }
 
+  &__nova{
+    &--instituicao{
+      background-color: #fff;
+      color: #8AB925;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      position: absolute;
+      right: 5rem;
+      top: 3rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 9;
+
+      @include media('<md') {
+        right: 1rem;
+      top: 1rem;
+      }
+
+      @include media('<lg') {
+        right: 1rem;
+      }
+
+      &:hover {
+        background-color: #8AB925;
+        color: #fff;
+        border: none;
+      }
+    }
+  }
+
   &__icon {
     font-weight: bold;
     opacity: .65;

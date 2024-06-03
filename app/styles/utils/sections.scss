@@ -36,7 +36,22 @@
                 }
              }
         }
+
+        &--instituicao{
+            display: flex;
+
+            @include media('<md') {
+                display: contents;
+              }
+
+              @include media('<sm') {
+                display: contents;
+                margin-top: 2rem !important;
+              }
+        }
     }
+
+
 
     &__subsection {
         > * {

@@ -24,32 +24,36 @@
 
         // }
 
-        margin-top: 0rem;
-        overflow: hidden;
 
         &--adm{
-            width: 50%;
-            position: absolute;
-            right: 5rem;
-            top: 3.8rem;
+            input{
+                background-color: #fff;
+                border-bottom: 1px solid #CFCFCF;
+                font-size: .8rem;
+                width: 20rem;
 
-            @include media('<sm') {
-              width: 100%;
-              right: 0;
-              top: 5rem;
-            }
+                & ::after{
+                    content: 'Buscar';
+                    color: aqua;
+                }
+             }
+        }
+
+        &--instituicao{
+            display: flex;
 
             @include media('<md') {
-              right: 0;
-            }
+                display: contents;
+              }
 
-            @include media('<lg') {
-              right: 0;
-              top: 5.8rem;
-
-            }
+              @include media('<sm') {
+                display: contents;
+                margin-top: 2rem !important;
+              }
         }
     }
+
+
 
     &__subsection {
         > * {

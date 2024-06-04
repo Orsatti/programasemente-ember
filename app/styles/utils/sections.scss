@@ -21,37 +21,7 @@
         //     }
 
         // }
-
-
-        &--adm{
-            input{
-                background-color: #fff;
-                border-bottom: 1px solid #CFCFCF;
-                font-size: .8rem;
-                width: 20rem;
-
-                & ::after{
-                    content: 'Buscar';
-                    color: aqua;
-                }
-             }
-        }
-
-        &--instituicao{
-            display: flex;
-
-            @include media('<md') {
-                display: contents;
-              }
-
-              @include media('<sm') {
-                display: contents;
-                margin-top: 2rem !important;
-              }
-        }
     }
-
-
 
     &__subsection {
         > * {

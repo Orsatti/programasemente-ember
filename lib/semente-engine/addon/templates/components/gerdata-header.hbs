@@ -1,6 +1,10 @@
 {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id '9')))}}
   <div class="flex flex-row m-top--md">
-    <div class="mt1">
+   
+    <h1 class="main__title main__title--adm animated fadeInRightShort">
+      Administração - {{instituicao.name}}
+    </h1>
+     <div class="mt1">
       {{#link-to 'gersistema'}}
         <button class="main__back btn btn--link color-blue-navy-60 animated fadeInLeftShort faster"
           id="back-person-specific_old" type="button">
@@ -9,9 +13,6 @@
         </button>
       {{/link-to}}
     </div>
-    <h1 class="main__title animated fadeInLeftShort faster d100 m-left--lg m-top--xxs m-bottom--xs">
-      Administração - {{instituicao.name}}
-    </h1>
   </div>
 {{/if}}
 
@@ -19,23 +20,23 @@
   <div class="tabs animated fadeInLeftShort faster d250">
     {{#if (equalstr pessoa.role 'admin')}}
       {{#link-to 'gerdata.informations' instituicao.id }}
-        <button class="report__tab tabs__tab">
+        <button class="report__tab tabs__tab-adm">
           <span>Informações</span>
         </button>
       {{/link-to}}
       {{#link-to 'gerdata.years' instituicao.id }}
-        <button class="report__tab tabs__tab {{if years 'tabs__tab--is-active'}}">
+        <button class="report__tab tabs__tab-adm {{if years 'tabs__tab--is-active'}}">
           <span>Anos</span>
         </button>
       {{/link-to}}
     {{/if}}
     {{#link-to 'gerdata.classes' instituicao.id }}
-      <button class="report__tab tabs__tab {{if classes 'tabs__tab--is-active'}}">
+      <button class="report__tab tabs__tab-adm {{if classes 'tabs__tab--is-active'}}">
         <span>Turmas</span>
       </button>
     {{/link-to}}
     {{#link-to 'gerdata.users' instituicao.id }}
-      <button class="report__tab tabs__tab {{if users 'tabs__tab--is-active'}}">
+      <button class="report__tab tabs__tab-adm {{if users 'tabs__tab--is-active'}}">
         <span>Usuários</span>
       </button>
     {{/link-to}}

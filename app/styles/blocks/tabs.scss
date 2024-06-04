@@ -69,6 +69,37 @@
 
     }
 
+    &__tab-adm {
+        border-bottom: 3px solid transparent;
+        cursor: pointer;
+        display: inline-block;
+        font-size: $font-size--sm;
+        font-weight: $font-weight-4;
+        padding: 0.1rem;
+        margin: 0 1rem;
+        width: auto;
+        text-align: center;
+        transition: 200ms cubic-bezier(.455, .03, .515, .955); // IE fallback
+        transition: 200ms var(--ease-in-out-quad);
+
+        > * { opacity: .75; }
+
+        &--is-active {
+            border-bottom: 3px solid $global-nav-active-bg-color;
+            cursor: unset;
+            
+
+            > * { opacity: 1; }
+
+        }
+
+        &:hover:not([class*='--is-active']) {
+            background-color: $gray-10;
+            
+        }
+
+    }
+
     &__not-tab {
         margin-bottom: $distance--sm;
     }

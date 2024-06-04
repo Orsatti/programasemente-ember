@@ -128,6 +128,18 @@
       margin-right: $distance--sm;
     }
 
+    &--adm{
+      font-size: 1.3rem;
+      color: grey;
+      font-weight: 700;
+      margin-bottom: 0;
+      margin-left: auto;
+      margin-right: 3rem;
+      width: 50%;
+      text-align: right;
+
+    }
+
   }
 
   &__subtitle {

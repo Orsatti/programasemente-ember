@@ -60,4 +60,40 @@
         outline: 4px solid crimson;
     }
 
+
+
+
+    &_plataforma{
+        padding: .25rem;
+        appearance: none;
+        background-color: #fff;
+        margin: 0;
+        margin-right: 0.2em;
+        font: inherit;
+        color: #A3C94B;
+        border: 0.10em solid rgb(207, 211, 213);
+        border-radius: 0.15em;
+        display: inline-flex;
+        place-content: center;
+
+        &::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            background-color: #A3C94B;
+            transform-origin: bottom left;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        &:checked::before {
+            transform: scale(1);
+        }
+
+        &:focus {
+            outline: max(2px, 0.15em) solid rgb(207, 211, 213);
+            outline-offset: max(2px, 0.15em);
+        }
+    }
 }

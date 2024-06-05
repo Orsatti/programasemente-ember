@@ -46,4 +46,5 @@ export default DS.Model.extend({
     calendario: DS.belongsTo('calendario', {async: true}),
     vendaDireta: DS.attr(),
     instituicaoPlataformaAnoSistema: DS.hasMany('instituicao-plataforma-ano-sistema', {async: true}),
+    status: DS.attr(),
 });

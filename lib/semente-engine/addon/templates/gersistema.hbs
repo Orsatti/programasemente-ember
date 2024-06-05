@@ -29,44 +29,19 @@
           </div>
         </div>
       </form>
-      <form class="form-group__tipo-instituicao">
-     <p>Tipo de instituição:</p>   
-  <input type="checkbox" value="Trial">
-  <label for="vehicle1"> Trial</label>
-  <input type="checkbox" value="Piloto">
-  <label for="vehicle2"> Piloto</label>
-  <input type="checkbox" value="Cliente">
-  <label for="vehicle3">Cliente</label>
-</form>
+      <form id="status" class="form-group__tipo-instituicao">
+        <p>Tipo de instituição:</p>   
+        <input class="checkbox_plataforma ml-1" id="cliente" name="filtroinst" type="radio" value="cliente" {{action 'updateStatus' 'cliente' on='change'}} >
+        <label class="mr-2" for="cliente">Cliente</label>
+        <input class="checkbox_plataforma" id="piloto" name="filtroinst" type="radio" value="piloto" {{action 'updateStatus' 'piloto' on='change'}}>
+        <label class="mr-2" for="piloto">Piloto</label>
+        <input class="checkbox_plataforma" id="trial" name="filtroinst" type="radio" value="trial" {{action 'updateStatus' 'trial' on='change'}}>
+        <label for="trial">Trial</label>
+      </form>
     </section>
 
-    <ul id="matchDisplay" class="list list--striped animated fadeInLeftShort faster d750" style="display:none;">
-      {{#each matchInsts as |inst|}}
-      <li class="l-devil-albatross">
-        {{#if (equalstr pessoaLogged.role "admin")}}
-          {{#link-to 'gerdata.informations' inst.id}}
-            <a class="list__title--instituicao ">
-              <span class="btn__label">{{inst.name}}</span>
-            </a>
-          {{/link-to}}
-        {{else}}
-          {{#link-to 'gerdata.users' inst.id}}
-            <a class="list__title--instituicao ">
-              <span class="btn__label">{{inst.name}}</span>
-            </a>
-          {{/link-to}}
-        {{/if}}
-        <span class="switch switch--institutions flex-none m-left--auto m-right--auto">
-          <input class="switch__checkbox" id="activeInstId{{inst.id}}" type="checkbox" disabled="disabled" checked={{inst.enabled}}>
-          <label class="switch__label" for="activeInstId{{inst.id}}">
-          </label>
-        </span>
-      </li>
-      {{/each}}
-    </ul>
-
     <ul id="modelInstList" class="list list--striped animated fadeInLeftShort faster d100">
-      {{#each model.instituicoes as |inst|}}
+      {{#each matchInsts as |inst|}}
       <li class="l-devil-albatross list__linhas">
         {{#if (equalstr pessoaLogged.role "admin")}}
           {{#link-to 'gerdata.informations' inst.id}}
@@ -81,11 +56,10 @@
             </a>
           {{/link-to}}
         {{/if}}
-        <span class="list__etiqueta">Piloto</span>
+        <span class="list__etiqueta">{{inst.status}}</span>
         <span class=" switch switch--institutions flex-none m-left--auto m-right--auto">
           <input class="switch__checkbox" id="activeInstId{{inst.id}}" type="checkbox" disabled="disabled" checked={{inst.enabled}}>
-          <label class="switch__label switch__label--habilitado" for="activeInstId{{inst.id}}">
-          </label>
+          <span class="switch__label {{if inst.enabled 'switch__label--habilitado' 'switch__label--desabilitado'}}"></span>
         </span>
       </li>
       {{/each}}

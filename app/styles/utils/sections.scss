@@ -106,6 +106,17 @@
         border: none;
     }
 
+    .btn-edit-turma{
+      background-image: url(/assets/img/confirmation.png);
+      width: 1rem;
+      height: 1rem;
+      background-size: 80%;
+      background-repeat: no-repeat;
+      margin-left: 0.3rem;
+      margin-top: 0.3rem;
+      position: static;
+    }
+
     @include media('<sm') {
       width: 100%;
      }

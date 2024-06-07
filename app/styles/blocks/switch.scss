@@ -65,11 +65,13 @@
         &--habilitado::before{
             content: "habilitada";
             text-align: center;
-            padding: .8rem;
+            padding: 0.5rem .8rem;
             background-color: #8AB925 !important;
             color: #fff;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            width: 5rem;
+            display: block;
+            font-size: .8rem;
             vertical-align: text-bottom;
         }
         

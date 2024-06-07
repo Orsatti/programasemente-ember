@@ -1,21 +1,3 @@
-{{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id '9')))}}
-  <div class="flex flex-row m-top--md">
-   
-    <h1 class="main__title main__title--adm animated fadeInRightShort">
-      Administração - {{instituicao.name}}
-    </h1>
-     <div class="mt1">
-      {{#link-to 'gersistema'}}
-        <button class="main__back btn btn--link color-blue-navy-60 animated fadeInLeftShort faster"
-          id="back-person-specific_old" type="button">
-          <span class="icon-arrow-left"></span>
-          <span class="btn__label">voltar</span>
-        </button>
-      {{/link-to}}
-    </div>
-  </div>
-{{/if}}
-
 <section class="sections__section flow-xl">
   <div class="tabs animated fadeInLeftShort faster d250">
     {{#if (equalstr pessoa.role 'admin')}}
@@ -46,7 +28,22 @@
       </button>
     {{/link-to}} --}}
   </div>
-
-
-
 </section>
+{{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id '9')))}}
+  <div class="flex flex-row sections__section--adm">
+   
+    <h1 class="main__title main__title--adm animated fadeInRightShort">
+      Administração - {{instituicao.name}}
+    </h1>
+     <div>
+      {{#link-to 'gersistema'}}
+        <button class="main__back--adm animated fadeInLeftShort faster"
+          id="back-person-specific_old" type="button">
+          <span class="icon-arrow-left"></span>
+          <span class="btn__label">voltar</span>
+        </button>
+      {{/link-to}}
+    </div>
+  </div>
+{{/if}}
+

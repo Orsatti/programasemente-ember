@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .sections {
     &__section {
         // margin-bottom: $distance--lg;
@@ -21,6 +23,32 @@
         //     }
 
         // }
+
+        margin-top: 2rem;
+        overflow: hidden;
+
+        &--adm{
+            width: 50%;
+            position: absolute;
+            right: 5rem;
+            top: 3.8rem;
+
+            @include media('<sm') {
+              width: 100%;
+              right: 0;
+              top: 5rem;
+            }
+
+            @include media('<md') {
+              right: 0;
+            }
+
+            @include media('<lg') {
+              right: 0;
+              top: 5.8rem;
+
+            }
+        }
     }
 
     &__subsection {
@@ -29,4 +57,191 @@
         }
     }
 
+
+
 }
+
+.transition, p {
+    transition: all 0.25s ease-in-out;
+  }
+
+  .cont-accordion-adm{
+    display: flex;
+    @include media('<sm') {
+     display: block;
+    }
+  }
+
+  .cont-accordion-adm__anos{
+    width: 18%;
+    position: relative;
+    margin: 1rem .5rem;
+
+    .btn_icon_edit {
+        color: #8AB925;
+        margin-left: .3rem;
+        font-weight: 500;
+        font-size: .9rem;
+        cursor: pointer;
+        margin-top: .2rem;
+    }
+
+    .btn--add-turma{
+        text-transform: lowercase;
+        border: none;
+        font-size: .65rem;
+        height: 0.7rem;
+        background-color: #8AB925;
+        border-radius: 20rem;
+        width: fit-content;
+        padding: 0.4rem 0.8rem;
+        color: #fff;
+        top: 0.3rem;
+        left: 4rem;
+        display: inline-flex;
+    }
+  
+    .btn--add-turma>[class*=__icon] {
+        font-size: 0.5rem;
+        border: none;
+    }
+
+    @include media('<sm') {
+      width: 100%;
+     }
+
+  }
+  
+ .cont-accordion-adm p {
+    color: rgba(48, 69, 92, 0.8);
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    max-height: 800px;
+    opacity: 1;
+    transform: translate(0, 0);
+    z-index: 2;
+    display: contents;
+  }
+
+  .accordion-adm{
+    @include media('<sm') {
+      margin-top: 5rem;
+    }
+  }
+  
+  .accordion-adm ul {
+    list-style: none;
+    perspective: 900;
+    padding: 0;
+    margin: 0;
+
+  }
+  .accordion-adm ul li {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 4px;
+    border: 1px solid rgb(255, 255, 255);
+  }
+  
+  .accordion-adm ul li .abre-fecha:before, .accordion-adm ul li .abre-fecha:after {
+    position: absolute;
+    border-radius: 100%;
+  }
+
+  .accordion-adm ul li .abre-fecha:after {
+    content: '-';
+    right: 0.4rem;
+    top: 0.5rem;
+  }
+  .accordion-adm ul li input[type=checkbox] {
+    position: absolute;
+    cursor: pointer;
+    width: 100%;
+    z-index: 1;
+    opacity: 0;
+  }
+  .accordion-adm ul li input[type=checkbox]:checked ~ p {
+    margin-top: 0;
+    max-height: 0;
+    opacity: 0;
+    transform: translate(0, 50%);
+  }
+
+  .accordion-adm ul li input[type=checkbox]:checked ~ .abre-fecha:after {
+   content: '+';
+   position: absolute;
+   right: 0.3rem;
+   top: 0.5rem;
+ }
+
+  .accordion-adm__box{
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #8AB925;
+    position: relative;
+    color: #808080;
+    font-family: poppins, sans-serif;
+
+    .abre-fecha{
+        position: absolute;
+        right: 1rem;
+        top: 0.5rem;
+        background-color: #8AB925;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 100%;
+        text-align: center;
+        line-height: 1rem;
+        font-weight: 600;
+        font-size: 2rem;
+        font-style: normal;
+        color: #fff;
+    }
+
+    .title-segmento{
+        font-family: poppins, sans-serif;
+        font-size: 1.12rem;
+        font-weight: 600;
+    }
+
+    .title-platano{
+        font-size: 0.8rem;
+        width: fit-content;
+        display: inline-block;
+    }
+
+    .title-platturma{
+    margin: 0;
+    padding: 0;
+    }
+  }
+  
+  @keyframes flipdown {
+    0% {
+      opacity: 0;
+      transform-origin: top center;
+      transform: rotateX(-90deg);
+    }
+    5% {
+      opacity: 1;
+    }
+    80% {
+      transform: rotateX(8deg);
+    }
+    83% {
+      transform: rotateX(6deg);
+    }
+    92% {
+      transform: rotateX(-3deg);
+    }
+    100% {
+      transform-origin: top center;
+      transform: rotateX(0deg);
+    }
+  }
+
+

@@ -3,7 +3,7 @@
   $container-diff: 8rem;
 
   background-color: $white;
-  border-color: $gray-10;
+  border-color: #fff;
   border-style: solid;
   border-width: 0 1px;
   margin-left: auto;
@@ -40,6 +40,14 @@
 
   &__back {
     margin-left: -$distance--sm;
+
+    &--adm{
+      color:#8AB925 ;
+      background-color: #fff;
+      border-radius: 10px;
+      padding:0.5rem 0.8rem;
+      font-size: 0.8rem;
+    }
   }
 
   &__header {
@@ -130,12 +138,12 @@
 
     &--adm{
       font-size: 1.3rem;
-      color: grey;
+      color: #808080;
       font-weight: 700;
       margin-bottom: 0;
       margin-left: auto;
-      margin-right: 3rem;
-      width: 50%;
+      margin-right: 1rem;
+      width: 75%;
       text-align: right;
 
     }

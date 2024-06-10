@@ -81,19 +81,13 @@
     <div class="l-dots-between">
         <header class="l-dots-between__side">
             <form class="flex flex-col flow-md" autocomplete="off" aria-autocomplete="none">
-                <div class="form-group">
-                    <span class="switch switch--users">
-                        <input class="switch__checkbox" type="checkbox" id="only-enabled" checked="checked" onchange={{action 'setEnableds'}}>
-                         <label class="switch__label switch__label--habilitado" for="only-enabled">
-                            <span class="switch__inner "></span>
-                        </label>
-                    </span>
-                </div>
-                
-                
-
-
-
+                <span class="switch switch--institutions">
+            <input type="checkbox" id="isEscola" class="switch__checkbox isEscola" data-gtm-form-interact-field-id="1">
+            <label for="isEscola" class="switch__label">
+                <span class="switch__inner"></span>
+                <span class="switch__head"></span>
+            </label>
+        </span>
 
                 <div class="form-group">
                     <label class="form-group__label" for="search">Busca</label>

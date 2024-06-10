@@ -38,32 +38,31 @@
     }
 
     &__label {
-        background-color: $form-bg-color;
+       // background-color: $form-bg-color;
         border-radius: $radius;
         box-shadow: inset $form-shadow;
         cursor: pointer;
         display: block;
-        height: $switch-height;
+        height: 1.5rem;
         overflow: hidden;
+        padding: 0 0rem 0 2rem;
         position: relative;
         transform: translate3d(0, 0, 0); // Evita problema de renderização
 
-        [disabled] + & {
-            background-color: $gray-30;
-            cursor: not-allowed;
-        }
 
-        &--habilitado::before {
-            text-align: center;
-            padding: .5rem .8rem;
-            background-color: #8AB925 !important;
+     //essa clase troca o habilitado e desabilitado
+        &--desabilitado::before{
+            content: 'desabilitada';
+            background-color: grey;
             color: #fff;
+            text-align: center;
+            padding: 0.6rem;
             text-transform: uppercase;
-            width: 5rem;
-            display: block;
-            font-size: .8rem;
+            font-size: 0.8rem;
             vertical-align: text-bottom;
         }
+
+        
 
     }
 
@@ -80,8 +79,6 @@
 
         width: 100%;
     }
-
-    
 
     &__inner::before,
     &__inner::after {
@@ -107,6 +104,8 @@
         text-align: right;
         transform: translate(50%, -50%);
     }
+
+    
 
     &__head {
         background-color: $switch-head-bg-color-off;
@@ -159,6 +158,11 @@
             content: 'desabilitada';
             transform: translate(54%, -50%);
         }
+
+        @include media('<sm') {
+            left: 7rem;
+
+          }
 
     }
 

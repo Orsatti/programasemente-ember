@@ -48,11 +48,35 @@
         position: relative;
         transform: translate3d(0, 0, 0); // Evita problema de renderização
 
-        [disabled] + & {
-            background-color: $gray-30;
-            cursor: not-allowed;
+        // [disabled] + & {
+        //     background-color: $gray-30;
+        //     cursor: not-allowed;
+        // }
+
+        //essa clase troca o habilitado e desabilitado
+        &--desabilitado::before{
+            content: 'desabilitada';
+            background-color: grey;
+            color: #fff;
+            text-align: center;
+            padding: 0.6rem;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            vertical-align: text-bottom;
         }
 
+        &--habilitado::before{
+            content: "habilitada";
+            text-align: center;
+            padding: 0.5rem .8rem;
+            background-color: #8AB925 !important;
+            color: #fff;
+            text-transform: uppercase;
+            width: 5rem;
+            display: block;
+            font-size: .8rem;
+            vertical-align: text-bottom;
+        }
     }
 
     &__inner {

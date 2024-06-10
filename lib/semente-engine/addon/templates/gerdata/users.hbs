@@ -3,7 +3,7 @@
 <div style="display: none;">{{acompanhamentoSistemas}}</div>
 
 {{#if (equalstr pessoaLogged.role 'admin')}}
-<section class="flow-xl mb-3 m-top--sm">
+{{!-- <section class="flow-xl mb-3 m-top--sm">
     <div class="box-area">
         <div class="box-area__item1">
             <h2 class="box-area__title-4">Contratados</h2>
@@ -47,7 +47,7 @@
             </div>
         {{/each}}
     </div>
-</section>
+</section> --}}
 {{/if}}
 
 <section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--md">
@@ -84,9 +84,8 @@
                 <div class="form-group">
                     <span class="switch switch--users">
                         <input class="switch__checkbox" type="checkbox" id="only-enabled" checked="checked" onchange={{action 'setEnableds'}}>
-                         <label class="switch__label" for="only-enabled">
-                            <span class="switch__inner"></span>
-                            <span class="switch__head"></span>
+                         <label class="switch__label switch__label--habilitado" for="only-enabled">
+                            <span class="switch__inner "></span>
                         </label>
                     </span>
                 </div>

@@ -53,6 +53,18 @@
             cursor: not-allowed;
         }
 
+        &--habilitado::before {
+            text-align: center;
+            padding: .5rem .8rem;
+            background-color: #8AB925 !important;
+            color: #fff;
+            text-transform: uppercase;
+            width: 5rem;
+            display: block;
+            font-size: .8rem;
+            vertical-align: text-bottom;
+        }
+
     }
 
     &__inner {
@@ -68,6 +80,8 @@
 
         width: 100%;
     }
+
+    
 
     &__inner::before,
     &__inner::after {

@@ -168,7 +168,7 @@ td {
     outline: 0 solid transparent;
 
     &::before {
-        background-color: transparentize($default-green, .9);
+        background-color: transparentize($default-green, .8);
       //  border-bottom: 2px dotted $default-green;
         content: '';
         left: 0;
@@ -180,7 +180,7 @@ td {
         transition: 200ms cubic-bezier(.455, .03, .515, .955); // IE fallback
         transition: 200ms var(--ease-in-out-quad);
         visibility: visible;
-        width: 45%;
+        width: 100%;
         border-radius: 5px;
     }
 

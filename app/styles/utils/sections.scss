@@ -81,11 +81,11 @@
 
     .btn_icon_edit {
         color: #8AB925;
-        margin-left: .3rem;
+        margin-left: .2rem;
         font-weight: 500;
         font-size: .9rem;
         cursor: pointer;
-        margin-top: .2rem;
+        margin-top: 0rem;
     }
 
     .btn--add-turma{
@@ -112,10 +112,18 @@
       background-image: url(/assets/img/confirmation.png);
       width: 1rem;
       height: 1rem;
-      background-size: 80%;
+      background-size: 85%;
       background-repeat: no-repeat;
       margin-left: 0.3rem;
-      margin-top: 0.3rem;
+      margin-top: 0.1rem;
+      position: static;
+    }
+    .btn-cancel-edit-turma{
+      background-image: url(/assets/img/cancel.png);
+      width: 1rem;
+      height: 1rem;
+      background-size: 100%;
+      background-repeat: no-repeat;
       position: static;
     }
 
@@ -135,7 +143,7 @@
     opacity: 1;
     transform: translate(0, 0);
     z-index: 2;
-    display: contents;
+    // display: contents;
   }
 
   .accordion-adm{
@@ -228,8 +236,8 @@
     }
 
     .title-platturma{
-    margin: 0;
-    padding: 0;
+      margin: 0;
+      padding: 0;
     }
   }
   

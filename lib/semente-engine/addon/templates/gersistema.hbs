@@ -29,6 +29,7 @@
           </div>
         </div>
       </form>
+      {{#if (equalstr pessoaLogged.role "admin")}}
       <form id="status" class="form-group__tipo-instituicao">
         <p>Tipo de instituição:</p>   
         <input class="checkbox_plataforma ml-1" id="cliente" name="filtroinst" type="radio" value="cliente" {{action 'updateStatus' 'cliente' on='change'}} >
@@ -38,6 +39,7 @@
         <input class="checkbox_plataforma" id="trial" name="filtroinst" type="radio" value="trial" {{action 'updateStatus' 'trial' on='change'}}>
         <label for="trial">Trial</label>
       </form>
+      {{/if}}
     </section>
 
     <ul id="modelInstList" class="list list--striped animated fadeInLeftShort faster d100">
@@ -56,7 +58,11 @@
             </a>
           {{/link-to}}
         {{/if}}
-        <span class="list__etiqueta">{{inst.status}}</span>
+
+        {{#if (equalstr pessoaLogged.role "admin")}}
+          <span class="list__etiqueta">{{inst.status}}</span>
+        {{/if}}
+
         <span class=" switch switch--institutions flex-none m-left--auto m-right--auto">
           <input class="switch__checkbox" id="activeInstId{{inst.id}}" type="checkbox" disabled="disabled" checked={{inst.enabled}}>
           <span class="switch__label {{if inst.enabled 'switch__label--habilitado' 'switch__label--desabilitado'}}"></span>

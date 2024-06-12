@@ -25,9 +25,8 @@
               {{#each plataformaTurmas as |plataformaTurma|}}
               {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
               <li class="row">
-                <div class="flex-col">
-                  <p class="title-platturma mb-0" id="plat_turma{{plataformaTurma.id}}"
-                    for="plat_turma{{plataformaTurma.id}}">
+                <div class="d-flex d-flex--r w80">
+                  <p class="title-platturma mb-0 w70" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">
                     {{plataformaTurma.name}}
                   </p>
                   <p class="title-platturma pt-0">(id: {{plataformaTurma.id}})</p>
@@ -38,9 +37,9 @@
                 <span id="icon-delete{{plataformaTurma.id}}" class="btn_icon_edit icon-trash-2"
                   onclick={{action 'delete' plataformaTurma}} style="display: block;"></span>
                 {{/if}}
-                <span id="icon-x{{plataformaTurma.id}}" class="btn-edit-turma" onclick={{action 'cancelEdit'
+                <span id="icon-x{{plataformaTurma.id}}" class="btn-cancel-edit-turma" onclick={{action 'cancelEdit'
                   plataformaTurma}} style="display: none;"></span>
-                <span id="icon-save{{plataformaTurma.id}}" class="btn_icon_edit icon-save" onclick={{action 'saveEdit'
+                <span id="icon-save{{plataformaTurma.id}}" class="btn-edit-turma" onclick={{action 'saveEdit'
                   plataformaTurma}} style="display: none;"></span>
               </li>
               {{/if}}

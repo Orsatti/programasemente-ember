@@ -124,3 +124,18 @@ $i: 5;
 
 .d-xl--block { @include media('>xl') {display: block; } }
 .d-xl--flex { @include media('>xl') {display: flex; } }
+
+.d-flex {
+  display: flex;
+
+  &--r  { flex-direction: row; }
+  &--rr { flex-direction: row-reverse; }
+  &--c  { flex-direction: column; }
+  &--cr { flex-direction: column-reverse; }
+  &-align--start    { align-items: flex-start; }
+  &-align--center   { align-items: center; }
+  &-justify--center { justify-content: center; }
+  &-justify--start { justify-content: flex-start;}
+  &-justify--space-between { justify-content: space-between;}
+  &-justify--end { justify-content: end;}
+}

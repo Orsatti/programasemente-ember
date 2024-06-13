@@ -320,6 +320,28 @@
 
     }
 
+    &__usuarios{
+      color: #808080;
+      text-transform: capitalize !important;
+      input{
+        background-color: #fff;
+        box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
+        border-radius: 10px;
+      }
+
+      label{
+        text-transform: capitalize !important;
+      }
+
+      select{
+        background-color: #fff;
+        box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
+        border-radius: 10px;
+        font-size: 0.8rem;
+        color: #B5B5B5;
+      }
+    }
+
   }
 
 

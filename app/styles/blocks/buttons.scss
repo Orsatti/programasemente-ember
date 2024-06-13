@@ -468,7 +468,8 @@
     &--xxs {
       font-size: $font-size--xxs * .9;
       letter-spacing: $letter-spacing--xl;
-      padding: $button-padding--xxs;
+      padding: 0.5rem 1rem;
+      margin-left: 1rem;
     }
     &--xxxs {
       font-size: .67rem;

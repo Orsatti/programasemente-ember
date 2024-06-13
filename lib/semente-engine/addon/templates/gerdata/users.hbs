@@ -16,35 +16,35 @@
         </div>
 
         {{#each acompanhamentoSistemas.acompanhamentoSistemasPlataforma as |sistema|}}
-            <div class="box-area__divisor"></div>
-            <div class="box-area__item1">
-                {{#if (equalstr sistema.sistema.id '1')}}
-                    <h2 class="box-area__title-4">Formação acadêmica</h2>
-                {{else}}
-                {{#if (equalstr sistema.sistema.id '2')}}
-                    <h2 class="box-area__title-4">Portal</h2>
-                {{else}}
-                {{#if (equalstr sistema.sistema.id '3')}}
-                    <h2 class="box-area__title-4">Plataforma Semente</h2>
-                {{else}}
-                        <h2 class="box-area__title-4">{{sistema.sistema.name}}</h2>
-                {{/if}}
-                {{/if}}
-                {{/if}}
-                <p>Alunos: <span>{{sistema.nrAlunos}}</span></p>
-                <p>Professores: <span>{{sistema.nrProfessores}}<span class="tooltip">
+        <div class="box-area__divisor"></div>
+        <div class="box-area__item1">
+            {{#if (equalstr sistema.sistema.id '1')}}
+            <h2 class="box-area__title-4">Formação acadêmica</h2>
+            {{else}}
+            {{#if (equalstr sistema.sistema.id '2')}}
+            <h2 class="box-area__title-4">Portal</h2>
+            {{else}}
+            {{#if (equalstr sistema.sistema.id '3')}}
+            <h2 class="box-area__title-4">Plataforma Semente</h2>
+            {{else}}
+            <h2 class="box-area__title-4">{{sistema.sistema.name}}</h2>
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            <p>Alunos: <span>{{sistema.nrAlunos}}</span></p>
+            <p>Professores: <span>{{sistema.nrProfessores}}<span class="tooltip">
                         <span class="btn-detalhes"><span class="btn-detalhes-text">+</span></span>
                         <span class="tooltiptext">
                             <p>Aplicadores: <span>{{sistema.nrProfessoresAplicadores}}</span></p>
                             <p>Não Aplicadores: <span>{{sistema.nrProfessoresNaoAplicadores}}</span></p>
                         </span>
                     </span></span>
-                </p>
-                <p>Secretaria: <span>{{sistema.nrSecretarias}}</span></p>
-                <p>Marketing: <span>{{sistema.nrMarketings}}</span></p>
-                <p>Coordenadores: <span>{{sistema.nrCoordenadores}}</span></p>
-                <p>Gestores: <span>{{sistema.nrGestores}}</span></p>
-            </div>
+            </p>
+            <p>Secretaria: <span>{{sistema.nrSecretarias}}</span></p>
+            <p>Marketing: <span>{{sistema.nrMarketings}}</span></p>
+            <p>Coordenadores: <span>{{sistema.nrCoordenadores}}</span></p>
+            <p>Gestores: <span>{{sistema.nrGestores}}</span></p>
+        </div>
         {{/each}}
     </div>
 </section> --}}
@@ -54,26 +54,26 @@
     <div class="flex flex-row items-center justify-end">
         <div class="institutions__btn-group">
             {{#link-to 'gerdata.users.createuser' instituicao.id}}
-                <button class="btn btn--xxs">
-                    <span class="btn__label">Novo Usuário</span>
-                </button>
+            <button class="btn btn--xxs">
+                <span class="btn__label institutions__btn--label-usuarios">Novo Usuário</span>
+            </button>
             {{/link-to}}
             {{#link-to 'gerdata.users.loteuser' instituicao.id}}
-                <button class="btn btn--xxs">
-                    <span class="btn__label">Cadastro em lote</span>
-                </button>
+            <button class="btn btn--xxs">
+                <span class="btn__label institutions__btn--label-usuarios">Cadastro em lote</span>
+            </button>
             {{/link-to}}
-            <button class="btn btn--xxs" type="submit" {{action 'baixarTemplateAtivos' }}>
-                <span class="icon icon-arrow-down m-right--xs"></span>
+            <button class="btn  institutions__btn--label-usuarios btn--xxs" type="submit" {{action 'baixarTemplateAtivos' }}>
+                
                 Usuários cadastrados
             </button>
             {{#if (and (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.id '4881'))}}
-                <button class="btn btn--xxs" type="submit" {{action 'sendEmail' }}>
-                    Enviar Email
-                </button>
-                <button class="btn btn--xxs" type="submit" style="background-color: #b62020" {{action 'allUsersDisabled' }}>
-                    Desativar Usuários
-                </button>
+            <button class="btn btn--xxs" type="submit" {{action 'sendEmail' }}>
+                Enviar Email
+            </button>
+            <button class="btn btn--xxs" type="submit" style="background-color: #b62020" {{action 'allUsersDisabled' }}>
+                Desativar Usuários
+            </button>
             {{/if}}
         </div>
     </div>
@@ -81,16 +81,26 @@
     <div class="l-dots-between">
         <header class="l-dots-between__side">
             <form class="flex flex-col flow-md" autocomplete="off" aria-autocomplete="none">
-                <span class="switch switch--institutions">
-            <input type="checkbox" id="isEscola" class="switch__checkbox isEscola" data-gtm-form-interact-field-id="1">
-            <label for="isEscola" class="switch__label">
-                <span class="switch__inner"></span>
-                <span class="switch__head"></span>
-            </label>
-        </span>
+                {{!-- <span class="switch">
+                    <input type="checkbox" id="isEscola" class="switch__checkbox isEscola"
+                        data-gtm-form-interact-field-id="1">
+                    <label for="isEscola" class="switch__label">
+                        <span class="switch__head"></span>
+                        <span class="switch__inner"></span>
 
-                <div class="form-group">
-                    <label class="form-group__label" for="search">Busca</label>
+                    </label>
+                </span> --}}
+
+                <label class="switch__usuarios">
+                    <input type="checkbox" id="isEscola">
+                    <div class="slider">
+                        <span class="text enabled-text"><span class="switch__usuarios--icone"><img src="/assets/img/check1.png" alt=""></span><p>Habilitado</p></span>
+                        <span class="text disabled-text"><span class="switch__usuarios--icone"><img src="/assets/img/cross.png" alt=""></span><p>Desabilitado</p></span>
+                    </div>
+                </label>
+
+                <div class="form-group form-group__usuarios">
+                    <label class="form-group__label" for="search">Busca por usuário</label>
                     {{input class="form-group__input"
                     aria-autocomplete="none"
                     aria-describedby="basic-addon1"
@@ -98,38 +108,36 @@
                     id="search_input_pessoas_ger"
                     type="text"
                     value=searchVal}}
-                    <a class="form__aux-link" onclick={{action 'exitsearch' }}>Limpar busca</a>
                 </div>
 
                 {{#if instituicaoMae}}
-                    <div class="form-group">
-                        <label class="form-group__label">Unidades</label>
-                        <div class="form-group__wrapper form-group__wrapper--select">
-                            <select class="form-group__input" name="instituicao_filha" id="instituicao_filha_selector"
-                                onchange={{action 'selectedInstituicaoFilha' value='target.value' }}
-                                data-type="select" 
-                                data-required="true">
-                                <option selected="selected" value="">Todas</option>
-                                {{#each instituicao.instituicaoFilhas as |instf|}}
-                                <option style="display: block" value="{{instf.id}}" selected={{if (equalstr instf selectedInstFilha) "selected" }}>
-                                    {{instf.name}}
-                                </option>
-                                {{/each}}
-                            </select>
-                        </div>
+                <div class="form-group form-group__usuarios">
+                    <label class="form-group__label">Unidades</label>
+                    <div class="form-group__wrapper form-group__wrapper--select">
+                        <select class="form-group__input" name="instituicao_filha" id="instituicao_filha_selector"
+                            onchange={{action 'selectedInstituicaoFilha' value='target.value' }} data-type="select"
+                            data-required="true">
+                            <option selected="selected" value="">Todas</option>
+                            {{#each instituicao.instituicaoFilhas as |instf|}}
+                            <option style="display: block" value="{{instf.id}}" selected={{if (equalstr instf
+                                selectedInstFilha) "selected" }}>
+                                {{instf.name}}
+                            </option>
+                            {{/each}}
+                        </select>
                     </div>
+                </div>
                 {{/if}}
 
-                <div class="form-group" id="segmento_selector">
+                <div class="form-group form-group__usuarios" id="segmento_selector">
                     <label class="form-group__label">Segmentos</label>
-                    <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="segmento" 
-                            onchange={{action 'selectedSegmento' value='target.value' }} 
-                            data-type="select"
-                            data-required="true">
+                    <div class="form-group__wrapper form-group__usuarios form-group__wrapper--select">
+                        <select class="form-group__input" name="segmento" onchange={{action 'selectedSegmento'
+                            value='target.value' }} data-type="select" data-required="true">
                             <option selected="selected" value="">Todos</option>
                             {{#each segmentos as |seg|}}
-                            <option style="display: block" value="{{seg.id}}" selected={{if (equalstr seg selectedSegmento) "selected" }}>
+                            <option style="display: block" value="{{seg.id}}" selected={{if (equalstr seg
+                                selectedSegmento) "selected" }}>
                                 {{seg.titulo}}
                             </option>
                             {{/each}}
@@ -137,161 +145,158 @@
                     </div>
                 </div>
 
-                <div class="form-group" id="platano_selector">
+                <div class="form-group form-group__usuarios" id="platano_selector">
                     <label class="form-group__label">Ano</label>
                     <div class="form-group__wrapper form-group__wrapper--select">
-                        <select class="form-group__input" name="plataformaAno"
-                            onchange={{action 'selectedPlataformaAno' value='target.value' }} 
-                            data-type="select"
-                            data-required="true">
+                        <select class="form-group__input" name="plataformaAno" onchange={{action 'selectedPlataformaAno'
+                            value='target.value' }} data-type="select" data-required="true">
                             <option selected="selected" value="">Todas</option>
                             {{#each plataformaAnos as |platAno|}}
-                                {{#if (equalstr selectedSegmento '')}}
-                                    <option value="{{platAno.id}}" selected={{if (equalstr platAno selectedPlataformaAno) "selected" }}>{{platAno.name}}</option>
-                                {{else}}
-                                    {{#if (equalstr platAno.segmento.id selectedSegmento.id)}}
-                                        <option value="{{platAno.id}}" selected={{if (equalstr platAno selectedPlataformaAno) "selected" }}>{{platAno.name}}</option>
-                                    {{/if}}
-                                {{/if}} 
+                            {{#if (equalstr selectedSegmento '')}}
+                            <option value="{{platAno.id}}" selected={{if (equalstr platAno
+                                selectedPlataformaAno) "selected" }}>{{platAno.name}}</option>
+                            {{else}}
+                            {{#if (equalstr platAno.segmento.id selectedSegmento.id)}}
+                            <option value="{{platAno.id}}" selected={{if (equalstr platAno
+                                selectedPlataformaAno) "selected" }}>{{platAno.name}}</option>
+                            {{/if}}
+                            {{/if}}
                             {{/each}}
                         </select>
                     </div>
                 </div>
-                
+
                 {{#unless instituicaoMae}}
-                    <div class="form-group" id="platturma_selector">
-                        <label class="form-group__label">Turma</label>
-                        <div class="form-group__wrapper form-group__wrapper--select">
-                            <select class="form-group__input" name="plataformaTurma"
-                                onchange={{action 'selectedPlataformaTurma' value='target.value' }} 
-                                data-type="select"
-                                data-required="true">
-                                <option selected="selected" value="">Todas</option>
-                                {{#each plataformaTurmas as |platTurma|}}
-                                    {{#if (equalstr selectedSegmento '')}}
-                                        {{#if (equalstr selectedPlataformaAno '')}}
-                                            <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
-                                        {{else}}
-                                            {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
-                                                <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
-                                            {{/if}}
-                                        {{/if}} 
-                                    {{else}}
-                                        {{#if (equalstr selectedPlataformaAno '')}}
-                                            {{#each plataformaAnos as |platAno|}}
-                                                {{#if (equalstr platAno.segmento.id selectedSegmento.id)}}
-                                                    {{#if (equalstr platTurma.plataformaAno.id platAno.id)}}
-                                                        <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
-                                                    {{/if}}
-                                                {{/if}}
-                                            {{/each}}
-                                        {{else}}
-                                            {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
-                                                <option value="{{platTurma.id}}" selected={{if (equalstr platTurma selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
-                                            {{/if}}
-                                        {{/if}} 
-                                    {{/if}}
-                                {{/each}}
-                            </select>
-                        </div>
+                <div class="form-group form-group__usuarios" id="platturma_selector">
+                    <label class="form-group__label">Turma</label>
+                    <div class="form-group__wrapper form-group__wrapper--select">
+                        <select class="form-group__input" name="plataformaTurma"
+                            onchange={{action 'selectedPlataformaTurma' value='target.value' }} data-type="select"
+                            data-required="true">
+                            <option selected="selected" value="">Todas</option>
+                            {{#each plataformaTurmas as |platTurma|}}
+                            {{#if (equalstr selectedSegmento '')}}
+                            {{#if (equalstr selectedPlataformaAno '')}}
+                            <option value="{{platTurma.id}}" selected={{if (equalstr platTurma
+                                selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                            {{else}}
+                            {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                            <option value="{{platTurma.id}}" selected={{if (equalstr platTurma
+                                selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                            {{/if}}
+                            {{/if}}
+                            {{else}}
+                            {{#if (equalstr selectedPlataformaAno '')}}
+                            {{#each plataformaAnos as |platAno|}}
+                            {{#if (equalstr platAno.segmento.id selectedSegmento.id)}}
+                            {{#if (equalstr platTurma.plataformaAno.id platAno.id)}}
+                            <option value="{{platTurma.id}}" selected={{if (equalstr platTurma
+                                selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                            {{/if}}
+                            {{/if}}
+                            {{/each}}
+                            {{else}}
+                            {{#if (equalstr platTurma.plataformaAno.id selectedPlataformaAno.id)}}
+                            <option value="{{platTurma.id}}" selected={{if (equalstr platTurma
+                                selectedPlataformaTurma) "selected" }}>{{platTurma.name}}</option>
+                            {{/if}}
+                            {{/if}}
+                            {{/if}}
+                            {{/each}}
+                        </select>
                     </div>
+                </div>
                 {{/unless}}
             </form>
         </header>
-
         <section class="l-dots-between__content flow-md">
-            <div class="flex flex-row items-end justify-between">
-                {{#unless (equalstr totalPessoas '0')}}
-                    {{page-numbers content=pagedContent class="pagination--sm pagination--right"}}
-                {{/unless}}
-
-                <div class="form-group flex flex-row items-center">
-                    <label class="form-group__label" for="amount">Exibir</label>
-                    <div class="self-start">
-                        <div class="form-group__wrapper form-group__wrapper--select">
-                            <select class="form-group__input form-group__input--amount" id="amount" name="order" {{action 'setExibir' on='change' }}>
-                                <option value="5" selected={{paginationSelected.p5}}>5 resultados</option>
-                                <option value="10" selected={{paginationSelected.p10}}>10 resultados</option>
-                                <option value="25" selected={{paginationSelected.p25}}>25 resultados</option>
-                                <option value="50" selected={{paginationSelected.p50}}>50 resultados</option>
-                                <option value="100" selected={{paginationSelected.p100}}>100 resultados</option>
-                                <option value="500" selected={{paginationSelected.p500}}>500 resultados</option>
-                                <option value="1000" selected={{paginationSelected.p1000}}>1000 resultados</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="loader-local {{if (equalstr gerdataLoaderState 1) 'loader-local--is-show' ''}}">
                 <div class="loader-local__loader">
                     <span class="icon-reload icon--xl"></span>
                     Buscando
                 </div>
-                <table class="institutions__table table table--striped table--users">
+                <table class="institutions__table-usuarios table--users">
                     <thead>
                         <tr>
-                            <th class="table__name" scope="col">
+                            <th class="institutions__table-usuarios--name-usuarios" scope="col">
                                 <div {{action 'setSort' 'name' }}>
                                     Nome
-                                    {{#if (equalstr sortCol 'name')}}
-                                        <i class="{{if sortAsc 'fa fa-caret-down' 'fa fa-caret-up'}}" aria-hidden="true"></i>
-                                    {{/if}}
+                                    {{!-- {{#if (equalstr sortCol 'name')}}
+                                    <i class="{{if sortAsc 'fa fa-caret-down' 'fa fa-caret-up'}}"
+                                        aria-hidden="true"></i>
+                                    {{/if}} --}}
                                 </div>
                             </th>
-                            <th class="table__role" scope="col">Perfil</th>
-                            <th class="table__enabled" scope="col">Portal</th>
-                            <th class="table__enabled" scope="col">Plataforma Semente</th>
-                            <th class="table__enabled" scope="col">Formação de professores</th>
-                            <th class="table__actions" scope="col">Ações</th>
+                            <th class="institutions__table-usuarios--role" scope="col">Perfil</th>
+                            <th class="institutions__table-usuarios--enabled" scope="col">Portal</th>
+                            <th class="institutions__table-usuarios--enabled" scope="col">Plataforma Semente</th>
+                            <th class="institutions__table-usuarios--enabled" scope="col">Formação de professores</th>
+                            <th class="institutions__table-usuarios--actions" scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#each pessoas_sorted as |pessoa|}}
                         <tr id="linha-pessoa-{{pessoa.id}}">
+                            
                             <td class="table__name">
-                                <p><strong class="title-4 capitalized">{{pessoa.nameLower}}</strong></p>
-                                <p class='color-green-40 truncate'>{{pessoa.userName}}</p>
-                            {{#if pessoa.instituicao.instituicaoFilhas}}
+                                <p><strong
+                                        class="institutions__table-usuarios--title-usuarios capitalized">{{pessoa.nameLower}}</strong>
+                                </p>
+                                <p class='institutions__table-usuarios--title-email'>{{pessoa.userName}}</p>
+                                {{#if pessoa.instituicao.instituicaoFilhas}}
                                 <p class="table__inst">{{pessoa.instituicao.name}}</p>
-                            {{/if}}
-                            {{#if (equalstr pessoa.role 'aluno')}}
-                             <div class="table__school-info">
-                                <p>{{pessoa.plataformaAnos.firstObject.segmento.titulo}}</p>
-                                <p>{{pessoa.plataformaAnos.firstObject.name}}</p>
-                                <p>{{pessoa.plataformaTurmas.firstObject.name}}</p>
-                             </div>
-                             {{/if}}
+                                {{/if}}
+                                {{#if (equalstr pessoa.role 'aluno')}}
+                                <div class="table__school-info">
+                                    <p>{{pessoa.plataformaAnos.firstObject.segmento.titulo}}</p>
+                                    <p>{{pessoa.plataformaAnos.firstObject.name}}</p>
+                                    <p>{{pessoa.plataformaTurmas.firstObject.name}}</p>
+                                </div>
+                                {{/if}}
                             </td>
-                            <td class="table__role">
+                            <td class="institutions__table-usuarios--role">
                                 {{#if (equalstr pessoa.role 'instrutor')}}
-                                    <p class="">professor</p>
+                                <p class="">professor</p>
                                 {{else if (equalstr pessoa.role 'recursosHumanos')}}
-                                    <p class="">RH</p>
+                                <p class="">RH</p>
                                 {{else}}
-                                    <p class="">{{pessoa.role}}</p>
+                                <p class="">{{pessoa.role}}</p>
                                 {{/if}}
                             </td>
                             <td class="ta-c">
-                                <span class="icon--lg {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+                                <span
+                                    class="icon--md {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
                             </td>
                             <td class="ta-c">
-                                <span class="icon--lg {{if pessoa.acessoPlataformaS 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+                                <span
+                                    class="icon--md {{if pessoa.acessoPlataformaS 'icon-check icon--success' 'icon-x icon--error'}}"></span>
                             </td>
                             <td class="ta-c">
-                                <span class="icon--lg {{if pessoa.acessoCs 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+                                <span
+                                    class="icon--md {{if pessoa.acessoCs 'icon-check icon--success' 'icon-x icon--error'}}"></span>
                             </td>
-                            <td class="flex flex-col">
+                            <td class="btn-acoes">
                                 {{#link-to 'gerdata.users.edituser' pessoa.id}}
-                                    <button class="btn btn--ghost btn--xxs">Editar</button>
+                                <button class="btn-editar"></button>
                                 {{/link-to}}
+
                                 {{#link-to 'gerdata.users.deleteuser' pessoa.id}}
-                                    <button class="btn btn--text btn--xxxs" >Remover</button>
+                                <button class="btn-excluir"></button>
                                 {{/link-to}}
                             </td>
+                            
                         </tr>
+                        <span class="institutions__table--pessoa"></span>
                         {{/each}}
                     </tbody>
+                    <div class="institutions__table-usuarios--pagination">
+                        {{#unless (equalstr totalPessoas '0')}}
+                        {{page-numbers content=pagedContent class="pagination-usuarios pagination--sm
+                        pagination--center"}}
+                        {{/unless}}
+
+
+                    </div>
                 </table>
             </div>
         </section>

@@ -109,11 +109,13 @@
     &--enabled,
     &--actions{
       color: #808080;
-      font-size: 1rem;
+      font-size: 0.8rem;
+      width: 10%;
       font-weight: 600;
-      line-height: 16px;
+      line-height: 15px;
       word-wrap: break-word;
-      text-transform: capitalize;
+      text-transform: none;
+      // text-transform: capitalize;
 
       p{
         font-size: 0.75rem;
@@ -167,34 +169,37 @@
       color: #fff;
       background-color: #4bae4f;
       border-radius: 100%;
-      padding: 0.3rem;
+      padding: 0.25rem;
     }
 
     .icon-x{
       color: #fff;
       background-color: #dc3232;
       border-radius: 100%;
-      padding: 0.3rem;
+      padding: 0.25rem;
     }
 
     .btn-acoes{
       width: 1rem;
       padding: 0;
+      padding: .7rem 0rem .7rem 1rem;
     }
 
     .btn-editar{
-      background-image: url(/assets/img/edit-button.png);
-      width: 2rem;
-      height: 2rem;
-      background-repeat: no-repeat;
-      margin-top: 0.6rem;
+        color: #8AB925;
+        font-weight: 500;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: .2rem;
     }
 
     .btn-excluir{
-      background-image: url(/assets/img/delete.png);
-      width: 2rem;
-      height: 2rem;
-      background-repeat: no-repeat;
+      color: #8AB925;
+      margin-left: .4rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: .2rem;
     }
 
     &--pagination{
@@ -217,7 +222,7 @@
     .pagination-usuarios{
       position: absolute;
       width: 6rem;
-      bottom: 1%;
+      bottom: -1%;
       left: 50%;
       transform: translate(-50%, -50%);
     }

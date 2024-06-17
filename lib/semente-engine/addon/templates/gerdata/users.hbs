@@ -1,55 +1,5 @@
 {{gerdata-header pessoa=pessoaLogged informations=false instituicao=instituicao}}
 
-<div style="display: none;">{{acompanhamentoSistemas}}</div>
-
-{{#if (equalstr pessoaLogged.role 'admin')}}
-{{!-- <section class="flow-xl mb-3 m-top--sm">
-    <div class="box-area">
-        <div class="box-area__item1">
-            <h2 class="box-area__title-4">Contratados</h2>
-            <p>Alunos: <span>{{acompanhamentoSistemas.nrAlunos}}</span></p>
-            <p>Professores: <span>{{acompanhamentoSistemas.nrProfessores}}</span></p>
-            <p>Secretaria: <span>{{acompanhamentoSistemas.nrSecretarias}}</span></p>
-            <p>Marketing: <span>{{acompanhamentoSistemas.nrMarketings}}</span></p>
-            <p>Coordenadores: <span>{{acompanhamentoSistemas.nrCoordenadores}}</span></p>
-            <p>Gestores: <span>{{acompanhamentoSistemas.nrGestores}}</span></p>
-        </div>
-
-        {{#each acompanhamentoSistemas.acompanhamentoSistemasPlataforma as |sistema|}}
-        <div class="box-area__divisor"></div>
-        <div class="box-area__item1">
-            {{#if (equalstr sistema.sistema.id '1')}}
-            <h2 class="box-area__title-4">Formação acadêmica</h2>
-            {{else}}
-            {{#if (equalstr sistema.sistema.id '2')}}
-            <h2 class="box-area__title-4">Portal</h2>
-            {{else}}
-            {{#if (equalstr sistema.sistema.id '3')}}
-            <h2 class="box-area__title-4">Plataforma Semente</h2>
-            {{else}}
-            <h2 class="box-area__title-4">{{sistema.sistema.name}}</h2>
-            {{/if}}
-            {{/if}}
-            {{/if}}
-            <p>Alunos: <span>{{sistema.nrAlunos}}</span></p>
-            <p>Professores: <span>{{sistema.nrProfessores}}<span class="tooltip">
-                        <span class="btn-detalhes"><span class="btn-detalhes-text">+</span></span>
-                        <span class="tooltiptext">
-                            <p>Aplicadores: <span>{{sistema.nrProfessoresAplicadores}}</span></p>
-                            <p>Não Aplicadores: <span>{{sistema.nrProfessoresNaoAplicadores}}</span></p>
-                        </span>
-                    </span></span>
-            </p>
-            <p>Secretaria: <span>{{sistema.nrSecretarias}}</span></p>
-            <p>Marketing: <span>{{sistema.nrMarketings}}</span></p>
-            <p>Coordenadores: <span>{{sistema.nrCoordenadores}}</span></p>
-            <p>Gestores: <span>{{sistema.nrGestores}}</span></p>
-        </div>
-        {{/each}}
-    </div>
-</section> --}}
-{{/if}}
-
 <section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--md">
     <div class="flex flex-row items-center justify-end">
         <div class="institutions__btn-group">
@@ -81,21 +31,11 @@
     <div class="l-dots-between">
         <header class="l-dots-between__side">
             <form class="flex flex-col flow-md" autocomplete="off" aria-autocomplete="none">
-                {{!-- <span class="switch">
-                    <input type="checkbox" id="isEscola" class="switch__checkbox isEscola"
-                        data-gtm-form-interact-field-id="1">
-                    <label for="isEscola" class="switch__label">
-                        <span class="switch__head"></span>
-                        <span class="switch__inner"></span>
-
-                    </label>
-                </span> --}}
-
                 <label class="switch__usuarios">
-                    <input type="checkbox" id="isEscola">
+                    <input type="checkbox" id="only-enabled" {{action 'setEnableds' on='change'}} checked="checked">
                     <div class="slider">
-                        <span class="text enabled-text"><span class="switch__usuarios--icone"><img src="/assets/img/check1.png" alt=""></span><p>Habilitado</p></span>
-                        <span class="text disabled-text"><span class="switch__usuarios--icone"><img src="/assets/img/cross.png" alt=""></span><p>Desabilitado</p></span>
+                        <span class="text disabled-text"><span class="switch__usuarios--icone"><img src="/assets/img/cross.png" alt=""></span><p class="row">ver desabilitados</p></span>
+                        <span class="text enabled-text"><span class="switch__usuarios--icone"><img src="/assets/img/check1.png" alt=""></span><p class="row">ver habilitados</p></span>
                     </div>
                 </label>
 
@@ -218,20 +158,14 @@
                 <table class="institutions__table-usuarios table--users">
                     <thead>
                         <tr>
-                            <th class="institutions__table-usuarios--name-usuarios" scope="col">
-                                <div {{action 'setSort' 'name' }}>
-                                    Nome
-                                    {{!-- {{#if (equalstr sortCol 'name')}}
-                                    <i class="{{if sortAsc 'fa fa-caret-down' 'fa fa-caret-up'}}"
-                                        aria-hidden="true"></i>
-                                    {{/if}} --}}
-                                </div>
+                            <th class="institutions__table-usuarios--name-usuarios pl-0" scope="col">
+                                <div {{action 'setSort' 'name' }}>Nome</div>
                             </th>
                             <th class="institutions__table-usuarios--role" scope="col">Perfil</th>
-                            <th class="institutions__table-usuarios--enabled" scope="col">Portal</th>
-                            <th class="institutions__table-usuarios--enabled" scope="col">Plataforma Semente</th>
-                            <th class="institutions__table-usuarios--enabled" scope="col">Formação de professores</th>
-                            <th class="institutions__table-usuarios--actions" scope="col">Ações</th>
+                            <th class="institutions__table-usuarios--enabled text-center" scope="col">Portal</th>
+                            <th class="institutions__table-usuarios--enabled text-center" scope="col">Plataforma Semente</th>
+                            <th class="institutions__table-usuarios--enabled text-center" scope="col">Formação de Professores</th>
+                            <th class="institutions__table-usuarios--actions pr-0" scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -239,8 +173,8 @@
                         <tr id="linha-pessoa-{{pessoa.id}}">
                             
                             <td class="table__name">
-                                <p><strong
-                                        class="institutions__table-usuarios--title-usuarios capitalized">{{pessoa.nameLower}}</strong>
+                                <p>
+                                    <strong class="institutions__table-usuarios--title-usuarios capitalized">{{pessoa.nameLower}}</strong>
                                 </p>
                                 <p class='institutions__table-usuarios--title-email'>{{pessoa.userName}}</p>
                                 {{#if pessoa.instituicao.instituicaoFilhas}}
@@ -264,38 +198,31 @@
                                 {{/if}}
                             </td>
                             <td class="ta-c">
-                                <span
-                                    class="icon--md {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+                                <span class="icon--md {{if pessoa.enabled 'icon-check icon--success' 'icon-x icon--error'}}"></span>
                             </td>
                             <td class="ta-c">
-                                <span
-                                    class="icon--md {{if pessoa.acessoPlataformaS 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+                                <span class="icon--md {{if pessoa.acessoPlataformaS 'icon-check icon--success' 'icon-x icon--error'}}"></span>
                             </td>
                             <td class="ta-c">
-                                <span
-                                    class="icon--md {{if pessoa.acessoCs 'icon-check icon--success' 'icon-x icon--error'}}"></span>
+                                <span class="icon--md {{if pessoa.acessoCs 'icon-check icon--success' 'icon-x icon--error'}}"></span>
                             </td>
                             <td class="btn-acoes">
                                 {{#link-to 'gerdata.users.edituser' pessoa.id}}
-                                <button class="btn-editar"></button>
+                                    <button class="btn-editar icon-edit"></button>
                                 {{/link-to}}
 
                                 {{#link-to 'gerdata.users.deleteuser' pessoa.id}}
-                                <button class="btn-excluir"></button>
+                                    <button class="btn-excluir icon-trash-2"></button>
                                 {{/link-to}}
                             </td>
-                            
                         </tr>
                         <span class="institutions__table--pessoa"></span>
                         {{/each}}
                     </tbody>
                     <div class="institutions__table-usuarios--pagination">
                         {{#unless (equalstr totalPessoas '0')}}
-                        {{page-numbers content=pagedContent class="pagination-usuarios pagination--sm
-                        pagination--center"}}
+                            {{page-numbers content=pagedContent class="pagination-usuarios pagination--sm pagination--center"}}
                         {{/unless}}
-
-
                     </div>
                 </table>
             </div>

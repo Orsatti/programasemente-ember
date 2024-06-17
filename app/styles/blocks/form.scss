@@ -339,6 +339,41 @@ color: #808080;
         background-color: #fff;
         box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
         border-radius: 10px;
+        color: #B5B5B5;
+font-size: 14px;
+font-family: Poppins;
+font-weight: 400;
+line-height: 16px;
+word-wrap: break-word
+      }
+
+      label{
+        text-transform: capitalize !important;
+      }
+
+      select{
+        background-color: #fff;
+        box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
+        border-radius: 10px;
+        font-size: 0.8rem;
+        color: #B5B5B5;
+        max-width: 15rem;
+      }
+    }
+
+    &__usuarios-modal{
+      color: #808080;
+      text-transform: capitalize !important;
+      input{
+        background-color: #fff;
+        box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
+        border-radius: 10px;
+        color: #B5B5B5;
+font-size: 14px;
+font-family: Poppins;
+font-weight: 400;
+line-height: 16px;
+word-wrap: break-word
       }
 
       label{
@@ -353,6 +388,7 @@ color: #808080;
         color: #B5B5B5;
       }
     }
+
 
   }
 

@@ -88,6 +88,11 @@
     background-color: $clickables-bg-color;
   }
 
+  &__add {
+    width: 10rem;
+    
+      }
+
   // ELEMENTS
   &__count {
     font-style: italic;
@@ -109,6 +114,8 @@
     }
 
   }
+
+  
 
   &__claro{
     background-color: $default-green;

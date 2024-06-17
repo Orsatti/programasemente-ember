@@ -34,6 +34,12 @@
             padding-left: $input-check-radio-size;
         }
 
+        &::before{
+            border: 1px solid #8AB925;
+            border-radius: 7px;
+            background-color: #fff !important;
+        }
+
         &::after {
             background-color: transparent;
             color: $check-radio-checked-color;

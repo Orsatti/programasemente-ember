@@ -119,6 +119,13 @@
 
     &__label {
       @include title-aux;
+      text-transform: capitalize;
+      font-size: 1rem;
+      font-weight: 500;
+line-height: 14px;
+word-wrap: break-word;
+color: #808080;
+
 
       margin-bottom: $distance--xs;
 
@@ -157,6 +164,11 @@
         -webkit-transition: background-color 500ms linear;
         -ms-transition: background-color 500ms linear;
         transition: background-color 500ms linear;
+      }
+
+      &--anos{
+        width: 7rem;
+        border-radius: 10rem;
       }
 
     }

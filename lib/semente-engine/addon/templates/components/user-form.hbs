@@ -6,7 +6,7 @@
                 <div class="col-md-4">
                     <div class="form-group w95 mt1">
                         <label class="form-group__label" for="new_user_role">Perfil</label>
-                        <div class="form-group__wrapper form-group__wrapper--select">
+                        <div class="form-group__wrapper form-group__usuarios form-group__wrapper--select">
                             <select class="form-group__input j-validate-basic" id="new_user_role"
                                 onchange={{action setRole value="target.value" }} 
                                 data-type="select">
@@ -34,7 +34,7 @@
                     <div class="col-md-4">
                         <div class="form-group w95 mt1">
                             <label class="form-group__label" for="new_user_function">Função</label>
-                            <div class="form-group__wrapper form-group__wrapper--select">
+                            <div class="form-group__wrapper form-group__usuarios form-group__wrapper--select">
                                 <select class="form-group__input j-validate-basic" id="new_user_function"
                                     data-type="select">
                                     <option value="">Selecione...</option>
@@ -57,11 +57,11 @@
                 {{/unless}}
             </div>
 
-            <div class="flex flex-row">
+            <div class="flex flex-row form-group__usuarios">
                 <div class="col-md-4">
                     {{validated-input label="Nome" propertyName="name" changeset=changeset}}
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 ">
                     {{validated-input label="Login" propertyName="email" changeset=changeset}}
                 </div>
                 <div class="col-md-4">
@@ -70,7 +70,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-row">
+            <div class="flex flex-row form-group__usuarios">
                 <div class="col-md-4">
                     {{validated-input label="Telefone" propertyName="telefone" classe="phone" changeset=changeset }}
                     <div class="color-error-40" id="phone-error"></div>
@@ -88,7 +88,7 @@
                 <div class="col-md-4">
                     <div class="form-group w95">
                         <label class="form-group__label" for="new_user_gender">Gênero biológico</label>
-                        <div class="form-group__wrapper form-group__wrapper--select">
+                        <div class="form-group__wrapper form-group__usuarios form-group__wrapper--select">
                             <select class="form-group__input j-validate-aluno" id="new_user_gender" data-type="select"
                                 data-context="sexo">
                                 <option value="">Selecione...</option>
@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="col-md-4">
-                    <div class="form-group w95">
+                    <div class="form-group w95 form-group__usuarios">
                         <label class="form-group__label" for="new_user_birth">Ano de nascimento</label>
                         <input class="form-group__input j-validate-aluno" id="new_user_birth" maxlength="4" min="1900" max="{{anoAtual}}"
                             type="number" value={{new_user_birth}} data-type="text" data-context="nascimento">

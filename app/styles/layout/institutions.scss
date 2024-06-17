@@ -94,7 +94,7 @@
     border: 1px solid #8AB925;
     border-radius: 0px 50px 0 50px;
     border-collapse: inherit;
-    padding: 2rem 1rem;
+    padding: 2rem;
     width: 100%;
     display: inline-table;
 
@@ -133,6 +133,29 @@
       font-size: 0.85rem;
       color: #808080;
       font-weight: 600;
+    }
+
+    &--check{
+     display: ruby-text;
+    }
+
+
+    &--title-segmento{
+      color: #808080;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 26px;
+      word-wrap: break-word
+    }
+
+    &--title-platano{
+      color: #808080;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 26px;
+      word-wrap: break-word;
+      width: fit-content;
+      vertical-align: bottom;
     }
 
     &--title-email{
@@ -197,6 +220,17 @@
       bottom: 1%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+
+    &--titulo{
+      display: block;
+    width: 100%;
+    color: #808080;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 26px;
+    word-wrap: break-word;
+    margin: 0 1rem 2rem 0;
     }
   }
 
@@ -380,4 +414,10 @@
 
     }
   }
+
+  &__filtro-anos{
+    border-top: 1px solid #f01;
+  }
 }
+
+

@@ -3,6 +3,10 @@
         <section class="sections__subsection">
             <div style="display: none;">{{startInformation}}</div>
             <div class="flex flex-row">
+                <div class="col-md-4 form-group__usuarios-modal">
+                    {{validated-input label="Nome" propertyName="name" changeset=changeset}}
+                </div>
+
                 <div class="col-md-4">
                     <div class="form-group w100 mt1">
                         <label class="form-group__label" for="new_user_role">Perfil</label>
@@ -54,15 +58,11 @@
                     </div>
                     <div class="color-error-40" id="function-error"></div>
                 </div>
-                <div class="col-md-4 form-group__usuarios-modal">
-                    {{validated-input label="Nome" propertyName="name" changeset=changeset}}
-                </div>
                 {{/unless}}
             </div>
 
             <div class="flex flex-row form-group__usuarios-modal">
-              
-                <div class="col-md-6 ">
+                <div class="col-md-6">
                     {{validated-input label="Login" propertyName="email" changeset=changeset}}
                 </div>
                 <div class="col-md-6">
@@ -111,13 +111,16 @@
                     </div>
                     <div class="color-error-40" id="nascimento-error"></div>
                 </div>
-                 <div class="col-md-4">
-                    <div class="checkbox w100 checkbox__reenvio">
-                        <input class="checkbox__input" checked={{new_user_reenviaremail}} id="new_user_reenviaremail"
-                            type="checkbox">
-                        <label class="checkbox__label" for="new_user_reenviaremail">Reenviar login e senha?</label>
+
+                {{#if isEdit}}
+                    <div class="col-md-4">
+                        <div class="checkbox w100 checkbox__reenvio">
+                            <input class="checkbox__input" checked={{new_user_reenviaremail}} id="new_user_reenviaremail"
+                                type="checkbox">
+                            <label class="checkbox__label" for="new_user_reenviaremail">Reenviar login e senha?</label>
+                        </div>
                     </div>
-                </div>
+                {{/if}}
             </div>
 
             <div class="flex flex-row mt3">
@@ -140,30 +143,18 @@
                 {{/if}}
 
                 {{#if csEnabled}}
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="checkbox w100">
                         <input class="checkbox__input" checked={{new_user_acessoCs}} id="new_user_acessoCs"
                             type="checkbox">
                         <label class="checkbox__label" for="new_user_acessoCs">Formação de professores</label>
                     </div>
                 </div>
-                {{/if}}
-
-                {{#if isEdit}}
-
-                <div class="col-md-3" style="text-align: right;">
-                    <div class="color-error-40" id="form-user-error"></div>
-                    <button class="btn btn__add" type="submit" id="btnSubmit">{{buttonLabel}}</button>
-                </div>
-                {{/if}}
-                <div class="col-md-3" style="text-align: right;">
-                    <div class="color-error-40" id="form-user-error"></div>
-                    <button class="btn btn__add" type="submit" id="btnSubmit">{{buttonLabel}}</button>
-                </div>
+                {{/if}} 
             </div>
             {{#if (equalstr activeProfile "instrutor")}}
-            <div class="flex flex-col animated fadeInLeftShort faster d100 mt3">
-                <h4 class="modal__subtitle">Você é professor aplicador?</h4>
+            <div class="flex flex-col animated fadeInLeftShort faster d100 mt2">
+                <h3 class="modal__subtitle">Você é professor aplicador?</h3>
                 <div class="flex flex-row mt1">
                     <div class="col-md-6">
                         <div class="checkbox w100">
@@ -176,7 +167,7 @@
                 </div>
 
                 {{#if isAplicador}}
-                <div class="flex flex-row mt1">
+                <div class="flex flex-row mt1 form-group__usuarios-modal">
                     <div class="col-md-6">
                         {{validated-input label="Disciplina ministrada" propertyName="disciplinaMinistrada"
                         changeset=changeset}}
@@ -184,19 +175,19 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col animated fadeInLeftShort faster d100 mt3">
-                    <h4 class="title-4">Você aplica em quais turmas?</h4>
+                <div class="flex flex-col animated fadeInLeftShort faster d100 mt2">
+                    <h3 class="modal__subtitle">Você aplica em quais turmas?</h3>
                     {{#if aplicadorError}}<span id="error_aplicador"
                         class="color-error-30 fs--xs">{{errorMsgAplicador}}</span>{{/if}}
-                    <div class="flex flex-row mt1">
+                    <div class="flex flex-row mt1 justify-content-between">
                         {{#each segmentos as |segmento| }}
                         {{#if (notequalstr segmento.titulo 'Adultos')}}
-                        <div class="col-md-2">
-                            <h4 class="title-segmento">{{segmento.titulo}}</h4>
+                        <div>
+                            <h4 class="form-group__usuarios-modal__title-segmento">{{segmento.titulo}}</h4>
                             {{#each plataformaAnos as |plataformaAno|}}
                             {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
                             <div class="flex-col">
-                                <h4 class="title-platano mt0"><b>·</b> {{plataformaAno.name}}</h4>
+                                <h4 class="form-group__usuarios-modal__title-platano"><b>·</b> {{plataformaAno.name}}</h4>
                                 <ul id="platTurmas-list-{{plataformaAno.id}}">
                                     {{#each plataformaTurmas as |plataformaTurma|}}
                                     {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
@@ -228,14 +219,14 @@
             {{/if}}
 
             {{#if (equalstr activeProfile "aluno")}}
-            <div class="flex flex-col animated fadeInLeftShort faster d100 mt3">
-                <h4 class="modal__subtitle">Em qual ano e turma deve ser inscrito?</h4>
-                <div class="flex flex-row mt2">
+            <div class="flex flex-col animated fadeInLeftShort faster d100 mt2">
+                <h3 class="modal__subtitle">Em qual ano e turma deve ser inscrito?</h3>
+                <div class="flex flex-row mt1">
                     <div class="col-md-4">
                         <div class="form-group__container">
                             <div class="form-group w100">
                                 <label class="form-group__label" for="new_user_ano">Ano</label>
-                                <div class="form-group__wrapper form-group__wrapper--select">
+                                <div class="form-group__wrapper form-group__usuarios-modal form-group__wrapper--select">
                                     <select class="j-validate-aluno form-group__input form-group__input--select"
                                         id="new_user_ano" name="ano" onchange={{action 'refreshPlataformaTurmas'
                                         value='target.value' }} data-type="select" data-required="true"
@@ -257,7 +248,7 @@
                         <div class="form-group__container">
                             <div class="form-group w100">
                                 <label class="form-group__label" for="new_user_turma">Turma</label>
-                                <div class="form-group__wrapper form-group__wrapper--select">
+                                <div class="form-group__wrapper form-group__usuarios-modal form-group__wrapper--select">
                                     <select class="j-validate-aluno form-group__input form-group__input--select"
                                         id="new_user_turma" name="turma" data-type="select" data-required="true"
                                         data-context="turma">
@@ -286,6 +277,12 @@
                 </div>
             </div>
             {{/if}}
+
+            <div class="col-md-12" style="text-align: right;">
+                <div class="color-error-40" id="form-user-error"></div>
+                <button class="btn btn__add" type="submit" id="btnSubmit">{{buttonLabel}}</button>
+            </div>
+
             <div style="display: none;">{{afterRenderInformation}}</div>
         </section>
     </div>

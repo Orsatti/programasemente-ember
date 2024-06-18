@@ -1,9 +1,9 @@
-<div class="flex-col w95 mt1">
+<div class="flex-col w100 mt1">
     <div>
         <label class="form-group__label">{{label}}</label>
     </div>
     <div>
-        {{input class=(concatenate "w100 " classe) value=(get changeset propertyName)
+        {{input class=(concatenate "w100 " classe)  value=(get changeset propertyName)
         onblur=(action 'validateProperty' changeset property)}}
     </div>
     <div class="mt0">

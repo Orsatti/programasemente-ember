@@ -72,8 +72,8 @@
 
   @include button;
 
-  background-color: $clickables-bg-color;
-  border-radius: $button-radius;
+  background-color: #8AB925;
+  border-radius: 10px;
   box-shadow: 0 .5rem 1rem 0 transparentize($color: $clickables-bg-color, $amount: .8);
   color: $clickables-color;
   padding: $button-padding;
@@ -87,6 +87,11 @@
   &[disabled='true']:hover {
     background-color: $clickables-bg-color;
   }
+
+  &__add {
+    width: 10rem;
+    
+      }
 
   // ELEMENTS
   &__count {
@@ -140,6 +145,8 @@
     }
 
   }
+
+  
 
   &__claro{
     background-color: $default-green;
@@ -499,7 +506,8 @@
     &--xxs {
       font-size: $font-size--xxs * .9;
       letter-spacing: $letter-spacing--xl;
-      padding: $button-padding--xxs;
+      padding: 0.5rem 1rem;
+      margin-left: 1rem;
     }
     &--xxxs {
       font-size: .67rem;

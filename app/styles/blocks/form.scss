@@ -386,7 +386,8 @@ color: #808080;
       text-transform: capitalize !important;
       input{
         background-color: #fff;
-        box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
+        box-shadow: 0 .1rem .25rem .25px rgba(54,54,54,.2);
+        // box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
         border-radius: 10px;
         color: #B5B5B5;
         font-size: 14px;
@@ -402,7 +403,8 @@ color: #808080;
 
       select{
         background-color: #fff;
-        box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
+        box-shadow: 0 .1rem .25rem .25px rgba(54,54,54,.2);
+        // box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
         border-radius: 10px;
         font-size: 0.8rem;
         color: #B5B5B5;

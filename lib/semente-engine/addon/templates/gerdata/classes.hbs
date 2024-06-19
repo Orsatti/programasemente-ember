@@ -25,11 +25,11 @@
               {{#each plataformaTurmas as |plataformaTurma|}}
               {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
               <li class="row">
-                <div class="d-flex d-flex--r w80">
-                  <p class="title-platturma mb-0 w70" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">
+                <div class="d-flex d-flex--c w70">
+                  <p class="title-platturma mb-0 w100" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">
                     {{plataformaTurma.name}}
                   </p>
-                  <p class="title-platturma pt-0">(id: {{plataformaTurma.id}})</p>
+                  <p class="title-platturma pt-0 w100">(id: {{plataformaTurma.id}})</p>
                 </div>
                 <span id="icon-edit{{plataformaTurma.id}}" class="btn_icon_edit icon-edit" onclick={{action 'edit'
                   plataformaTurma}} style="display: block;"></span>

@@ -18,197 +18,195 @@
 
 
 .switch {
-    $this: &;
-    $switch-head: 1.25rem;
-    $switch-height: $input-height;
-    $switch-width: 6rem;
-    $switch-head-bg-color-on: $info-40;
-    $switch-head-bg-color-off: $error-40;
-    $switch-color: $gray-60;
+  $this: &;
+  $switch-head: 1.25rem;
+  $switch-height: $input-height;
+  $switch-width: 6rem;
+  $switch-head-bg-color-on: $info-40;
+  $switch-head-bg-color-off: $error-40;
+  $switch-color: $gray-60;
 
-    display: inline-block;
-    flex-shrink: 0;
-    position: relative;
-    text-align: left;
-    user-select: none;
-    width: $switch-width;
+  display: inline-block;
+  flex-shrink: 0;
+  position: relative;
+  text-align: left;
+  user-select: none;
+  width: $switch-width;
 
-    &__checkbox {
-        display: none;
-    }
+  &__checkbox {
+      display: none;
+  }
 
-    &__label {
-        height: 1.5rem;
-        border-radius: 2px;
-        display: flex;
-        flex-wrap: wrap;
-        align-content: center;
-        overflow: hidden;
-        padding: 0 0rem 0 2rem;
-        position: relative;
-        transform: translate3d(0, 0, 0); // Evita problema de renderização
+  &__label {
+      height: 1.5rem;
+      border-radius: 2px;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
+      overflow: hidden;
+      padding: 0 0rem 0 2rem;
+      position: relative;
+      transform: translate3d(0, 0, 0); // Evita problema de renderização
 
 
-     //essa clase troca o habilitado e desabilitado
-      &--desabilitado::before{
-          content: 'desabilitada';
-          background-color: grey;
-          color: #fff;
-          text-align: center;
-          padding: 0.6rem;
-          text-transform: uppercase;
-          font-size: 0.8rem;
-      }
-
-      &--habilitado::before{
-          content: "habilitada";
-          text-align: center;
-          padding: 0.5rem .8rem;
-          background-color: #8AB925 !important;
-          color: #fff;
-          text-transform: uppercase;
-          width: 5rem;
-          display: block;
-          font-size: .8rem;
-      }
-        
-
-      // -webkit-transform: translate3d(0, 0, 0);
-      // transform: translate3d(0, 0, 0);
-      // [disabled] + & {
-      //     background-color: $gray-30;
-      //     cursor: not-allowed;
-      // }
-
-    }
-
-    &__inner {
-        height: 100%;
-        right: 1%;
-        position: absolute;
+    //essa clase troca o habilitado e desabilitado
+    &--desabilitado::before{
+        content: 'desabilitada';
+        background-color: grey;
+        color: #fff;
+        text-align: center;
+        padding: 0.6rem;
         text-transform: uppercase;
-        top: 0;
-        transform: translateX(-75%);
-
-        transition: 200ms cubic-bezier(.455, .03, .515, .955); // IE fallback
-        transition: 200ms var(--ease-in-out-quad);
-
-        width: 110%;
+        font-size: 0.8rem;
     }
 
-    &__inner::before,
-    &__inner::after {
-        box-sizing: border-box;
-        color: #607180;
-        font-size: .85em;
-        font-weight: bold;
-        padding: 0;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 110%;
+    &--habilitado::before{
+        content: "habilitada";
+        text-align: center;
+        padding: 0.5rem .8rem;
+        background-color: #8AB925 !important;
+        color: #fff;
+        text-transform: uppercase;
+        width: 5rem;
+        display: block;
+        font-size: .8rem;
+    }
+      
+    // -webkit-transform: translate3d(0, 0, 0);
+    // transform: translate3d(0, 0, 0);
+    // [disabled] + & {
+    //     background-color: $gray-30;
+    //     cursor: not-allowed;
+    // }
+
+  }
+
+  &__inner {
+      height: 100%;
+      right: 1%;
+      position: absolute;
+      text-transform: uppercase;
+      top: 0;
+      transform: translateX(-75%);
+
+      // transition: 200ms cubic-bezier(.455, .03, .515, .955); // IE fallback
+      // transition: 200ms var(--ease-in-out-quad);
+
+      #{$this}__head {
+        transform: translate( calc((-#{$switch-head}) - 465%), -50%);
+      }
+
+      width: 110%;
+  }
+
+  &__inner::before,
+  &__inner::after {
+      box-sizing: border-box;
+      color: #607180;
+      font-size: .85em;
+      font-weight: bold;
+      padding: 0;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 110%;
+  }
+
+  &__inner::before {
+      content: 'SIM';
+      left: 15%;
+      text-align: left;
+  }
+
+  &__inner::after {
+      content: 'NÃO';
+      text-align: right;
+      transform: translate(50%, -50%);
+  }
+
+
+
+  &__head {
+      background-color: #b62020;
+      /* border-radius: 10px; */
+      -webkit-box-shadow: 0 3px 6px rgba(160, 168, 177, .06), 0 3px 6px rgba(160, 168, 177, .016);
+      box-shadow: 0 3px 6px rgba(160, 168, 177, .06), 0 3px 6px rgba(160, 168, 177, .016);
+      height: 1.25rem;
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      -webkit-transform: translate(-550%, -50%);
+      -ms-transform: translate(-550%, -50%);
+      transform: translate(-550%, -50%);
+      -webkit-transform: translate(calc((-1.25rem) - 230%), -50%);
+      -ms-transform: translate(calc((-1.25rem) - 230%), -50%);
+      transform: translate(calc((-1.25rem) - 230%), -50%);
+      -webkit-transition: .3s cubic-bezier(.455,.03,.515,.955);
+      -o-transition: .3s cubic-bezier(.455, .03, .515, .955);
+      transition: .3s cubic-bezier(.455,.03,.515,.955);
+      -webkit-transition: .3s var(--ease-in-out-quad);
+      -o-transition: .3s var(--ease-in-out-quad);
+      transition: .3s var(--ease-in-out-quad);
+      width: 1.25rem;
+  }
+
+  &__checkbox:checked + &__label {
+
+      #{$this}__head {
+          background-color: #227791;
+      }
+
+      #{$this}__inner {
+          transform: translateX(0);
+      }
+
+      #{$this}__head {
+          transform: translate(0, -50%);
+      }
+  }
+
+  &--institutions {
+      width: 9rem;
+
+      #{$this}__head {
+          transform: translate( calc((-#{$switch-head}) - 465%), -50%);
+      }
+
+      #{$this}__inner::before {
+          content: 'habilitada';
+          left: 20%;
+      }
+
+      #{$this}__inner::after {
+          content: 'desabilitada';
+          transform: translate(54%, -50%);
+      }
+
+      @include media('<sm') {
+          left: 7rem;
+
+        }
+
+  }
+
+  &--users {
+    width: 9rem;
+
+    #{$this}__head {
+        transform: translate( calc((-#{$switch-head}) - 465%), -50%);
     }
 
-    &__inner::before {
-        content: 'SIM';
-        left: 15%;
-        text-align: left;
+    #{$this}__inner::before {
+        content: 'habilitados';
+        left: 8%;
     }
 
-    &__inner::after {
-        content: 'NÃO';
-        text-align: right;
-        transform: translate(50%, -50%);
+    #{$this}__inner::after {
+        content: 'desabilitados';
+        transform: translate(54%, -50%);
     }
 
-    
-
-    &__head {
-        background-color: #b62020;
-        /* border-radius: 10px; */
-        -webkit-box-shadow: 0 3px 6px rgba(160, 168, 177, .06), 0 3px 6px rgba(160, 168, 177, .016);
-        box-shadow: 0 3px 6px rgba(160, 168, 177, .06), 0 3px 6px rgba(160, 168, 177, .016);
-        height: 1.25rem;
-        position: absolute;
-        right: 6px;
-        top: 50%;
-        -webkit-transform: translate(-550%, -50%);
-        -ms-transform: translate(-550%, -50%);
-        transform: translate(-550%, -50%);
-        -webkit-transform: translate(calc((-1.25rem) - 230%), -50%);
-        -ms-transform: translate(calc((-1.25rem) - 230%), -50%);
-        transform: translate(calc((-1.25rem) - 230%), -50%);
-        -webkit-transition: .3s cubic-bezier(.455,.03,.515,.955);
-        -o-transition: .3s cubic-bezier(.455, .03, .515, .955);
-        transition: .3s cubic-bezier(.455,.03,.515,.955);
-        -webkit-transition: .3s var(--ease-in-out-quad);
-        -o-transition: .3s var(--ease-in-out-quad);
-        transition: .3s var(--ease-in-out-quad);
-        width: 1.25rem;
-    }
-
-    &__checkbox:checked + &__label {
-
-        #{$this}__head {
-            background-color: #227791;
-        }
-
-        #{$this}__inner {
-            transform: translateX(0);
-        }
-
-        #{$this}__head {
-            transform: translate(0, -50%);
-        }
-
-    }
-
-
-    &--institutions {
-        width: 9rem;
-
-        #{$this}__head {
-            transform: translate( calc((-#{$switch-head}) - 465%), -50%);
-        }
-
-        #{$this}__inner::before {
-            content: 'habilitada';
-            left: 20%;
-        }
-
-        #{$this}__inner::after {
-            content: 'desabilitada';
-            transform: translate(54%, -50%);
-        }
-
-        @include media('<sm') {
-            left: 7rem;
-
-          }
-
-    }
-
-    
-
-    &--users {
-        width: 9rem;
-
-        #{$this}__head {
-            transform: translate( calc((-#{$switch-head}) - 465%), -50%);
-        }
-
-        #{$this}__inner::before {
-            content: 'habilitados';
-            left: 8%;
-        }
-
-        #{$this}__inner::after {
-            content: 'desabilitados';
-            transform: translate(54%, -50%);
-        }
-
-    }
-
+  }
 }
 
 
@@ -315,6 +313,12 @@
     display: inline-block;
     width: 60px;
     height: 25px;
+
+    // position: absolute;
+    // width: 50px;
+    // height: 22px;
+    // text-align: right;
+    // right: 1.5rem;
   
     input {
       opacity: 0;
@@ -338,6 +342,8 @@
         content: "";
         height: 17px;
         width: 17px;
+        // height: 15px;
+        // width: 15px;
         left: 3px;
         bottom: 4px;
         background-color: rgba(255, 255, 255, 0.481);
@@ -351,6 +357,7 @@
   
       &:before {
         transform: translateX(36px);
+        // transform: translateX(25px);
       }
     }
   
@@ -370,6 +377,7 @@
   
     input:checked + .slider .enabled-text {
       display: block;
+      // left: 32%;
     }
   
     input:checked + .slider .disabled-text {
@@ -382,6 +390,7 @@
   
     input:not(:checked) + .slider .disabled-text {
       display: block;
+      // left: 65%;
     }
 
 

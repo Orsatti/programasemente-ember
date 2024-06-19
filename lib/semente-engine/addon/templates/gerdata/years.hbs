@@ -6,7 +6,7 @@
     <div class="institutions__table-usuarios--titulo">Anos contratados pela escola</div>
     {{#each segmentos as |segmento| }}
     <div class="col-xs-12 col-lg-2 flow-sm">
-      <h4 class="institutions__table-usuarios--title-segmento"><b>{{segmento.titulo}}</b></h4>
+      <h4 class="institutions__table-usuarios--title-segmento">{{segmento.titulo}}</h4>
       {{#each (orderby segmento.plataformaAnos 'idx') as |plataformaAno|}}
       <ul class="institutions__table-usuarios--check">
 
@@ -79,56 +79,34 @@
   </div>
   <div class="institutions__filtro-anos"></div>
   <div class="row">
-    <div class="col-xs-12 col-lg-6 flow-sm">
+        <div class="col-xs-12 col-lg-6 flow-sm institutions__filtro-anos--tipo">
       <p>Percurso de medição definido para os adultos</p>
       <div class="form-group">
-        <select name="segmento" data-type="select" data-required="true" class="form-group__input form-group__input--anos">
-          <option selected="selected" value="">B2B</option>
-          <option style="display: block" value="1">
-            Ensino Infantil
-          </option>
-          <option style="display: block" value="2">
-            Fundamental anos iniciais
-          </option>
-          <option style="display: block" value="3">
-            Fundamental anos finais
-          </option>
-          <option style="display: block" value="4">
-            Ensino Médio
-          </option>
-          <option style="display: block" value="5">
-            EJA
-          </option>
-          <option style="display: block" value="6">
-            Adultos
-          </option>
-        </select>
+        <div class="form-group__wrapper form-group__wrapper--select-anos ">
+              <select id="busca" class="form-group__input form-group__input--anos">
+                <option selected="selected" value="0">B2B</option>
+                  <option value="1"> Ensino Infantil</option>
+                  <option value="2">Fundamental anos iniciais</option>
+                  <option value="3"> Fundamental anos finais</option>
+                  <option value="4">Ensino Médio</option>
+                  <option value="5">EJA</option>
+              </select>
+            </div>
       </div>
     </div>
-    <div class="col-xs-12 col-lg-6 flow-sm">
+    <div class="col-xs-12 col-lg-6 flow-sm institutions__filtro-anos--tipo" >
       <p>Versão da formação acadêmica utilizada</p>
       <div class="form-group">
-        <select name="segmento" data-type="select" data-required="true" class="form-group__input form-group__input--anos">
-          <option selected="selected" value="">B2B</option>
-          <option style="display: block" value="1">
-            Ensino Infantil
-          </option>
-          <option style="display: block" value="2">
-            Fundamental anos iniciais
-          </option>
-          <option style="display: block" value="3">
-            Fundamental anos finais
-          </option>
-          <option style="display: block" value="4">
-            Ensino Médio
-          </option>
-          <option style="display: block" value="5">
-            EJA
-          </option>
-          <option style="display: block" value="6">
-            Adultos
-          </option>
-        </select>
+        <div class="form-group__wrapper form-group__wrapper--select-anos ">
+              <select id="busca" class="form-group__input form-group__input--anos">
+                <option selected="selected" value="0">1.5</option>
+                  <option value="1">1.4</option>
+                  <option value="2">1.4</option>
+                  <option value="3">1.4</option>
+                  <option value="4">1.4</option>
+                  <option value="5">1.4</option>
+              </select>
+            </div>
       </div>
     </div>
   </div>

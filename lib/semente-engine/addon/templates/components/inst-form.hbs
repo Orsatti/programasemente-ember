@@ -27,7 +27,7 @@
                     {{switch-input label="Academia de Prof." propertyName="csEnabled" changeset=changeset classe="csEnabled" class="mr2"}}
                 </div>
                 <h4 class="modal__subtitle">Gestão de usuários</h4>
-                <div class="flex flex-row justify-between">
+                <div class="flex flex-row justify-between form-group__usuarios">
                     {{validated-input label="Gestores" propertyName="nrgestores" changeset=changeset classe="numeric"}}
                     {{validated-input label="Coordenadores" propertyName="nrcoordenadores" changeset=changeset classe="numeric"}}
                     {{validated-input label="Secretaria" propertyName="nrsecretaria" changeset=changeset classe="numeric"}}
@@ -38,7 +38,7 @@
                 {{#if haveSegmentos}}
                     <h4 class="modal__subtitle">Gestão escolar</h4>
                 {{/if}}
-                <div class="flex flex-row justify-between">
+                <div class="flex flex-row justify-between form-group__usuarios">
                     {{#each segmentos as |segmento|}}
                     {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id) classe="segmento"}}
                     {{/each}}

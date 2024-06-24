@@ -175,10 +175,19 @@
       border-radius: 10px;
       color: #B5B5B5;
       font-size: 14px;
-      font-family: Poppins;
       font-weight: 400;
       line-height: 16px;
       word-wrap: break-word;
+      }
+
+
+      label{
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 16px;
+        word-wrap: break-word;
+        color: #808080;
+        text-transform: capitalize;
       }
     }
 
@@ -393,7 +402,70 @@
       }
     }
 
+    &__container {
+      width: 10rem;
+      height: 2.3rem;
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 .3rem .5rem 0 rgba(54, 54, 54, .2);
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
+  
+
+
+   &--bar {
+        width: 0;
+        height: 100%;
+        background-color: #8AB925;
+        animation: grow 3s ease-out forwards;
+
+
+    }
+
+    .alunos{
+      background-color: #DC1B1B;
+    }
+  
+    @keyframes grow {
+        0% {
+            width: 0;
+        }
+        100% {
+            width: 90%;
+        }
+    }
+
+    &--medicao{
+      position: relative;
+      width: -webkit-fill-available;
+      margin-top: 0.5rem;
+      :nth-child(3){
+        right:0;
+        position: absolute;
+      }
+
+      label{
+        height: 2rem;
+        display: table-caption;
+        vertical-align: sub;
+    
+      }
+
+      span{
+        font-weight: normal;
+      }
+    }
   }
+
+ 
+
+  }
+
+  
+
+  
 
 
 
@@ -417,3 +489,4 @@
     width: 17%;
   }
 }
+

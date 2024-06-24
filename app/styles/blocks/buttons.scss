@@ -95,6 +95,13 @@
     margin-left: $distance--xxs;
   }
 
+  &__salvar-info {
+    border-radius: 10px;
+    height: 30px;
+    background: #A3C94B;
+    margin-top: 2rem;
+  }
+
   &__nova{
     &--instituicao{
       background-color: #fff;

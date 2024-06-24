@@ -4,70 +4,124 @@
         <section class="sections__subsection">
             <div class="flex flex-col m-top--sm">
                 <h4 class="modal__subtitle">Informações gerais</h4>
-                <div class="flex flex-row justify-between">
+                <div class="flex flex-row justify-between" style="align-items: baseline;">
                     <div class="w35 form-group form-group__usuarios">
                         {{validated-input label="Nome" propertyName="name" changeset=changeset}}
                     </div>
-                    <div class="flex flex-row justify-between w60 form-group form-group__usuarios">
+                    <div class="flex flex-row justify-between w60 form-group form-group__usuarios" style="align-items: baseline;">
                         {{validated-input label="Radical (para códigos)" propertyName="radical" changeset=changeset}}
-                        {{validated-input label="UF" propertyName="uf" changeset=changeset}}
+                        {{validated-input label="UF" propertyUF="uf" changeset=changeset}}
                         {{validated-input label="Cidade" propertyName="cidade" changeset=changeset}}
                     </div>
                 </div>
-                <div class="flex flex-row justify-between">
-                    {{switch-input label="É escola?" propertyName="isEscola" changeset=changeset classe="isEscola"}}
-                    {{switch-input label="Venda Direta" propertyName="vendaDireta" changeset=changeset classe="vendaDireta"}}
-                    {{switch-input label="Termo Aceite" propertyName="statusTermoAceite" changeset=changeset classe="statusTermoAceite"}}
-                    {{switch-input label="Status" propertyName="enabled" changeset=changeset classe="enabled" class="mr2"}}
+                <div class="flex flex-row justify-between form-group form-group__usuarios">
+                    {{validated-input label="É escola?" propertyName="isEscola" changeset=changeset classe="isEscola"}}
+                    {{!-- {{switch-input label="É escola?" propertyName="isEscola" changeset=changeset
+                    classe="isEscola"}} --}}
+                    {{switch-input label="Venda Direta" propertyName="vendaDireta" changeset=changeset
+                    classe="vendaDireta"}}
+                    {{switch-input label="Termo Aceite" propertyName="statusTermoAceite" changeset=changeset
+                    classe="statusTermoAceite"}}
+                    {{switch-input label="Status" propertyName="enabled" changeset=changeset classe="enabled"
+                    class="mr2"}}
                 </div>
-                <div class="flex flex-row justify-between">
-                    {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkS" classe="sEnabled"}}
-                    {{switch-input label="S Plus" propertyName="sPlusEnabled" changeset=changeset classe="sPlusEnabled"}}
-                    {{switch-input label="Essencial" propertyName="essencialEnabled" changeset=changeset classe="essencialEnabled"}}
-                    {{switch-input label="Academia de Prof." propertyName="csEnabled" changeset=changeset classe="csEnabled" class="mr2"}}
-                </div>
+                {{!-- <div class="flex flex-row justify-between">
+                    {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkS"
+                    classe="sEnabled"}}
+                    {{switch-input label="S Plus" propertyName="sPlusEnabled" changeset=changeset
+                    classe="sPlusEnabled"}}
+                    {{switch-input label="Essencial" propertyName="essencialEnabled" changeset=changeset
+                    classe="essencialEnabled"}}
+                    {{switch-input label="Academia de Prof." propertyName="csEnabled" changeset=changeset
+                    classe="csEnabled" class="mr2"}}
+                </div> --}}
                 <h4 class="modal__subtitle">Gestão de usuários</h4>
-                <div class="flex flex-row justify-between form-group__usuarios">
-                    {{validated-input label="Gestores" propertyName="nrgestores" changeset=changeset classe="numeric"}}
-                    {{validated-input label="Coordenadores" propertyName="nrcoordenadores" changeset=changeset classe="numeric"}}
-                    {{validated-input label="Secretaria" propertyName="nrsecretaria" changeset=changeset classe="numeric"}}
-                    {{validated-input label="Marketing" propertyName="nrmarketing" changeset=changeset classe="numeric"}}
-                    {{validated-input label="Professores" propertyName="nrinstrutores" changeset=changeset classe="numeric"}}
-                    {{validated-input label="Alunos" propertyName="nralunos" changeset=changeset classe="numeric"}}
+                <div class="flex flex-row form-group form-group__usuarios">
+                    <div class="row">
+                        {{!-- {{validated-input label="Gestores" propertyName="nrgestores" changeset=changeset
+                        classe="numeric"}} --}}
+                        <div class="col-md-2">    
+                        {{validated-input label="Professores contratados" changeset=changeset }}
+                        </div>
+                         <div class="col-md-2">   
+                        <div class="form-group__container--medicao">
+                            <label>Professores criados</label>
+                            <div class="form-group__container">
+                                <div class="form-group__container--bar"></div>
+                            </div>
+                            <label>80/100</label>
+                        </div>
+                        </div>
+                         <div class="col-md-2">   
+                        {{validated-input label="Alunos contratados" changeset=changeset}}
+                        </div>
+                        {{!-- {{validated-input label="Coordenadores" propertyName="nrcoordenadores" changeset=changeset
+                        classe="numeric"}}
+                        {{validated-input label="Secretaria" propertyName="nrsecretaria" changeset=changeset
+                        classe="numeric"}} --}}
+                         <div class="col-md-2">   
+                        <div class="form-group__container--medicao">
+                            <label>Alunos criados</label>
+                            <div class="form-group__container">
+                                <div class="form-group__container--bar alunos"></div>
+                            </div>
+                            <label>80/100</label>
+                        </div>
+                        </div>
+                         <div class="col-md-2">   
+                        <div class="form-group__container--medicao">
+                            <label>Gestores:<span>100</span></label>
+                            <label>Coordenadores:<span>100</span></label>
+                        </div>
+                        </div>
+                         <div class="col-md-2">   
+                        <div class="form-group__container--medicao">
+                            <label>Secretaria:<span>100</span></label>
+                            <label>Marketing:<span>100</span></label>
+                        </div>
+                        </div>
+                        {{!-- {{validated-input label="Marketing" propertyName="nrmarketing" changeset=changeset
+                        classe="numeric"}}
+                        {{validated-input label="Professores" propertyName="nrinstrutores" changeset=changeset
+                        classe="numeric"}}
+                        {{validated-input label="Alunos" propertyName="nralunos" changeset=changeset classe="numeric"}}
+                        --}}
+                    </div>
                 </div>
                 {{#if haveSegmentos}}
-                    <h4 class="modal__subtitle">Gestão escolar</h4>
+                <h4 class="modal__subtitle">Gestão escolar</h4>
                 {{/if}}
                 <div class="flex flex-row justify-between form-group__usuarios">
                     {{#each segmentos as |segmento|}}
-                    {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id) classe="segmento"}}
+                    {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id)
+                    classe="segmento"}}
                     {{/each}}
                 </div>
                 {{#unless changeset.id}}
-                    <h4 class="modal__subtitle">Gestão calendário</h4>
-                    <div class="flex flex-row justify-start m-top--sm mr2">
-                        <select class="j-validate-aluno form-group__input form-group__input--select"
-                            id="new_inst_calendario" name="calendario"
-                            data-type="select" data-required="true" data-context="calendario">
-                            <option selected="selected" value="">---</option>
-                            {{#each calendarios as |calendario|}}
-                                <option value="{{calendario.id}}">{{calendario.ano}} - {{calendario.descricao}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
+                <h4 class="modal__subtitle">Gestão calendário</h4>
+                <div class="flex flex-row justify-start m-top--sm mr2">
+                    <select class="j-validate-aluno form-group__input form-group__input--select"
+                        id="new_inst_calendario" name="calendario" data-type="select" data-required="true"
+                        data-context="calendario">
+                        <option selected="selected" value="">---</option>
+                        {{#each calendarios as |calendario|}}
+                        <option value="{{calendario.id}}">{{calendario.ano}} - {{calendario.descricao}}</option>
+                        {{/each}}
+                    </select>
+                </div>
                 {{/unless}}
 
                 <div class="flex flex-row justify-content-between m-top--sm btn-right">
                     {{!-- {{#unless haveSegmentos}}
-                        {{#link-to 'gerdata.informations.deleteinst' instituicao.id}}
-                            <button class="btn" style="background-color: #b62020; margin-right:1rem;">
-                                <span>Excluir</span>
-                            </button>
-                        {{/link-to}}
+                    {{#link-to 'gerdata.informations.deleteinst' instituicao.id}}
+                    <button class="btn" style="background-color: #b62020; margin-right:1rem;">
+                        <span>Excluir</span>
+                    </button>
+                    {{/link-to}}
                     {{/unless}} --}}
                     <div class="flex flex-col justify-content-end">
                         <div class="color-error-40 " id="form-inst-error"></div>
-                        <button class="btn" type="submit" id="btnSubmit">{{buttonLabel}}</button>
+                        <button class="btn btn__salvar-info" type="submit" id="btnSubmit">{{buttonLabel}}</button>
                     </div>
                 </div>
             </div>

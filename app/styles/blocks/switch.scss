@@ -311,7 +311,7 @@
   .switch__anos {
     position: relative;
     display: inline-block;
-    width: 60px;
+    width: 65px;
     height: 25px;
 
     // position: absolute;
@@ -356,7 +356,7 @@
       background-color: #8AB925;
   
       &:before {
-        transform: translateX(36px);
+        transform: translateX(40px);
         // transform: translateX(25px);
       }
     }
@@ -366,7 +366,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 8px;
+      font-size: 9px;
       color: white;
       user-select: none;
   

@@ -156,8 +156,26 @@
       }
     }
 
+    &__infos {
+      display: grid;
+      margin-top: 2rem;
+      width: 18.5rem;
+    }
+
     &__usuarios {
       input {
+        background-color: #fff;
+        -webkit-box-shadow: 0 0.3rem 0.5rem 0 rgba(54, 54, 54, 0.2);
+        box-shadow: 0 0.3rem 0.5rem 0 rgba(54, 54, 54, 0.2);
+        border-radius: 10px;
+        color: #b5b5b5;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        word-wrap: break-word;
+      }
+
+      select {
         background-color: #fff;
         -webkit-box-shadow: 0 0.3rem 0.5rem 0 rgba(54, 54, 54, 0.2);
         box-shadow: 0 0.3rem 0.5rem 0 rgba(54, 54, 54, 0.2);
@@ -407,6 +425,13 @@
         position: relative;
         width: -webkit-fill-available;
         margin-top: 0.5rem;
+
+        @include media("<sm") {
+          width: 20rem;
+          height: 8rem;
+        }  
+
+
         :nth-child(3) {
           right: 0;
           position: absolute;
@@ -421,6 +446,10 @@
         span {
           font-weight: normal;
         }
+      }
+
+      @include media("<lg") {
+        width: 20rem;
       }
     }
   }

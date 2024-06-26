@@ -4,33 +4,127 @@
         <section class="sections__subsection">
             <div class="flex flex-col m-top--sm">
                 <h4 class="modal__subtitle">Informações gerais</h4>
-                <div class="flex flex-row justify-between" style="align-items: baseline;">
-                    <div class="w35 form-group form-group__usuarios">
-                        {{validated-input label="Nome" propertyName="name" changeset=changeset}}
+                <div class="flex-row justify-between" style="align-items: baseline;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="w35 form-group form-group__usuarios">
+                                {{validated-input label="Nome" propertyName="name" changeset=changeset}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="w35 form-group form-group__usuarios">
+                                {{validated-input label="Radical (para códigos)" propertyName="radical"
+                                changeset=changeset}}
+                            </div>
+
+                        </div>
+                        <div class="col-md-1">
+                            <div class="w35 form-group form-group__usuarios">
+                                {{validated-input label="UF" propertyName="uf" changeset=changeset}}
+                            </div>
+                        </div>
+
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="w35 form-group form-group__usuarios">
+                                {{validated-input label="Cidade" propertyName="cidade" changeset=changeset}}
+                            </div>
+                        </div>
+
+
+
+
                     </div>
-                    <div class="flex flex-row justify-between w60 form-group form-group__usuarios" style="align-items: baseline;">
-                        {{validated-input label="Radical (para códigos)" propertyName="radical" changeset=changeset}}
-                        {{validated-input label="UF" propertyName="uf" changeset=changeset}}
-                        {{validated-input label="Cidade" propertyName="cidade" changeset=changeset}}
-                    </div>
+
+
+
                 </div>
                 <div class="flex flex-row justify-between form-group form-group__usuarios">
-                    {{validated-input label="Tipo de Instituição" propertyName="isEscola" changeset=changeset classe="isEscola"}}
+                    <div class="row">
+                        <div class="col-md-3">
+                            <form action="" class="form-group__infos">
+                                 <label class="form-group__label">Tipo de Instituição</label>
+                                <div class="form-group__wrapper form-group__wrapper--select">
+                                    <select name="segmento" data-type="select" data-required="true"
+                                        class="form-group__input">
+                                        <option selected="selected" value="">Escola</option>
+                                    </select>
+                                </div>
+                                </form>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <form action="" class="form-group__infos">
+                                <label class="form-group__label">Venda Direta</label>
+                                <label class="switch__usuarios switch__infos">
+                                    <input type="checkbox" id="only-enabled" {{action 'setEnableds' on='change' }}
+                                        checked="checked">
+                                    <div class="slider">
+                                        <span class="text disabled-text"><span class="switch__usuarios--icone"><img
+                                                    src="/assets/img/cross.png" alt=""></span>
+                                            <p class="row">desabilitados</p>
+                                        </span>
+                                        <span class="text enabled-text"><span class="switch__usuarios--icone"><img
+                                                    src="/assets/img/check1.png" alt=""></span>
+                                            <p class="row">habilitados</p>
+                                        </span>
+                                    </div>
+                                </label>
+                            </form>
+                        </div>
+                        <div class="col-md-2">
+                            <form action="" class="form-group__infos">
+                                <label class="form-group__label">Termos de aceite</label>
+                                <label class="switch__usuarios switch__infos">
+                                    <input type="checkbox" id="only-enabled" {{action 'setEnableds' on='change' }}
+                                        checked="checked">
+                                    <div class="slider">
+                                        <span class="text disabled-text"><span class="switch__usuarios--icone"><img
+                                                    src="/assets/img/cross.png" alt=""></span>
+                                            <p class="row">desabilitados</p>
+                                        </span>
+                                        <span class="text enabled-text"><span class="switch__usuarios--icone"><img
+                                                    src="/assets/img/check1.png" alt=""></span>
+                                            <p class="row">habilitados</p>
+                                        </span>
+                                    </div>
+                                </label>
+                            </form>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <form action="" class="form-group__infos">
+                                <label class="form-group__label">Status</label>
+                                <label class="switch__usuarios switch__infos">
+                                    <input type="checkbox" id="only-enabled" {{action 'setEnableds' on='change' }}
+                                        checked="checked">
+                                    <div class="slider">
+                                        <span class="text disabled-text"><span class="switch__usuarios--icone"><img
+                                                    src="/assets/img/cross.png" alt=""></span>
+                                            <p class="row">desabilitados</p>
+                                        </span>
+                                        <span class="text enabled-text"><span class="switch__usuarios--icone"><img
+                                                    src="/assets/img/check1.png" alt=""></span>
+                                            <p class="row">habilitados</p>
+                                        </span>
+                                    </div>
+                                </label>
+                            </form>
+                        </div>
+                    </div>
+
                     {{!-- {{switch-input label="É escola?" propertyName="isEscola" changeset=changeset
                     classe="isEscola"}} --}}
-                    <label class="switch__usuarios">
-                    <input type="checkbox" id="only-enabled" checked="checked" data-ember-action="" data-ember-action-1770="1770" data-gtm-form-interact-field-id="0">
-                    <div class="slider">
-                        <span class="text disabled-text"><span class="switch__usuarios--icone"><img src="/assets/img/cross.png" alt=""></span><p class="row">ver desabilitados</p></span>
-                        <span class="text enabled-text"><span class="switch__usuarios--icone"><img src="/assets/img/check1.png" alt=""></span><p class="row">ver habilitados</p></span>
-                    </div>
-                </label>
-                    {{switch-input label="Venda Direta" propertyName="vendaDireta" changeset=changeset
+
+
+
+
+                    {{!-- {{switch-input label="Venda Direta" propertyName="vendaDireta" changeset=changeset
                     classe="vendaDireta"}}
                     {{switch-input label="Termo Aceite" propertyName="statusTermoAceite" changeset=changeset
                     classe="statusTermoAceite"}}
                     {{switch-input label="Status" propertyName="enabled" changeset=changeset classe="enabled"
-                    class="mr2"}}
+                    class="mr2"}} --}}
                 </div>
                 {{!-- <div class="flex flex-row justify-between">
                     {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkS"
@@ -47,45 +141,45 @@
                     <div class="row">
                         {{!-- {{validated-input label="Gestores" propertyName="nrgestores" changeset=changeset
                         classe="numeric"}} --}}
-                        <div class="col-md-2">    
-                        {{validated-input label="Professores contratados" changeset=changeset }}
+                        <div class="col-md-2 col-sm-12">
+                            {{validated-input label="Professores contratados" changeset=changeset }}
                         </div>
-                         <div class="col-md-2">   
-                        <div class="form-group__container--medicao">
-                            <label>Professores criados</label>
-                            <div class="form-group__container">
-                                <div class="form-group__container--bar"></div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="form-group__container--medicao">
+                                <label>Professores criados</label>
+                                <div class="form-group__container">
+                                    <div class="form-group__container--bar"></div>
+                                </div>
+                                <label>80/100</label>
                             </div>
-                            <label>80/100</label>
                         </div>
-                        </div>
-                         <div class="col-md-2">   
-                        {{validated-input label="Alunos contratados" changeset=changeset}}
+                        <div class="col-md-2 col-sm-12">
+                            {{validated-input label="Alunos contratados" changeset=changeset}}
                         </div>
                         {{!-- {{validated-input label="Coordenadores" propertyName="nrcoordenadores" changeset=changeset
                         classe="numeric"}}
                         {{validated-input label="Secretaria" propertyName="nrsecretaria" changeset=changeset
                         classe="numeric"}} --}}
-                         <div class="col-md-2">   
-                        <div class="form-group__container--medicao">
-                            <label>Alunos criados</label>
-                            <div class="form-group__container">
-                                <div class="form-group__container--bar alunos"></div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="form-group__container--medicao">
+                                <label>Alunos criados</label>
+                                <div class="form-group__container">
+                                    <div class="form-group__container--bar alunos"></div>
+                                </div>
+                                <label>80/100</label>
                             </div>
-                            <label>80/100</label>
                         </div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="form-group__container--medicao">
+                                <label>Gestores:<span>100</span></label>
+                                <label>Coordenadores:<span>100</span></label>
+                            </div>
                         </div>
-                         <div class="col-md-2">   
-                        <div class="form-group__container--medicao">
-                            <label>Gestores:<span>100</span></label>
-                            <label>Coordenadores:<span>100</span></label>
-                        </div>
-                        </div>
-                         <div class="col-md-2">   
-                        <div class="form-group__container--medicao">
-                            <label>Secretaria:<span>100</span></label>
-                            <label>Marketing:<span>100</span></label>
-                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="form-group__container--medicao">
+                                <label>Secretaria:<span>100</span></label>
+                                <label>Marketing:<span>100</span></label>
+                            </div>
                         </div>
                         {{!-- {{validated-input label="Marketing" propertyName="nrmarketing" changeset=changeset
                         classe="numeric"}}

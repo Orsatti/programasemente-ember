@@ -98,12 +98,6 @@
     width: 100%;
     display: inline-table;
 
-    // color: #808080;
-    // font-weight: 600;
-   
-    
-   
-
 
     &--name-usuarios,
     &--role,
@@ -162,7 +156,7 @@
       word-wrap: break-word;
       width: fit-content;
       // width: -moz-fit-content;
-      width: -webkit-fill-available;
+      width: 70%;
       vertical-align: bottom;
     }
 
@@ -244,6 +238,116 @@
       margin: 0 1rem 1.5rem .8rem;
     }
   }
+
+
+  &__table-anos {
+    // margin-top: $distance--xl;
+     background-color: #fff;
+     border: 1px solid #8AB925;
+     border-radius: 0px 50px 0 50px;
+     border-collapse: inherit;
+     padding: 2rem 4rem;
+     width: 100%;
+     display: inline-table;
+ 
+ 
+     
+    &--col{
+      margin-left: 1rem;
+      margin-right: 0rem;
+
+      @include media("<sm") {
+        width: 8rem;
+        min-height: 90rem;
+      }
+  
+    }
+
+    p{
+      color: #808080;
+    }
+     
+ 
+     &--check{
+     //  display: ruby-text;
+       display: -webkit-box;
+       position: relative;
+     }
+ 
+ 
+     &--title-segmento{
+       color: #808080;
+       font-size: 16px;
+       font-weight: 600;
+       line-height: 26px;
+       word-wrap: break-word
+     }
+ 
+     &--title-platano{
+       color: #808080;
+       font-size: 14px;
+       font-weight: 400;
+       line-height: 26px;
+       word-wrap: break-word;
+       width: fit-content;
+       // width: -moz-fit-content;
+       width: 70%;
+       vertical-align: bottom;
+     }
+
+ 
+     .icon-check {
+       color: #fff;
+       background-color: #4bae4f;
+       border-radius: 100%;
+       padding: 0.25rem;
+     }
+ 
+     .icon-x{
+       color: #fff;
+       background-color: #dc3232;
+       border-radius: 100%;
+       padding: 0.25rem;
+     }
+ 
+     .btn-acoes{
+       width: 1rem;
+       padding: 0;
+       padding: .7rem 0rem .7rem 1rem;
+     }
+ 
+     .btn-editar{
+         color: #8AB925;
+         font-weight: 500;
+         font-size: 1.1rem;
+         cursor: pointer;
+         margin-top: .2rem;
+     }
+ 
+     .btn-excluir{
+       color: #8AB925;
+       margin-left: .4rem;
+       font-weight: 500;
+       font-size: 1.1rem;
+       cursor: pointer;
+       margin-top: .2rem;
+     }
+ 
+
+ 
+
+ 
+     &--titulo{
+       display: block;
+       width: 100%;
+       color: #808080;
+       font-size: 21px;
+       font-weight: 600;
+       line-height: 26px;
+       word-wrap: break-word;
+       margin: 0 1rem 1.5rem .8rem;
+     }
+   }
 
   &__mass-enroll {
     align-items: center;

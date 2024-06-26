@@ -1,15 +1,15 @@
 {{gerdata-header pessoa=pessoaLogged informations=false instituicao=model.instituicao}}
 
-<section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm institutions__table-usuarios ">
-  <div class="institutions__table-usuarios--titulo mt-0 ml-0">Anos contratados pela escola</div>
-  <div class="row justify-content-between">
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm institutions__table-anos ">
+  <div class="institutions__table-anos--titulo mt-0 ml-0">Anos contratados pela escola</div>
+  <div class="row justify-content-between institutions__table-anos--col">
     {{#each segmentos as |segmento| }}
     {{#unless (equalstr segmento.idx '6')}}
-      <div class="col-xs-12 col-lg-2 flow-sm">
-        <h4 class="institutions__table-usuarios--title-segmento">{{segmento.titulo}}</h4>
+      <div class="flow-sm">
+        <h4 class="institutions__table-anos--title-segmento">{{segmento.titulo}}</h4>
         {{#each (orderby segmento.plataformaAnos 'idx') as |plataformaAno|}}
-          <ul class="institutions__table-usuarios--check">
-            <h5 class="institutions__table-usuarios--title-platano"> {{plataformaAno.name}}</h5>
+          <ul class="institutions__table-anos--check">
+            <h5 class="institutions__table-anos--title-platano"> {{plataformaAno.name}}</h5>
             <label class="switch__anos">
 
               {{#if (or (containStr "Fundação Bradesco" model.instituicao.name) (or (equalstr segmento.idx '1') (and (equalstr segmento.idx '5') (notequalstr plataformaAno.idx '17'))))}}
@@ -46,7 +46,7 @@
   
   <div class="row">
     {{#if acessoS}}
-      <div class="col-xs-12 col-lg-6 flow-sm institutions__filtro-anos--tipo">
+      <div class="flow-sm institutions__filtro-anos--tipo">
         <p>Percurso de medição definido para os adultos:</p>
         <div class="form-group">
           <div class="form-group__wrapper form-group__wrapper--select-anos ">

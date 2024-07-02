@@ -148,17 +148,17 @@
             {{/unless}}
           </li>
 
-          {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
+          {{!-- {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
             {{#link-to 'geracompanhamento' class=(concatenate "l-user-header__nav-item " (if (equalstr route 'acompanhamento') "l-user-header__nav-item--is-active"))}}
               <span>Acompanhamento</span>
             {{/link-to}}
-          {{/if}}
+          {{/if}} --}}
 
-          {{#if (or (or (or (equalstr pessoa.role 'instrutor') (equalstr pessoa.role 'coordenador')) (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '1')))}}
+          {{!-- {{#if (or (or (or (equalstr pessoa.role 'instrutor') (equalstr pessoa.role 'coordenador')) (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '1')))}}
             {{#link-to 'acompanhamento.plataforma' pessoa.instituicao.id class=(concatenate "l-user-header__nav-item " (if (equalstr route 'acompanhamento') "l-user-header__nav-item--is-active"))}}
               <span>Acompanhamento</span>
             {{/link-to}}
-          {{/if}}
+          {{/if}} --}}
 
           {{#unless (or (or (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel')) (equalstr pessoa.role
           'instrutor')) (equalstr pessoa.role 'secretaria'))}}
@@ -289,17 +289,17 @@
             {{/unless}}
           </li>
 
-          {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
+          {{!-- {{#if (or (equalstr pessoa.role 'admin') (and (equalstr pessoa.role 'gestor') (equalstr pessoa.instituicao.id "9")))}}
             {{#link-to 'geracompanhamento' class=(concatenate "" (if (equalstr route 'acompanhamento') "l-user-header__optionsMobile-nav-item--is-active"))}}
               <span>Acompanhamento</span>
             {{/link-to}}
-          {{/if}}
+          {{/if}} --}}
 
-          {{#if (or (or (or (equalstr pessoa.role 'instrutor') (equalstr pessoa.role 'coordenador')) (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '1')))}}
+          {{!-- {{#if (or (or (or (equalstr pessoa.role 'instrutor') (equalstr pessoa.role 'coordenador')) (and (equalstr pessoa.role 'gestor') (notequalstr pessoa.instituicao.id "9"))) (and (equalstr pessoa.role 'instrutor') (equalstr pessoa.isAplicador '1')))}}
             {{#link-to 'acompanhamento.plataforma' pessoa.instituicao.id class=(concatenate "" (if (equalstr route 'acompanhamento') "l-user-header__optionsMobile-nav-item--is-active"))}}
               <span>Acompanhamento</span>
             {{/link-to}}
-          {{/if}}
+          {{/if}} --}}
 
           {{#unless (or (or (or (equalstr pessoa.role 'aluno') (equalstr pessoa.role 'responsavel')) (equalstr pessoa.role
           'instrutor')) (equalstr pessoa.role 'secretaria'))}}

@@ -2,7 +2,7 @@
 
 <section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm institutions__table-anos ">
   <div class="institutions__table-anos--titulo mt-0 ml-0">Anos contratados pela escola</div>
-  <div class="row justify-content-between institutions__table-anos--col">
+  <div class="row justify-content-between institutions__table-anos--col ml-0 mr-0">
     {{#each segmentos as |segmento| }}
     {{#unless (equalstr segmento.idx '6')}}
       <div class="flow-sm">
@@ -44,7 +44,7 @@
   <div class="institutions__filtro-anos"></div>
   {{/if}}
   
-  <div class="row">
+  <div class="row ml-0 mr-0">
     {{#if acessoS}}
       <div class="flow-sm institutions__filtro-anos--tipo">
         <p>Percurso de medição definido para os adultos:</p>

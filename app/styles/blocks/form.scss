@@ -116,6 +116,13 @@
 
     &__label {
       @include title-aux;
+      text-transform: capitalize;
+      font-size: 1rem;
+      font-weight: 500;
+line-height: 14px;
+word-wrap: break-word;
+color: #808080;
+
 
       margin-bottom: $distance--xs;
 
@@ -134,6 +141,29 @@
       //color: #cacaca;
       @include target-ie {
         flex-basis: auto;
+      }
+
+      &--anos {
+        width: 10rem;
+        border-radius: 7px;
+        color: #b5b5b5;
+        font-size: .8rem;
+        // font-size: 11px;
+        font-weight: 400;
+        line-height: 16px;
+        word-wrap: break-word;
+        height: 1.5rem;
+        flex: none;
+        min-height: 0rem;
+        // box-shadow: inset rgba(60, 70, 85, .17) 0 0 5px 0, rgb(0 0 0 / 11%) 4px 4px 8px 0;
+        box-shadow: 0 .1rem .25rem .25px rgba(54,54,54,.2);
+        
+        background-color: #fff;
+        margin-left: 1rem;
+
+        // width: 7rem;
+        // border-radius: 10rem;
+
       }
 
       &--amount {
@@ -322,6 +352,29 @@
           z-index: 2;
         }
       }
+
+      &--select-anos {
+        display: inline-flex;
+        min-width: 5rem;
+        position: relative;
+
+        &::after {
+          @include icon;
+
+          content: $icon-chevron-down;
+
+          font-size: $font-size--md;
+          font-weight: bold;
+          opacity: 0.85;
+          padding: 0;
+          pointer-events: none;
+          position: absolute;
+          right: $distance--xs;
+          top: 50%;
+          transform: translateY(-50%);
+          z-index: 2;
+        }
+      }
     }
 
     &__input-container {
@@ -451,6 +504,90 @@
       @include media("<lg") {
         width: 20rem;
       }
+    }
+
+    &__usuarios{
+      color: #808080;
+      text-transform: capitalize !important;
+      input{
+        background-color: #fff;
+        box-shadow: 0 .1rem .25rem .25px rgba(54,54,54,.2);
+        // box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
+        border-radius: 10px;
+        color: #B5B5B5;
+        font-size: 14px;
+        font-family: Poppins;
+        font-weight: 400;
+        line-height: 16px;
+        word-wrap: break-word
+      }
+
+      label{
+        text-transform: capitalize !important;
+      }
+
+      select{
+        background-color: #fff;
+        box-shadow: 0 .1rem .25rem .25px rgba(54,54,54,.2);
+        // box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
+        border-radius: 10px;
+        font-size: 0.8rem;
+        color: #B5B5B5;
+        max-width: 15rem;
+      }
+    }
+
+    &__usuarios-modal{
+      color: #808080;
+      // text-transform: capitalize !important;
+      input{
+        background-color: #fff;
+        box-shadow: 0px 0.1rem 0.25rem 0.25px rgba(54, 54, 54, .2);
+        // box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
+        border-radius: 8px;
+        // color: #B5B5B5;
+        font-size: 14px;
+        font-family: Poppins;
+        font-weight: 400;
+        line-height: 16px;
+        word-wrap: break-word
+      }
+
+      label{
+        text-transform: none !important;
+        // text-transform: capitalize !important;
+      }
+
+      select{
+        background-color: #fff;
+        box-shadow: 0px 0.1rem 0.25rem 0.25px rgba(54, 54, 54, .2);
+        // box-shadow: 0 .3rem 0.5rem 0 rgba(54, 54, 54, .2);
+        border-radius: 8px;
+        font-size: 0.8rem;
+        // color: #B5B5B5;
+      }
+
+
+      &__title-segmento{
+        color: #808080;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 14px;
+        word-wrap: break-word;
+        
+      }
+
+      &__title-platano{
+        margin-top: 0.5rem;
+        color: #808080;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 14px;
+        word-wrap: break-word;
+
+      }
+
+
     }
   }
 }

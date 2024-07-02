@@ -73,15 +73,180 @@
 
   &__table {
     margin-top: $distance--xl;
+
+    &--pessoa{
+      border-bottom: 1px solid #CFCFCF;
+      display: block;
+      width: 96%;
+      position: absolute;
+ 
+      
+    
+    }
+
+   
+
   }
 
   &__table-usuarios {
+   // margin-top: $distance--xl;
+    background-color: #fff;
+    border: 1px solid #8AB925;
+    border-radius: 0px 50px 0 50px;
+    border-collapse: inherit;
+    padding: 2rem 1rem;
+    width: 100%;
+    display: inline-table;
+
+
+    &--name-usuarios,
+    &--role,
+    &--enabled,
+    &--actions{
+      color: #808080;
+      font-size: 0.8rem;
+      width: 10%;
+      font-weight: 600;
+      line-height: 15px;
+      word-wrap: break-word;
+      text-transform: none;
+      // text-transform: capitalize;
+
+      p{
+        font-size: 0.75rem;
+        font-weight: 400;
+        //color: #808080;
+      }
+
+      &__btn-group{
+        @include media("<sm") {
+          display: table-caption;
+        margin-top: 4rem;
+        }
+  
+      }
+    }
+
+    &--title-usuarios{
+      font-size: 0.85rem;
+      color: #808080;
+      font-weight: 600;
+    }
+
+    &--check{
+    //  display: ruby-text;
+      display: -webkit-box;
+      position: relative;
+    }
+
+
+    &--title-segmento{
+      color: #808080;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 26px;
+      word-wrap: break-word
+    }
+
+    &--title-platano{
+      color: #808080;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 26px;
+      word-wrap: break-word;
+      width: fit-content;
+      // width: -moz-fit-content;
+      width: 70%;
+      vertical-align: bottom;
+    }
+
+    &--title-email{
+      font-size: 0.685rem;
+      color: #808080;
+    }
+
+    .icon-check {
+      color: #fff;
+      background-color: #4bae4f;
+      border-radius: 100%;
+      padding: 0.25rem;
+    }
+
+    .icon-x{
+      color: #fff;
+      background-color: #dc3232;
+      border-radius: 100%;
+      padding: 0.25rem;
+    }
+
+    .btn-acoes{
+      width: 1rem;
+      padding: 0;
+      padding: .7rem 0rem .7rem 1rem;
+    }
+
+    .btn-editar{
+        color: #8AB925;
+        font-weight: 500;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: .2rem;
+    }
+
+    .btn-excluir{
+      color: #8AB925;
+      margin-left: .4rem;
+      font-weight: 500;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: .2rem;
+    }
+
+    &--pagination{
+      display: inline-block;
+      width: 100%;
+      height: 3rem;
+
+      .btn{
+        color:#55782c;
+        background-color: #fff;
+        box-shadow: none;
+        font-size: 2rem;
+
+       & ::before {
+          font-size: 1.5em;
+      }
+      }
+    }
+
+    .pagination-usuarios{
+      position: absolute;
+      width: 6rem;
+      bottom: -1%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &--titulo{
+      display: block;
+      width: 100%;
+      color: #808080;
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 26px;
+      word-wrap: break-word;
+      margin: 0 1rem 1.5rem .8rem;
+    }
+  }
+
+
+  &__table-anos {
     // margin-top: $distance--xl;
      background-color: #fff;
      border: 1px solid #8AB925;
      border-radius: 0px 50px 0 50px;
      border-collapse: inherit;
-     padding: 2rem;
+     padding: 2rem 4rem;
      width: 100%;
      display: inline-table;
      color: #808080;
@@ -141,13 +306,18 @@
      }
  
      &--title-platano{
-       color: grey;
+       color: #808080;
        font-size: 14px;
        font-weight: 400;
        line-height: 26px;
        word-wrap: break-word;
-       width: -moz-fit-content;
-       width: -webkit-fill-available;
+      //  width: -moz-fit-content;
+      //  width: -webkit-fill-available;
+      //  vertical-align: bottom;
+
+       width: fit-content;
+       // width: -moz-fit-content;
+       width: 70%;
        vertical-align: bottom;
      }
  
@@ -219,14 +389,14 @@
      }
  
      &--titulo{
-       display: block;
-     width: 100%;
-     color: #808080;
-     font-size: 21px;
-     font-weight: 600;
-     line-height: 26px;
-     word-wrap: break-word;
-     margin: 0 1rem 1.5rem .8rem;
+      display: block;
+      width: 100%;
+      color: #808080;
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 26px;
+      word-wrap: break-word;
+      margin: 0 1rem 1.5rem .8rem;
      }
    }
 
@@ -403,4 +573,29 @@
 
     
   }
+
+  &__btn{
+    &--label-usuarios{
+      font-weight: normal;
+      text-transform: lowercase;
+      font-size: 0.87rem;
+
+    }
+  }
+
+  &__filtro-anos{
+    border-top: 1px solid #CFCFCF;
+
+    &--tipo{
+      display: ruby;
+
+      @include media("<sm") {
+        display: block;
+        margin-left: 0 !important;
+        margin-bottom: 1rem;
+      }
+    }
+  }
 }
+
+

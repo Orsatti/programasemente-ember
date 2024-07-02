@@ -117,6 +117,7 @@
             transition-delay: 100ms;
             opacity: 1;
             transform: translateY(-50%);
+            border-radius: 0 2rem;
         }
 
         [class*='is-content'] & {
@@ -171,6 +172,8 @@
 
     &__close {
         background-color: $white;
+        right: 1rem;
+        top: 1rem;
     }
 
     &__header {
@@ -179,19 +182,34 @@
     }
 
     &__title {
-        @include title-2;
+        color: #808080;
+        font-size: 21px;
+        font-weight: 700;
+        line-height: 14px;
+        word-wrap: break-word;
+
+        span{
+            font-weight: 400; 
+        }
     }
 
     // Acho que está descontinuado...
     &__subtitle {
-       font-size: 1.3rem;
-        letter-spacing: 0rem;
-        margin-bottom: 1.5rem;
+    //    font-size: 1.3rem;
+    //     letter-spacing: 0rem;
+    //     margin-bottom: 1.5rem;
 
-        &:not(:first-child) {
-            margin-top: 1.5rem;;
-        }
+    //     &:not(:first-child) {
+    //         margin-top: 1.5rem;;
+    //     }
 
+        margin-top: 1rem;
+        margin-bottom: 0.75rem;
+        color: #808080;
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 14px;
+        word-wrap: break-word;
     }
 
     &__body {

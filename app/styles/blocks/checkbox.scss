@@ -22,8 +22,18 @@
         margin-right: 0;
     }
 
+    &__reenvio{
+        margin: 1rem;
+    }
+
     &__label {
-        user-select: none;
+        user-select:auto;
+        color: #808080;
+font-size: 15px;
+font-family: Poppins;
+font-weight: 500;
+line-height: 14px;
+word-wrap: break-word;
 
         // * Para casos onde não teremos um label escrito,
         // * como por exemplo uma listagem com possibilidade de
@@ -34,19 +44,28 @@
             padding-left: $input-check-radio-size;
         }
 
+        &::before{
+            border: 1px solid #8AB925;
+            border-radius: 7px;
+            background-color: #fff !important;
+        }
+
         &::after {
-            background-color: transparent;
-            color: $check-radio-checked-color;
-            content: '\e905'; //Código do check
-            font-family: 'icomoon';
+            background-color: #8AB925;
+            color: #fff;
+            content: "\e905";
+            font-family: icomoon;
             font-size: 1em;
-            font-weight: bold;
+            font-weight: 700;
             left: 0;
             position: absolute;
             text-align: center;
             text-rendering: auto;
             top: 50%;
-            width: calc(#{$input-check-radio-size} + .1rem);
+            width: calc(1.75rem + .1rem);
+            height: 1.9rem;
+            border-radius: 5px;
+            line-height: 1.7rem;
         }
 
     }
@@ -59,9 +78,6 @@
     &__label + &__input {
         outline: 4px solid crimson;
     }
-
-
-
 
     &_plataforma{
         padding: .25rem;
@@ -96,4 +112,5 @@
             outline-offset: max(2px, 0.15em);
         }
     }
+
 }

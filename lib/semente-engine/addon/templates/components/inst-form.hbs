@@ -63,7 +63,7 @@
                 <div class="flex flex-row form-group form-group__usuarios">
                     <div class="row w100">
                         {{#if isEdit}}
-                        <div style="display:none;">{{codigos}}</div>
+                        {{!-- <div style="display:none;">{{codigos}}</div> --}}
                         <div class="col-md-2 col-sm-12">
                             {{validated-input label="Professores contratados" propertyName="nrinstrutores" changeset=changeset classe="numeric"}}
                         </div>
@@ -73,7 +73,8 @@
                                 <div class="form-group__container">
                                     <div id="barra-professores" class="form-group__container--bar"></div>
                                 </div>
-                                <label>{{totalUtilizadosInstrutores}}/{{totalCodigosInstrutores}}</label>
+                                <label>{{instituicao.nrinstrutoresAtivos}}/{{instituicao.nrinstrutores}}</label>
+                                {{!-- <label>{{totalUtilizadosInstrutores}}/{{totalCodigosInstrutores}}</label> --}}
                             </div>
                         </div>
 
@@ -86,7 +87,8 @@
                                 <div class="form-group__container">
                                     <div id="barra-alunos" class="form-group__container--bar alunos"></div>
                                 </div>
-                                <label>{{totalUtilizadosAlunos}}/{{totalCodigosAlunos}}</label>
+                                <label>{{instituicao.nralunosAtivos}}/{{instituicao.nralunos}}</label>
+                                {{!-- <label>{{totalUtilizadosAlunos}}/{{totalCodigosAlunos}}</label> --}}
                             </div>
                         </div>
                         <div style="display:none;">{{carregaBarras}}</div>
@@ -117,8 +119,27 @@
                     <h4 class="modal__subtitle mt-5">Gestão escolar</h4>
                     <div class="flex flex-row justify-between form-group__usuarios">
                         {{#each segmentos as |segmento|}}
+                        {{#unless (equalstr segmento.idx '6')}}
                             {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id) classe="segmento" class="w20 mr-1 d-flex d-flex--c justify-between"}}
+                        {{/unless}}
                         {{/each}}
+                    </div>
+                    <div class="flow-sm institutions__filtro-anos--tipo mt-3">
+                        <p>Percurso de medição definido para os adultos: </p>
+                        <div class="form-group">
+                            <div class="form-group__wrapper form-group__wrapper--select-anos ">
+                                <select id="platAnoAdulto" name="percursoadulto" data-type="select" data-required="true"
+                                data-context="percursoadulto" class="form-group__input form-group__input--anos">
+                                {{#each segmentos as |segmento| }}
+                                {{#if (equalstr segmento.idx '6')}}
+                                {{#each (orderby segmento.plataformaAnos 'idx') as |plataformaAno|}}
+                                <option value="{{plataformaAno.id}}" selected={{if (equalstr plataformaAno.idx '20' ) "selected" }}>{{plataformaAno.name}}</option>
+                                {{/each}}
+                                {{/if}}
+                                {{/each}}
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <h4 class="modal__subtitle mt-5">Gestão calendário</h4>

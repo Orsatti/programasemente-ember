@@ -47,21 +47,22 @@
   <div class="row ml-0 mr-0">
     {{#if acessoS}}
       <div class="flow-sm institutions__filtro-anos--tipo">
-        <p>Percurso de medição definido para os adultos:</p>
-        <div class="form-group">
+        <p>Percurso de medição definido para os adultos: </p>
+        <p class="institutions__filtro-anos--subinfo ml-1">{{percursoAdulto}}</p>
+        {{!-- <div class="form-group">
           <div class="form-group__wrapper form-group__wrapper--select-anos ">
-                <select id="platAnoAdulto" class="form-group__input form-group__input--anos" onchange={{action "openModalDrop"}}>
-                  {{#each segmentos as |segmento| }}
-                  {{#if (equalstr segmento.idx '6')}}
-                  {{#each (orderby segmento.plataformaAnos 'idx') as |plataformaAno|}}
-                    <option id="plat_ano{{plataformaAno.id}}_s" value="{{plataformaAno.id}}"
-                     selected={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '2' ) "selected" }}>{{plataformaAno.name}}</option>
-                  {{/each}}
-                  {{/if}}
-                  {{/each}}
-                </select>
-              </div>
-        </div>
+            <select id="platAnoAdulto" class="form-group__input form-group__input--anos" onchange={{action "openModalDrop"}}>
+              {{#each segmentos as |segmento| }}
+              {{#if (equalstr segmento.idx '6')}}
+              {{#each (orderby segmento.plataformaAnos 'idx') as |plataformaAno|}}
+                <option id="plat_ano{{plataformaAno.id}}_s" value="{{plataformaAno.id}}"
+                  selected={{if (instplatsisContains plataformaAno instituicao.instituicaoPlataformaAnoSistema '2' ) "selected" }}>{{plataformaAno.name}}</option>
+              {{/each}}
+              {{/if}}
+              {{/each}}
+            </select>
+          </div>
+        </div> --}}
       </div>
     {{/if}}
 

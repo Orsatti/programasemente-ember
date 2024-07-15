@@ -1,43 +1,59 @@
- {{gerdata-header pessoa=pessoaLogged informations=false instituicao=model.instituicao}}
- 
+{{gerdata-header pessoa=pessoaLogged informations=false instituicao=model.instituicao}}
+
 <section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm">
-  <div class="row">
+  <div class="row accordion-adm">
     {{#each segmentos as |segmento| }}
-      <div class="col-xs-12 col-lg-2 flow-sm">
-        <h4 class="title-segmento">{{segmento.titulo}}</h4>
-        {{#each (orderby plataformaAnos 'idx') as |plataformaAno|}}
+    <div class="col-xs-12 col-lg-12 flow-sm">
+      <ul class="accordion-adm">
+        <li>
+          <div class="accordion-adm__box">
+          <input type="checkbox" checked>
+          <span class="abre-fecha"></span>
+          <h4 class="title-segmento">{{segmento.titulo}}</h4>
+          <p class="cont-accordion-adm">
+          
+          {{#each (orderby plataformaAnos 'idx') as |plataformaAno|}}
           {{#if (equalstr segmento.id plataformaAno.segmento.id)}}
-            <div class="flex-col">
-              <h4 class="title-platano"><b>·</b> {{plataformaAno.name}}</h4>
-              <ul id="platTurmas-list-{{plataformaAno.id}}">
-                {{#each plataformaTurmas as |plataformaTurma|}}
-                  {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
-                    <li class="row">
-                      <div class="flex-col">
-                      <p class="title-platturma mb-0" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">
-                        {{plataformaTurma.name}}
-                      </p>
-                      <p class="title-platturma pt-0">(id: {{plataformaTurma.id}})</p>
-                      </div>
-                      <span id="icon-edit{{plataformaTurma.id}}" class="btn_icon_edit icon-edit" onclick={{action 'edit' plataformaTurma}} style="display: block;"></span>
-                      {{#if (equalstr plataformaTurma.numAlunos "0")}}
-                        <span id="icon-delete{{plataformaTurma.id}}" class="btn_icon_edit icon-trash-2" onclick={{action 'delete' plataformaTurma}} style="display: block;"></span>
-                      {{/if}}
-                      <span id="icon-x{{plataformaTurma.id}}" class="btn_icon_edit icon-x" onclick={{action 'cancelEdit' plataformaTurma}} style="display: none;"></span>
-                      <span id="icon-save{{plataformaTurma.id}}" class="btn_icon_edit icon-save" onclick={{action 'saveEdit' plataformaTurma}} style="display: none;"></span>
-                    </li>
-                  {{/if}}
-                {{/each}}
-              </ul>
-              <button type="button" class="btn btn--add-turma" 
-                  id="plat_ano{{plataformaAno.id}}" onclick={{action 'create' plataformaAno}}>
-                  <span class="btn__icon icon-plus"></span>
-                  <span class="btn__label">Adicionar</span>
-              </button>
-            </div>
+          <div class="flex-col cont-accordion-adm__anos">
+            <h4 class="title-platano"> {{plataformaAno.name}}</h4>
+             <button type="button" class="btn btn--add-turma" id="plat_ano{{plataformaAno.id}}" onclick={{action 'create'
+              plataformaAno}}>
+              <span class="btn__icon icon-plus"></span>
+              <span class="btn__label">Adicionar</span>
+            </button>
+            <ul id="platTurmas-list-{{plataformaAno.id}}">
+              {{#each plataformaTurmas as |plataformaTurma|}}
+              {{#if (equalstr plataformaAno.id plataformaTurma.plataformaAno.id)}}
+              <li class="row">
+                <div class="d-flex d-flex--c w70">
+                  <p class="title-platturma mb-0 w100" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">
+                    {{plataformaTurma.name}}
+                  </p>
+                  <p class="title-platturma pt-0 w100">(id: {{plataformaTurma.id}})</p>
+                </div>
+                <span id="icon-edit{{plataformaTurma.id}}" class="btn_icon_edit icon-edit" onclick={{action 'edit'
+                  plataformaTurma}} style="display: block;"></span>
+                {{#if (equalstr plataformaTurma.numAlunos "0")}}
+                <span id="icon-delete{{plataformaTurma.id}}" class="btn_icon_edit icon-trash-2"
+                  onclick={{action 'delete' plataformaTurma}} style="display: block;"></span>
+                {{/if}}
+                <span id="icon-x{{plataformaTurma.id}}" class="btn-cancel-edit-turma" onclick={{action 'cancelEdit'
+                  plataformaTurma}} style="display: none;"></span>
+                <span id="icon-save{{plataformaTurma.id}}" class="btn-edit-turma" onclick={{action 'saveEdit'
+                  plataformaTurma}} style="display: none;"></span>
+              </li>
+              {{/if}}
+              {{/each}}
+            </ul>
+           
+          </div>
           {{/if}}
-        {{/each}}
-      </div>
+          {{/each}}
+          </p>
+          </div>
+        </li>
+      </ul>
+    </div>
     {{/each}}
   </div>
 </section>
@@ -49,8 +65,8 @@
       <h2 class="modal__title color-leaf-40">Deseja confirmar o deleção?</h2>
     </div>
     <div class="modal__footer">
-      <button id='cancel-delete' class="btn btn-primary" type="button" onclick={{action "cancelDelete"}}>Não</button>
-      <button id='confirm-delete' class="btn btn-primary" type="button" onclick={{action "confirmDelete"}}>Sim</button>
+      <button id='cancel-delete' class="btn btn-primary" type="button" onclick={{action "cancelDelete" }}>Não</button>
+      <button id='confirm-delete' class="btn btn-primary" type="button" onclick={{action "confirmDelete" }}>Sim</button>
     </div>
   </div>
 </aside>

@@ -5,6 +5,7 @@
     border-bottom: 1px solid $gray-10;
     display: flex;
     flex-direction: row;
+    padding: 0px 0 2rem 0;
     flex-wrap: nowrap;
     overflow-x: auto;
 
@@ -15,6 +16,7 @@
 
     > * {
         flex-shrink: 0;
+        margin: 0 1rem;
     }
 
     &__acompanhamento{
@@ -64,6 +66,38 @@
             background-color: #fff;
 
            
+            
+        }
+
+    }
+
+    &__tab-adm {
+        border-bottom: 3px solid transparent;
+        cursor: pointer;
+        display: inline-block;
+        font-size: $font-size--sm;
+        font-weight: $font-weight-4;
+        padding: 0.1rem;
+        width: auto;
+        color: #808080;
+        text-align: center;
+        transition: 200ms cubic-bezier(.455, .03, .515, .955); // IE fallback
+        transition: 200ms var(--ease-in-out-quad);
+
+        > * { opacity: .75; }
+
+        &--is-active {
+            border-bottom: 3px solid $global-nav-active-bg-color;
+            cursor: unset;
+            width: auto;
+            
+
+            > * { opacity: 1; }
+
+        }
+
+        &:hover:not([class*='--is-active']) {
+            background-color: $gray-10;
             
         }
 

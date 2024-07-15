@@ -8,6 +8,13 @@
         margin: 0 $distance--xs 0 0;
     }
 
+    &__usuarios{
+        &--input{
+            background-color: #fff;
+            text-align: center;
+        }
+        
+    }
 
     &__input {
         height: 2rem;

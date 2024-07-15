@@ -1,73 +1,172 @@
 <!-- new institution step 1 -->
 <form {{action 'submit' on='submit' }}>
-    <div class="flow-lg institutions__step-content institutions__step-content--is-show">
+    <div class="flow-lg institutions__step-content institutions__step-content--is-show {{if isEdit 'institutions__table-usuarios' ''}}">
         <section class="sections__subsection">
             <div class="flex flex-col m-top--sm">
-                <h4 class="modal__subtitle">Informações gerais</h4>
-                <div class="flex flex-row justify-between">
-                    <div class="w35">
-                        {{validated-input label="Nome" propertyName="name" changeset=changeset}}
+                <h4 class="modal__subtitle mt-0">Informações gerais</h4>
+                <div class="flex-row justify-between" style="align-items: baseline;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="w35 form-group form-group__usuarios">
+                                {{validated-input label="Nome" propertyName="name" changeset=changeset}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="w35 form-group form-group__usuarios">
+                                {{validated-input label="Radical (para códigos)" propertyName="radical"
+                                changeset=changeset}}
+                            </div>
+
+                        </div>
+                        <div class="col-md-2">
+                            <div class="w35 form-group form-group__usuarios">
+                                {{validated-input label="UF" propertyName="uf" changeset=changeset}}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="w35 form-group form-group__usuarios">
+                                {{validated-input label="Cidade" propertyName="cidade" changeset=changeset}}
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex flex-row justify-between w60">
-                        {{validated-input label="Radical (para códigos)" propertyName="radical" changeset=changeset}}
-                        {{validated-input label="UF" propertyName="uf" changeset=changeset}}
-                        {{validated-input label="Cidade" propertyName="cidade" changeset=changeset}}
+                </div>
+                <div class="flex flex-row justify-between form-group form-group__usuarios">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <form action="" class="form-group__infos w100">
+                                <label class="form-group__label">Tipo de Instituição</label>
+                                <div class="form-group__wrapper form-group__wrapper--select">
+                                    <select id="isEscola" name="isEscola" data-type="select" data-required="true"
+                                        class="form-group__input">
+                                        <option value="true" selected={{if (equalstr instituicao.isEscola true) 'selected'}}>Escola</option>
+                                        <option value="false" selected={{if (equalstr instituicao.isEscola false) 'selected'}}>Empresa / Setor Público</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-2">
+                            {{switch-input label="Venda Direta" propertyName="vendaDireta" changeset=changeset classe="vendaDireta" class="form-group__infos"}}
+                        </div>
+
+                        <div class="col-md-2 ml-3">
+                            {{switch-input label="Termo Aceite" propertyName="statusTermoAceite" changeset=changeset classe="statusTermoAceite" class="form-group__infos"}}
+                        </div>
+
+                        <div class="col-md-2 ml-3">
+                            {{switch-input label="Status" propertyName="enabled" changeset=changeset classe="enabled" class="form-group__infos"}}
+                        </div>
                     </div>
                 </div>
-                <div class="flex flex-row justify-between">
-                    {{switch-input label="É escola?" propertyName="isEscola" changeset=changeset classe="isEscola"}}
-                    {{switch-input label="Venda Direta" propertyName="vendaDireta" changeset=changeset classe="vendaDireta"}}
-                    {{switch-input label="Termo Aceite" propertyName="statusTermoAceite" changeset=changeset classe="statusTermoAceite"}}
-                    {{switch-input label="Status" propertyName="enabled" changeset=changeset classe="enabled" class="mr2"}}
+
+                <h4 class="modal__subtitle mt-5">Gestão de usuários</h4>
+                <div class="flex flex-row form-group form-group__usuarios">
+                    <div class="row w100">
+                        {{#if isEdit}}
+                        {{!-- <div style="display:none;">{{codigos}}</div> --}}
+                        <div class="col-md-2 col-sm-12">
+                            {{validated-input label="Professores contratados" propertyName="nrinstrutores" changeset=changeset classe="numeric"}}
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="form-group__container--medicao">
+                                <label>Professores criados</label>
+                                <div class="form-group__container">
+                                    <div id="barra-professores" class="form-group__container--bar"></div>
+                                </div>
+                                <label>{{instituicao.nrinstrutoresAtivos}}/{{instituicao.nrinstrutores}}</label>
+                                {{!-- <label>{{totalUtilizadosInstrutores}}/{{totalCodigosInstrutores}}</label> --}}
+                            </div>
+                        </div>
+
+                        <div class="col-md-2 col-sm-12">
+                            {{validated-input label="Alunos contratados" propertyName="nralunos" changeset=changeset classe="numeric"}}
+                        </div>
+                        <div class="col-md-2 col-sm-12">
+                            <div class="form-group__container--medicao">
+                                <label>Alunos criados</label>
+                                <div class="form-group__container">
+                                    <div id="barra-alunos" class="form-group__container--bar alunos"></div>
+                                </div>
+                                <label>{{instituicao.nralunosAtivos}}/{{instituicao.nralunos}}</label>
+                                {{!-- <label>{{totalUtilizadosAlunos}}/{{totalCodigosAlunos}}</label> --}}
+                            </div>
+                        </div>
+                        <div style="display:none;">{{carregaBarras}}</div>
+                        
+                        <div class="mt-4 ml-4 flex justify-content-between w30">
+                            <div class="form-group__container--medicao">
+                                <h2 class="flex">Gestores: <span class="ml-1">{{instituicao.nrgestoresAtivos}}</span></h2>
+                                <h2 class="flex">Coordenadores: <span class="ml-1">{{instituicao.nrcoordenadoresAtivos}}</span></h2>
+                            </div>
+                            <div class="form-group__container--medicao">
+                                <h2 class="flex">Secretaria: <span class="ml-1">{{instituicao.nrsecretariaAtivos}}</span></h2>
+                                <h2 class="flex">Marketing: <span class="ml-1">{{instituicao.nrmarketingAtivos}}</span></h2>
+                            </div>
+                        </div>
+                        {{else}}
+                            <div class="col-md-4 col-sm-12">
+                                {{validated-input label="Professores contratados" propertyName="nrinstrutores" changeset=changeset classe="numeric"}}
+                            </div>
+                            <div class="col-md-4 col-sm-12">
+                                {{validated-input label="Alunos contratados" propertyName="nralunos" changeset=changeset classe="numeric"}}
+                            </div>
+                        {{/if}}
+                    </div>
                 </div>
-                <div class="flex flex-row justify-between">
-                    {{switch-input label="Plataforma S" propertyName="sEnabled" changeset=changeset onchange="checkS" classe="sEnabled"}}
-                    {{switch-input label="S Plus" propertyName="sPlusEnabled" changeset=changeset classe="sPlusEnabled"}}
-                    {{switch-input label="Essencial" propertyName="essencialEnabled" changeset=changeset classe="essencialEnabled"}}
-                    {{switch-input label="Academia de Prof." propertyName="csEnabled" changeset=changeset classe="csEnabled" class="mr2"}}
-                </div>
-                <h4 class="modal__subtitle">Gestão de usuários</h4>
-                <div class="flex flex-row justify-between">
-                    {{validated-input label="Gestores" propertyName="nrgestores" changeset=changeset classe="numeric"}}
-                    {{validated-input label="Coordenadores" propertyName="nrcoordenadores" changeset=changeset classe="numeric"}}
-                    {{validated-input label="Secretaria" propertyName="nrsecretaria" changeset=changeset classe="numeric"}}
-                    {{validated-input label="Marketing" propertyName="nrmarketing" changeset=changeset classe="numeric"}}
-                    {{validated-input label="Professores" propertyName="nrinstrutores" changeset=changeset classe="numeric"}}
-                    {{validated-input label="Alunos" propertyName="nralunos" changeset=changeset classe="numeric"}}
-                </div>
-                {{#if haveSegmentos}}
-                    <h4 class="modal__subtitle">Gestão escolar</h4>
-                {{/if}}
-                <div class="flex flex-row justify-between">
-                    {{#each segmentos as |segmento|}}
-                    {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id) classe="segmento"}}
-                    {{/each}}
-                </div>
-                {{#unless changeset.id}}
-                    <h4 class="modal__subtitle">Gestão calendário</h4>
-                    <div class="flex flex-row justify-start m-top--sm mr2">
-                        <select class="j-validate-aluno form-group__input form-group__input--select"
-                            id="new_inst_calendario" name="calendario"
-                            data-type="select" data-required="true" data-context="calendario">
-                            <option selected="selected" value="">---</option>
-                            {{#each calendarios as |calendario|}}
+                
+
+                {{#unless isEdit}}
+                    <h4 class="modal__subtitle mt-5">Gestão escolar</h4>
+                    <div class="flex flex-row justify-between form-group__usuarios">
+                        {{#each segmentos as |segmento|}}
+                        {{#unless (equalstr segmento.idx '6')}}
+                            {{switch-input label=segmento.titulo propertyName=(concatenate "segmento_" segmento.id) classe="segmento" class="w20 mr-1 d-flex d-flex--c justify-between"}}
+                        {{/unless}}
+                        {{/each}}
+                    </div>
+                    <div class="flow-sm institutions__filtro-anos--tipo mt-3">
+                        <p>Percurso de medição definido para os adultos: </p>
+                        <div class="form-group">
+                            <div class="form-group__wrapper form-group__wrapper--select-anos ">
+                                <select id="platAnoAdulto" name="percursoadulto" data-type="select" data-required="true"
+                                data-context="percursoadulto" class="form-group__input form-group__input--anos">
+                                {{#each segmentos as |segmento| }}
+                                {{#if (equalstr segmento.idx '6')}}
+                                {{#each (orderby segmento.plataformaAnos 'idx') as |plataformaAno|}}
+                                <option value="{{plataformaAno.id}}" selected={{if (equalstr plataformaAno.idx '20' ) "selected" }}>{{plataformaAno.name}}</option>
+                                {{/each}}
+                                {{/if}}
+                                {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h4 class="modal__subtitle mt-5">Gestão calendário</h4>
+                    <div class="form-group form-group__usuarios flex flex-row justify-start mr2">
+                        <div class="form-group__wrapper form-group__wrapper--select">
+                            <select id="new_inst_calendario" name="calendario" data-type="select" data-required="true"
+                                data-context="calendario" class="form-group__input">
+                                <option selected="selected" value="">---</option>
+                                {{#each calendarios as |calendario|}}
                                 <option value="{{calendario.id}}">{{calendario.ano}} - {{calendario.descricao}}</option>
-                            {{/each}}
-                        </select>
+                                {{/each}}
+                            </select>
+                        </div>
                     </div>
                 {{/unless}}
 
                 <div class="flex flex-row justify-content-between m-top--sm btn-right">
-                    {{!-- {{#unless haveSegmentos}}
-                        {{#link-to 'gerdata.informations.deleteinst' instituicao.id}}
-                            <button class="btn" style="background-color: #b62020; margin-right:1rem;">
-                                <span>Excluir</span>
-                            </button>
-                        {{/link-to}}
-                    {{/unless}} --}}
+                    {{!-- {{#if isEdit}}
+                    {{#link-to 'gerdata.informations.deleteinst' instituicao.id}}
+                    <button class="btn" style="background-color: #b62020; margin-right:1rem;">
+                        <span>Excluir</span>
+                    </button>
+                    {{/link-to}}
+                    {{/if}} --}}
                     <div class="flex flex-col justify-content-end">
                         <div class="color-error-40 " id="form-inst-error"></div>
-                        <button class="btn" type="submit" id="btnSubmit">{{buttonLabel}}</button>
+                        <button class="btn btn__salvar-info" type="submit" id="btnSubmit">{{buttonLabel}}</button>
                     </div>
                 </div>
             </div>

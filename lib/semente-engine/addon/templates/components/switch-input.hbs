@@ -1,22 +1,24 @@
-<div class="flex-col w95 mt1">
-    <div>
-        <label class="form-group__label">{{label}}</label>
-    </div>
-    <div>
-        <span class="switch switch--institutions">
-            {{#if changeset}}
-            {{#if onchange}}
-            <input class="switch__checkbox {{classe}}" type="checkbox" id="{{propertyName}}" checked={{get changeset propertyName}} onchange={{action onchange}} >
-            {{else}}
-            <input class="switch__checkbox {{classe}}" type="checkbox" id="{{propertyName}}" checked={{get changeset propertyName}} >
-            {{/if}}
-            {{else}}
-            <input class="switch__checkbox {{classe}}" type="checkbox" id="{{propertyName}}" checked="checked" >
-            {{/if}}
-            <label class="switch__label" for="{{propertyName}}">
-                <span class="switch__inner"></span>
-                <span class="switch__head"></span>
-            </label>
+
+<label class="form-group__label">{{label}}</label>
+<label class="switch__usuarios switch__infos">
+    {{#if changeset}}
+    {{#if onchange}}
+    <input class="{{classe}}" type="checkbox" id="{{propertyName}}" checked={{get changeset propertyName}} onchange={{action onchange}}>
+    {{else}}
+    <input class="{{classe}}" type="checkbox" id="{{propertyName}}" checked={{get changeset propertyName}} >
+    {{/if}}
+    {{else}}
+    <input class="{{classe}}" type="checkbox" id="{{propertyName}}" checked="checked" >
+    {{/if}}
+
+    <div class="slider" for="{{propertyName}}">
+        <span class="text disabled-text">
+            <span class="switch__usuarios--icone"><img src="/assets/img/cross.png" alt=""></span>
+            <p class="row">desabilitados</p>
+        </span>
+        <span class="text enabled-text">
+            <span class="switch__usuarios--icone"><img src="/assets/img/check1.png" alt=""></span>
+            <p class="row">habilitados</p>
         </span>
     </div>
-</div>
+</label>

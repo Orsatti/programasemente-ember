@@ -72,8 +72,8 @@
 
   @include button;
 
-  background-color: $clickables-bg-color;
-  border-radius: $button-radius;
+  background-color: #8AB925;
+  border-radius: 10px;
   box-shadow: 0 .5rem 1rem 0 transparentize($color: $clickables-bg-color, $amount: .8);
   color: $clickables-color;
   padding: $button-padding;
@@ -88,11 +88,54 @@
     background-color: $clickables-bg-color;
   }
 
+  &__add {
+    width: 10rem;
+    
+      }
+
   // ELEMENTS
   &__count {
     font-style: italic;
     opacity: .85;
     margin-left: $distance--xxs;
+  }
+
+  &__salvar-info {
+    border-radius: 10px;
+    height: 30px;
+    background: #A3C94B;
+    margin-top: 2rem;
+  }
+
+  &__nova{
+    &--instituicao{
+      background-color: #fff;
+      color: #8AB925;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      position: absolute;
+      right: 5rem;
+      top: 3rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 9;
+
+      @include media('<md') {
+        right: 1rem;
+      top: 1rem;
+      }
+
+      @include media('<lg') {
+        right: 1rem;
+      }
+
+      &:hover {
+        background-color: #8AB925;
+        color: #fff;
+        border: none;
+      }
+    }
   }
 
   &__icon {
@@ -109,6 +152,8 @@
     }
 
   }
+
+  
 
   &__claro{
     background-color: $default-green;
@@ -468,7 +513,8 @@
     &--xxs {
       font-size: $font-size--xxs * .9;
       letter-spacing: $letter-spacing--xl;
-      padding: $button-padding--xxs;
+      padding: 0.5rem 1rem;
+      margin-left: 1rem;
     }
     &--xxxs {
       font-size: .67rem;

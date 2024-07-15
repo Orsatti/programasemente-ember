@@ -2,10 +2,10 @@
 <main class="main pt-5">
   <div class="institutions flow-md">
     <header class="main__header main__header--has-side-info">
-      <h1 class="main__title animated fadeInLeftShort faster">Administração</h1>
+      {{!-- <h1 class="main__title animated fadeInLeftShort faster">Administração</h1> --}}
       {{#if (equalstr pessoaLogged.role "admin")}}
         {{#link-to 'gersistema.createinst'}}
-        <button class="btn btn--xxs animated fadeInLeftShort faster d100">
+        <button class="btn btn__nova--instituicao animated fadeInLeftShort faster d100">
           <span class="btn__icon icon-plus"></span>
           <span class="btn__label">Nova Instituição</span>
         </button>
@@ -13,12 +13,13 @@
       {{/if}}
     </header>
 
-    <section class="sections__section animated fadeInLeftShort faster d100">
-      <form class="main__search" autocomplete="off" aria-autocomplete="none">
-        <div class="form-group form-group--full-width">
-          <label class="form-group__label" for="search">Busca</label>
+    <section class="sections__section sections__section--instituicao d-flex animated fadeInLeftShort faster d100">
+      <form class="main__search main__search-instituicao" autocomplete="off" aria-autocomplete="none">
+        <div class="form-group form-group__buscar--intituicoes">
+          {{!-- <label class="form-group__label" for="search">Busca</label> --}}
           <div class="form-group__wrapper form-group__wrapper--search">
             {{input class="form-group__input"
+             placeholder="Procure por uma instituição"
             aria-describedby="basic-addon1"
             autocomplete="off"
             aria-autocomplete="none"
@@ -28,57 +29,43 @@
           </div>
         </div>
       </form>
+      {{#if (equalstr pessoaLogged.role "admin")}}
+      <form id="status" class="form-group__tipo-instituicao">
+        <p>Tipo de instituição:</p>   
+        <input class="checkbox_plataforma ml-1" id="cliente" name="filtroinst" type="radio" value="cliente" {{action 'updateStatus' 'cliente' on='change'}} >
+        <label class="mr-2" for="cliente">Cliente</label>
+        <input class="checkbox_plataforma" id="piloto" name="filtroinst" type="radio" value="piloto" {{action 'updateStatus' 'piloto' on='change'}}>
+        <label class="mr-2" for="piloto">Piloto</label>
+        <input class="checkbox_plataforma" id="trial" name="filtroinst" type="radio" value="trial" {{action 'updateStatus' 'trial' on='change'}}>
+        <label for="trial">Trial</label>
+      </form>
+      {{/if}}
     </section>
 
-    <ul id="matchDisplay" class="list list--striped animated fadeInLeftShort faster d750" style="display:none;">
-      {{#each matchInsts as |inst|}}
-      <li class="l-devil-albatross">
-        {{#if (equalstr pessoaLogged.role "admin")}}
-          {{#link-to 'gerdata.informations' inst.id}}
-            <a class="title-3 btn btn--link color-blue-navy-60">
-              <span class="btn__label">{{inst.name}}</span>
-            </a>
-          {{/link-to}}
-        {{else}}
-          {{#link-to 'gerdata.users' inst.id}}
-            <a class="title-3 btn btn--link color-blue-navy-60">
-              <span class="btn__label">{{inst.name}}</span>
-            </a>
-          {{/link-to}}
-        {{/if}}
-        <span class="switch switch--institutions flex-none m-left--auto m-right--auto">
-          <input class="switch__checkbox" id="activeInstId{{inst.id}}" type="checkbox" disabled="disabled" checked={{inst.enabled}}>
-          <label class="switch__label" for="activeInstId{{inst.id}}">
-            <span class="switch__inner"></span>
-            <span class="switch__head"></span>
-          </label>
-        </span>
-      </li>
-      {{/each}}
-    </ul>
-
     <ul id="modelInstList" class="list list--striped animated fadeInLeftShort faster d100">
-      {{#each model.instituicoes as |inst|}}
-      <li class="l-devil-albatross">
+      {{#each matchInsts as |inst|}}
+      <li class="l-devil-albatross list__linhas">
         {{#if (equalstr pessoaLogged.role "admin")}}
           {{#link-to 'gerdata.informations' inst.id}}
-            <a class="title-3 btn btn--link color-blue-navy-60">
+            <a class="list__title--instituicao ">
               <span class="btn__label">{{inst.name}}</span>
             </a>
           {{/link-to}}
         {{else}}
           {{#link-to 'gerdata.users' inst.id}}
-            <a class="title-3 btn btn--link color-blue-navy-60">
+            <a class="list__title--instituicao">
               <span class="btn__label">{{inst.name}}</span>
             </a>
           {{/link-to}}
         {{/if}}
+
+        {{#if (equalstr pessoaLogged.role "admin")}}
+          <span class="list__etiqueta">{{inst.status}}</span>
+        {{/if}}
+
         <span class=" switch switch--institutions flex-none m-left--auto m-right--auto">
           <input class="switch__checkbox" id="activeInstId{{inst.id}}" type="checkbox" disabled="disabled" checked={{inst.enabled}}>
-          <label class="switch__label" for="activeInstId{{inst.id}}">
-            <span class="switch__inner"></span>
-            <span class="switch__head"></span>
-          </label>
+          <span class="switch__label {{if inst.enabled 'switch__label--habilitado' 'switch__label--desabilitado'}}"></span>
         </span>
       </li>
       {{/each}}

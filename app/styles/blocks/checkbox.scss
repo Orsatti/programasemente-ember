@@ -22,8 +22,18 @@
         margin-right: 0;
     }
 
+    &__reenvio{
+        margin: 1rem;
+    }
+
     &__label {
-        user-select: none;
+        user-select:auto;
+        color: #808080;
+font-size: 15px;
+font-family: Poppins;
+font-weight: 500;
+line-height: 14px;
+word-wrap: break-word;
 
         // * Para casos onde não teremos um label escrito,
         // * como por exemplo uma listagem com possibilidade de
@@ -34,19 +44,28 @@
             padding-left: $input-check-radio-size;
         }
 
+        &::before{
+            border: 1px solid #8AB925;
+            border-radius: 7px;
+            background-color: #fff !important;
+        }
+
         &::after {
-            background-color: transparent;
-            color: $check-radio-checked-color;
-            content: '\e905'; //Código do check
-            font-family: 'icomoon';
+            background-color: #8AB925;
+            color: #fff;
+            content: "\e905";
+            font-family: icomoon;
             font-size: 1em;
-            font-weight: bold;
+            font-weight: 700;
             left: 0;
             position: absolute;
             text-align: center;
             text-rendering: auto;
             top: 50%;
-            width: calc(#{$input-check-radio-size} + .1rem);
+            width: calc(1.75rem + .1rem);
+            height: 1.9rem;
+            border-radius: 5px;
+            line-height: 1.7rem;
         }
 
     }
@@ -58,6 +77,40 @@
     // sanitizer
     &__label + &__input {
         outline: 4px solid crimson;
+    }
+
+    &_plataforma{
+        padding: .25rem;
+        appearance: none;
+        background-color: #fff;
+        margin: 0;
+        margin-right: 0.2em;
+        font: inherit;
+        color: #A3C94B;
+        border: 0.10em solid rgb(207, 211, 213);
+        border-radius: 0.15em;
+        display: inline-flex;
+        place-content: center;
+
+        &::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            background-color: #A3C94B;
+            transform-origin: bottom left;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        &:checked::before {
+            transform: scale(1);
+        }
+
+        &:focus {
+            outline: max(2px, 0.15em) solid rgb(207, 211, 213);
+            outline-offset: max(2px, 0.15em);
+        }
     }
 
 }

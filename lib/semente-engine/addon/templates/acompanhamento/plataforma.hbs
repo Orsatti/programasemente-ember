@@ -368,7 +368,7 @@
                                 <p class="n-encontrado">Nenhum professor encontrado</p>
                             {{else}}
                                 {{#each acompanhamentoPessoas as |p|}}
-                                {{#if (and (equalstr p.role 'instrutor')(containStr subStr = this.search mainStr = p.name))}}
+                                {{#if (and (equalstr p.role 'instrutor')(containStr this.search p.name))}}
                                 <tr>
                                     <td>
                                         <div class="flex flex-col flow-sm">
@@ -443,7 +443,7 @@
                                 <p class="n-encontrado">Nenhum aluno encontrado</p>
                             {{else}}
                                 {{#each acompanhamentoPessoas as |a|}}
-                                {{#if (and (equalstr a.role 'aluno')(containStr subStr = this.search mainStr = a.name))}}
+                                {{#if (and (equalstr a.role 'aluno')(containStr this.search a.name))}}
                                 <tr>
                                     <td class="flex flex-col flow-sm">
                                         <span class="title-4 capitalized">{{a.name}}</span>

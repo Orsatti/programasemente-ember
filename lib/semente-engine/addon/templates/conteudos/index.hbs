@@ -144,7 +144,7 @@
 
       <ul class="list list--striped flow-lg">
         {{#each conteudos as |conteudo|}}
-          {{#if (containStr subStr = search mainStr = conteudo.titulo)}}
+          {{#if (containStr search conteudo.titulo)}}
             <li>
               {{conteudo-card conteudo=conteudo
                               thisIndex=this

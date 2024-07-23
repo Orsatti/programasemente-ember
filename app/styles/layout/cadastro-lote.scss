@@ -1,0 +1,52 @@
+.cadastro-lote{
+    &--card{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    &--infos{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+
+        &--title{
+            font-size: .9rem;
+            font-weight: 700;
+            letter-spacing: .05em;
+        }
+
+        &--name{
+            width: 35%;
+            align-self: center;
+        }
+
+        &--number{
+            width: 20%;
+            align-self: center;
+            justify-content: center;
+        }
+
+        &--action{
+            width: 15%;
+            text-align: center;
+            justify-content: center;
+        }
+    }
+
+    &--instituicao{
+        border: #8AB925 1px solid;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    &--subtitle{
+        margin: 0.5rem 0rem;
+        color: #8AB925;
+        font-weight: 500;
+        
+        &--error{
+            color: #dd0f0f;
+        }
+    }
+}

@@ -165,70 +165,79 @@
                     <div class="institutions__mass-enroll__header">
                         <span>Prévia de alunos e turmas nesta carga</span>
                     </div>
-                    <table class="table table--striped table--mass-enroll table--mt">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th class="table__file" scope="col">Instituição</th>
-                                <th class="table__users" scope="col">Contratados</th>
-                                <th class="table__users" scope="col">Cadastrados</th>
-                                <th class="table__users" scope="col">Planilha</th>
-                            </tr>
-                        </thead>
-                        <tbody class="gersistema-user-list-box">
-                        {{#each infosInstituicao as |inst|}}
-                            <tr>
-                                <td class="table__file">{{inst.instituicao}}</td>
-                                <td class="table__users">{{inst.maxAlunos}}</td>
-                                <td class="table__users">{{inst.alunosCadastrados}}</td>
-                                <td class="table__users">{{inst.alunosPlanilha}}</td>
-                            </tr>
 
-                            {{#if (isbigger inst.turmas.length '0')}}
-                                <table class="table table--striped table--mass-enroll table--mt">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th class="table__file" scope="col">Nome</th>
-                                            <th class="table__import" scope="col">Ano</th>
-                                            <th class="table__users" scope="col">Alunos</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="gersistema-user-list-box">
-                                    {{#each inst.turmas as |turma|}}
-                                        <tr>
-                                            <td class="table__file">{{turma.plataformaTurma}}</td>
-                                            <td class="table__import">{{turma.plataformaAno}}</td>
-                                            <td class="table__users">{{turma.alunos}}</td>
-                                        </tr>
-                                    {{/each}}
-                                    </tbody>
-                                </table>
-                            {{/if}}
+                    <div class="cadastro-lote--card pl-2">
+                        <div class="cadastro-lote--infos">
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--name">Instituição</div>
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Contratados</div>
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Cadastrados</div>
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Planilha</div>
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--action"></div>
+                        </div>
+                        <div class="cadastro-lote--instituicao d-flex d-flex--c w100 mb-2 mt-2">
+                            {{#each infosInstituicao as |inst|}}
+                                <div class="cadastro-lote--infos">
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--name">{{inst.instituicao}}</div>
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.maxAlunos}}</div>
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.alunosCadastrados}}</div>
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.alunosPlanilha}}</div>
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--action">
+                                        <button class="btn" {{action 'showDetails' inst.instituicaoId}}>Detalhes</button>
+                                    </div>
+                                </div>
 
-                            {{#if (isbigger inst.pessoas.length '0')}}
-                                <table class="table table--striped table--mass-enroll table--mt">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th class="table__file" scope="col">Nome</th>
-                                            <th class="table__users" scope="col">Perfil</th>
-                                            <th class="table__import" scope="col">Erro</th>
-                                            <th class="table__users" scope="col">Linha</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="gersistema-user-list-box">
-                                    {{#each inst.pessoas as |pessoa|}}
-                                        <tr>
-                                            <td class="table__file">{{pessoa.nome}}</td>
-                                            <td class="table__users">{{pessoa.perfil}}</td>
-                                            <td class="table__import">{{pessoa.erro}}</td>
-                                            <td class="table__users">{{pessoa.linha}}</td>
-                                        </tr>
-                                    {{/each}}
-                                    </tbody>
-                                </table>
-                            {{/if}}
-                        {{/each}}
-                        </tbody>
-                    </table>
+                                <div id="detalhes-{{inst.instituicaoId}}" style="display: none;" class="w100 d-flex--c">
+                                    {{#if (isbigger inst.pessoas.length '0')}}
+                                        <p class="cadastro-lote--subtitle cadastro-lote--subtitle--error">Ajustes necessários</p>
+                                        <div class="cadastro-lote--card">
+                                            <div class="cadastro-lote--infos">
+                                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--name">Nome</div>
+                                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Perfil</div>
+                                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Erro</div>
+                                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Linha</div>
+                                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--action"></div>
+                                            </div>
+                                            <div class="d-flex d-flex--c w100 mb-2 mt-3">
+                                                 {{#each inst.pessoas as |pessoa|}}
+                                                    <div class="cadastro-lote--infos">
+                                                        <div class="cadastro-lote--infos cadastro-lote--infos--name">{{pessoa.nome}}</div>
+                                                        <div class="cadastro-lote--infos cadastro-lote--infos--number">{{pessoa.perfil}}</div>
+                                                        <div class="cadastro-lote--infos cadastro-lote--infos--number">{{pessoa.erro}}</div>
+                                                        <div class="cadastro-lote--infos cadastro-lote--infos--number">{{pessoa.linha}}</div>
+                                                        <div class="cadastro-lote--infos cadastro-lote--infos--action"></div>
+                                                    </div>
+                                                {{/each}}
+                                            </div>
+                                        </div>
+                                    {{/if}}
+
+                                    {{#if (isbigger inst.turmas.length '0')}}
+                                        <p class="cadastro-lote--subtitle">Prévia das turmas nesta instituição</p>
+                                        <div class="cadastro-lote--card">
+                                            <div class="cadastro-lote--infos">
+                                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--name">Nome</div>
+                                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Ano</div>
+                                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Alunos</div>
+                                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number"></div>
+                                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--action"></div>
+                                            </div>
+                                            <div class="d-flex d-flex--c w100 mb-2 mt-3">
+                                                {{#each inst.turmas as |turma|}}
+                                                    <div class="cadastro-lote--infos">
+                                                        <div class="cadastro-lote--infos cadastro-lote--infos--name">{{turma.plataformaTurma}}</div>
+                                                        <div class="cadastro-lote--infos cadastro-lote--infos--number">{{turma.plataformaAno}}</div>
+                                                        <div class="cadastro-lote--infos cadastro-lote--infos--number">{{turma.alunos}}</div>
+                                                        <div class="cadastro-lote--infos cadastro-lote--infos--number"></div>
+                                                        <div class="cadastro-lote--infos cadastro-lote--infos--action"></div>
+                                                    </div>
+                                                {{/each}}
+                                            </div>
+                                        </div>
+                                    {{/if}}
+                                </div>
+                            {{/each}}
+                        </div>
+                    </div>
                 {{/if}}
             {{/if}}
             </div>

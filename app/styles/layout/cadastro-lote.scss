@@ -3,13 +3,31 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+        background-color: $gray-10;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        
+        > :last-child > div {
+            //border: solid 2px red;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-bottom: solid 1px $gray-30;
+        }
     }
 
+    &--inst-segment {
+        display: flex;
+        font-weight: 600;
+        margin-bottom: 0.8rem;
+        padding: 0.5rem;
+        background-color: hsl(79, 67%, 85%);
+    }
+    
     &--infos{
         display: flex;
         flex-direction: row;
         width: 100%;
-
+        
         &--title{
             font-size: .9rem;
             font-weight: 700;
@@ -24,7 +42,8 @@
         &--number{
             width: 20%;
             align-self: center;
-            justify-content: center;
+           // justify-content: center;
+            text-align: left;
         }
 
         &--action{
@@ -47,6 +66,7 @@
         
         &--error{
             color: #dd0f0f;
+           
         }
     }
 }

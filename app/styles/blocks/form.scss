@@ -92,6 +92,16 @@
       width: 100%;
     }
 
+
+    &__container-reviewProfile {
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    
+    
+    }
+
     &__container {
       position: relative;
       margin-bottom: $distance--md;

@@ -38,8 +38,10 @@
                                 <div class="form-group__wrapper form-group__wrapper--select">
                                     <select id="isEscola" name="isEscola" data-type="select" data-required="true"
                                         class="form-group__input">
-                                        <option value="true" selected={{if (equalstr instituicao.isEscola true) 'selected'}}>Escola</option>
-                                        <option value="false" selected={{if (equalstr instituicao.isEscola false) 'selected'}}>Empresa / Setor Público</option>
+                                        <option value="escola" selected={{if (equalstr instituicao.isEscola "escola") 'selected'}}>Escola</option>
+                                        <option value="empresa" selected={{if (equalstr instituicao.isEscola "empresa") 'selected'}}>Empresa</option>
+                                        <option value="setor publico" selected={{if (equalstr instituicao.isEscola "setor publico") 'selected'}}>Setor Público</option>
+                                        <option value="outros" selected={{if (equalstr instituicao.isEscola "outros") 'selected'}}>Outros</option>
                                     </select>
                                 </div>
                             </form>

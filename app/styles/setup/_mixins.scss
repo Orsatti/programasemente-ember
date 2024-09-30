@@ -569,7 +569,7 @@
 //
 @mixin scrollbar($bg-color: transparent) {
     &::-webkit-scrollbar {
-        width: $scrollbar-width;
+        width: 0.5rem;
     }
 
     // Pista / Track
@@ -580,14 +580,14 @@
 
     // Parte clicável / Handle
     &::-webkit-scrollbar-thumb {
-        background: $scrollbar-handle-bg;
+        background: #A3C94B;
         border-radius: $scrollbar-handle-radius;
         box-shadow: $scrollbar-handle-shadow;
     }
 
     // Parte clicável / Handle quando a janela estiver inativa
     &::-webkit-scrollbar-thumb:window-inactive {
-        background: $scrollbar-handle-bg-inactive;
+        background: #A3C94B;
     }
 
 }

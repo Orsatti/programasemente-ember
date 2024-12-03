@@ -53,4 +53,5 @@ export default DS.Model.extend({
     vendaDireta: DS.attr(),
     instituicaoPlataformaAnoSistema: DS.hasMany('instituicao-plataforma-ano-sistema', {async: true}),
     status: DS.attr(),
+    baseUpdated: DS.attr(),
 });

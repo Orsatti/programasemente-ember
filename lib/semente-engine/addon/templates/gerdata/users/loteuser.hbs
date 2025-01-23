@@ -168,24 +168,32 @@
 
                     <div class="pl-2">
                         <div class="cadastro-lote--infos">
-                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--name">Instituição</div>
-                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Contratados</div>
-                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Cadastrados</div>
-                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Planilha</div>
-                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--action"></div>
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--name ml-3">Instituição</div>
+                            {{#unless oneInst}}
+                                <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--action"></div>
+                            {{/unless}}
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Alun Contratados</div>
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Alun Cadastrados</div>
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Alun Planilha</div>
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Prof Contratados</div>
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number">Prof Cadastrados</div>
+                            <div class="cadastro-lote--infos cadastro-lote--infos--title cadastro-lote--infos--number mr-3">Prof Planilha</div>
                         </div>
                         <div class="cadastro-lote--instituicao d-flex d-flex--c w100 mb-2 mt-2">
                             {{#each infosInstituicao as |inst|}}
                                 <div class="cadastro-lote--inst-segment">
-                                    <div class="cadastro-lote--infos cadastro-lote--infos--name">{{inst.instituicao}}</div>
-                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.maxAlunos}}</div>
-                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.alunosCadastrados}}</div>
-                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.alunosPlanilha}}</div>
-                                   {{#unless oneInst}}
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--name cadastro-lote--infos--nametable">{{inst.instituicao}}</div>
+                                    {{#unless oneInst}}
                                         <div class="cadastro-lote--infos cadastro-lote--infos--action">
                                             <button class="btn" {{action 'showDetails' inst.instituicaoId}}>Detalhes</button>
                                         </div>
                                     {{/unless}}
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.maxAlunos}}</div>
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.alunosCadastrados}}</div>
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.alunosPlanilha}}</div>
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.maxInstrutores}}</div>
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.instrutoresCadastrados}}</div>
+                                    <div class="cadastro-lote--infos cadastro-lote--infos--number">{{inst.instrutoresPlanilha}}</div>
                                 </div>
 
                                 <div id="detalhes-{{inst.instituicaoId}}" style="display:{{if oneInst 'flex' 'none'}}" class="w100 d-flex--c animated fadeIn">

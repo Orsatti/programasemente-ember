@@ -35,15 +35,16 @@
         }
 
         &--name{
-            width: 35%;
-            align-self: center;
+            width: 25%;
+        }
+
+        &--nametable{
+            width: 25%;
         }
 
         &--number{
-            width: 20%;
-            align-self: center;
-           // justify-content: center;
-            text-align: left;
+            width: 15%;
+            justify-content: center;
         }
 
         &--action{

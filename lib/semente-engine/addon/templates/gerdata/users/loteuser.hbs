@@ -6,9 +6,9 @@
             <span class="institutions__mass-enroll-loader-message">Processando...</span>
         </div>
         <div class="modal__header">
-            {{#link-to 'gerdata.users' model.instituicao.id}}
-                <button class="modal__close btn-close icon-x"></button>
-            {{/link-to}}
+            {{!-- {{#link-to 'gerdata.users' model.instituicao.id}} --}}
+            <button class="modal__close btn-close icon-x" onclick={{action 'verifyListPessoas'}}></button>
+            {{!-- {{/link-to}} --}}
             <h3 class="modal__title">Cadastro de usuários em lote</h3>
         </div>
 

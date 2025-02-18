@@ -54,4 +54,5 @@ export default DS.Model.extend({
     instituicaoPlataformaAnoSistema: DS.hasMany('instituicao-plataforma-ano-sistema', {async: true}),
     status: DS.attr(),
     baseUpdated: DS.attr(),
+    pilares: DS.hasMany('pilar', {async: true}),
 });

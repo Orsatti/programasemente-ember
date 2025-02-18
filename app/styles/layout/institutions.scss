@@ -320,6 +320,32 @@
        width: 70%;
        vertical-align: bottom;
      }
+
+     &--title-table-pilar{
+      color: grey;
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 30px;
+      width: 20%;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    &--switch-pilar{
+      display: flex;
+      justify-content: center;
+      width: 20%;
+    }
+
+    &--title-pilar{
+      color: grey;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 30px;
+      width: 60%;
+      text-transform: capitalize;
+      margin: 2px 0px;
+    }
  
      &--title-email{
        font-size: 0.685rem;
@@ -398,7 +424,7 @@
       word-wrap: break-word;
       margin: 0 1rem 1.5rem .8rem;
      }
-   }
+  }
 
   &__mass-enroll {
     align-items: center;

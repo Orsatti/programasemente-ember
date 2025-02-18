@@ -1,0 +1,63 @@
+{{gerdata-header pessoa=pessoaLogged informations=false instituicao=model.instituicao}}
+
+<section class="sections__subsection flow-md animated fadeInLeftShort faster d100 m-top--sm institutions__table-anos ">
+  <div class="institutions__table-anos--titulo mt-0 ml-0">Pilares disponiveis para escola</div>
+  <div class="row justify-content-between institutions__table-anos--col ml-0 mr-0">
+    <h5 class="institutions__table-anos--title-pilar"></h5>
+    <h5 class="institutions__table-anos--title-table-pilar">Habilitado</h5>
+    <h5 class="institutions__table-anos--title-table-pilar">Disponível</h5>
+    {{#each pilares as |pilar| }}
+        <h5 class="institutions__table-anos--title-pilar">{{pilar.nome}}</h5>
+
+        <div class="institutions__table-anos--switch-pilar">
+        <label class="switch__anos">
+            <input type="checkbox" id="pilar{{pilar.id}}_enabled" value='target.checked'
+                checked={{if pilar.enabled "checked" '' }} onchange={{action (action "openModal" pilar)}}>
+
+            <div class="slider">
+            <span class="text enabled-text">
+                <p>SIM</p>
+            </span>
+            <span class="text disabled-text">
+                <p>NÃO</p>
+            </span>
+            </div>
+        </label>
+        </div>
+
+        <div class="institutions__table-anos--switch-pilar">
+        <label class="switch__anos">
+            <input type="checkbox" id="pilar{{pilar.id}}_show" value='target.checked'
+                checked={{if pilar.show "checked" '' }} onchange={{action (action "openModal" pilar)}}>
+
+            <div class="slider">
+            <span class="text enabled-text">
+                <p>SIM</p>
+            </span>
+            <span class="text disabled-text">
+                <p>NÃO</p>
+            </span>
+            </div>
+        </label>
+        </div>
+    {{/each}}
+  </div>
+</section>
+
+<aside id="confirm_modal" class="modal modal--is-show" style="display:none;">
+  <div class="modal__overlayer"></div>
+  <div class="modal__content m-top--md">
+    <header class="modal__header">
+      <button class="modal__close btn-close icon-x" onclick={{action 'closeModal' }}></button>
+      <h3 class="modal__title">Confirmar edição do pilar</h3>
+    </header>
+
+    <div class="modal__body">
+      <div class="flex flex-row justify-content-end mt2">
+        <button class="btn" onclick={{action 'selectPilar' }}>Confirmar</button>
+        <button class="btn" onclick={{action 'closeModal' }}
+          style="background-color: #b62020; margin-left:1rem;">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</aside>

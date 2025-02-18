@@ -6,6 +6,11 @@
           <span>Informações</span>
         </button>
       {{/link-to}}
+      {{#link-to 'gerdata.pilares' instituicao.id }}
+        <button class="report__tab tabs__tab-adm {{if pilares 'tabs__tab--is-active'}}">
+          <span>Pilares</span>
+        </button>
+      {{/link-to}}
       {{#link-to 'gerdata.years' instituicao.id }}
         <button class="report__tab tabs__tab-adm {{if years 'tabs__tab--is-active'}}">
           <span>Anos</span>

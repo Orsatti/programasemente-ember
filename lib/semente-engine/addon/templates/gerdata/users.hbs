@@ -31,13 +31,28 @@
     <div class="l-dots-between">
         <header class="l-dots-between__side">
             <form class="flex flex-col flow-md" autocomplete="off" aria-autocomplete="none">
-                <label class="switch__usuarios">
+                {{!-- <label class="switch__usuarios">
                     <input type="checkbox" id="only-enabled" {{action 'setEnableds' on='change'}} checked="checked">
                     <div class="slider">
                         <span class="text disabled-text"><span class="switch__usuarios--icone"><img src="/assets/img/cross.png" alt=""></span><p class="row">ver desabilitados</p></span>
                         <span class="text enabled-text"><span class="switch__usuarios--icone"><img src="/assets/img/check1.png" alt=""></span><p class="row">ver habilitados</p></span>
                     </div>
-                </label>
+                </label> --}}
+
+                <div class="form-group form-group__usuarios">
+                    <label class="form-group__label">Exibir</label>
+                    <div class="form-group__wrapper form-group__wrapper--select">
+                        <select class="form-group__input form-group__input--amount" id="amount" name="order" {{action 'setExibir' on='change' }}>
+                            <option value="5" selected={{paginationSelected.p5}}>5 resultados</option>
+                            <option value="10" selected={{paginationSelected.p10}}>10 resultados</option>
+                            <option value="25" selected={{paginationSelected.p25}}>25 resultados</option>
+                            <option value="50" selected={{paginationSelected.p50}}>50 resultados</option>
+                            <option value="100" selected={{paginationSelected.p100}}>100 resultados</option>
+                            <option value="500" selected={{paginationSelected.p500}}>500 resultados</option>
+                            <option value="1000" selected={{paginationSelected.p1000}}>1000 resultados</option>
+                        </select>
+                    </div>
+                </div>
 
                 <div class="form-group form-group__usuarios">
                     <label class="form-group__label" for="search">Busca por usuário</label>

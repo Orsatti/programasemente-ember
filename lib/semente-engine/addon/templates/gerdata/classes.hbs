@@ -29,7 +29,8 @@
                   <p class="title-platturma mb-0 w100" id="plat_turma{{plataformaTurma.id}}" for="plat_turma{{plataformaTurma.id}}">
                     {{plataformaTurma.name}}
                   </p>
-                  <p class="title-platturma pt-0 w100">(id: {{plataformaTurma.id}})</p>
+                  <p class="subtitle-platturma pt-0 w100">• {{plataformaTurma.numAlunos}} {{if (equalstr plataformaTurma.numAlunos "1") "pessoa" "pessoas"}}</p>
+                  <p class="subtitle-platturma pt-0 w100">• id: {{plataformaTurma.id}}</p>
                 </div>
                 <span id="icon-edit{{plataformaTurma.id}}" class="btn_icon_edit icon-edit" onclick={{action 'edit'
                   plataformaTurma}} style="display: block;"></span>

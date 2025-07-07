@@ -7,22 +7,16 @@
     {{#unless (equalstr segmento.idx '6')}}
       <div class="flow-sm">
         <h4 class="institutions__table-anos--title-segmento">{{segmento.titulo}}</h4>
+        <button type="button" class="institutions__table-anos--btn-all" onclick={{action "openModalSegmento" segmento}}>SELECIONAR TODOS</button>
         {{#each (orderby segmento.plataformaAnos 'idx') as |plataformaAno|}}
           <ul class="institutions__table-anos--check">
             <h5 class="institutions__table-anos--title-platano"> {{plataformaAno.name}}</h5>
             <label class="switch__anos">
 
-              {{#if (or (containStr "Fundação Bradesco" model.instituicao.name) (or (equalstr segmento.idx '1') (and (equalstr segmento.idx '5') (notequalstr plataformaAno.idx '17'))))}}
-                <input type="checkbox"
-                    id="plat_ano{{plataformaAno.id}}_portal" checked={{if (instplatsisContains plataformaAno
-                    instituicao.instituicaoPlataformaAnoSistema '1' ) "checked" '' }} onchange={{action (action "openModal"
-                    plataformaAno '1' 'false' ) value='target.checked' }}>
-              {{else}}
-                <input type="checkbox"
-                  id="plat_ano{{plataformaAno.id}}_s" checked={{if (instplatsisContains plataformaAno
-                  instituicao.instituicaoPlataformaAnoSistema '2' ) "checked" '' }} onchange={{action (action "openModal"
-                  plataformaAno '2' 'false' ) value='target.checked' }}>
-              {{/if}}
+              <input type="checkbox"
+                id="plat_ano{{plataformaAno.id}}" checked={{if (instplatsisContains plataformaAno
+                instituicao.instituicaoPlataformaAnoSistema '2' ) "checked" '' }} onchange={{action (action "openModal"
+                plataformaAno '2' 'false' ) value='target.checked' }}>
 
               <div class="slider">
                 <span class="text enabled-text">
@@ -89,14 +83,32 @@
   <div class="modal__overlayer"></div>
   <div class="modal__content m-top--md">
     <header class="modal__header">
-      <button class="modal__close btn-close icon-x" onclick={{action 'closeModal' 'true' }}></button>
+      <button class="modal__close btn-close icon-x" onclick={{action 'closeModal' }}></button>
       <h3 class="modal__title">Confirmar edição de ano</h3>
     </header>
 
     <div class="modal__body">
       <div class="flex flex-row justify-content-end mt2">
         <button class="btn" onclick={{action 'selectAno' }}>Confirmar</button>
-        <button class="btn" onclick={{action 'closeModal' 'true' }}
+        <button class="btn" onclick={{action 'closeModal' }}
+          style="background-color: #b62020; margin-left:1rem;">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<aside id="confirm_segmento_modal" class="modal modal--is-show" style="display:none;">
+  <div class="modal__overlayer"></div>
+  <div class="modal__content m-top--md">
+    <header class="modal__header">
+      <button class="modal__close btn-close icon-x" onclick={{action 'closeModalSegmento' }}></button>
+      <h3 class="modal__title">Confirmar edição do segmento</h3>
+    </header>
+
+    <div class="modal__body">
+      <div class="flex flex-row justify-content-end mt2">
+        <button class="btn" onclick={{action 'selectAnosSegmento' }}>Confirmar</button>
+        <button class="btn" onclick={{action 'closeModalSegmento' }}
           style="background-color: #b62020; margin-left:1rem;">Cancelar</button>
       </div>
     </div>

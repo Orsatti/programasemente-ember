@@ -134,7 +134,7 @@
                 </div>
                 {{/if}}
 
-                {{#if csEnabled}}
+                {{!-- {{#if csEnabled}}
                 <div class="col-md-4">
                     <div class="checkbox w100">
                         <input class="checkbox__input" checked={{new_user_acessoCs}} id="new_user_acessoCs"
@@ -142,7 +142,7 @@
                         <label class="checkbox__label" for="new_user_acessoCs">Formação de professores</label>
                     </div>
                 </div>
-                {{/if}}
+                {{/if}} --}}
 
                 <div class="col-md-3">
                     <div class="checkbox w100">
@@ -152,6 +152,83 @@
                     </div>
                 </div>
             </div>
+
+            {{#if (equalstr activeProfile "aluno")}}
+            <div class="flex flex-col animated fadeInLeftShort faster d100 mt2">
+                <h3 class="modal__subtitle">Em qual ano e turma deve ser inscrito?</h3>
+                <div class="flex flex-row mt1">
+                    <div class="col-md-4">
+                        <div class="form-group__container__login">
+                            <div class="form-group w100">
+                                <label class="form-group__label" for="new_user_ano">Ano</label>
+                                <div class="form-group__wrapper form-group__usuarios-modal form-group__wrapper--select">
+                                    <select class="j-validate-aluno form-group__input form-group__input--select"
+                                        id="new_user_ano" name="ano" onchange={{action 'refreshPlataformaTurmas'
+                                        value='target.value' }} data-type="select" data-required="true"
+                                        data-type="select" data-context="ano">
+                                        <option selected="selected" value="">---</option>
+                                        {{#each (orderby plataformaAnos 'idx') as |pa|}}
+                                        <option value="{{pa.id}}">
+                                            {{pa.segmento.titulo}} - {{pa.name}}
+                                        </option>
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="color-error-40" id="aluno-ano-error"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group__container__login">
+                            <div class="form-group w100">
+                                <label class="form-group__label" for="new_user_turma">Turma</label>
+                                <div class="form-group__wrapper form-group__usuarios-modal form-group__wrapper--select">
+                                    <select class="j-validate-aluno form-group__input form-group__input--select"
+                                        id="new_user_turma" name="turma" data-type="select" data-required="true"
+                                        data-context="turma">
+                                        <option selected="selected" value="">---</option>
+                                        {{#each plataformaTurmas as |pt|}}
+                                        {{#if (equalstr pt.plataformaAno.id selectedPlataformaAno.id)}}
+                                        <option value="{{pt.id}}">{{pt.name}}</option>
+                                        {{/if}}
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="color-error-40" id="aluno-turma-error"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{else if (notequalstr activeProfile "")}}
+            <div class="flex flex-col animated fadeInLeftShort faster d100 mt2">
+                <h3 class="modal__subtitle">Em qual turma deve ser inscrito?</h3>
+                <div class="flex flex-row mt1">
+                    <div class="col-md-4">
+                        <div class="form-group__container__login">
+                            <div class="form-group w100">
+                                <label class="form-group__label" for="new_user_turma">Turma</label>
+                                <div class="form-group__wrapper form-group__usuarios-modal form-group__wrapper--select">
+                                    <select class="j-validate-aluno form-group__input form-group__input--select"
+                                        id="new_user_turma" name="turma" data-type="select" data-required="true"
+                                        data-context="turma">
+                                        <option selected="selected" value="">---</option>
+                                        {{#each plataformaTurmas as |pt|}}
+                                        {{#if (equalstr pt.plataformaAno.idx '20')}}
+                                        <option value="{{pt.id}}">{{pt.name}}</option>
+                                        {{/if}}
+                                        {{/each}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="color-error-40" id="adulto-turma-error"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/if}}
+
             {{#if (equalstr activeProfile "instrutor")}}
             <div class="flex flex-col animated fadeInLeftShort faster d100 mt2">
                 <h3 class="modal__subtitle">Você é professor aplicador?</h3>
@@ -214,66 +291,6 @@
                     </div>
                 </div>
                 {{/if}}
-            </div>
-            {{/if}}
-
-            {{#if (equalstr activeProfile "aluno")}}
-            <div class="flex flex-col animated fadeInLeftShort faster d100 mt2">
-                <h3 class="modal__subtitle">Em qual ano e turma deve ser inscrito?</h3>
-                <div class="flex flex-row mt1">
-                    <div class="col-md-4">
-                        <div class="form-group__container__login">
-                            <div class="form-group w100">
-                                <label class="form-group__label" for="new_user_ano">Ano</label>
-                                <div class="form-group__wrapper form-group__usuarios-modal form-group__wrapper--select">
-                                    <select class="j-validate-aluno form-group__input form-group__input--select"
-                                        id="new_user_ano" name="ano" onchange={{action 'refreshPlataformaTurmas'
-                                        value='target.value' }} data-type="select" data-required="true"
-                                        data-type="select" data-context="ano">
-                                        <option selected="selected" value="">---</option>
-                                        {{#each (orderby plataformaAnos 'idx') as |pa|}}
-                                        <option value="{{pa.id}}">
-                                            {{pa.segmento.titulo}} - {{pa.name}}
-                                        </option>
-                                        {{/each}}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="color-error-40" id="aluno-ano-error"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group__container__login">
-                            <div class="form-group w100">
-                                <label class="form-group__label" for="new_user_turma">Turma</label>
-                                <div class="form-group__wrapper form-group__usuarios-modal form-group__wrapper--select">
-                                    <select class="j-validate-aluno form-group__input form-group__input--select"
-                                        id="new_user_turma" name="turma" data-type="select" data-required="true"
-                                        data-context="turma">
-                                        <option selected="selected" value="">---</option>
-                                        {{#each plataformaTurmas as |pt|}}
-                                        {{!-- {{#if (equalstr selectedPlataformaAno '')}}
-                                        <option value="{{pt.id}}">{{pt.name}}</option>
-                                        {{else}} --}}
-                                        {{#if (equalstr pt.plataformaAno.id selectedPlataformaAno.id)}}
-                                        <option value="{{pt.id}}">{{pt.name}}</option>
-                                        {{/if}}
-                                        {{!-- {{/if}} --}}
-                                        {{/each}}
-
-                                        {{!-- QUANDO AP TIVER TURMA --}}
-                                        {{!-- {{#if (and (and csEnabled (equalstr 'Adultos' selectedPlataformaAno.name))
-                                        (notequalstr instituicao.name "Semente"))}}
-                                        <option value="{{apTurma.id}}">{{apTurma.name}}</option>
-                                        {{/if}} --}}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="color-error-40" id="aluno-turma-error"></div>
-                        </div>
-                    </div>
-                </div>
             </div>
             {{/if}}
 

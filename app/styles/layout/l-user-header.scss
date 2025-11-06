@@ -1,7 +1,6 @@
 .l-user-header {
   $this: &;
 
-
   display: flex;
   padding: 1.8rem 20rem 1.8rem 20rem;
   max-height: 6.25rem;
@@ -12,38 +11,35 @@
   position: relative;
   justify-content: center;
   background-color: #fff;
-  width: 100%;
-  
+  width: 1140px;
+  margin: auto;
+  margin-top: 1rem;
+  border-radius: 0 2rem;
 
-  @include media('<xl') {
-    
+  @include media("<xl") {
     justify-content: space-around;
     padding: 1.8rem;
+   // width: 90%;
   }
-  
 
   &__wrapper {
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    
 
-    @include media('<=lg') {
+    @include media("<=lg") {
       justify-content: space-between;
-      width: 100%;
+    //  width: 100%;
       padding: 0 4rem 0 4rem;
     }
 
-    @include media('<=sm') {
+    @include media("<=sm") {
       justify-content: space-between;
-      width: 100%;
+     // width: 100%;
       padding: 0 0.5rem 0 0.5rem;
     }
-
-
   }
-
 
   &__logo {
     display: flex;
@@ -55,10 +51,9 @@
     height: auto;
     margin-right: 4rem;
 
-    @include media('<=sm') {
+    @include media("<=sm") {
       max-width: 120px;
       min-width: 0;
-      
     }
 
     &--medio {
@@ -66,8 +61,6 @@
       width: 180px;
       height: auto;
     }
-
-
   }
 
   &__nav {
@@ -75,18 +68,16 @@
     display: flex;
     align-items: center;
 
-    >ul {
+    > ul {
       width: 100%;
       display: flex;
       gap: 1.8rem;
       align-items: center;
 
-      @media (max-width:1300px) {
+      @media (max-width: 1300px) {
         gap: 1.2rem;
       }
     }
-
-
 
     &-item {
       color: #808080;
@@ -97,10 +88,9 @@
       line-height: 16px;
       //border: solid red 2px;
 
-      @include media('<=lg') {
+      @include media("<=lg") {
         font-size: 14px;
       }
-
 
       &--is-active {
         background-color: $default-green;
@@ -108,7 +98,7 @@
         border-radius: 10px;
         color: #fff;
         border-bottom: none;
-        
+
         .tabs__tab--is-active {
           border: none;
         }
@@ -118,20 +108,15 @@
         font-size: 28px;
         margin-right: 2rem;
 
-        @include media('<=lg') {
+        @include media("<=lg") {
           font-size: 18px;
         }
-
       }
-
-
     }
 
-    @include media('<=lg') {
+    @include media("<=lg") {
       display: none;
     }
-
-
   }
 
   &__avatarWrapper {
@@ -142,16 +127,13 @@
     position: relative;
     z-index: 1000;
 
-
-    @include media('<=lg') {
+    @include media("<=lg") {
       gap: 1rem;
     }
 
     &-avatar {
       max-width: 32px;
       height: auto;
-
-      
     }
 
     &-nameWrapper {
@@ -161,17 +143,15 @@
       text-align: right;
     }
 
-
     &-name {
-
       text-align: right;
       font-size: 14px;
       font-style: normal;
       font-weight: 500;
       line-height: 12px;
 
-      @include media('<=sm') {
-       font-size: 12px;
+      @include media("<=sm") {
+        font-size: 12px;
       }
     }
 
@@ -182,19 +162,16 @@
       line-height: 12px;
     }
 
-    
-      
     &-chevron {
       position: absolute;
       top: 0;
       right: -22%;
       transition: all ease-in-out 0.3s;
-      
+
       &-is--rotated {
         transform: rotate(90deg);
       }
     }
-
 
     &__menuMobile {
       position: absolute;
@@ -205,19 +182,18 @@
       display: flex;
       padding: 1rem;
       border-radius: $radius-plataforma-semente;
-      background-color: $fafafa;
+      background-color: #fff;
       z-index: -1;
       box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.05);
       justify-content: center;
       max-height: 0;
       transition: max-height 0.3s ease-out;
 
-      @include media('<=sm') {
-       left: 0;
-       transform: translateX(-20%);
+      @include media("<=sm") {
+        left: 0;
+        transform: translateX(-20%);
       }
-      
-      
+
       &-content {
         display: flex;
         align-items: center;
@@ -228,8 +204,7 @@
         flex-wrap: wrap;
         position: relative;
         opacity: 0;
-                        
-        
+
         &:first-child {
           margin-top: 4rem;
         }
@@ -237,11 +212,9 @@
 
       a {
         flex: 1 1 100%;
-        
       }
 
       &-subitem {
-
         font-size: 12px;
         width: 100%;
         min-width: 100%;
@@ -254,25 +227,19 @@
         height: auto;
         flex-wrap: wrap;
         justify-content: center;
-                
-       
 
         > span {
           display: block;
           min-width: 100%;
           width: 100%;
           text-align: left;
-                            
-          
-
         }
 
         &:hover {
-
           color: #fff;
-  
+
           &::before {
-            content: '';
+            content: "";
             width: 120%;
             height: 90%;
             display: block;
@@ -287,15 +254,9 @@
             transform: translate(-12%, -15%);
             z-index: -2;
           }
-          
-
         }
-
-     
-                
       }
     }
-
   }
 
   &__optionsMobile {
@@ -310,51 +271,40 @@
     flex-direction: row;
     display: none;
 
-    @include media('<lg') {
+    @include media("<lg") {
       display: flex;
+      margin: auto;
     }
-
-
-    
 
     > span {
       margin-right: 0.5rem;
     }
 
-    
-    
-  
     &-nav {
       display: none;
       background-color: $fafafa;
       position: absolute;
-      top:100%;
+      top: 100%;
       left: 0;
       height: auto;
       box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.05);
       padding: 1rem;
       width: 100%;
       z-index: 999;
-      
 
-      
-    @include media('<lg') {
-      display: flex;
-    }
-
-
-    &-item--is-active {
-      
-      border-bottom: solid 2px $default-green;
-      font-weight: 600;
-      color: $default-green;
-
-      .tabs__tab--is-active {
-        border: none;
+      @include media("<lg") {
+        display: flex;
       }
-      
-    }
 
+      &-item--is-active {
+        border-bottom: solid 2px $default-green;
+        font-weight: 600;
+        color: $default-green;
+
+        .tabs__tab--is-active {
+          border: none;
+        }
+      }
 
       > ul {
         display: flex;
@@ -364,52 +314,45 @@
         align-items: center;
         gap: 1rem;
         text-align: center;
-        color:#808080;
+        color: #808080;
         //font-size: 14px;
 
         .l-user-header__nav-item--isCalendar {
           margin: auto !important;
         }
-
-       }
+      }
     }
-    
+
+    @include media("<lg") {
+      width: 90%;
+    }
   }
 
-
-
-
   .no-flexbox-gap & {
-    >*:first-child:not(:only-child) {
+    > *:first-child:not(:only-child) {
       margin-bottom: $distance--md;
 
-      @include media('>md') {
+      @include media(">md") {
         margin-bottom: 0;
         margin-right: $distance--md;
       }
     }
   }
 
-
-
-  @include media('>md') {
-
+  @include media(">md") {
     padding-left: $distance--xl;
     padding-right: $distance--xl;
   }
 
-  @include media('>lg') {
-
-    padding-left: $distance--xxl;
-    padding-right: $distance--xxl;
+  @include media(">lg") {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
-  @include media('>xl') {
-
-    padding-left: $distance--xxxl;
-    padding-right: $distance--xxxl;
+  @include media(">xl") {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
-
 
   // Elements
   &__role {
@@ -420,10 +363,16 @@
     opacity: 0.85;
     text-transform: uppercase;
 
-    >*+* {
+    > * + * {
       margin-left: $distance--xxs;
     }
-
   }
 
+   @include media("<lg") {
+    width: 90%;
+   }
+
+   @include media("<md") {
+    width: 90%;
+   }
 }

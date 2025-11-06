@@ -2,7 +2,7 @@
   $this: &;
   $container-diff: 8rem;
 
-  background-color: $white;
+  background-color: #fff;
   border-color: #fff;
   border-style: solid;
   border-width: 0 1px;
@@ -11,23 +11,23 @@
   min-height: 100%;
   padding: $main-top-padding $h-padding--xs $main-bottom-padding;
   position: relative;
-  width: 100%;
+  width: 1140px;
 
-  @include media('>sm') {
+  @include media(">sm") {
     $temp: map-get($breakpoints, sm);
 
     max-width: calc(#{$temp} + #{$container-diff});
     padding: $main-top-padding--sm $h-padding--sm $main-bottom-padding--sm;
   }
 
-  @include media('>md') {
+  @include media(">md") {
     $temp: map-get($breakpoints, md);
 
     max-width: calc(#{$temp} + #{$container-diff});
     padding: $main-top-padding--md $h-padding--md $main-bottom-padding--md;
   }
 
-  @include media('>lg') {
+  @include media(">lg") {
     $temp: map-get($breakpoints, lg);
 
     max-width: calc(#{$temp} + #{$container-diff});
@@ -41,18 +41,17 @@
   &__back {
     margin-left: -$distance--sm;
 
-    &--adm{
-      color:#8AB925 ;
+    &--adm {
+      color: #8ab925;
       background-color: #fff;
       border-radius: 10px;
-      padding:0.5rem 0.8rem;
+      padding: 0.5rem 0.8rem;
       font-size: 0.8rem;
     }
   }
 
   &__header {
-
-    @include media('>sm') {
+    @include media(">sm") {
       $size: $h-padding--sm;
 
       margin-left: (-$size);
@@ -62,7 +61,7 @@
       padding-top: 0;
     }
 
-    @include media('>md') {
+    @include media(">md") {
       $size: $h-padding--md;
 
       margin-left: (-$size);
@@ -71,7 +70,7 @@
       padding-right: $size;
     }
 
-    @include media('>lg') {
+    @include media(">lg") {
       $size: $h-padding--lg;
 
       margin-left: (-$size);
@@ -88,38 +87,35 @@
       gap: $distance--sm;
       justify-content: space-between;
 
-      @include media('>sm') {
+      @include media(">sm") {
         align-items: flex-end;
         flex-direction: row;
       }
 
-
-    .no-flexbox-gap & {
-      > *:not(:first-child) {
-        margin-left: $distance--sm;
+      .no-flexbox-gap & {
+        > *:not(:first-child) {
+          margin-left: $distance--sm;
+        }
       }
-    }
-
     }
 
     &--no-margin {
       margin-bottom: 0;
     }
 
+    &--adm {
+      position: absolute;
+      right: 6%;
+      top: 5rem;
 
-    &--adm{
-     position: absolute;
-     right: 6%;
-     top: 5rem;
+      .btn {
+        color: #8ab925;
+        background-color: #fff;
+        box-shadow: none;
 
-     .btn{
-      color: #8AB925;
-      background-color: #fff;
-      box-shadow: none;
-     }
-
+        
+      }
     }
-
   }
 
   &__search {
@@ -129,7 +125,8 @@
   &__search-instituicao {
     width: 40%;
 
-    @include media('<sm') {    width: 95%;
+    @include media("<sm") {
+      width: 95%;
       margin-top: 3rem;
       width: 95%;
     }
@@ -142,7 +139,7 @@
     margin-bottom: $distance--xl;
     margin-right: auto;
 
-    @include media('>sm') {
+    @include media(">sm") {
       margin-bottom: calc(#{$distance--sm} + 1vw);
     }
 
@@ -150,16 +147,16 @@
       margin-top: $distance--xxs;
     }
 
-    [class*='main__header'] & {
+    [class*="main__header"] & {
       margin-bottom: 0;
     }
 
-    >[class*='icon'] {
+    > [class*="icon"] {
       color: $lemon-60;
       margin-right: $distance--sm;
     }
 
-    &--adm{
+    &--adm {
       font-size: 1.3rem;
       color: #808080;
       font-weight: 700;
@@ -168,9 +165,8 @@
       margin-right: 1rem;
       width: 75%;
       text-align: right;
-      padding-top: .25rem;
+      padding-top: 0.25rem;
     }
-
   }
 
   &__subtitle {
@@ -200,7 +196,6 @@
       max-width: 8em;
       z-index: 2;
     }
-
   }
 
   &__subsubtitle {
@@ -223,17 +218,14 @@
   }
 
   &__subsection {
-
     &:not(:first-of-type) {
       margin-top: $distance--xxxl;
     }
 
-    >* {
+    > * {
       margin-bottom: $distance--xxl;
     }
-
   }
-
 
   //Modificadores
   [class*="--in-course"] & {
@@ -241,5 +233,214 @@
     max-width: 100%;
     padding: 0;
   }
+}
 
+.main__conteudo {
+  background-color: #fafafa;
+  width: 1140px;
+  margin: 2rem auto;
+
+  input {
+    border-radius: 0.5rem;
+    background-color: #fafafa;
+  }
+
+  select {
+    border-radius: 0.5rem;
+    background-color: #fafafa;
+  }
+
+  .title-aux {
+    color: #808080;
+    text-transform: none;
+    font-size: 0.6rem;
+  }
+
+  .icon-check {
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .title-3 {
+    color: #808080;
+  }
+
+  .bloco {
+    min-height: 20rem;
+    margin-top: auto;
+    position: relative;
+    .media {
+      font-size: 1rem;
+      color: #808080;
+      font-weight: bold;
+
+      .ativo {
+        background-color: #5fb34b;
+        border-radius: 1rem;
+        width: 2rem;
+        height: 1.5rem;
+        margin-top: 0;
+      }
+
+      .btn {
+        padding: 0;
+        box-shadow: none;
+        padding: 1em 0.5em 0.95em;
+        background-color: none;
+        cursor: pointer;
+
+        :hover {
+          background-color: none;
+        }
+
+         @include media("<lg") {
+           padding: 1em 0.3em 0.95em;
+         }
+      }
+
+      button {
+        margin: 0 0.75rem 0 0;
+      }
+
+      .botoes {
+        height: 1rem;
+        display: flex;
+      }
+    }
+
+    .segmento {
+      font-size: 0.75rem;
+      font-weight: normal;
+
+      p {
+        font-weight: bold;
+      }
+    }
+
+    .data-up {
+      position: absolute;
+      bottom: 0.5rem;
+      right: 1rem;
+      font-size: 0.8rem;
+      font-weight: normal;
+    }
+
+
+
+    @include media("<lg") {
+      min-height: 30rem;
+    }
+
+     @include media("<md") {
+      min-height: 28rem;
+    }
+  }
+
+  .titulo-conteudo {
+    margin: auto;
+    display: inline-block;
+    position: relative;
+
+    .seta {
+      position: absolute;
+      top: 0;
+      left: 3.8rem;
+
+        @include media("<lg") {
+      left: 5.8rem;
+    }
+
+       @include media("<md") {
+      left: 4.8rem;
+    }
+
+      @include media("<sm") {
+              left: 6rem;
+        top: -0.2rem;
+    }
+    }
+  }
+
+  .box {
+    border: 1px solid #8ab925;
+    border-radius: 1rem;
+    position: relative;
+    padding: 1rem 2rem 1rem 0;
+    display: inline-flex;
+
+    width: 11rem;
+
+    img {
+      width: auto;
+      max-width: fit-content;
+    }
+
+    @include media("<lg") {
+      width: 95%;
+      margin: 1rem auto;
+          padding: 1rem 0rem 1rem 0;
+    }
+
+    @include media("<md") {
+      width: 95%;
+      margin: 1rem auto;
+    }
+
+     @include media("<sm") {
+    padding: 1rem 2rem 1rem 2rem
+     }
+  }
+
+  span {
+    color: #808080;
+  }
+
+  .barra-tit {
+    display: flex;
+    position: relative;
+
+     @include media("<sm") {
+      display: block;
+      margin-bottom: 3rem;
+    }
+  }
+
+  .titulo-pag {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #808080;
+  }
+
+  .classificar {
+    display: flex;
+    position: absolute;
+    right: 0;
+
+    p {
+      line-height: 2.2rem;
+      margin: 0 1rem;
+    }
+
+    select {
+      background-color: #fff;
+    }
+  }
+
+  .list--striped{
+      @include media("<sm") {
+        display: inline-flex;
+      }
+
+  }
+
+  @include media("<lg") {
+    width: 90%;
+    margin: auto;
+  }
+
+  @include media("<md") {
+    width: 90%;
+    margin: auto;
+  }
 }

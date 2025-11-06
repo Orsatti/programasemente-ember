@@ -129,19 +129,33 @@
   }
 
   &--striped {
+                  display: grid;
+grid-template-columns: 1fr 1fr; /* duas colunas iguais */
+gap: 16px; /* espaço entre as colunas */
 
     > li {
       align-items: center;
       padding: $distance--md $distance--xs;
+      background-color: #fff;
+              width: 50%;
+
 
       @include media('>sm') {
         padding: 0.8rem;
       }
 
-      &:nth-child(odd) {
-        background-color: #F7FAF1;
-      }
+     
 
+    }
+
+    .bloco{
+       align-items: center;
+      padding: $distance--md $distance--xs;
+      background-color: #fff;
+              width: 100%;
+              padding: 16px;
+border: 1px solid #e5e8ef;
+border-radius: 12px;
     }
 
   }

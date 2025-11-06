@@ -40,6 +40,9 @@
   &__side {
     flex: 0 0 25%;
     order: 0;
+    background-color: #fff;
+        padding: 2rem;
+        border-radius: 0 2rem;
 
     @include media(">sm") {
       flex: 0 0 20%;
@@ -49,6 +52,7 @@
   &__content {
     flex: 1;
     order: 2;
+   // background-color: #fff;
   }
 
   &__livros {

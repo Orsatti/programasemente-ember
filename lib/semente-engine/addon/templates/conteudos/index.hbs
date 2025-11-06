@@ -136,16 +136,16 @@
     </aside>
 
     <section class="l-dots-between__content flow-md">
-      <hgroup>
+      {{!-- <hgroup>
         <h1 class="sr-only">Lista de conteúdos de {{selectedAgrupamento}}</h1>
         <h1 class="sr-only">{{selectedPublico}}</h1>
         <h2 class="title-4">{{selectedAgrupamento}}<span class="fs--xs fw--3 fs-i color-blue-navy-20"> ({{conteudos.length}} {{if (equalstr conteudos.length '1') 'conteúdo' 'conteúdos'}})</span></h2>
-      </hgroup>
+      </hgroup> --}}
 
-      <ul class="list list--striped flow-lg">
+      <div class="list list--striped flow-lg">
         {{#each conteudos as |conteudo|}}
           {{#if (containStr search conteudo.titulo)}}
-            <li>
+            <div class="bloco">
               {{conteudo-card conteudo=conteudo
                               thisIndex=this
                               show=show
@@ -154,10 +154,10 @@
                               selectedAno=selectedAno
                               calendarios=calendarios
                               }}
-            </li>
+            </div>
           {{/if}}
         {{/each}}
-      </ul>
+      </div>
     </section>
   </div>
 </section>

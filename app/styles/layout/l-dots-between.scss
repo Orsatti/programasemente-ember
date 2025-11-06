@@ -65,6 +65,7 @@
     &--botao {
       display: inline-block;
       cursor: pointer;
+      margin-top: 1rem;
 
       :hover {
         background-color: $blue-navy-70;

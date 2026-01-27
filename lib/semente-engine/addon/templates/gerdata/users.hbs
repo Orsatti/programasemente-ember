@@ -13,10 +13,10 @@
                 <span class="btn__label institutions__btn--label-usuarios">Cadastro em lote</span>
             </button>
             {{/link-to}}
-            <button class="btn  institutions__btn--label-usuarios btn--xxs" type="submit" {{action 'baixarTemplateAtivos' }}>
+            {{!-- <button class="btn  institutions__btn--label-usuarios btn--xxs" type="submit" {{action 'baixarTemplateAtivos' }}>
                 
                 Usuários cadastrados
-            </button>
+            </button> --}}
             {{#if (and (equalstr pessoaLogged.role 'admin') (equalstr pessoaLogged.id '4881'))}}
             <button class="btn btn--xxs" type="submit" {{action 'sendEmail' }}>
                 Enviar Email
